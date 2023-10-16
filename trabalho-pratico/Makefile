@@ -2,6 +2,8 @@ CC=gcc
 CFLAGS=-Wall -Wextra -pedantic -O2
 LIBS=-lm
 
+args = `arg="$(filter-out $@,$(MAKECMDGOALS))" && echo $${arg:-${1}}`
+
 # Find all .c files
 SOURCES := $(shell find ./src -type f -name '*.c')
 # And convert them to .o files
@@ -13,8 +15,15 @@ trabalho-principal: $(OBJECTS)
 
 clean:
     # Delete recursively all objects (.o) files
-	find . -type f -name '*.o' -delete
+	@find . -type f -name '*.o' -delete
 
 dev:
     # Clean, compile and run 
-	make clean && make && make clean && ./trabalho-principal
+	@printf "\n===== Compiling, Cleaning and executing project =====\n\n"
+	@make -s clean
+	@make -s
+	@make -s clean
+	@./trabalho-principal $(call args)
+
+%:
+	@:
