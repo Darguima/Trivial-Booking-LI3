@@ -1,16 +1,19 @@
-CC=gcc
-CFLAGS=-Wall -Wextra -pedantic -O2
-LIBS=-lm
+EXECUTABLE=trabalho-principal
 
-# Arguments passed after make command - will be passed to the executable
-args = `arg="$(filter-out $@,$(MAKECMDGOALS))" && echo $${arg:-${1}}`
+CC=gcc
+INC=-I includes/
+CFLAGS=-Wall -Wextra -pedantic -O2 ${INC}
+LIBS=-lm
 
 # Find all .c files
 SOURCES := $(shell find ./src -type f -name '*.c')
 # And convert them to .o files
 OBJECTS := $(patsubst %.c, %.o, $(SOURCES))
 
-trabalho-principal: $(OBJECTS)
+# Arguments passed after make command - will be passed for example to the executable
+MAKE_ARGS = `arg="$(filter-out $@,$(MAKECMDGOALS))" && echo $${arg:-${1}}`
+
+$(EXECUTABLE): $(OBJECTS)
     # Compile main.c
 	$(CC) $(CFLAGS) -o $@ $^ $(LIBS)
 
@@ -24,8 +27,8 @@ dev:
 	@make -s clean
 	@make -s
 	@make -s clean
-	@./trabalho-principal $(call args)
+	@./$(EXECUTABLE) $(call MAKE_ARGS)
 
-# Ignore unmatched commands - to allow store the arguments inside a variable
+# Ignore unmatched commands - to allow store the arguments inside a variable MAKE_ARGS
 %:
 	@:

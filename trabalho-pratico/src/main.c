@@ -1,10 +1,20 @@
 #include <stdio.h>
+#include "parser/parser.h"
+#include "output/batch.h"
+#include "interpreter/interpreter.h"
+#include "output/interactive.h"
 
 int main(int argc, char **argv) {
+  parser();
+
   if (argc == 3) {
-    printf("Entered in Batch Mode with params '%s' & '%s'.\n", argv[1], argv[2]);
+    interpreter();
+    batch();
+    printf("Args: '%s' & '%s'.\n", argv[1], argv[2]);
   } else if (argc == 1) {
+    interpreter();
     printf("Entered in Interactive Mode\n");
+    interactive();
   } else {
     printf("Call the program with 2 params (dataset & queries file) to batch mode.\n");
     printf("Call the program without params to interactive mode.\n");
