@@ -6,10 +6,10 @@
 
 ```bash
 # Ubuntu
-$ sudo apt-get install libglib2.0-dev
+$ sudo apt-get install libglib2.0-dev clang-format
 
 # Arch
-$ sudo pacman -S glib2 ncurses
+$ sudo pacman -S glib2 clang
 ```
 
 #### Cloning the repository

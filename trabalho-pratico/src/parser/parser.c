@@ -1,7 +1,7 @@
-#include <stdio.h>
 #include "catalog/catalog.h"
+#include <stdio.h>
 
-int parser () {
+int parser() {
   printf("I'm in parser\n");
   catalogFlights();
   catalogPassengers();

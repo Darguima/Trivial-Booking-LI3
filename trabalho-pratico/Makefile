@@ -1,4 +1,4 @@
-EXECUTABLE=trabalho-principal
+EXECUTABLE=programa-principal
 
 CC=gcc
 INC=-I includes/
@@ -14,21 +14,33 @@ OBJECTS := $(patsubst %.c, %.o, $(SOURCES))
 MAKE_ARGS = `arg="$(filter-out $@,$(MAKECMDGOALS))" && echo $${arg:-${1}}`
 
 $(EXECUTABLE): $(OBJECTS)
-    # Compile main.c
+# Compile project
 	$(CC) $(CFLAGS) -o $@ $^ $(LIBS)
 
+clean-objects:
+# Delete recursively all objects (.o) files
+	@find . -type f -name '*.o' -delete && echo "[Cleaning] Object Files"
+
 clean:
-    # Delete recursively all objects (.o) files
-	@find . -type f -name '*.o' -delete
+	@make -s clean-objects
+	@rm -f ${EXECUTABLE} && echo "[Cleaning] ${EXECUTABLE}"
+
+format:
+# Check if clang is installed
+	@command -v clang-format &> /dev/null || echo "[Warning] Please install `clang`. Read documentation."
+# Run clang-format against the code files
+	@clang-format -i src/**/*.[ch] && echo "[Formating]"
 
 dev:
-    # Clean, compile and run 
-	@printf "\n===== Compiling, Cleaning and executing project =====\n\n"
+	@printf "=====  Formating, Compiling, Cleaning and executing project   =====\n"
 	@make -s clean
-	@make -s
-	@make -s clean
+	@make -s format
+	@make -s && echo "[Compiling]"
+	@make -s clean-objects
+	@printf "===================================================================\n"
+
 	@./$(EXECUTABLE) $(call MAKE_ARGS)
 
-# Ignore unmatched commands - to allow store the arguments inside a variable MAKE_ARGS
 %:
+# Ignore unmatched commands - to allow store the arguments inside a variable MAKE_ARGS
 	@:

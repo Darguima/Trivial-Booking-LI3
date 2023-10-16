@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int batch () {
+int batch() {
   printf("I'm in batch\n");
   return 0;
 }

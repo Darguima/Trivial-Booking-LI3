@@ -1,8 +1,8 @@
-#include <stdio.h>
-#include "parser/parser.h"
-#include "output/batch.h"
 #include "interpreter/interpreter.h"
+#include "output/batch.h"
 #include "output/interactive.h"
+#include "parser/parser.h"
+#include <stdio.h>
 
 int main(int argc, char **argv) {
   parser();
