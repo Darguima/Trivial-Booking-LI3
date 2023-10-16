@@ -2,6 +2,7 @@ CC=gcc
 CFLAGS=-Wall -Wextra -pedantic -O2
 LIBS=-lm
 
+# Arguments passed after make command - will be passed to the executable
 args = `arg="$(filter-out $@,$(MAKECMDGOALS))" && echo $${arg:-${1}}`
 
 # Find all .c files
@@ -25,5 +26,6 @@ dev:
 	@make -s clean
 	@./trabalho-principal $(call args)
 
+# Ignore unmatched commands - to allow store the arguments inside a variable
 %:
 	@:
