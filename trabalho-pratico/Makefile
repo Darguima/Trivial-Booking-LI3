@@ -1,7 +1,7 @@
 EXECUTABLE=programa-principal
 
 CC=gcc
-INC=-I includes/
+INC=-I include/
 CFLAGS=-Wall -Wextra -pedantic -O2 ${INC}
 LIBS=-lm
 
