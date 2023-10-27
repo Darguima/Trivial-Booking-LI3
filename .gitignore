@@ -3,6 +3,10 @@ programa-testes
 *.csv
 Resultados/*
 
+trabalho-pratico/*/**.o
+trabalho-pratico/programa-principal
+trabalho-pratico/dataset
+
 # Prerequisites
 *.d
 
