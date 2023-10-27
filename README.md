@@ -14,7 +14,7 @@ $ sudo pacman -S glib2 clang
 
 #### Cloning the repository
 ```bash
-$ git clone # not available yet
+$ git clone https://github.com/dium-li3/grupo-45.git
 ```
 
 #### Compiling
