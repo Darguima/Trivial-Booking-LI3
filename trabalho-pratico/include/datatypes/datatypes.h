@@ -1,5 +1,5 @@
-#include <time.h>
 #include <stdbool.h>
+#include <time.h>
 
 typedef enum { MALE, FEMALE } sex;
 
@@ -9,18 +9,18 @@ typedef enum { ACTIVE, INACTIVE } account_status;
 
 typedef struct userSchema {
 
-  char *id;
-  char *name;
-  char *email;
-  char *phone_number; // verify if the size of an int is sufficient for phone number
-  time_t birth_date;  // verify if dates are stored as numeric timestamp
-  sex sex;
-  char *passport;
-  char *country_code;
-  char *address;
-  time_t account_creation; // verify how should the date be stored
-  pay_method pay_method;
-  account_status account_status;
+  char *id;                      // identificador do usuário;
+  char *name;                    // nome;
+  char *email;                   // email;
+  char *phone_number;            // número de telemóvel;
+  time_t birth_date;             // data de nascimento;
+  sex sex;                       // sexo;
+  char *passport;                // passaporte;
+  char *country_code;            // código de país;
+  char *address;                 // endereço do usuário;
+  time_t account_creation;       // data de criação da conta;
+  pay_method pay_method;         // método de pagamento;
+  account_status account_status; // estado da conta;
 } UserSchema;
 
 typedef struct flightSchema {
