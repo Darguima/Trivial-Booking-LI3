@@ -3,7 +3,7 @@
 
 typedef enum { MALE, FEMALE } sex;
 
-typedef enum { CASH, CREDIT_CARD, DEVIT_CARD } pay_method;
+typedef enum { CASH, CREDIT_CARD, DEBIT_CARD } pay_method;
 
 typedef enum { ACTIVE, INACTIVE } account_status;
 
