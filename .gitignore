@@ -2,6 +2,7 @@ programa-principal
 programa-testes
 *.csv
 Resultados/*
+.vscode
 
 trabalho-pratico/*/**.o
 trabalho-pratico/programa-principal
