@@ -1,27 +1,29 @@
 #include <time.h>
+#include <stdbool.h>
 
-typedef enum { M, F } sex; //M- male, F- female
+typedef enum { MALE, FEMALE } sex;
 
-typedef enum { cash, credit_card, debit_card } pay_method;
+typedef enum { CASH, CREDIT_CARD, DEVIT_CARD } pay_method;
 
-typedef enum { active, inactive } account_status;
+typedef enum { ACTIVE, INACTIVE } account_status;
 
-typedef struct usersSchema {
+typedef struct userSchema {
+
   char *id;
   char *name;
   char *email;
   char *phone_number; // verify if the size of an int is sufficient for phone number
-  time_t birth_date;   // verify if dates are stored as numeric timestamp
+  time_t birth_date;  // verify if dates are stored as numeric timestamp
   sex sex;
   char *passport;
   char *country_code;
   char *address;
-  char *account_creation; // verify how should the date be stored
+  time_t account_creation; // verify how should the date be stored
   pay_method pay_method;
   account_status account_status;
-} UsersSchema;
+} UserSchema;
 
-typedef struct flightsSchema {
+typedef struct flightSchema {
   int id;                         // identificador do voo;
   char *airline;                  // companhia aérea;
   char *plane_model;              // modelo do avião;
@@ -35,14 +37,14 @@ typedef struct flightsSchema {
   char *pilot;                    // nome do piloto;
   char *copilot;                  // nome do copiloto;
   char *notes;                    // observações sobre o voo.
-} FlightsSchema;
+} FlightSchema;
 
-typedef struct passengersSchema {
+typedef struct passengerSchema {
   int flight_id; // identificador do voo
   char *user_id; // identificador do utilizador
-} PassengersSchema;
+} PassengerSchema;
 
-typedef struct reservationsSchema {
+typedef struct reservationSchema {
   char *id;                // identificador da reserva;
   char *user_id;           // identificador do utilizador;
   char *hotel_id;          // identificador do hotel;
@@ -57,4 +59,4 @@ typedef struct reservationsSchema {
   char *room_details;      // detalhes sobre o quarto;
   int rating;              // classificação atribuída pelo utilizador;
   char *comment;           // comentário sobre a reserva.
-} ReservationsSchema;
+} ReservationSchema;
