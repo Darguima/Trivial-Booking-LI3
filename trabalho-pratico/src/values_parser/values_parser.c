@@ -1,5 +1,5 @@
-#include <catalog/catalog.h>
 #include <stdio.h>
+#include <store_catalog/store_catalog.h>
 
 int values_parser_users(char **values) {
   printf("I'm in values_parser_users\n");
@@ -20,7 +20,7 @@ int values_parser_users(char **values) {
   fake_user.pay_method = CASH;
   fake_user.account_status = ACTIVE;
 
-  catalog_users(fake_user);
+  store_catalog_user(fake_user);
 
   return 0;
 }
@@ -45,7 +45,7 @@ int values_parser_flights(char **values) {
   fake_flight.copilot = "First Officer Fake";
   fake_flight.notes = "This is a fake flight.";
 
-  catalog_flights(fake_flight);
+  store_catalog_flight(fake_flight);
 
   return 0;
 }
@@ -59,7 +59,7 @@ int values_parser_passengers(char **values) {
   fake_passenger.flight_id = 1;
   fake_passenger.user_id = "1";
 
-  catalog_passengers(fake_passenger);
+  store_catalog_passenger(fake_passenger);
 
   return 0;
 }
@@ -85,7 +85,7 @@ int values_parser_reservations(char **values) {
   fake_reservation.rating = 4;
   fake_reservation.comment = "This is a fake reservation.";
 
-  catalog_reservations(fake_reservation);
+  store_catalog_reservation(fake_reservation);
 
   return 0;
 }

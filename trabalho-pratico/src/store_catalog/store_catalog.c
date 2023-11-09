@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int catalog_users(UserSchema user) {
+int store_catalog_user(UserSchema user) {
   printf("\n\n\n");
 
   printf("I'm in catalogUsers.\nThis is some of my data:\n");
@@ -12,47 +12,47 @@ int catalog_users(UserSchema user) {
   printf("\nPassport - %s", user.passport);
   printf("\nPhone Number - %s", user.phone_number);
 
-  printf("\n\n\n");
+  printf("Fake Stored\n\n\n");
 
   return 0;
 }
 
-int catalog_flights(FlightSchema flight) {
+int store_catalog_flight(FlightSchema flight) {
   printf("\n\n\n");
 
-  printf("I'm in catalogflights.\nThis is some of my data:\n");
+  printf("I'm in catalogFlights.\nThis is some of my data:\n");
 
   printf("\nPilot Name - %s", flight.pilot);
   printf("\nID - %i", flight.id);
 
-  printf("\n\n\n");
+  printf("Fake stored\n\n\n");
 
   return 0;
 }
 
-int catalog_passengers(PassengerSchema passenger) {
+int store_catalog_passenger(PassengerSchema passenger) {
   printf("\n\n\n");
 
-  printf("I'm in catalogpassengers.\nThis is some of my data:\n");
+  printf("I'm in catalogPassengers.\nThis is some of my data:\n");
 
   printf("\nFlightID - %d", passenger.flight_id);
   printf("\nUser ID - %s", passenger.user_id);
 
-  printf("\n\n\n");
+  printf("Fake stored\n\n\n");
 
   return 0;
 }
 
-int catalog_reservations(ReservationSchema reservation) {
+int store_catalog_reservation(ReservationSchema reservation) {
   printf("\n\n\n");
 
-  printf("I'm in catalogreservations.\nThis is some of my data:\n");
+  printf("I'm in catalogReservations.\nThis is some of my data:\n");
 
   printf("\nName - %s", reservation.hotel_name);
   printf("\nID - %s", reservation.id);
   printf("\nAddress - %s", reservation.address);
 
-  printf("\n\n\n");
+  printf("Fake stored\n\n\n");
 
   return 0;
 }

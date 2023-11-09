@@ -2,10 +2,16 @@
 #include "output/batch.h"
 #include "output/interactive.h"
 #include "file_parser/file_parser.h"
+#include "catalogs_creator/catalogs_creator.h"
 #include <stdio.h>
 
 int main(int argc, char **argv) {
-  
+  // This isn't creating anything, and the type should be edited to the correct in the future
+  // After the catalog be really created passe them to bash/interpreter
+  /* int* catalogs = */catalogs_creator();
+
+  // Add catalogs filler manager here
+
   if (argc == 3) {
     interpreter();
     batch();
