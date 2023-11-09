@@ -1,12 +1,11 @@
 #include "interpreter/interpreter.h"
 #include "output/batch.h"
 #include "output/interactive.h"
-#include "parser/parser.h"
+#include "file_parser/file_parser.h"
 #include <stdio.h>
 
 int main(int argc, char **argv) {
-  parser();
-
+  
   if (argc == 3) {
     interpreter();
     batch();
