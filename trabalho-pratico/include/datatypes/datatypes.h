@@ -1,3 +1,6 @@
+#ifndef DATATYPES_H
+#define DATATYPES_H
+
 #include <stdbool.h>
 #include <time.h>
 
@@ -60,3 +63,5 @@ typedef struct reservationSchema {
   int rating;              // classificação atribuída pelo utilizador;
   char *comment;           // comentário sobre a reserva.
 } ReservationSchema;
+
+#endif
