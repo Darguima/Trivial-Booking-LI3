@@ -1,58 +1,41 @@
 #include <datatypes/datatypes.h>
+#include <glib.h>
 #include <stdio.h>
 #include <stdlib.h>
 
-int store_catalog_user(UserSchema user) {
-  printf("\n\n\n");
+int store_catalog_user(UserSchema user, GHashTable* users_catalog) {
+  g_hash_table_insert(users_catalog, user->id, user);
 
-  printf("I'm in catalogUsers.\nThis is some of my data:\n");
-
-  printf("\nName - %s", user.name);
-  printf("\nID - %s", user.id);
-  printf("\nPassport - %s", user.passport);
-  printf("\nPhone Number - %s", user.phone_number);
-
-  printf("Fake Stored\n\n\n");
-
+  printf("[store_catalog_user] Stored %s\n", user->id);
   return 0;
 }
 
-int store_catalog_flight(FlightSchema flight) {
-  printf("\n\n\n");
+int store_catalog_flight(FlightSchema flight, GHashTable* flights_catalog) {
+  g_hash_table_insert(flights_catalog, GINT_TO_POINTER(flight->id), flight);
 
-  printf("I'm in catalogFlights.\nThis is some of my data:\n");
-
-  printf("\nPilot Name - %s", flight.pilot);
-  printf("\nID - %i", flight.id);
-
-  printf("Fake stored\n\n\n");
-
+  printf("[store_catalog_flight] Stored %i\n", flight->id);
   return 0;
 }
 
-int store_catalog_passenger(PassengerSchema passenger) {
-  printf("\n\n\n");
+int store_catalog_passenger(PassengerSchema passenger,
+                            GHashTable* passengers_catalog) {
+  // Concatenate the flight_id and user_id in a string and use it as an id
+  size_t id_str_length = (size_t)snprintf(
+      NULL, 0, "%d_%s", passenger->flight_id, passenger->user_id);
+  char* id = (char*)malloc(id_str_length + 1);
+  snprintf(id, id_str_length + 1, "%d_%s", passenger->flight_id,
+           passenger->user_id);
 
-  printf("I'm in catalogPassengers.\nThis is some of my data:\n");
+  g_hash_table_insert(passengers_catalog, id, passenger);
 
-  printf("\nFlightID - %d", passenger.flight_id);
-  printf("\nUser ID - %s", passenger.user_id);
-
-  printf("Fake stored\n\n\n");
-
+  printf("[store_catalog_passenger] Stored %s\n", id);
   return 0;
 }
 
-int store_catalog_reservation(ReservationSchema reservation) {
-  printf("\n\n\n");
+int store_catalog_reservation(ReservationSchema reservation,
+                              GHashTable* reservations_catalog) {
+  g_hash_table_insert(reservations_catalog, reservation->id, reservation);
 
-  printf("I'm in catalogReservations.\nThis is some of my data:\n");
-
-  printf("\nName - %s", reservation.hotel_name);
-  printf("\nID - %s", reservation.id);
-  printf("\nAddress - %s", reservation.address);
-
-  printf("Fake stored\n\n\n");
-
+  printf("[store_catalog_reservation] Stored %s\n", reservation->id);
   return 0;
 }

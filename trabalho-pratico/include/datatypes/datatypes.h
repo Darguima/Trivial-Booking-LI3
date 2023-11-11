@@ -1,8 +1,16 @@
 #ifndef DATATYPES_H
 #define DATATYPES_H
 
+#include <glib.h>
 #include <stdbool.h>
 #include <time.h>
+
+typedef struct catalogs {
+  GHashTable* users;
+  GHashTable* flights;
+  GHashTable* passengers;
+  GHashTable* reservations;
+}* Catalogs;
 
 typedef enum { MALE, FEMALE } sex;
 
@@ -23,7 +31,7 @@ typedef struct userSchema {
   time_t account_creation;        // data de criação da conta;
   pay_method pay_method;          // método de pagamento;
   account_status account_status;  // estado da conta;
-} UserSchema;
+}* UserSchema;
 
 typedef struct flightSchema {
   int id;                          // identificador do voo;
@@ -39,12 +47,12 @@ typedef struct flightSchema {
   char* pilot;                     // nome do piloto;
   char* copilot;                   // nome do copiloto;
   char* notes;                     // observações sobre o voo.
-} FlightSchema;
+}* FlightSchema;
 
 typedef struct passengerSchema {
   int flight_id;  // identificador do voo
   char* user_id;  // identificador do utilizador
-} PassengerSchema;
+}* PassengerSchema;
 
 typedef struct reservationSchema {
   char* id;           // identificador da reserva;
@@ -61,6 +69,6 @@ typedef struct reservationSchema {
   char* room_details;       // detalhes sobre o quarto;
   int rating;               // classificação atribuída pelo utilizador;
   char* comment;            // comentário sobre a reserva.
-} ReservationSchema;
+}* ReservationSchema;
 
 #endif

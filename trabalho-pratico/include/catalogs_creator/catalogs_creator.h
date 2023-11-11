@@ -2,7 +2,8 @@
 #define CATALOGS_CREATOR_H
 
 #include <stdio.h>
+#include "datatypes/datatypes.h"
 
-int* catalogs_creator();
+Catalogs catalogs_creator();
 
 #endif
