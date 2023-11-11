@@ -1,5 +1,5 @@
 #ifndef CATALOG_H
-#define CATALOG_H 
+#define CATALOG_H
 
 #include <datatypes/datatypes.h>
 

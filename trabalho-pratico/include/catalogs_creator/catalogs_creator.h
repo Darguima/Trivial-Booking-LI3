@@ -3,6 +3,6 @@
 
 #include <stdio.h>
 
-int* catalogs_creator() ;
+int* catalogs_creator();
 
 #endif

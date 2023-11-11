@@ -1,6 +1,6 @@
 #ifndef INTERACTIVE_H
 #define INTERACTIVE_H
 
-int interactive ();
+int interactive();
 
 #endif

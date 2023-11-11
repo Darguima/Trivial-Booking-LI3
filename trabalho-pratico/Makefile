@@ -31,7 +31,7 @@ format:
 # Check if clang is installed
 	@command -v clang-format &> /dev/null || echo "[Warning] Please install `clang`. Read documentation."
 # Run clang-format against the code files
-	@clang-format -i src/**/*.[ch] && echo "[Formating]"
+	@find . -name '*.[ch]' -exec clang-format -i {} -style=Chromium \; && echo "[Formating]"	
 
 dev:
 	@printf "=====  Formating, Compiling, Cleaning and executing project   =====\n"
@@ -45,4 +45,4 @@ dev:
 
 # Ignore unmatched commands - to allow store the arguments inside a variable MAKE_ARGS
 %:
-	@:
+	@echo "Invalid command"; exit 1

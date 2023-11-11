@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <store_catalog/store_catalog.h>
 
-int values_parser_users(char **values) {
+int values_parser_users(char** values) {
   printf("I'm in values_parser_users\n");
   printf("First String received: %s\n", values[0]);
 
@@ -11,12 +11,12 @@ int values_parser_users(char **values) {
   fake_user.name = "John Doe";
   fake_user.email = "john.doe@example.com";
   fake_user.phone_number = "123456789";
-  fake_user.birth_date = time(NULL); // Set to current time
+  fake_user.birth_date = time(NULL);  // Set to current time
   fake_user.sex = MALE;
   fake_user.passport = "AB123456";
   fake_user.country_code = "US";
   fake_user.address = "123 Main St, City";
-  fake_user.account_creation = time(NULL); // Set to current time
+  fake_user.account_creation = time(NULL);  // Set to current time
   fake_user.pay_method = CASH;
   fake_user.account_status = ACTIVE;
 
@@ -25,7 +25,7 @@ int values_parser_users(char **values) {
   return 0;
 }
 
-int values_parser_flights(char **values) {
+int values_parser_flights(char** values) {
   printf("I'm in values_parser_flights\n");
   printf("First String received: %s\n", values[0]);
 
@@ -37,10 +37,10 @@ int values_parser_flights(char **values) {
   fake_flight.total_seats = 200;
   fake_flight.origin = "Airport A";
   fake_flight.destination = "Airport B";
-  fake_flight.schedule_departure_date = time(NULL); // Set to current time
-  fake_flight.schedule_arrival_date = time(NULL);   // Set to current time
-  fake_flight.real_departure_date = time(NULL);     // Set to current time
-  fake_flight.real_arrival_date = time(NULL);       // Set to current time
+  fake_flight.schedule_departure_date = time(NULL);  // Set to current time
+  fake_flight.schedule_arrival_date = time(NULL);    // Set to current time
+  fake_flight.real_departure_date = time(NULL);      // Set to current time
+  fake_flight.real_arrival_date = time(NULL);        // Set to current time
   fake_flight.pilot = "Captain Fake";
   fake_flight.copilot = "First Officer Fake";
   fake_flight.notes = "This is a fake flight.";
@@ -50,7 +50,7 @@ int values_parser_flights(char **values) {
   return 0;
 }
 
-int values_parser_passengers(char **values) {
+int values_parser_passengers(char** values) {
   printf("I'm in values_parser_passengers\n");
   printf("First String received: %s\n", values[0]);
 
@@ -64,7 +64,7 @@ int values_parser_passengers(char **values) {
   return 0;
 }
 
-int values_parser_reservations(char **values) {
+int values_parser_reservations(char** values) {
   printf("I'm in values_parser_reservations\n");
   printf("First String received: %s\n", values[0]);
 
@@ -77,8 +77,8 @@ int values_parser_reservations(char **values) {
   fake_reservation.hotel_stars = 5;
   fake_reservation.city_tax = 10;
   fake_reservation.address = "456 Hotel St, City";
-  fake_reservation.begin_date = time(NULL); // Set to current time
-  fake_reservation.end_date = time(NULL);   // Set to current time
+  fake_reservation.begin_date = time(NULL);  // Set to current time
+  fake_reservation.end_date = time(NULL);    // Set to current time
   fake_reservation.price_per_night = 100;
   fake_reservation.includes_breakfast = true;
   fake_reservation.room_details = "Fake Room";

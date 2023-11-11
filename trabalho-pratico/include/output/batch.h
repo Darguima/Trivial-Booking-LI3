@@ -1,6 +1,6 @@
 #ifndef BATCH_H
 #define BATCH_H
 
-int batch ();
+int batch();
 
 #endif

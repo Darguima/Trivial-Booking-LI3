@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 
-char **parse_line(char *line, int max_size);
-void file_parser(FILE *file, int max_size) ;
+char** parse_line(char* line, int max_size);
+void file_parser(FILE* file, int max_size);
 
 #endif
