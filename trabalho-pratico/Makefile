@@ -1,29 +1,44 @@
 # The name of the final executable file
-EXECUTABLE=programa-principal
+EXECUTABLE := programa-principal
 
 # Find all .c files (SOURCES), and also replace the extension to .o (OBJECTS)
 SOURCES := $(shell find ./src -type f -name '*.c')
 OBJECTS := $(patsubst %.c, %.o, $(SOURCES))
 
 # Storing the extra arguments passed to the make command, to pass it then to, for exemple, the executable (make dev)
-MAKE_ARGS = `arg="$(filter-out $@,$(MAKECMDGOALS))" && echo $${arg:-${1}}`
+MAKE_ARGS := `arg="$(filter-out $@,$(MAKECMDGOALS))" && echo $${arg:-${1}}`
 
-# Compiler Flags
-CC=gcc
-INC=-I include/ # Including local headers
-CFLAGS=-Wall -Wextra -pedantic -O2 ${INC}
-LIBS=-lm
+# Compiler Flags ====
+CC := gcc
+
+FLAGS := -Wall -Wextra -pedantic -std=gnu17 -Werror=pedantic -Werror=vla -fstack-protector-all -fstrict-aliasing -Wconversion -Wformat-security -Wundef -Wshadow
+
+# Add correct optimization flags to FLAGS
+# To active DEBUG flags call the make file like this: `DEBUG=1 make ...`
+DEBUG ?= 0
+ifeq ($(DEBUG), 1)
+# Low optimization/fast compilation at debuging/development compilation
+	FLAGS += -O0 -g 
+else
+# Lot of optimization/slow compilation at final compilation
+	FLAGS += -O3 -Werror
+endif
+
+
+LOCAL_INC := -I include/ # Including local headers
+GLIB_INC := $(shell pkg-config --cflags glib-2.0) # pkg-config will convert the lib name to the correct flag
+CFLAGS := ${FLAGS} ${LOCAL_INC} ${GLIB_INC}
+
+LDFLAGS := -lm `pkg-config --libs glib-2.0` # pkg-config will convert the lib name to the correct flag
+
+# Commands ===
 
 # Compile project
 $(EXECUTABLE): $(OBJECTS)
-	$(CC) $(CFLAGS) $^ $(LIBS) -o $@ 
-
-# Delete recursively all objects (.o) files
-clean-objects:
-	@find . -type f -name '*.o' -delete && echo "[Cleaning] Object Files"
+	$(CC) $(CFLAGS) $^ $(LDFLAGS) -o $@ 
 
 clean:
-	@make -s clean-objects
+	@find . -type f -name '*.o' -delete && echo "[Cleaning] Object Files"
 	@rm -f ${EXECUTABLE} && rm -f programa-testes && echo "[Cleaning] ${EXECUTABLE}"
 
 # Format Code
@@ -34,11 +49,9 @@ format:
 	@find . -name '*.[ch]' -exec clang-format -i {} -style=Chromium \; && echo "[Formating]"	
 
 dev:
-	@printf "=====  Formating, Compiling, Cleaning and executing project   =====\n"
-	@make -s clean
+	@printf "=====  Formating, Compiling and executing project   =====\n"
 	@make -s format
-	@make -s && echo "[Compiling]"
-	@make -s clean-objects
+	@DEBUG=1 make -s && echo "[Compiling]"
 	@printf "===================================================================\n"
 
 	@./$(EXECUTABLE) $(call MAKE_ARGS)

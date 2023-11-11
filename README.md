@@ -30,6 +30,18 @@ $ ./programa-principal <path to *.csv files> <path to input file>
 $ make dev
 ```
 
+If you want active DEBUG mode pass the DEBUG variable to the make command:
+
+```bash
+# Will compile faster and with debugging symbols
+$ DEBUG=1 make
+```
+
+# WhiteBoard for ideas for the presentation
+
+1. Show the data flow (catalog_creator, catalog_filler, filer_parser, ...)
+2. GitHub Actions
+
 # Developed by:
 
 - [Afonso Pedreira](https://github.com/afooonso)
