@@ -1,9 +1,8 @@
 #ifndef PARSER_H
 #define PARSER_H
 
-#include <stdio.h>
+#include <datatypes/datatypes.h>
 
-char** parse_line(char* line, int max_size);
-void file_parser(FILE* file, int max_size);
+void file_parser(FILE* file, Catalogs CATALOGS, schema_name schema_name);
 
 #endif

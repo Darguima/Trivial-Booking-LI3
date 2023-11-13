@@ -24,13 +24,14 @@ Inside the project folder:
 ```bash
 $ cd trabalho-pratico
 $ make
-$ ./programa-principal <path to *.csv files> <path to input file>
+# You can run the program without params (interactive mode)
+$ ./programa-principal <path to *.csv folder> <path to input file>
 
-# Or all at once
-$ make dev
+# Or all at once (also possible without params)
+$ make dev <path to *.csv folder> <path to input file>
 ```
 
-If you want active DEBUG mode pass the DEBUG variable to the make command:
+If you want active DEBUG mode (the default for `make dev`) pass the DEBUG variable to the make command:
 
 ```bash
 # Will compile faster and with debugging symbols

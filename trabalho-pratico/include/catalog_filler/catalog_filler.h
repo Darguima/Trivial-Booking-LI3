@@ -1,15 +1,10 @@
 #ifndef CATALOG_FILLER_H
 #define CATALOG_FILLER_H
 
-#include <stdio.h>
 
-#define USER_MAXSIZE 12
-#define FLIGHT_MAXSIZE 13
-#define RESERVATIONS_MAXSIZE 14
-#define PASSENGERS_MAXSIZE 2
+#include <datatypes/datatypes.h>
 
-int catalog_filler ( char *folder_destination ) ;
+int catalog_filler(char* dataset_folder_path, Catalogs CATALOGS);
 
-char *get_full_destination (char *destination , const char *filename)
 
 #endif

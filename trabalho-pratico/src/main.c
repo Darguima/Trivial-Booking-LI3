@@ -1,29 +1,55 @@
 #include <stdio.h>
+#include "catalog_filler/catalog_filler.h"
 #include "catalogs_creator/catalogs_creator.h"
 #include "datatypes/datatypes.h"
-#include "file_parser/file_parser.h"
-#include "interpreter/interpreter.h"
 #include "output/batch.h"
 #include "output/interactive.h"
 #include "values_parser/values_parser.h"  // Delete me when possible
 
 int main(int argc, char** argv) {
+  if (argc != 1 && argc != 3) {
+    printf("Your arguments are wrong!\n");
+    printf("You passed %d arguments.\n", argc - 1);
+    printf("For interactive mode dont't pass any argument.\n");
+    printf("For batch mode pass 2 arguments:\n");
+    printf("\t- the dataset folder path\n");
+    printf("\t- the queries file path\n");
+    fprintf(stderr, "[ERROR] - Invalid params\n");
+    return -1;
+  }
+
+  char* dataset_folder_path;
+  if (argc == 1) {
+    // ask user the input - 2nd phase
+    dataset_folder_path = "./dataset/data";
+  } else {
+    dataset_folder_path = argv[1];
+  }
+
+  printf("[INFO] - Dataset folder path: %s\n", dataset_folder_path);
+
+  char* queries_file_path = "not needed";
+  if (argc == 3) {
+    queries_file_path = argv[2];
+  }
+
+  printf("[INFO] - Queries file path: %s\n", queries_file_path);
+
   Catalogs CATALOGS = catalogs_creator();
+
+  printf("[STATUS] - Catalogs created\n");
+
+  int catalog_fill_status = catalog_filler(dataset_folder_path, CATALOGS);
+  if (catalog_fill_status == -1) {
+    fprintf(stderr, "[ERROR] - Invalid dataset path\n");
+    return -1;
+  }
+
+  printf("[STATUS] - Catalogs filled\n");
 
   /*
    * DELETE ME AFTER HERE =================================================
-   * Just to test CATALOG and use the var.
-   * Delete this section of code after the variable be passed to bash and
-   * interpreter
    */
-
-  char** fake_string_array = malloc(1 * sizeof(char*));
-  fake_string_array[0] = "fake string";
-
-  values_parser_users(fake_string_array, CATALOGS->users);
-  values_parser_flights(fake_string_array, CATALOGS->flights);
-  values_parser_reservations(fake_string_array, CATALOGS->reservations);
-  values_parser_passengers(fake_string_array, CATALOGS->passengers);
 
   UserSchema test_struct_pointer_user =
       (UserSchema)g_hash_table_lookup(CATALOGS->users, "AlícSá-Mendes");
@@ -61,25 +87,16 @@ int main(int argc, char** argv) {
     printf("[main - test] not found passenger\n");
   }
 
+  // return 0;
+
   // DELETE ME UNTIL HERE =================================================
 
-  // Add catalogs filler manager here
-
   if (argc == 3) {
-    interpreter();
     batch();
     printf("Args: '%s' & '%s'.\n", argv[1], argv[2]);
   } else if (argc == 1) {
-    interpreter();
     printf("Entered in Interactive Mode\n");
     interactive();
-  } else {
-    printf(
-        "Call the program with 2 params (dataset & queries file) to batch "
-        "mode.\n");
-    printf("Call the program without params to interactive mode.\n");
-    fprintf(stderr, "[ERROR] Invalid params\n");
-    return 1;
   }
 
   return 0;

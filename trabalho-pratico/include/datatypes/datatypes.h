@@ -5,12 +5,23 @@
 #include <stdbool.h>
 #include <time.h>
 
+// Catalogs management
+
+#define USERS_DATASET_COLUMNS 12
+#define FLIGHTS_DATASET_COLUMNS 13
+#define RESERVATIONS_DATASET_COLUMNS 14
+#define PASSENGERS_DATASET_COLUMNS 2
+
+typedef enum { USERS, FLIGHTS, PASSENGERS, RESERVATIONS } schema_name;
+
 typedef struct catalogs {
   GHashTable* users;
   GHashTable* flights;
   GHashTable* passengers;
   GHashTable* reservations;
 }* Catalogs;
+
+// Catalogs Schemas
 
 typedef enum { MALE, FEMALE } sex;
 
