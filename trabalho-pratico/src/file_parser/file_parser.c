@@ -19,8 +19,13 @@ char** parse_line(char* line, int dataset_columns_amount) {
   return (line_elements);
 }
 
-void file_parser(FILE* file, Catalogs CATALOGS, schema_name schema_name_) {
+void file_parser(FILE* file,
+                 Catalogs CATALOGS,
+                 schema_name schema_name_,
+                 char* dataset_folder_path) {
   // determine columns amount
+  if (dataset_folder_path == NULL) {  // ignorar pff
+  }
   int dataset_columns_qnt = 0;
   if (schema_name_ == USERS) {
     dataset_columns_qnt = USERS_DATASET_COLUMNS;
@@ -48,13 +53,13 @@ void file_parser(FILE* file, Catalogs CATALOGS, schema_name schema_name_) {
     char** line_elements = parse_line(line, dataset_columns_qnt);
 
     if (schema_name_ == USERS) {
-      values_parser_users(line_elements, CATALOGS->users);
+      values_parser_users(line_elements, CATALOGS);
     } else if (schema_name_ == FLIGHTS) {
-      values_parser_flights(line_elements, CATALOGS->flights);
+      values_parser_flights(line_elements, CATALOGS);
     } else if (schema_name_ == RESERVATIONS) {
-      values_parser_reservations(line_elements, CATALOGS->reservations);
+      values_parser_reservations(line_elements, CATALOGS);
     } else if (schema_name_ == PASSENGERS) {
-      values_parser_passengers(line_elements, CATALOGS->passengers);
+      values_parser_passengers(line_elements, CATALOGS);
     }
 
     free(line_elements);

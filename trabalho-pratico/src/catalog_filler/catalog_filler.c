@@ -42,10 +42,10 @@ int catalog_filler(char* dataset_folder_path, Catalogs CATALOGS) {
 
   // Calling respective parsers
 
-  file_parser(users, CATALOGS, USERS);
-  file_parser(flights, CATALOGS, FLIGHTS);
-  file_parser(reservations, CATALOGS, RESERVATIONS);
-  file_parser(passengers, CATALOGS, PASSENGERS);
+  file_parser(users, CATALOGS, USERS, dataset_folder_path);
+  file_parser(flights, CATALOGS, FLIGHTS, dataset_folder_path);
+  file_parser(reservations, CATALOGS, RESERVATIONS, dataset_folder_path);
+  file_parser(passengers, CATALOGS, PASSENGERS, dataset_folder_path);
 
   // Cleaning up
 
@@ -61,4 +61,3 @@ int catalog_filler(char* dataset_folder_path, Catalogs CATALOGS) {
 
   return 0;
 }
-
