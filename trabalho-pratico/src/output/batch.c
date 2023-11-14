@@ -3,7 +3,6 @@
 #include <string.h>
 
 #include <datatypes/datatypes.h>
-#include <utils/parse_line.h>
 #include <values_parser/values_parser.h>
 #include "interpreter/interpreter.h"
 

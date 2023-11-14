@@ -3,6 +3,6 @@
 
 int interactive() {
   printf("I'm in interactive (not ready)\n");
-  interpreter();
+  // interpreter();
   return 0;
 }
