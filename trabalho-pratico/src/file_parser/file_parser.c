@@ -23,9 +23,11 @@ void file_parser(FILE* file,
                  Catalogs CATALOGS,
                  schema_name schema_name_,
                  char* dataset_folder_path) {
-  // determine columns amount
-  if (dataset_folder_path == NULL) {  // ignorar pff
+  if (dataset_folder_path == NULL) {
+    // ignorar pff
   }
+
+  // determine columns amount
   int dataset_columns_qnt = 0;
   if (schema_name_ == USERS) {
     dataset_columns_qnt = USERS_DATASET_COLUMNS;

@@ -7,8 +7,7 @@
 
 Catalogs catalogs_creator() {
   GHashTable* hash_table_users = g_hash_table_new(g_str_hash, g_str_equal);
-  GHashTable* hash_table_flights =
-      g_hash_table_new(g_direct_hash, g_direct_equal);
+  GHashTable* hash_table_flights = g_hash_table_new(g_str_hash, g_str_equal);
   GHashTable* hash_table_passengers = g_hash_table_new(g_str_hash, g_str_equal);
   GHashTable* hash_table_reservations =
       g_hash_table_new(g_str_hash, g_str_equal);

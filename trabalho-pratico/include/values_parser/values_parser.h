@@ -1,6 +1,8 @@
 #ifndef VALUES_PARSER_H
 #define VALUES_PARSER_H
 
+#include "datatypes/datatypes.h"
+
 int values_parser_users(char** values, Catalogs catalog);
 int values_parser_flights(char** values, Catalogs catalog);
 int values_parser_passengers(char** values, Catalogs catalog);
