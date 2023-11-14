@@ -4,6 +4,7 @@
 
 #include <datatypes/datatypes.h>
 #include <values_parser/values_parser.h>
+#include <write_errors/write_errors.h>
 
 char** parse_line(char* line, int dataset_columns_amount) {
   char** line_elements =
@@ -19,15 +20,9 @@ char** parse_line(char* line, int dataset_columns_amount) {
   return (line_elements);
 }
 
-void file_parser(FILE* file,
-                 Catalogs CATALOGS,
-                 schema_name schema_name_,
-                 char* dataset_folder_path) {
-  if (dataset_folder_path == NULL) {
-    // ignorar pff
-  }
-
+void file_parser(FILE* file, Catalogs CATALOGS, schema_name schema_name_) {
   // determine columns amount
+
   int dataset_columns_qnt = 0;
   if (schema_name_ == USERS) {
     dataset_columns_qnt = USERS_DATASET_COLUMNS;
@@ -41,6 +36,7 @@ void file_parser(FILE* file,
 
   char* line = NULL;
   size_t line_size = 0;
+  int values_parser_exit_code;
 
   // Ignoring file header
   if (getline(&line, &line_size, file)) {
@@ -55,17 +51,32 @@ void file_parser(FILE* file,
     char** line_elements = parse_line(line, dataset_columns_qnt);
 
     if (schema_name_ == USERS) {
-      values_parser_users(line_elements, CATALOGS);
+      values_parser_exit_code = values_parser_users(line_elements, CATALOGS);
+      if (values_parser_exit_code == 1) {
+        write_users_errors(line_elements);
+      }
+
     } else if (schema_name_ == FLIGHTS) {
-      values_parser_flights(line_elements, CATALOGS);
+      values_parser_exit_code = values_parser_flights(line_elements, CATALOGS);
+      if (values_parser_exit_code == 1) {
+        write_flights_errors(line_elements);
+      }
     } else if (schema_name_ == RESERVATIONS) {
-      values_parser_reservations(line_elements, CATALOGS);
+      values_parser_exit_code =
+          values_parser_reservations(line_elements, CATALOGS);
+      if (values_parser_exit_code == 1) {
+        write_reservations_errors(line_elements);
+      }
+
     } else if (schema_name_ == PASSENGERS) {
-      values_parser_passengers(line_elements, CATALOGS);
+      values_parser_exit_code =
+          values_parser_passengers(line_elements, CATALOGS);
+      if (values_parser_exit_code == 1) {
+        write_passengers_errors(line_elements);
+      }
     }
 
     free(line_elements);
   }
-
   free(line);
 }

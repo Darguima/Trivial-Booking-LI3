@@ -5,6 +5,7 @@
 #include "catalogs_creator/catalogs_creator.h"
 #include "datatypes/datatypes.h"
 #include "file_parser/file_parser.h"
+#include "write_errors/write_errors.h"
 
 char* get_full_path(char* folder_path, const char* filename) {
   size_t len_filename = strlen(filename);
@@ -39,6 +40,8 @@ int catalog_filler(char* dataset_folder_path, Catalogs CATALOGS) {
       reservations == NULL) {
     return -1;
   }
+
+  init_errors_files();  // Add headers to csv error files
 
   // Calling respective parsers
 

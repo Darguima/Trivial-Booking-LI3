@@ -45,15 +45,17 @@ int values_parser_flights(char** flight_values, Catalogs catalog) {
 
 int values_parser_passengers(char** passengers_values, Catalogs catalog) {
   if (strcmp(passengers_values[0], "") == 0 ||
-      strcmp(passengers_values[0], "") == 0) {
+
+      strcmp(passengers_values[1], "") == 0) {
     return 1;
   }
 
   UserSchema user = g_hash_table_lookup(catalog->users, passengers_values[1]);
-  ReservationSchema reservation =
-      g_hash_table_lookup(catalog->reservations, passengers_values[0]);
 
-  if (user == NULL || reservation == NULL) {
+  FlightSchema flight =
+      g_hash_table_lookup(catalog->flights, passengers_values[0]);
+
+  if (user == NULL || flight == NULL) {
     return 1;
   }
 
