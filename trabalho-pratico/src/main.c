@@ -47,7 +47,7 @@ int main(int argc, char** argv) {
   printf("[STATUS] - Catalogs filled\n");
 
   if (argc == 3) {
-    batch();
+    batch(queries_file_path, CATALOGS);
     printf("Args: '%s' & '%s'.\n", argv[1], argv[2]);
   } else if (argc == 1) {
     interactive();
