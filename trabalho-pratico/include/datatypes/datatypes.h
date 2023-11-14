@@ -19,7 +19,7 @@ typedef struct catalogs {
   GHashTable* flights;
   GHashTable* passengers;
   GHashTable* reservations;
-}* Catalogs;
+} * Catalogs;
 
 // Catalogs Schemas
 
@@ -36,7 +36,7 @@ typedef struct userSchema {
   char* account_creation;  // data de criação da conta;
   char* pay_method;        // método de pagamento;
   char* account_status;    // estado da conta;
-}* UserSchema;
+} * UserSchema;
 
 typedef struct flightSchema {
   char* id;                       // identificador do voo;
@@ -52,12 +52,12 @@ typedef struct flightSchema {
   char* pilot;                    // nome do piloto;
   char* copilot;                  // nome do copiloto;
   char* notes;                    // observações sobre o voo.
-}* FlightSchema;
+} * FlightSchema;
 
 typedef struct passengerSchema {
   char* flight_id;  // identificador do voo
   char* user_id;    // identificador do utilizador
-}* PassengerSchema;
+} * PassengerSchema;
 
 typedef struct reservationSchema {
   char* id;          // identificador da reserva;
@@ -74,6 +74,6 @@ typedef struct reservationSchema {
   char* room_details;        // detalhes sobre o quarto;
   char* rating;              // classificação atribuída pelo utilizador;
   char* comment;             // comentário sobre a reserva.
-}* ReservationSchema;
+} * ReservationSchema;
 
 #endif
