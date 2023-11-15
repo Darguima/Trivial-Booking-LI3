@@ -34,24 +34,23 @@ int main(int argc, char** argv) {
 
   printf("[INFO] - Queries file path: %s\n", queries_file_path);
 
-  Catalogs CATALOGS = catalogs_creator();
+  Catalogs catalogs = catalogs_creator();
 
-  printf("[STATUS] - Catalogs created\n");
-
-  int catalog_fill_status = catalog_filler(dataset_folder_path, CATALOGS);
+  int catalog_fill_status = catalog_filler(dataset_folder_path, catalogs);
   if (catalog_fill_status == -1) {
     fprintf(stderr, "[ERROR] - Invalid dataset path\n");
+    free_catalogs(catalogs);
     return -1;
   }
 
-  printf("[STATUS] - Catalogs filled\n");
-
   if (argc == 3) {
-    batch(queries_file_path, CATALOGS);
+    batch(queries_file_path, catalogs);
     printf("Args: '%s' & '%s'.\n", argv[1], argv[2]);
   } else if (argc == 1) {
     interactive();
   }
+
+  free_catalogs(catalogs);
 
   return 0;
 }

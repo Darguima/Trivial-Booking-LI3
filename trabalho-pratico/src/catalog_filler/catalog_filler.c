@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "catalogs_creator/catalogs_creator.h"
 #include "datatypes/datatypes.h"
 #include "file_parser/file_parser.h"
 #include "write_errors/write_errors.h"
@@ -36,31 +35,39 @@ int catalog_filler(char* dataset_folder_path, Catalogs CATALOGS) {
       get_full_path(dataset_folder_path, "/reservations.csv");
   FILE* reservations = fopen(reservations_filename, "r");
 
-  if (users == NULL || flights == NULL || passengers == NULL ||
-      reservations == NULL) {
-    return -1;
-  }
+  free(users_filename);
+  free(flights_filename);
+  free(passengers_filename);
+  free(reservations_filename);
 
   init_errors_files();  // Add headers to csv error files
 
-  // Calling respective parsers
+  if (users != NULL) {
+    file_parser(users, CATALOGS, USERS, dataset_folder_path);
+    fclose(users);
+  }
 
-  file_parser(users, CATALOGS, USERS, dataset_folder_path);
-  file_parser(flights, CATALOGS, FLIGHTS, dataset_folder_path);
-  file_parser(reservations, CATALOGS, RESERVATIONS, dataset_folder_path);
-  file_parser(passengers, CATALOGS, PASSENGERS, dataset_folder_path);
+  if (flights != NULL) {
+    file_parser(flights, CATALOGS, FLIGHTS, dataset_folder_path);
+    fclose(flights);
+  }
 
-  // Cleaning up
+  if (reservations != NULL) {
+    file_parser(reservations, CATALOGS, RESERVATIONS, dataset_folder_path);
+    fclose(reservations);
+  }
 
-  free(users_filename);
-  free(flights_filename);
-  free(reservations_filename);
-  free(passengers_filename);
+  if (passengers != NULL) {
+    file_parser(passengers, CATALOGS, PASSENGERS, dataset_folder_path);
+    fclose(passengers);
+  }
 
-  fclose(users);
-  fclose(flights);
-  fclose(reservations);
-  fclose(passengers);
+  bool is_dataset_path_valid = users != NULL && flights != NULL &&
+                               passengers != NULL && reservations != NULL;
 
-  return 0;
+  if (is_dataset_path_valid) {
+    printf("[STATUS] - Catalogs filled\n");
+  }
+
+  return is_dataset_path_valid ? 0 : -1;
 }

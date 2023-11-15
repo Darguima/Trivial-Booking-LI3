@@ -5,7 +5,7 @@
 #include <values_parser/create_new_structs.h>
 #include <values_parser/verify_values.h>
 
-int values_parser_users(char** user_values, Catalogs catalog) {
+int values_parser_users(char** user_values, Catalogs catalogs) {
   if (!strcmp(user_values[0], "") || !strcmp(user_values[1], "") ||
       !strcmp(user_values[3], "") || !strcmp(user_values[5], "") ||
       !strcmp(user_values[6], "") || !strcmp(user_values[8], "") ||
@@ -19,12 +19,12 @@ int values_parser_users(char** user_values, Catalogs catalog) {
   }
 
   UserSchema new_user = create_new_user(user_values);
-  store_catalog_user(new_user, catalog->users);
+  store_catalog_user(new_user, catalogs->users);
 
   return 0;
 }
 
-int values_parser_flights(char** flight_values, Catalogs catalog) {
+int values_parser_flights(char** flight_values, Catalogs catalogs) {
   if (!strcmp(flight_values[0], "") || !strcmp(flight_values[1], "") ||
       !strcmp(flight_values[2], "") || !strcmp(flight_values[10], "") ||
       !strcmp(flight_values[11], "") || !verify_if_is_digit(flight_values[3]) ||
@@ -38,22 +38,22 @@ int values_parser_flights(char** flight_values, Catalogs catalog) {
   }
 
   FlightSchema new_flight = create_new_flight(flight_values);
-  store_catalog_flight(new_flight, catalog->flights);
+  store_catalog_flight(new_flight, catalogs->flights);
 
   return 0;
 }
 
-int values_parser_passengers(char** passengers_values, Catalogs catalog) {
+int values_parser_passengers(char** passengers_values, Catalogs catalogs) {
   if (strcmp(passengers_values[0], "") == 0 ||
 
       strcmp(passengers_values[1], "") == 0) {
     return 1;
   }
 
-  UserSchema user = g_hash_table_lookup(catalog->users, passengers_values[1]);
+  UserSchema user = g_hash_table_lookup(catalogs->users, passengers_values[1]);
 
   FlightSchema flight =
-      g_hash_table_lookup(catalog->flights, passengers_values[0]);
+      g_hash_table_lookup(catalogs->flights, passengers_values[0]);
 
   if (user == NULL || flight == NULL) {
     return 1;
@@ -62,7 +62,7 @@ int values_parser_passengers(char** passengers_values, Catalogs catalog) {
   return 0;
 }
 
-int values_parser_reservations(char** reservations_values, Catalogs catalog) {
+int values_parser_reservations(char** reservations_values, Catalogs catalogs) {
   if (!strcmp(reservations_values[0], "") ||
       !strcmp(reservations_values[1], "") ||
       !strcmp(reservations_values[2], "") ||
@@ -80,14 +80,15 @@ int values_parser_reservations(char** reservations_values, Catalogs catalog) {
     return 1;
   }
 
-  UserSchema user = g_hash_table_lookup(catalog->users, reservations_values[1]);
+  UserSchema user =
+      g_hash_table_lookup(catalogs->users, reservations_values[1]);
   if (user == NULL) {
     return 1;
   }
 
   ReservationSchema new_reservation =
       create_new_reservation(reservations_values);
-  store_catalog_reservation(new_reservation, catalog->reservations);
+  store_catalog_reservation(new_reservation, catalogs->reservations);
 
   return 0;
 }

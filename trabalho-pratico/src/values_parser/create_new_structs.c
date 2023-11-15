@@ -1,8 +1,9 @@
 #include <datatypes/datatypes.h>
+#include <glib.h>
 #include "utils/string_to_int.h"
 
 UserSchema create_new_user(char** user_values) {
-  UserSchema new_user = malloc(sizeof(struct userSchema));
+  UserSchema new_user = g_malloc(sizeof(struct userSchema));
   new_user->id = g_strdup(user_values[0]);
   new_user->name = g_strdup(user_values[1]);
   new_user->email = g_strdup(user_values[2]);
@@ -20,7 +21,7 @@ UserSchema create_new_user(char** user_values) {
 }
 
 FlightSchema create_new_flight(char** flight_values) {
-  FlightSchema new_flight = malloc(sizeof(struct flightSchema));
+  FlightSchema new_flight = g_malloc(sizeof(struct flightSchema));
   new_flight->id = g_strdup(flight_values[0]);
   new_flight->airline = g_strdup(flight_values[1]);
   new_flight->plane_model = g_strdup(flight_values[2]);
@@ -39,7 +40,8 @@ FlightSchema create_new_flight(char** flight_values) {
 }
 
 ReservationSchema create_new_reservation(char** reservation_values) {
-  ReservationSchema new_reservation = malloc(sizeof(struct reservationSchema));
+  ReservationSchema new_reservation =
+      g_malloc(sizeof(struct reservationSchema));
   new_reservation->id = g_strdup(reservation_values[0]);
   new_reservation->user_id = g_strdup(reservation_values[1]);
   new_reservation->hotel_id = g_strdup(reservation_values[2]);

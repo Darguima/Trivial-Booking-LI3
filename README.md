@@ -6,10 +6,10 @@
 
 ```bash
 # Ubuntu
-$ sudo apt-get install libglib2.0-dev clang-format
+$ sudo apt-get install libglib2.0-dev clang-format valgrind
 
 # Arch
-$ sudo pacman -S glib2 clang
+$ sudo pacman -S glib2 clang valgrind
 ```
 
 #### Cloning the repository

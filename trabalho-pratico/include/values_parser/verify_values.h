@@ -1,4 +1,4 @@
-#include <stdlib.h>
+#include <stdbool.h>
 
 bool verify_are_dates_in_order(char* date1, char* date2);
 bool verify_account_email(char* email);

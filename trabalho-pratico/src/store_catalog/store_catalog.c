@@ -22,8 +22,7 @@ int store_catalog_passenger(PassengerSchema passenger,
 
 int store_catalog_reservation(ReservationSchema reservation,
                               GHashTable* reservations_catalog) {
-  g_hash_table_insert(reservations_catalog, g_strdup(reservation->id),
-                      reservation);
+  g_hash_table_insert(reservations_catalog, reservation->id, reservation);
 
   return 0;
 }

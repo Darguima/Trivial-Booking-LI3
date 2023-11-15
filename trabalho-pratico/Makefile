@@ -41,12 +41,18 @@ clean:
 	@find . -type f -name '*.o' -delete && echo "[Cleaning] Object Files"
 	@rm -f ${EXECUTABLE} && rm -f programa-testes && echo "[Cleaning] ${EXECUTABLE}"
 
-# Format Code
 format:
 # Check if clang is installed
 	@command -v clang-format &> /dev/null || echo "[Warning] Please install `clang`. Read documentation."
 # Run clang-format against the code files
 	@find . -name '*.[ch]' -exec clang-format -i {} -style=Chromium \; && echo "[Formating]"	
+
+check-memory:
+# Check if valgrind is installed
+	@command -v valgrind &> /dev/null || echo "[Warning] Please install `valgrind`. Read documentation."
+# Run valgrind against the executable
+	@DEBUG=1 make -s && echo "[Compiling]"
+	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose ./$(EXECUTABLE) $(MAKE_ARGS)
 
 dev:
 	@printf "=====  Formating, Compiling and executing project   =====\n"

@@ -14,8 +14,6 @@
 #include <datatypes/datatypes.h>
 
 int interpreter(char* batch_line, Catalogs CATALOGS) {
-  printf("I'm in interpreter\n");
-
   if (batch_line && CATALOGS) {
     /* code */
   }

@@ -1,12 +1,9 @@
-programa-principal
-programa-testes
-*.csv
-Resultados/*
+valgrind-out.txt
 .vscode
 
-trabalho-pratico/*/**.o
+trabalho-pratico/Resultados
 trabalho-pratico/programa-principal
-trabalho-pratico/dataset
+trabalho-pratico/programa-testes
 
 # Prerequisites
 *.d
