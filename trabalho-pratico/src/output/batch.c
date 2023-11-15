@@ -8,6 +8,7 @@
 
 int batch(char* queries_path, Catalogs CATALOGS) {
   char* line = NULL;
+  int command_number = 1;
 
   FILE* file = fopen(queries_path, "r");
 
@@ -23,7 +24,8 @@ int batch(char* queries_path, Catalogs CATALOGS) {
     // Switch end of line from \n to \0
     line[line_len - 1] = '\0';
 
-    interpreter(line, CATALOGS);
+    interpreter(line, command_number, CATALOGS);
+    command_number++;
   }
 
   free(line);

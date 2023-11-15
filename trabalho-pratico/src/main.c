@@ -45,7 +45,6 @@ int main(int argc, char** argv) {
 
   if (argc == 3) {
     batch(queries_file_path, catalogs);
-    printf("Args: '%s' & '%s'.\n", argv[1], argv[2]);
   } else if (argc == 1) {
     interactive();
   }

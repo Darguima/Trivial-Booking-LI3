@@ -1,6 +1,13 @@
 #ifndef QUERY_2_H
 #define QUERY_2_H
 
-int query_2();
+#include <datatypes/datatypes.h>
+
+int query_2(Catalogs CATALOGS,
+            int command_number,
+            bool field,
+            char* id,
+            char* flights,
+            char* reservations);
 
 #endif

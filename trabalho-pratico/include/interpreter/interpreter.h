@@ -3,6 +3,6 @@
 
 #include <datatypes/datatypes.h>
 
-int interpreter(char* batch_line, Catalogs CATALOGS);
+int interpreter(char* batch_line, int command_number, Catalogs CATALOGS);
 
 #endif

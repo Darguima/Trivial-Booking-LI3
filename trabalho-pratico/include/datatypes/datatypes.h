@@ -5,6 +5,8 @@
 #include <stdbool.h>
 #include <time.h>
 
+#define UNUSED(x) (void)(x)
+
 // Catalogs management
 
 #define USERS_DATASET_COLUMNS 12

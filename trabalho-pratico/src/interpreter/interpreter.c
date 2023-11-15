@@ -13,10 +13,10 @@
 
 #include <datatypes/datatypes.h>
 
-int interpreter(char* batch_line, Catalogs CATALOGS) {
-  if (batch_line && CATALOGS) {
-    /* code */
-  }
+int interpreter(char* batch_line, int command_number, Catalogs CATALOGS) {
+  UNUSED(batch_line);
+  UNUSED(CATALOGS);
+  UNUSED(command_number);
 
   return 0;
 }

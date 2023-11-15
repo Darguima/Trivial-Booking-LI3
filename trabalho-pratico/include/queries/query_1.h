@@ -1,6 +1,8 @@
 #ifndef QUERY_1_H
 #define QUERY_1_H
 
-int query_1();
+#include <datatypes/datatypes.h>
+
+int query_1(Catalogs CATALOGS, int command_number, bool field, char* id);
 
 #endif
