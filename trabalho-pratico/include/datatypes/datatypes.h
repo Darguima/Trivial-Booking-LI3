@@ -36,6 +36,10 @@ typedef struct userSchema {
   char* account_creation;  // data de criação da conta;
   char* pay_method;        // método de pagamento;
   char* account_status;    // estado da conta;
+  double total_spent;      // total gasto pelo utilizador em reservas.
+  int age;
+  int number_of_flights;
+  int number_of_reservations;
 }* UserSchema;
 
 typedef struct flightSchema {
@@ -52,6 +56,8 @@ typedef struct flightSchema {
   char* pilot;                    // nome do piloto;
   char* copilot;                  // nome do copiloto;
   char* notes;                    // observações sobre o voo.
+  int number_of_passengers;       // numero total de pssageiros no voo
+  long delay;
 }* FlightSchema;
 
 typedef struct passengerSchema {
@@ -74,6 +80,7 @@ typedef struct reservationSchema {
   char* room_details;        // detalhes sobre o quarto;
   char* rating;              // classificação atribuída pelo utilizador;
   char* comment;             // comentário sobre a reserva.
+  double total_price;        // preço total da reserva
 }* ReservationSchema;
 
 #endif

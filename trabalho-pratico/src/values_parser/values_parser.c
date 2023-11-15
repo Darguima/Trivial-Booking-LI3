@@ -2,6 +2,7 @@
 #include <glib.h>
 #include <store_catalog/store_catalog.h>
 #include <string.h>
+#include <utils/calculate_stats.h>
 #include <values_parser/create_new_structs.h>
 #include <values_parser/verify_values.h>
 
@@ -59,6 +60,9 @@ int values_parser_passengers(char** passengers_values, Catalogs catalogs) {
     return 1;
   }
 
+  increment_seat(flight);
+  increment_total_flights(user);
+
   return 0;
 }
 
@@ -89,6 +93,8 @@ int values_parser_reservations(char** reservations_values, Catalogs catalogs) {
   ReservationSchema new_reservation =
       create_new_reservation(reservations_values);
   store_catalog_reservation(new_reservation, catalogs->reservations);
+  increment_user_total_spent(user, new_reservation->total_price);
+  increment_total_reservations(user);
 
   return 0;
 }
