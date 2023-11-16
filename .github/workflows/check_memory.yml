@@ -20,7 +20,7 @@ jobs:
     - name: Run Valgrind
       working-directory: ./trabalho-pratico
       run: |
-        valgrind --leak-check=full ./programa-principal dataset/data dataset/input.txt 2>&1 | tee valgrind_output.txt
+        valgrind --leak-check=full ./programa-principal dataset/data dataset/inputs/input.txt 2>&1 | tee valgrind_output.txt
         set -e
         if grep -q "ERROR SUMMARY: 0 errors" valgrind_output.txt; then
           echo "No memory leaks detected."

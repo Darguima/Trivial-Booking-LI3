@@ -1,0 +1,20 @@
+name: Check queries [md5sum]
+on: [pull_request]
+
+jobs:
+  build:
+    name: Check queries
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Build with make
+      working-directory: ./trabalho-pratico
+      run: make
+
+    - name: Running queries test
+      working-directory: ./trabalho-pratico
+      run: ./test_queries.py
+

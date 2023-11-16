@@ -4,7 +4,7 @@
 
 FILE* create_output_file(int command_number) {
   char filename[256];
-  sprintf(filename, "Resultados/command_output_%d.txt", command_number);
+  sprintf(filename, "Resultados/command%d_output.txt", command_number);
   return fopen(filename, "w");
 }
 
