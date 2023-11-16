@@ -52,10 +52,11 @@ check-memory:
 	@command -v valgrind &> /dev/null || echo "[Warning] Please install `valgrind`. Read documentation."
 # Run valgrind against the executable
 	@DEBUG=1 make -s && echo "[Compiling]"
-	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose ./$(EXECUTABLE) $(MAKE_ARGS)
+	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose ./$(EXECUTABLE) $(if $(MAKE_ARGS),$(MAKE_ARGS),"dataset/data" "dataset/inputs/input.txt")
 
 dev:
-	@printf "=====  Formating, Compiling and executing project   =====\n"
+	@printf "=====  Cleaning, Formating, Compiling and executing project   =====\n"
+	@make -s clean
 	@make -s format
 	@DEBUG=1 make -s && echo "[Compiling]"
 	@printf "===================================================================\n"

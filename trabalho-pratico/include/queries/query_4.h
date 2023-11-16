@@ -2,6 +2,7 @@
 #define QUERY_4_H
 
 #include <datatypes/datatypes.h>
+#include <stdbool.h>
 
 int query_4(Catalogs CATALOGS, int command_number, bool format_flag, char* hotel_id);
 
