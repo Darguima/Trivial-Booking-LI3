@@ -2,6 +2,8 @@
 #include <glib.h>
 #include "utils/calculate_stats.h"
 #include "utils/convert_string_to_seconds.h"
+#include "utils/includes_breakfast.h"
+#include "utils/is_active.h"
 #include "utils/string_to_int.h"
 
 PassengerSchema create_new_passenger(char** passenger_values) {
@@ -24,7 +26,7 @@ UserSchema create_new_user(char** user_values) {
   new_user->address = strdup(user_values[8]);
   new_user->account_creation = strdup(user_values[9]);
   new_user->pay_method = strdup(user_values[10]);
-  new_user->account_status = strdup(user_values[11]);
+  new_user->account_status = is_active(user_values[11]);
   new_user->age = calculate_user_age(user_values[4]);
   new_user->total_spent = 0;
   new_user->number_of_flights = 0;
@@ -67,7 +69,7 @@ ReservationSchema create_new_reservation(char** reservation_values) {
   new_reservation->begin_date = strdup(reservation_values[7]);
   new_reservation->end_date = strdup(reservation_values[8]);
   new_reservation->price_per_night = string_to_int(reservation_values[9]);
-  new_reservation->includes_breakfast = strdup(reservation_values[10]);
+  new_reservation->includes_breakfast = includes_breakfast(reservation_values[10]);
   new_reservation->room_details = strdup(reservation_values[11]);
   new_reservation->rating = strdup(reservation_values[12]);
   new_reservation->comment = strdup(reservation_values[13]);

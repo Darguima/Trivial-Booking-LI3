@@ -2,6 +2,9 @@
 #define CALCULATE_STATS_H
 
 #include <datatypes/datatypes.h>
+
+int get_days_difference(char* date1, char* date2);
+
 void increment_total_reservations(UserSchema user);
 
 void increment_total_flights(UserSchema user);

@@ -37,7 +37,7 @@ typedef struct userSchema {
   char* address;           // endereço do usuário;
   char* account_creation;  // data de criação da conta;
   char* pay_method;        // método de pagamento;
-  char* account_status;    // estado da conta;
+  bool account_status;     // estado da conta;
   double total_spent;      // total gasto pelo utilizador em reservas.
   int age;
   int number_of_flights;
@@ -68,21 +68,21 @@ typedef struct passengerSchema {
 }* PassengerSchema;
 
 typedef struct reservationSchema {
-  char* id;                  // identificador da reserva;
-  char* user_id;             // identificador do utilizador;
-  char* hotel_id;            // identificador do hotel;
-  char* hotel_name;          // nome do hotel;
-  int hotel_stars;           // número de estrelas do hotel;
-  int city_tax;              // percentagem do imposto da cidade (sobre o valor total);
-  char* address;             // morada do hotel;
-  char* begin_date;          // data de início;
-  char* end_date;            // data de fim;
-  int price_per_night;       // preço por noite;
-  char* includes_breakfast;  // se a reserva inclui pequeno-almoço;
-  char* room_details;        // detalhes sobre o quarto;
-  char* rating;              // classificação atribuída pelo utilizador;
-  char* comment;             // comentário sobre a reserva.
-  double total_price;        // preço total da reserva
+  char* id;                 // identificador da reserva;
+  char* user_id;            // identificador do utilizador;
+  char* hotel_id;           // identificador do hotel;
+  char* hotel_name;         // nome do hotel;
+  int hotel_stars;          // número de estrelas do hotel;
+  int city_tax;             // percentagem do imposto da cidade (sobre o valor total);
+  char* address;            // morada do hotel;
+  char* begin_date;         // data de início;
+  char* end_date;           // data de fim;
+  int price_per_night;      // preço por noite;
+  bool includes_breakfast;  // se a reserva inclui pequeno-almoço;
+  char* room_details;       // detalhes sobre o quarto;
+  char* rating;             // classificação atribuída pelo utilizador;
+  char* comment;            // comentário sobre a reserva.
+  double total_price;       // preço total da reserva
 }* ReservationSchema;
 
 #endif

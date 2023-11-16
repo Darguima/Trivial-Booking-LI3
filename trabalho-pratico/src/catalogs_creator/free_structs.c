@@ -15,7 +15,7 @@ void free_user_struct(gpointer value) {
   free(user->address);
   free(user->account_creation);
   free(user->pay_method);
-  free(user->account_status);
+  // free(user->account_status);
 
   free(user);
 }
@@ -62,7 +62,7 @@ void free_reservation_struct(gpointer value) {
   free(reservation->begin_date);
   free(reservation->end_date);
   // free(reservation->price_per_night);
-  free(reservation->includes_breakfast);
+  // free(reservation->includes_breakfast);
   free(reservation->room_details);
   free(reservation->rating);
   free(reservation->comment);
