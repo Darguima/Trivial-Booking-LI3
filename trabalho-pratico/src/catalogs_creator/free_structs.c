@@ -4,59 +4,68 @@
 void free_user_struct(gpointer value) {
   UserSchema user = (UserSchema)value;
 
-  g_free(user->id);
-  g_free(user->name);
-  g_free(user->email);
-  g_free(user->phone_number);
-  g_free(user->birth_date);
-  g_free(user->sex);
-  g_free(user->passport);
-  g_free(user->country_code);
-  g_free(user->address);
-  g_free(user->account_creation);
-  g_free(user->pay_method);
-  g_free(user->account_status);
+  free(user->id);
+  free(user->name);
+  free(user->email);
+  free(user->phone_number);
+  free(user->birth_date);
+  free(user->sex);
+  free(user->passport);
+  free(user->country_code);
+  free(user->address);
+  free(user->account_creation);
+  free(user->pay_method);
+  free(user->account_status);
 
-  g_free(user);
+  free(user);
 }
 
 void free_flight_struct(gpointer value) {
   FlightSchema flight = (FlightSchema)value;
 
-  g_free(flight->id);
-  g_free(flight->airline);
-  g_free(flight->plane_model);
-  // g_free(flight->total_seats);
-  g_free(flight->origin);
-  g_free(flight->destination);
-  g_free(flight->schedule_departure_date);
-  g_free(flight->schedule_arrival_date);
-  g_free(flight->real_departure_date);
-  g_free(flight->real_arrival_date);
-  g_free(flight->pilot);
-  g_free(flight->copilot);
-  g_free(flight->notes);
+  free(flight->id);
+  free(flight->airline);
+  free(flight->plane_model);
+  // free(flight->total_seats);
+  free(flight->origin);
+  free(flight->destination);
+  free(flight->schedule_departure_date);
+  free(flight->schedule_arrival_date);
+  free(flight->real_departure_date);
+  free(flight->real_arrival_date);
+  free(flight->pilot);
+  free(flight->copilot);
+  free(flight->notes);
 
-  g_free(flight);
+  free(flight);
+}
+
+void free_passengers_struct(gpointer value) {
+  PassengerSchema passenger = (PassengerSchema)value;
+
+  free(passenger->flight_id);
+  free(passenger->user_id);
+
+  free(passenger);
 }
 
 void free_reservation_struct(gpointer value) {
   ReservationSchema reservation = (ReservationSchema)value;
 
-  g_free(reservation->id);
-  g_free(reservation->user_id);
-  g_free(reservation->hotel_id);
-  g_free(reservation->hotel_name);
-  // g_free(reservation->hotel_stars);
-  // g_free(reservation->city_tax);
-  g_free(reservation->address);
-  g_free(reservation->begin_date);
-  g_free(reservation->end_date);
-  // g_free(reservation->price_per_night);
-  g_free(reservation->includes_breakfast);
-  g_free(reservation->room_details);
-  g_free(reservation->rating);
-  g_free(reservation->comment);
+  free(reservation->id);
+  free(reservation->user_id);
+  free(reservation->hotel_id);
+  free(reservation->hotel_name);
+  // free(reservation->hotel_stars);
+  // free(reservation->city_tax);
+  free(reservation->address);
+  free(reservation->begin_date);
+  free(reservation->end_date);
+  // free(reservation->price_per_night);
+  free(reservation->includes_breakfast);
+  free(reservation->room_details);
+  free(reservation->rating);
+  free(reservation->comment);
 
-  g_free(reservation);
+  free(reservation);
 }

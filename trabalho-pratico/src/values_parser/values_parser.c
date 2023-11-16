@@ -39,19 +39,19 @@ int values_parser_flights(char** flight_values, Catalogs catalogs) {
 }
 
 int values_parser_passengers(char** passengers_values, Catalogs catalogs) {
-  if (strcmp(passengers_values[0], "") == 0 ||
-
-      strcmp(passengers_values[1], "") == 0) {
+  if (strcmp(passengers_values[0], "") == 0 || strcmp(passengers_values[1], "") == 0) {
     return 1;
   }
 
   UserSchema user = g_hash_table_lookup(catalogs->users, passengers_values[1]);
-
   FlightSchema flight = g_hash_table_lookup(catalogs->flights, passengers_values[0]);
 
   if (user == NULL || flight == NULL) {
     return 1;
   }
+
+  PassengerSchema new_passenger = create_new_passenger(passengers_values);
+  store_catalog_passenger(new_passenger, catalogs->passengers);
 
   increment_seat(flight);
   increment_total_flights(user);

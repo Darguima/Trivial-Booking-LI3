@@ -2,7 +2,7 @@
 #include <glib.h>
 #include <stdio.h>
 #include <stdlib.h>
-
+#include "utils/concatenate_string.h"
 int store_catalog_user(UserSchema user, GHashTable* users_catalog) {
   g_hash_table_insert(users_catalog, user->id, user);
   return 0;
@@ -10,12 +10,15 @@ int store_catalog_user(UserSchema user, GHashTable* users_catalog) {
 
 int store_catalog_flight(FlightSchema flight, GHashTable* flights_catalog) {
   g_hash_table_insert(flights_catalog, flight->id, flight);
+
   return 0;
 }
 
 int store_catalog_passenger(PassengerSchema passenger, GHashTable* passengers_catalog) {
-  if (passenger->flight_id == NULL || passengers_catalog == NULL) {
-  }
+  char* array[3] = {passenger->flight_id, "_", passenger->user_id};
+  char* key = concatenate_string(array, 3);
+  g_hash_table_insert(passengers_catalog, key, passenger);
+
   return 0;
 }
 
