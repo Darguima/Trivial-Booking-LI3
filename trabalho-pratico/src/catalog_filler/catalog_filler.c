@@ -10,8 +10,7 @@ char* get_full_path(char* folder_path, const char* filename) {
   size_t len_filename = strlen(filename);
   size_t len_folder_path = strlen(folder_path);
 
-  char* full_filename =
-      malloc(sizeof(char) * (len_folder_path + len_filename + 1));
+  char* full_filename = malloc(sizeof(char) * (len_folder_path + len_filename + 1));
 
   strcpy(full_filename, folder_path);
   strcat(full_filename, filename);
@@ -27,12 +26,10 @@ int catalog_filler(char* dataset_folder_path, Catalogs CATALOGS) {
   char* flights_filename = get_full_path(dataset_folder_path, "/flights.csv");
   FILE* flights = fopen(flights_filename, "r");
 
-  char* passengers_filename =
-      get_full_path(dataset_folder_path, "/passengers.csv");
+  char* passengers_filename = get_full_path(dataset_folder_path, "/passengers.csv");
   FILE* passengers = fopen(passengers_filename, "r");
 
-  char* reservations_filename =
-      get_full_path(dataset_folder_path, "/reservations.csv");
+  char* reservations_filename = get_full_path(dataset_folder_path, "/reservations.csv");
   FILE* reservations = fopen(reservations_filename, "r");
 
   free(users_filename);
@@ -62,8 +59,7 @@ int catalog_filler(char* dataset_folder_path, Catalogs CATALOGS) {
     fclose(passengers);
   }
 
-  bool is_dataset_path_valid = users != NULL && flights != NULL &&
-                               passengers != NULL && reservations != NULL;
+  bool is_dataset_path_valid = users != NULL && flights != NULL && passengers != NULL && reservations != NULL;
 
   if (is_dataset_path_valid) {
     printf("[STATUS] - Catalogs filled\n");

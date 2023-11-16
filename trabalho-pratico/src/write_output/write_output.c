@@ -8,11 +8,7 @@ FILE* create_output_file(int command_number) {
   return fopen(filename, "w");
 }
 
-void write_output(FILE* file,
-                  bool format_flag,
-                  int results_acc,
-                  output_key_value* output_array,
-                  int output_array_len) {
+void write_output(FILE* file, bool format_flag, int results_acc, output_key_value* output_array, int output_array_len) {
   // Simple output
   if (!format_flag) {
     for (int i = 0; i < output_array_len; i++) {

@@ -45,7 +45,7 @@ format:
 # Check if clang is installed
 	@command -v clang-format &> /dev/null || echo "[Warning] Please install `clang`. Read documentation."
 # Run clang-format against the code files
-	@find . -name '*.[ch]' -exec clang-format -i {} -style=Chromium \; && echo "[Formating]"	
+	@find . -name '*.[ch]' -exec clang-format -i {} -i -style=file \; && echo "[Formating]"	
 
 check-memory:
 # Check if valgrind is installed

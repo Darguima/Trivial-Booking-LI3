@@ -13,15 +13,13 @@ int store_catalog_flight(FlightSchema flight, GHashTable* flights_catalog) {
   return 0;
 }
 
-int store_catalog_passenger(PassengerSchema passenger,
-                            GHashTable* passengers_catalog) {
+int store_catalog_passenger(PassengerSchema passenger, GHashTable* passengers_catalog) {
   if (passenger->flight_id == NULL || passengers_catalog == NULL) {
   }
   return 0;
 }
 
-int store_catalog_reservation(ReservationSchema reservation,
-                              GHashTable* reservations_catalog) {
+int store_catalog_reservation(ReservationSchema reservation, GHashTable* reservations_catalog) {
   g_hash_table_insert(reservations_catalog, reservation->id, reservation);
 
   return 0;

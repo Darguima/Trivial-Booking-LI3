@@ -42,9 +42,8 @@ FlightSchema create_new_flight(char** flight_values) {
   new_flight->copilot = g_strdup(flight_values[11]);
   new_flight->notes = g_strdup(flight_values[12]);
   new_flight->number_of_passengers = 0;
-  new_flight->delay = (long)difftime(
-      convert_string_to_seconds(new_flight->real_departure_date),
-      convert_string_to_seconds(new_flight->schedule_departure_date));
+  new_flight->delay = (long)difftime(convert_string_to_seconds(new_flight->real_departure_date),
+                                     convert_string_to_seconds(new_flight->schedule_departure_date));
   /*
   Atrasos de um avião são calculados a partir da diferença entre a data estimada
   de partida (schedule_departure_date) e a data real de partida
@@ -54,8 +53,7 @@ FlightSchema create_new_flight(char** flight_values) {
 }
 
 ReservationSchema create_new_reservation(char** reservation_values) {
-  ReservationSchema new_reservation =
-      g_malloc(sizeof(struct reservationSchema));
+  ReservationSchema new_reservation = g_malloc(sizeof(struct reservationSchema));
   new_reservation->id = g_strdup(reservation_values[0]);
   new_reservation->user_id = g_strdup(reservation_values[1]);
   new_reservation->hotel_id = g_strdup(reservation_values[2]);
@@ -70,8 +68,7 @@ ReservationSchema create_new_reservation(char** reservation_values) {
   new_reservation->room_details = g_strdup(reservation_values[11]);
   new_reservation->rating = g_strdup(reservation_values[12]);
   new_reservation->comment = g_strdup(reservation_values[13]);
-  new_reservation->total_price = calculate_total_spent(
-      new_reservation->begin_date, new_reservation->end_date,
-      new_reservation->city_tax, new_reservation->price_per_night);
+  new_reservation->total_price = calculate_total_spent(new_reservation->begin_date, new_reservation->end_date,
+                                                       new_reservation->city_tax, new_reservation->price_per_night);
   return new_reservation;
 }

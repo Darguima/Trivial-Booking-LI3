@@ -3,9 +3,6 @@
 
 #include <datatypes/datatypes.h>
 
-int query_4(Catalogs CATALOGS,
-            int command_number,
-            bool format_flag,
-            char* hotel_id);
+int query_4(Catalogs CATALOGS, int command_number, bool format_flag, char* hotel_id);
 
 #endif

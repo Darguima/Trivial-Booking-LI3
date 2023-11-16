@@ -2,12 +2,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 
-int query_2(Catalogs CATALOGS,
-            int command_number,
-            bool format_flag,
-            char* id,
-            char* flights,
-            char* reservations) {
+int query_2(Catalogs CATALOGS, int command_number, bool format_flag, char* id, char* flights, char* reservations) {
   printf("I'm in query_2\n");
 
   UNUSED(CATALOGS);

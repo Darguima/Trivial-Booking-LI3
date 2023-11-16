@@ -12,8 +12,7 @@ void increment_total_flights(UserSchema user) {
   user->number_of_flights += 1;
 }
 
-void increment_user_total_spent(UserSchema user,
-                                double total_reservation_price) {
+void increment_user_total_spent(UserSchema user, double total_reservation_price) {
   user->total_spent += (double)total_reservation_price;
 }
 
@@ -34,14 +33,10 @@ int get_days_difference(char* date1, char* date2) {
   return day1 - day;
 }
 
-double calculate_total_spent(char* date1,
-                             char* date2,
-                             int city_tax,
-                             int price_per_night) {
+double calculate_total_spent(char* date1, char* date2, int city_tax, int price_per_night) {
   double total_spent;
   int total_days = get_days_difference(date1, date2);
-  double city_tax_increment =
-      ((double)price_per_night * total_days / 100) * city_tax;
+  double city_tax_increment = ((double)price_per_night * total_days / 100) * city_tax;
   total_spent = (price_per_night * total_days) + city_tax_increment;
   return total_spent;
 }
@@ -53,8 +48,7 @@ int calculate_user_age(char* birth_date) {
   if (result != 3) {
     return -1;
   };
-  int result2 = sscanf(birth_date, "%4d/%2d/%2d", &birth_date_year,
-                       &birth_date_month, &birth_date_day);
+  int result2 = sscanf(birth_date, "%4d/%2d/%2d", &birth_date_year, &birth_date_month, &birth_date_day);
   if (result2 != 3) {
     return -1;
   }

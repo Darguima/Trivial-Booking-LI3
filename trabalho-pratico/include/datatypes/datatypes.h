@@ -68,15 +68,15 @@ typedef struct passengerSchema {
 }* PassengerSchema;
 
 typedef struct reservationSchema {
-  char* id;          // identificador da reserva;
-  char* user_id;     // identificador do utilizador;
-  char* hotel_id;    // identificador do hotel;
-  char* hotel_name;  // nome do hotel;
-  int hotel_stars;   // número de estrelas do hotel;
-  int city_tax;      // percentagem do imposto da cidade (sobre o valor total);
-  char* address;     // morada do hotel;
-  char* begin_date;  // data de início;
-  char* end_date;    // data de fim;
+  char* id;                  // identificador da reserva;
+  char* user_id;             // identificador do utilizador;
+  char* hotel_id;            // identificador do hotel;
+  char* hotel_name;          // nome do hotel;
+  int hotel_stars;           // número de estrelas do hotel;
+  int city_tax;              // percentagem do imposto da cidade (sobre o valor total);
+  char* address;             // morada do hotel;
+  char* begin_date;          // data de início;
+  char* end_date;            // data de fim;
   int price_per_night;       // preço por noite;
   char* includes_breakfast;  // se a reserva inclui pequeno-almoço;
   char* room_details;        // detalhes sobre o quarto;

@@ -7,8 +7,7 @@
 #include <write_errors/write_errors.h>
 
 char** parse_line(char* line, int dataset_columns_amount) {
-  char** line_elements =
-      malloc(sizeof(char*) * (unsigned long)dataset_columns_amount);
+  char** line_elements = malloc(sizeof(char*) * (unsigned long)dataset_columns_amount);
   int i = 0;
   char* string;
 
@@ -62,15 +61,13 @@ void file_parser(FILE* file, Catalogs CATALOGS, schema_name schema_name_) {
         write_flights_errors(line_elements);
       }
     } else if (schema_name_ == RESERVATIONS) {
-      values_parser_exit_code =
-          values_parser_reservations(line_elements, CATALOGS);
+      values_parser_exit_code = values_parser_reservations(line_elements, CATALOGS);
       if (values_parser_exit_code == 1) {
         write_reservations_errors(line_elements);
       }
 
     } else if (schema_name_ == PASSENGERS) {
-      values_parser_exit_code =
-          values_parser_passengers(line_elements, CATALOGS);
+      values_parser_exit_code = values_parser_passengers(line_elements, CATALOGS);
       if (values_parser_exit_code == 1) {
         write_passengers_errors(line_elements);
       }

@@ -69,8 +69,7 @@ bool verify_account_status(char* status) {
 
     lowercase_status[len] = '\0';
 
-    int result = (!strcmp(lowercase_status, "active") ||
-                  !strcmp(lowercase_status, "inactive"));
+    int result = (!strcmp(lowercase_status, "active") || !strcmp(lowercase_status, "inactive"));
 
     free(lowercase_status);
 
@@ -80,8 +79,7 @@ bool verify_account_status(char* status) {
 }
 
 bool verify_user_country_code(char* country_code) {
-  if (country_code != NULL && strlen(country_code) == 2 &&
-      isalpha(country_code[0]) && isalpha(country_code[1])) {
+  if (country_code != NULL && strlen(country_code) == 2 && isalpha(country_code[0]) && isalpha(country_code[1])) {
     return true;
   }
 
@@ -90,18 +88,15 @@ bool verify_user_country_code(char* country_code) {
 
 bool verify_date(char* date) {
   int year, month, day, hour, minute, second;
-  int result = sscanf(date, "%4d/%2d/%2d %2d:%2d:%2d", &year, &month, &day,
-                      &hour, &minute, &second);
+  int result = sscanf(date, "%4d/%2d/%2d %2d:%2d:%2d", &year, &month, &day, &hour, &minute, &second);
 
   if (result == 3 && strlen(date) == 10) {  // Formato mais básico
-    if (year >= 1000 && year <= 9999 && month >= 1 && month <= 12 && day >= 1 &&
-        day <= 31) {
+    if (year >= 1000 && year <= 9999 && month >= 1 && month <= 12 && day >= 1 && day <= 31) {
       return true;
     }
   } else if (result == 6) {  // Formato com horas
-    if (year >= 1000 && year <= 9999 && month >= 1 && month <= 12 && day >= 1 &&
-        day <= 31 && hour >= 0 && hour <= 23 && minute >= 0 && minute <= 59 &&
-        second >= 0 && second <= 59 && date[10] != '~') {
+    if (year >= 1000 && year <= 9999 && month >= 1 && month <= 12 && day >= 1 && day <= 31 && hour >= 0 && hour <= 23 &&
+        minute >= 0 && minute <= 59 && second >= 0 && second <= 59 && date[10] != '~') {
       return true;
     }
   }
@@ -112,8 +107,7 @@ bool verify_date(char* date) {
 bool verify_airport_name(char* airport_name) {
   if (airport_name != NULL) {
     if (strlen(airport_name) == 3) {
-      if (isalpha(airport_name[0]) && isalpha(airport_name[1]) &&
-          isalpha(airport_name[2])) {
+      if (isalpha(airport_name[0]) && isalpha(airport_name[1]) && isalpha(airport_name[2])) {
         return true;
       }
     } else {
@@ -147,11 +141,9 @@ bool verify_breakfast(char* breakfast) {
     }
 
     lowercase_status[len] = '\0';
-    int result =
-        (!strcmp(lowercase_status, "t") || !strcmp(lowercase_status, "f") ||
-         !strcmp(lowercase_status, "") || !strcmp(lowercase_status, "true") ||
-         !strcmp(lowercase_status, "false") || !strcmp(lowercase_status, "1") ||
-         !strcmp(lowercase_status, "0"));
+    int result = (!strcmp(lowercase_status, "t") || !strcmp(lowercase_status, "f") || !strcmp(lowercase_status, "") ||
+                  !strcmp(lowercase_status, "true") || !strcmp(lowercase_status, "false") ||
+                  !strcmp(lowercase_status, "1") || !strcmp(lowercase_status, "0"));
 
     free(lowercase_status);
     return result;

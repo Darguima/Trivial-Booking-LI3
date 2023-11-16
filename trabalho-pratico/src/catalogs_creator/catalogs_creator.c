@@ -4,14 +4,10 @@
 #include "datatypes/datatypes.h"
 
 Catalogs catalogs_creator() {
-  GHashTable* hash_table_users =
-      g_hash_table_new_full(g_str_hash, g_str_equal, NULL, free_user_struct);
-  GHashTable* hash_table_flights =
-      g_hash_table_new_full(g_str_hash, g_str_equal, NULL, free_flight_struct);
-  GHashTable* hash_table_passengers =
-      g_hash_table_new_full(g_str_hash, g_str_equal, g_free, g_free);
-  GHashTable* hash_table_reservations = g_hash_table_new_full(
-      g_str_hash, g_str_equal, NULL, free_reservation_struct);
+  GHashTable* hash_table_users = g_hash_table_new_full(g_str_hash, g_str_equal, NULL, free_user_struct);
+  GHashTable* hash_table_flights = g_hash_table_new_full(g_str_hash, g_str_equal, NULL, free_flight_struct);
+  GHashTable* hash_table_passengers = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, g_free);
+  GHashTable* hash_table_reservations = g_hash_table_new_full(g_str_hash, g_str_equal, NULL, free_reservation_struct);
 
   Catalogs catalogs = (Catalogs)malloc(sizeof(struct catalogs));
   catalogs->users = hash_table_users;

@@ -32,12 +32,10 @@ void init_errors_files() {
 
 void write_reservations_errors(char** line_elements) {
   FILE* reservations_errors = fopen("Resultados/reservations_errors.csv", "a+");
-  fprintf(reservations_errors, "%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s\n",
-          line_elements[0], line_elements[1], line_elements[2],
-          line_elements[3], line_elements[4], line_elements[5],
-          line_elements[6], line_elements[7], line_elements[8],
-          line_elements[9], line_elements[10], line_elements[11],
-          line_elements[12], line_elements[13]);
+  fprintf(reservations_errors, "%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s\n", line_elements[0], line_elements[1],
+          line_elements[2], line_elements[3], line_elements[4], line_elements[5], line_elements[6], line_elements[7],
+          line_elements[8], line_elements[9], line_elements[10], line_elements[11], line_elements[12],
+          line_elements[13]);
   fclose(reservations_errors);
   return;
 }
@@ -51,22 +49,17 @@ void write_passengers_errors(char** line_elements) {
 
 void write_flights_errors(char** line_elements) {
   FILE* flights_errors = fopen("Resultados/flights_errors.csv", "a+");
-  fprintf(flights_errors, "%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s\n",
-          line_elements[0], line_elements[1], line_elements[2],
-          line_elements[3], line_elements[4], line_elements[5],
-          line_elements[6], line_elements[7], line_elements[8],
-          line_elements[9], line_elements[10], line_elements[11],
-          line_elements[12]);
+  fprintf(flights_errors, "%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s\n", line_elements[0], line_elements[1],
+          line_elements[2], line_elements[3], line_elements[4], line_elements[5], line_elements[6], line_elements[7],
+          line_elements[8], line_elements[9], line_elements[10], line_elements[11], line_elements[12]);
   fclose(flights_errors);
   return;
 }
 
 void write_users_errors(char** line_elements) {
   FILE* users_error = fopen("Resultados/users_errors.csv", "a++");
-  fprintf(users_error, "%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s\n",
-          line_elements[0], line_elements[1], line_elements[2],
-          line_elements[3], line_elements[4], line_elements[5],
-          line_elements[6], line_elements[7], line_elements[8],
+  fprintf(users_error, "%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s\n", line_elements[0], line_elements[1], line_elements[2],
+          line_elements[3], line_elements[4], line_elements[5], line_elements[6], line_elements[7], line_elements[8],
           line_elements[9], line_elements[10], line_elements[11]);
   fclose(users_error);
   return;
