@@ -5,7 +5,7 @@
 
 int query_6(Catalogs CATALOGS,
             int command_number,
-            bool field,
+            bool format_flag,
             char* year,
             char* n);
 

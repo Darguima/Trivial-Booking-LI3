@@ -3,6 +3,6 @@
 
 #include <datatypes/datatypes.h>
 
-int query_3(Catalogs CATALOGS, int command_number, bool field, char* id);
+int query_3(Catalogs CATALOGS, int command_number, bool format_flag, char* id);
 
 #endif

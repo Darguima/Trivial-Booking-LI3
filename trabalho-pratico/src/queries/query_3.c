@@ -2,12 +2,12 @@
 #include <stdbool.h>
 #include <stdio.h>
 
-int query_3(Catalogs CATALOGS, int command_number, bool field, char* id) {
+int query_3(Catalogs CATALOGS, int command_number, bool format_flag, char* id) {
   printf("I'm in query_3\n");
 
   UNUSED(CATALOGS);
   UNUSED(command_number);
-  UNUSED(field);
+  UNUSED(format_flag);
   UNUSED(id);
 
   return 0;

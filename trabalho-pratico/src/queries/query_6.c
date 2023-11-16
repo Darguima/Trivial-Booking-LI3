@@ -4,14 +4,14 @@
 
 int query_6(Catalogs CATALOGS,
             int command_number,
-            bool field,
+            bool format_flag,
             char* year,
             char* n) {
   printf("I'm in query_6\n");
 
   UNUSED(CATALOGS);
   UNUSED(command_number);
-  UNUSED(field);
+  UNUSED(format_flag);
   UNUSED(year);
   UNUSED(n);
 

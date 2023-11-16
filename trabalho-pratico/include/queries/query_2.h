@@ -5,7 +5,7 @@
 
 int query_2(Catalogs CATALOGS,
             int command_number,
-            bool field,
+            bool format_flag,
             char* id,
             char* flights,
             char* reservations);

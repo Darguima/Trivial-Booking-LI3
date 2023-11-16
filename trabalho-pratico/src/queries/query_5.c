@@ -4,7 +4,7 @@
 
 int query_5(Catalogs CATALOGS,
             int command_number,
-            bool field,
+            bool format_flag,
             char* name,
             char* begin_date,
             char* end_date) {
@@ -12,7 +12,7 @@ int query_5(Catalogs CATALOGS,
 
   UNUSED(CATALOGS);
   UNUSED(command_number);
-  UNUSED(field);
+  UNUSED(format_flag);
   UNUSED(name);
   UNUSED(begin_date);
   UNUSED(end_date);

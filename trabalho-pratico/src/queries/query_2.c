@@ -4,7 +4,7 @@
 
 int query_2(Catalogs CATALOGS,
             int command_number,
-            bool field,
+            bool format_flag,
             char* id,
             char* flights,
             char* reservations) {
@@ -12,7 +12,7 @@ int query_2(Catalogs CATALOGS,
 
   UNUSED(CATALOGS);
   UNUSED(command_number);
-  UNUSED(field);
+  UNUSED(format_flag);
   UNUSED(id);
   UNUSED(flights);
   UNUSED(reservations);
