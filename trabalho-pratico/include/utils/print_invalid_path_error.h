@@ -1,0 +1,1 @@
+void print_invalid_path_error(char* name);

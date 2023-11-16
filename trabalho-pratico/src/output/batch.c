@@ -13,7 +13,7 @@ int batch(char* queries_path, Catalogs CATALOGS) {
   FILE* file = fopen(queries_path, "r");
 
   if (file == NULL) {
-    perror("Erro ao abrir o file");
+    return -1;
   }
 
   size_t line_size = 0;

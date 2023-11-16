@@ -4,6 +4,7 @@
 #include "datatypes/datatypes.h"
 #include "output/batch.h"
 #include "output/interactive.h"
+#include "utils/print_invalid_path_error.h"
 
 int main(int argc, char** argv) {
   if (argc != 1 && argc != 3) {
@@ -38,13 +39,20 @@ int main(int argc, char** argv) {
 
   int catalog_fill_status = catalog_filler(dataset_folder_path, catalogs);
   if (catalog_fill_status == -1) {
-    fprintf(stderr, "[ERROR] - Invalid dataset path\n");
+    print_invalid_path_error("dataset");
     free_catalogs(catalogs);
     return -1;
   }
 
   if (argc == 3) {
-    batch(queries_file_path, catalogs);
+    int batch_exit_code = batch(queries_file_path, catalogs);
+
+    if (batch_exit_code == -1) {
+      print_invalid_path_error("queries file");
+      free_catalogs(catalogs);
+      return -1;
+    }
+
   } else if (argc == 1) {
     interactive();
   }
