@@ -1,39 +1,128 @@
 #include <datatypes/datatypes.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include "utils/convert_string_to_seconds.h"
+#include "utils/extract_date_without_time.h"
 #include "write_output/write_output.h"
 
-char* extract_date_without_time(const char* date_with_time) {
-  char* space_position = strchr(date_with_time, ' ');
-  if (space_position != NULL) {
-    size_t date_length = (size_t)(space_position - date_with_time);
-    char* date_only = (char*)malloc(date_length + 1);
-    if (date_only != NULL) {
-      strncpy(date_only, date_with_time, date_length);
-      date_only[date_length] = '\0';
+typedef struct userReservationsFlights {
+  char* id;
+  char* type;
+  char* start_date;
+}* UserReservationsFlights;
 
-      return date_only;
-    } else {
-      fprintf(stderr, "Error allocating memory!\n");
-      return NULL;
+char* get_flight_date(char* flight_id, GHashTable* flights) {
+  FlightSchema flight = g_hash_table_lookup(flights, flight_id);
+  return (flight->schedule_departure_date);
+}
+
+GList* get_user_reservations_and_flights(char* id, Catalogs CATALOGS) {
+  GList* user_reservations_and_flights = NULL;
+  // UserReservationsFlights new_user_reservation_and_flight  = malloc(sizeof(userReservationsFlights));
+  GHashTableIter iter;
+  gpointer key, value;
+
+  g_hash_table_iter_init(&iter, CATALOGS->passengers);
+  while (g_hash_table_iter_next(&iter, &key, &value)) {
+    PassengerSchema passenger = (PassengerSchema)value;
+    if (g_strcmp0(passenger->user_id, id) == 0) {
+      UserReservationsFlights new_user_reservation_and_flight = malloc(sizeof(struct userReservationsFlights));
+      new_user_reservation_and_flight->id = strdup(passenger->flight_id);
+      new_user_reservation_and_flight->type = strdup("flight");
+      new_user_reservation_and_flight->start_date = strdup(get_flight_date(passenger->flight_id, CATALOGS->flights));
+      user_reservations_and_flights = g_list_append(user_reservations_and_flights, new_user_reservation_and_flight);
     }
   }
-  return NULL;
+
+  g_hash_table_iter_init(&iter, CATALOGS->reservations);
+  while (g_hash_table_iter_next(&iter, &key, &value)) {
+    ReservationSchema reservation = (ReservationSchema)value;
+
+    if (g_strcmp0(reservation->user_id, id) == 0) {
+      UserReservationsFlights new_user_reservation_and_flight2 = malloc(sizeof(struct userReservationsFlights));
+      new_user_reservation_and_flight2->id = strdup(reservation->id);
+      new_user_reservation_and_flight2->type = strdup("reservation");
+      new_user_reservation_and_flight2->start_date = strdup(reservation->begin_date);
+      user_reservations_and_flights = g_list_append(user_reservations_and_flights, new_user_reservation_and_flight2);
+    }
+  }
+  return user_reservations_and_flights;
 }
-// temos 3 casos , vamos ter o caso de apenas ser flight , apenas ser reservations ou ambos. para flights criar uma
-// funcao q vai buscar os flights e os compara por data (ignorando segundos e minutos etc) ou por reservas ou ambos,
-// criando uma struct com tipo, begin date e id. para datas sem segundos e minutos e horas
-// na query 4 do number to string , dando free depois no fim , ou seja char * new time = extract_date_without_time
-// (flight->...) no fim do print no ficheiro , dar free do new time
+
+
+gint compare_dates(gconstpointer a, gconstpointer b) {
+  UserReservationsFlights schemaA = (UserReservationsFlights)a;
+  UserReservationsFlights schemaB = (UserReservationsFlights)b;
+
+  int date_cmp = (int)(convert_string_to_seconds(schemaB->start_date) - convert_string_to_seconds(schemaA->start_date));
+  if (date_cmp != 0) {
+    return date_cmp;
+  } else {
+    if (!strcmp("reservation", schemaA->type) && !strcmp("reservation", schemaB->type)) {
+      return (strcmp(schemaA->id, schemaB->id));
+    } else if (!strcmp("reservation", schemaA->type) && !strcmp("flight", schemaB->type)) {
+      return (strcmp(schemaA->id + 4, schemaB->id));
+    } else if (!(strcmp("flight", schemaA->type) && !strcmp("reservation", schemaB->type))) {
+      return (strcmp(schemaA->id, schemaB->id + 4));
+    } else {
+      return (strcmp(schemaA->id, schemaB->id));
+    }
+  }
+}
+
+void free_reservations_and_flights(gpointer data) {
+  UserReservationsFlights item = (UserReservationsFlights)data;
+  free(item->id);
+  free(item->start_date);
+  free(item->type);
+  free(item);
+}
 
 int query_2(Catalogs CATALOGS, int command_number, bool format_flag, char* id, char* optional) {
   FILE* output_file = create_output_file(command_number);
+  UserSchema user = g_hash_table_lookup(CATALOGS->users, id);
+  if (user == NULL || !user->account_status) {
+    fclose(output_file);
+    return 0;
+  }
 
-  UNUSED(CATALOGS);
-  // UNUSED(command_number);
-  UNUSED(format_flag);
-  UNUSED(id);
-  UNUSED(optional);
+  GList* user_reservations_and_flights = get_user_reservations_and_flights(id, CATALOGS);
+  user_reservations_and_flights = g_list_sort(user_reservations_and_flights, compare_dates);
+  int result_acc = 1;
+  for (GList* iterator = user_reservations_and_flights; iterator != NULL; iterator = iterator->next, result_acc++) {
+    UserReservationsFlights user_stats = (UserReservationsFlights)iterator->data;
+    if (optional == NULL) {
+      if (!strcmp("flight", user_stats->type)) {
+        char* new_date = extract_date_without_time(user_stats->start_date);
+        output_key_value output_array[] = {{"id", user_stats->id}, {"date", new_date}, {"type", user_stats->type}};
+        write_output(output_file, format_flag, result_acc, output_array, 3);
+        free(new_date);
+        continue;
+      } else {
+        output_key_value output_array[] = {
+            {"id", user_stats->id}, {"date", user_stats->start_date}, {"type", user_stats->type}};
+        write_output(output_file, format_flag, result_acc, output_array, 3);
+        continue;
+      }
+    } else if (!strcmp(optional, "reservations")) {
+      if (!strcmp(user_stats->type, "reservation")) {
+        output_key_value output_array[] = {{"id", user_stats->id}, {"date", user_stats->start_date}};
+        write_output(output_file, format_flag, result_acc, output_array, 2);
+      } else {
+        continue;
+      }
+    } else {
+      if (!strcmp(user_stats->type, "flight")) {
+        char* new_date = extract_date_without_time(user_stats->start_date);
+        output_key_value output_array[] = {{"id", user_stats->id}, {"date", new_date}};
+        write_output(output_file, format_flag, result_acc, output_array, 2);
+        free(new_date);
+        continue;
+      }
+    }
+  }
+
+  g_list_free_full(user_reservations_and_flights, free_reservations_and_flights);
   fclose(output_file);
 
   return 0;

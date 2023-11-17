@@ -70,6 +70,7 @@ int interpreter(char* batch_line, int command_number, Catalogs CATALOGS) {
   char** tokenized_params = tokenizer(batch_line, &params_array_length);
 
   int query_number;
+
   char field_string[3] = "__";  // este char vai ser "  " ou "F "
 
   sscanf(batch_line, "%d %2s", &query_number, field_string);
