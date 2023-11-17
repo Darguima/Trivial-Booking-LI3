@@ -6,10 +6,10 @@
 
 ```bash
 # Ubuntu
-$ sudo apt-get install libglib2.0-dev clang-format valgrind
+$ sudo apt-get install libglib2.0-dev clang-format valgrind doxygen
 
 # Arch
-$ sudo pacman -S glib2 clang valgrind
+$ sudo pacman -S glib2 clang valgrind doxygen
 ```
 
 #### Cloning the repository

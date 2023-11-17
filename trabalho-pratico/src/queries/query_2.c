@@ -1,15 +1,10 @@
+#include "queries/query_2.h"
 #include <datatypes/datatypes.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include "utils/convert_string_to_seconds.h"
 #include "utils/extract_date_without_time.h"
 #include "write_output/write_output.h"
-
-typedef struct userReservationsFlights {
-  char* id;
-  char* type;
-  char* start_date;
-}* UserReservationsFlights;
 
 char* get_flight_date(char* flight_id, GHashTable* flights) {
   FlightSchema flight = g_hash_table_lookup(flights, flight_id);

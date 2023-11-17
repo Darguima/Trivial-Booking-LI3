@@ -54,6 +54,13 @@ check-memory:
 	@DEBUG=1 make -s && echo "[Compiling]"
 	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose ./$(EXECUTABLE) $(if $(MAKE_ARGS),$(MAKE_ARGS),"dataset/data" "dataset/inputs/input.txt")
 
+doxygen:
+# Check if doxygen is installed
+	@command -v doxygen &> /dev/null || echo "[Warning] Please install `doxygen`. Read documentation."
+# Run doxygen against the executable
+	@doxygen doxyfile.cfg && echo "[Generating Documentation]"
+	@echo "Open, on your browser, the file ./doc/html/index.html" !
+
 dev:
 	@printf "=====  Cleaning, Formating, Compiling and executing project   =====\n"
 	@make -s clean
