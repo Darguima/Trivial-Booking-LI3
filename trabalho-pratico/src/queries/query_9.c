@@ -21,7 +21,7 @@ GList* getUsersWithPrefix(GHashTable* user_table, const char* prefix) {
   while (g_hash_table_iter_next(&iter, &key, &value)) {
     UserSchema user = (UserSchema)value;
     if (user->account_status == true) {
-      if (strcoll(prefix, user->name) == 0) {
+      if (strncmp(prefix, user->name, strlen(prefix)) == 0) {
         result = g_list_append(result, user);
       }
     }
@@ -58,7 +58,8 @@ int query_9(Catalogs catalogs, int command_number, bool format_flag, const char*
 
     output_key_value output_array[] = {{"id", user->id}, {"name", user->name}};
 
-    write_output(output_file, format_flag, ++results_acc, output_array, 2);
+    results_acc++;
+    write_output(output_file, format_flag, results_acc, output_array, 2);
   }
 
   g_list_free(usersWithPrefix);
