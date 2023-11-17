@@ -49,7 +49,6 @@ GList* get_user_reservations_and_flights(char* id, Catalogs CATALOGS) {
   return user_reservations_and_flights;
 }
 
-
 gint compare_dates(gconstpointer a, gconstpointer b) {
   UserReservationsFlights schemaA = (UserReservationsFlights)a;
   UserReservationsFlights schemaB = (UserReservationsFlights)b;
@@ -89,7 +88,8 @@ int query_2(Catalogs CATALOGS, int command_number, bool format_flag, char* id, c
   GList* user_reservations_and_flights = get_user_reservations_and_flights(id, CATALOGS);
   user_reservations_and_flights = g_list_sort(user_reservations_and_flights, compare_dates);
   int result_acc = 1;
-  for (GList* iterator = user_reservations_and_flights; iterator != NULL; iterator = iterator->next, result_acc++) {
+
+  for (GList* iterator = user_reservations_and_flights; iterator != NULL; iterator = iterator->next) {
     UserReservationsFlights user_stats = (UserReservationsFlights)iterator->data;
     if (optional == NULL) {
       if (!strcmp("flight", user_stats->type)) {
@@ -97,27 +97,29 @@ int query_2(Catalogs CATALOGS, int command_number, bool format_flag, char* id, c
         output_key_value output_array[] = {{"id", user_stats->id}, {"date", new_date}, {"type", user_stats->type}};
         write_output(output_file, format_flag, result_acc, output_array, 3);
         free(new_date);
-        continue;
+        result_acc++;
+
       } else {
         output_key_value output_array[] = {
             {"id", user_stats->id}, {"date", user_stats->start_date}, {"type", user_stats->type}};
         write_output(output_file, format_flag, result_acc, output_array, 3);
-        continue;
+        result_acc++;
       }
     } else if (!strcmp(optional, "reservations")) {
       if (!strcmp(user_stats->type, "reservation")) {
         output_key_value output_array[] = {{"id", user_stats->id}, {"date", user_stats->start_date}};
         write_output(output_file, format_flag, result_acc, output_array, 2);
+
+        result_acc++;
       } else {
-        continue;
       }
     } else {
       if (!strcmp(user_stats->type, "flight")) {
         char* new_date = extract_date_without_time(user_stats->start_date);
         output_key_value output_array[] = {{"id", user_stats->id}, {"date", new_date}};
         write_output(output_file, format_flag, result_acc, output_array, 2);
+        result_acc++;
         free(new_date);
-        continue;
       }
     }
   }
