@@ -18,6 +18,7 @@ char** tokenizer(char* line, int* params_array_length) {
   char** pointers_list = malloc(sizeof(char*) * length);
 
   int pointers_list_length = 0;
+  bool in_aspas = false;
 
   int i = 0;
   if (line[0] != ' ' && line[0] != '\0') {
@@ -26,23 +27,41 @@ char** tokenizer(char* line, int* params_array_length) {
     i++;
   }
 
-  while (line[i] != '\0') {
-    if (line[i] == ' ') {
-      line[i] = '\0';  // replace spaces with \0
+  // 5 LIS "begin  date" "this is end   date"
+  // tem de dividir isto na lista de apontadores(*5, *b, *t)
+  // o *b aponta para begin  date e o *t aponta para  this is end   date
 
-      if (line[i + 1] != ' ' && line[i + 1] != '\0') {
-        pointers_list[pointers_list_length] = &(line[i + 1]);
-        pointers_list_length++;
-      }
+  while (line[i] != '\0') {
+    if (line[i] == '\"') {
+      in_aspas = !in_aspas;
+      line[i] = '\0';
+      i++;
+      continue;
+    }
+
+    if (line[i] == ' ' && !in_aspas) {
+      line[i] = '\0';
+      i++;
+      continue;
+    }
+
+    if (line[i - 1] == '\0') {
+      pointers_list[pointers_list_length] = &(line[i]);
+      pointers_list_length++;
     }
     i++;
   }
 
-  // Clean memory allocated to array
-  // Parse to ""
-
   (*params_array_length) = pointers_list_length;
-  return pointers_list;
+
+  char** tokenized = malloc(sizeof(char*) * ((long unsigned int)pointers_list_length + 1));
+  for (int j = 0; j < pointers_list_length; j++) {
+    tokenized[j] = pointers_list[j];
+  }
+
+  free(pointers_list);
+
+  return tokenized;
 }
 
 int interpreter(char* batch_line, int command_number, Catalogs CATALOGS) {
@@ -53,40 +72,76 @@ int interpreter(char* batch_line, int command_number, Catalogs CATALOGS) {
   int query_number;
   char field_string[3] = "__";  // este char vai ser "  " ou "F "
 
-  sscanf(batch_line, "%d %2s", &query_number,
-         field_string);  // copia os números para query_number e dois chars para field_string
+  sscanf(batch_line, "%d %2s", &query_number, field_string);
+  // copia os números para query_number e dois chars para field_string
 
-  bool has_f = field_string[0] == 'F';  // compara-se pois esse valor só pode ser 'F' ou ' '
+  bool has_f = field_string[0] == 'F';
+  // compara-se pois esse valor só pode ser 'F' ou ' '
 
   switch (query_number) {
     case 1:
+      if (params_array_length != 2) {
+        break;
+      }
       query_1(CATALOGS, command_number, has_f, tokenized_params[1]);
       break;
     case 2:
+      if (params_array_length < 2 || params_array_length > 3) {
+        break;
+      }
       query_2(CATALOGS, command_number, has_f, tokenized_params[1],
               params_array_length == 3 ? tokenized_params[2] : NULL);
       break;
     case 3:
+      if (params_array_length != 2) {
+        break;
+      }
       query_3(CATALOGS, command_number, has_f, tokenized_params[1]);
       break;
     case 4:
+      if (params_array_length != 2) {
+        break;
+      }
       query_4(CATALOGS, command_number, has_f, tokenized_params[1]);
       break;
     case 5:
+      if (params_array_length != 4) {
+        break;
+      }
       query_5(CATALOGS, command_number, has_f, tokenized_params[1], tokenized_params[2], tokenized_params[3]);
       break;
     case 6:
+      if (params_array_length != 2) {
+        break;
+      }
       query_6(CATALOGS, command_number, has_f, tokenized_params[1], tokenized_params[2]);
 
       break;
-      // case 7:
-      //   break;
-      // case 8:
-      //   break;
-      // case 9:
-      //   break;
-      // case 10:
-      //   break;
+    case 7:
+      if (params_array_length != 2) {
+        break;
+      }
+      query_7(CATALOGS, command_number, has_f, tokenized_params[1]);
+      break;
+    case 8:
+      if (params_array_length != 4) {
+        break;
+      }
+      query_8(CATALOGS, command_number, has_f, tokenized_params[1], tokenized_params[2], tokenized_params[3]);
+      break;
+    case 9:
+      if (params_array_length != 2) {
+        break;
+      }
+      query_9(CATALOGS, command_number, has_f, tokenized_params[1]);
+      break;
+    case 10:
+      if (params_array_length > 3) {
+        break;
+      }
+      query_10(CATALOGS, command_number, has_f, params_array_length >= 2 ? tokenized_params[1] : NULL,
+               params_array_length == 3 ? tokenized_params[3] : NULL);
+      break;
   }
 
   free(tokenized_params);
