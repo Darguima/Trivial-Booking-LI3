@@ -2,25 +2,19 @@
 #include <glib.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include "utils/string_to_lower.h"
 
 bool is_active(char* status) {
   if (status != NULL) {
-    size_t len = strlen(status);
-    char* lowercase_status = malloc(len + 1);
+    char* lowerStr = strdup(status);
+    string_to_lower(lowerStr);
 
-    if (lowercase_status == NULL) {
-      return false;
-    }
+    size_t len = strlen(lowerStr);
+    lowerStr[len] = '\0';
 
-    for (size_t i = 0; i < len; i++) {
-      lowercase_status[i] = (char)tolower(status[i]);
-    }
+    int result = (!strcmp(lowerStr, "active"));
 
-    lowercase_status[len] = '\0';
-
-    int result = (!strcmp(lowercase_status, "active"));
-
-    free(lowercase_status);
+    free(lowerStr);
 
     return result;
   }

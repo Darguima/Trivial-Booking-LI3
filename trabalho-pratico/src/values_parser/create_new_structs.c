@@ -5,6 +5,7 @@
 #include "utils/includes_breakfast.h"
 #include "utils/is_active.h"
 #include "utils/string_to_int.h"
+#include "utils/string_to_upper.h"
 
 PassengerSchema create_new_passenger(char** passenger_values) {
   PassengerSchema new_passenger = malloc(sizeof(struct passengerSchema));
@@ -41,8 +42,8 @@ FlightSchema create_new_flight(char** flight_values) {
   new_flight->airline = strdup(flight_values[1]);
   new_flight->plane_model = strdup(flight_values[2]);
   new_flight->total_seats = string_to_int(flight_values[3]);
-  new_flight->origin = strdup(flight_values[4]);
-  new_flight->destination = strdup(flight_values[5]);
+  new_flight->origin = string_to_upper(strdup(flight_values[4]));
+  new_flight->destination = string_to_upper(strdup(flight_values[5]));
   new_flight->schedule_departure_date = strdup(flight_values[6]);
   new_flight->real_departure_date = strdup(flight_values[8]);
   new_flight->schedule_arrival_date = strdup(flight_values[7]);

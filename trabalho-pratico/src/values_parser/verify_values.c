@@ -5,6 +5,7 @@
 #include <string.h>
 #include "utils/convert_string_to_seconds.h"
 #include "utils/is_digit.h"
+#include "utils/string_to_lower.h"
 
 bool verify_are_dates_in_order(char* date1, char* date2) {
   if (date1 != NULL && date2 != NULL) {
@@ -56,18 +57,8 @@ bool verify_account_email(char* email) {
 
 bool verify_account_status(char* status) {
   if (status != NULL) {
-    size_t len = strlen(status);
-    char* lowercase_status = malloc(len + 1);
-
-    if (lowercase_status == NULL) {
-      return false;
-    }
-
-    for (size_t i = 0; i < len; i++) {
-      lowercase_status[i] = (char)tolower(status[i]);
-    }
-
-    lowercase_status[len] = '\0';
+    char* lowercase_status = strdup(status);
+    string_to_lower(lowercase_status);
 
     int result = (!strcmp(lowercase_status, "active") || !strcmp(lowercase_status, "inactive"));
 
@@ -133,19 +124,15 @@ bool verify_if_is_digit(char* digit) {
 
 bool verify_breakfast(char* breakfast) {
   if (breakfast != NULL) {
-    size_t len = strlen(breakfast);
-    char* lowercase_status = malloc(len + 1);
+    char* lowercase_breakfast = strdup(breakfast);
+    string_to_lower(lowercase_breakfast);
 
-    for (size_t i = 0; i < len; i++) {
-      lowercase_status[i] = (char)tolower(breakfast[i]);
-    }
+    int result =
+        (!strcmp(lowercase_breakfast, "t") || !strcmp(lowercase_breakfast, "f") || !strcmp(lowercase_breakfast, "") ||
+         !strcmp(lowercase_breakfast, "true") || !strcmp(lowercase_breakfast, "false") ||
+         !strcmp(lowercase_breakfast, "1") || !strcmp(lowercase_breakfast, "0"));
 
-    lowercase_status[len] = '\0';
-    int result = (!strcmp(lowercase_status, "t") || !strcmp(lowercase_status, "f") || !strcmp(lowercase_status, "") ||
-                  !strcmp(lowercase_status, "true") || !strcmp(lowercase_status, "false") ||
-                  !strcmp(lowercase_status, "1") || !strcmp(lowercase_status, "0"));
-
-    free(lowercase_status);
+    free(lowercase_breakfast);
     return result;
   }
   return false;
