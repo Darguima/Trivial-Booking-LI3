@@ -10,6 +10,9 @@ This project was developed for the LI3 University of Minho Subject of the Softwa
 - [Dário Guimarães](https://github.com/darguima)
 - [Hugo Rauber](https://github.com/HugoLRauber)
 
+#### Data Flow
+
+![Data Flow](./trabalho-pratico/Relatorio/data_flow.svg)
 
 ## Getting Started
 
