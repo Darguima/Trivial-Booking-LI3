@@ -12,7 +12,7 @@ This project was developed for the LI3 University of Minho Subject of the Softwa
 
 #### Data Flow
 
-![Data Flow](./trabalho-pratico/Relatorio/data_flow.svg)
+![Data Flow Flow](./trabalho-pratico/Relatorio/data_flow.png)
 
 ## Getting Started
 
