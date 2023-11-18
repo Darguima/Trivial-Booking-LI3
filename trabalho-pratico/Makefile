@@ -58,7 +58,7 @@ doxygen:
 # Check if doxygen is installed
 	@command -v doxygen &> /dev/null || echo "[Warning] Please install `doxygen`. Read documentation."
 # Run doxygen against the executable
-	@doxygen doxyfile.cfg && echo "[Generating Documentation]"
+	@doxygen Doxyfile && echo "[Generating Documentation]"
 	@echo "Open, on your browser, the file ./doc/html/index.html" !
 
 dev:
