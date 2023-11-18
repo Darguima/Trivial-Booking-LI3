@@ -1,8 +1,19 @@
 # Trivial Booking
 
-## Contribute
+## About the Project
 
-### Install dependencies
+This project was developed for the LI3 University of Minho Subject of the Software Engineering degree.
+
+##### Developed by:
+
+- [Afonso Pedreira](https://github.com/afooonso)
+- [Dário Guimarães](https://github.com/darguima)
+- [Hugo Rauber](https://github.com/HugoLRauber)
+
+
+## Getting Started
+
+### Installing dependencies
 
 ```bash
 # Ubuntu
@@ -13,38 +24,55 @@ $ sudo pacman -S glib2 clang valgrind doxygen
 ```
 
 #### Cloning the repository
+
 ```bash
 $ git clone https://github.com/dium-li3/grupo-45.git
 ```
 
-#### Compiling
+#### Running the project
 
-Inside the project folder:
-
+First of all, enter on `trabalho-pratico` folder:
 ```bash
 $ cd trabalho-pratico
-$ make
-# You can run the program without params (interactive mode)
-$ ./programa-principal <path to *.csv folder> <path to input file>
-
-# Or all at once (also possible without params)
-$ make dev <path to *.csv folder> <path to input file>
 ```
 
-If you want active DEBUG mode (the default for `make dev`) pass the DEBUG variable to the make command:
+##### Compiling the code
+```bash
+$ make
+
+# With debug flags
+$ DEBUG=1 make
+
+# Executing
+$ ./programa-principal 
+$ ./programa-principal <dataset-folder> <input-file>
+```
+
+##### Developing
+
+This function `clean`, `format`, `compile` in debug mode and `execute` the project
 
 ```bash
-# Will compile faster and with debugging symbols
-$ DEBUG=1 make
+$ make dev
+$ make dev <dataset-folder> <input-file>
 ```
 
-# WhiteBoard for ideas for the presentation
+##### Running memory leaks checks
 
-1. Show the data flow (catalog_creator, catalog_filler, filer_parser, ...)
-2. GitHub Actions
+Will run Valgrind to detect memory leaks
+This also compiles the code, and pass default params to the executable
 
-# Developed by:
+```bash
+$ make check-memory
+$ make check-memory <dataset-folder> <input-file>
+```
 
-- [Afonso Pedreira](https://github.com/afooonso)
-- [Dário Guimarães](https://github.com/darguima)
-- [Hugo Rauber](https://github.com/HugoLRauber)
+##### Cleaning object files and executable
+```bash
+$ make clean
+```
+
+##### Formatting the code
+```bash
+$ make format
+```
