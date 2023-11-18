@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "utils/concatenate_string.h"
+
 int store_catalog_user(UserSchema user, GHashTable* users_catalog) {
   g_hash_table_insert(users_catalog, user->id, user);
   return 0;

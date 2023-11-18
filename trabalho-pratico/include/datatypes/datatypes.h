@@ -1,3 +1,4 @@
+//! @file
 #ifndef DATATYPES_H
 #define DATATYPES_H
 
@@ -16,6 +17,7 @@
 
 typedef enum { USERS, FLIGHTS, PASSENGERS, RESERVATIONS } schema_name;
 
+//! All the HashTables pointers in one struct
 typedef struct catalogs {
   GHashTable* users;
   GHashTable* flights;
@@ -23,66 +25,83 @@ typedef struct catalogs {
   GHashTable* reservations;
 }* Catalogs;
 
-// Catalogs Schemas
-
+//! Users info
 typedef struct userSchema {
-  char* id;                // identificador do usuário;
-  char* name;              // nome;
-  char* email;             // email;
-  char* phone_number;      // número de telemóvel;
-  char* birth_date;        // data de nascimento;
-  char* sex;               // sexo;
-  char* passport;          // passaporte;
-  char* country_code;      // código de país;
-  char* address;           // endereço do usuário;
-  char* account_creation;  // data de criação da conta;
-  char* pay_method;        // método de pagamento;
-  bool account_status;     // estado da conta;
-  double total_spent;      // total gasto pelo utilizador em reservas.
+  //! User id, unique
+  char* id;
+  char* name;
+  char* email;
+  char* phone_number;
+  char* birth_date;
+  //! M or F
+  char* sex;
+  //! Passport number
+  char* passport;
+  //! PT, ES, FR, etc
+  char* country_code;
+  char* address;
+  //! date of account creation
+  char* account_creation;
+  char* pay_method;
+  //! True if active
+  bool account_status;
+  //! Total spent in reservations and flights
+  double total_spent;
   int age;
   int number_of_flights;
   int number_of_reservations;
 }* UserSchema;
 
+//! Flight info
 typedef struct flightSchema {
-  char* id;                       // identificador do voo;
-  char* airline;                  // companhia aérea;
-  char* plane_model;              // modelo do avião;
-  int total_seats;                // número de lugares totais disponíveis;
-  char* origin;                   // aeroporto de origem;
-  char* destination;              // aeroporto de destino;
-  char* schedule_departure_date;  // data e hora estimada de partida;
-  char* schedule_arrival_date;    // data e hora estimada de chegada;
-  char* real_departure_date;      // data e hora real de partida;
-  char* real_arrival_date;        // data e hora real de chegada;
-  char* pilot;                    // nome do piloto;
-  char* copilot;                  // nome do copiloto;
-  char* notes;                    // observações sobre o voo.
-  int number_of_passengers;       // numero total de pssageiros no voo
+  //! Flight id, unique
+  char* id;
+  char* airline;
+  char* plane_model;
+  int total_seats;
+  // Airport City Code - DUB, LIS, etc
+  char* origin;
+  // Airport City Code - DUB, LIS, etc
+  char* destination;
+  char* schedule_departure_date;
+  char* schedule_arrival_date;
+  char* real_departure_date;
+  char* real_arrival_date;
+  char* pilot;
+  char* copilot;
+  char* notes;
+  int number_of_passengers;
   long delay;
 }* FlightSchema;
 
+//! Passengers - relations between flights and users
 typedef struct passengerSchema {
-  char* flight_id;  // identificador do voo
-  char* user_id;    // identificador do utilizador
+  //! Flight id, from the flightSchema
+  char* flight_id;
+  //! User id, from the userSchema
+  char* user_id;
 }* PassengerSchema;
 
+//! Reservations and hotel info
 typedef struct reservationSchema {
-  char* id;                 // identificador da reserva;
-  char* user_id;            // identificador do utilizador;
-  char* hotel_id;           // identificador do hotel;
-  char* hotel_name;         // nome do hotel;
-  int hotel_stars;          // número de estrelas do hotel;
-  int city_tax;             // percentagem do imposto da cidade (sobre o valor total);
-  char* address;            // morada do hotel;
-  char* begin_date;         // data de início;
-  char* end_date;           // data de fim;
-  int price_per_night;      // preço por noite;
-  bool includes_breakfast;  // se a reserva inclui pequeno-almoço;
-  char* room_details;       // detalhes sobre o quarto;
-  char* rating;             // classificação atribuída pelo utilizador;
-  char* comment;            // comentário sobre a reserva.
-  double total_price;       // preço total da reserva
+  //! ID for the reservation, unique
+  char* id;
+  char* user_id;
+  char* hotel_id;
+  char* hotel_name;
+  //! Hotels starts 1-5
+  int hotel_stars;
+  int city_tax;
+  char* address;
+  char* begin_date;
+  char* end_date;
+  int price_per_night;
+  bool includes_breakfast;
+  char* room_details;
+  //! the rating given by the user 1-5 or an empty string
+  char* rating;
+  char* comment;
+  double total_price;
 }* ReservationSchema;
 
 #endif
