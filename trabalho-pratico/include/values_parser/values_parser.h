@@ -5,52 +5,52 @@
 #include "datatypes/datatypes.h"
 
 /**
- * @brief Adds user data from a parsed CSV line to the user catalog.
+ * @brief Parses and validates user-related data, creates a new user, and stores it in the catalogs
  *
- * This function takes an array of strings containing parsed values from a CSV line representing user data.
- * It checks if the values are valid and, if so, adds the user to the user catalog.
+ * Validates user data elements and creates a new user if the data is valid. Then, it stores
+ * the new user in the catalogs.
  *
- * @param values An array of strings containing the parsed values from a CSV line.
- * @param catalog The catalogs structure containing the user catalog.
- * @return An integer indicating success (1) or failure (0).
+ * @param user_values An array containing user data elements to be parsed and validated
+ * @param catalogs The catalogs containing hash tables to store the user data
+ * @return int Returns 0 if the user data is successfully parsed and stored; otherwise, returns 1 for invalid data
  */
-int values_parser_users(char** values, Catalogs catalog);
+int values_parser_users(char** user_values, Catalogs catalogs);
 
 /**
- * @brief Adds flight data from a parsed CSV line to the flight catalog.
+ * @brief Parses and validates flight-related data, creates a new flight, and stores it in the catalogs
  *
- * This function takes an array of strings containing parsed values from a CSV line representing flight data.
- * It checks if the values are valid and, if so, adds the flight to the flight catalog.
+ * Validates flight data elements and creates a new flight if the data is valid. Then, it stores
+ * the new flight in the catalogs.
  *
- * @param values An array of strings containing the parsed values from a CSV line.
- * @param catalog The catalogs structure containing the flight catalog.
- * @return An integer indicating success (1) or failure (0).
+ * @param flight_values An array containing flight data elements to be parsed and validated
+ * @param catalogs The catalogs containing hash tables to store the flight data
+ * @return int Returns 0 if the flight data is successfully parsed and stored; otherwise, returns 1 for invalid data
  */
-
-int values_parser_flights(char** values, Catalogs catalog);
-
-/**
- * @brief Adds passenger data from a parsed CSV line to the passenger catalog.
- *
- * This function takes an array of strings containing parsed values from a CSV line representing passenger data.
- * It checks if the values are valid and, if so, adds the passenger to the passenger catalog.
- *
- * @param values An array of strings containing the parsed values from a CSV line.
- * @param catalog The catalogs structure containing the passenger catalog.
- * @return An integer indicating success (1) or failure (0).
- */
-int values_parser_passengers(char** values, Catalogs catalog);
+int values_parser_flights(char** flight_values, Catalogs catalogs);
 
 /**
- * @brief Adds reservation data from a parsed CSV line to the reservation catalog.
+ * @brief Parses and validates passenger-related data, creates a new passenger, and stores it in the catalogs
  *
- * This function takes an array of strings containing parsed values from a CSV line representing reservation data.
- * It checks if the values are valid and, if so, adds the reservation to the reservation catalog.
+ * Validates passenger data elements and creates a new passenger if the data is valid. Then, it stores
+ * the new passenger in the catalogs and updates related flight and user information.
  *
- * @param values An array of strings containing the parsed values from a CSV line.
- * @param catalog The catalogs structure containing the reservation catalog.
- * @return An integer indicating success (1) or failure (0).
+ * @param passengers_values An array containing passenger data elements to be parsed and validated
+ * @param catalogs The catalogs containing hash tables to store the passenger data
+ * @return int Returns 0 if the passenger data is successfully parsed and stored; otherwise, returns 1 for invalid data
  */
-int values_parser_reservations(char** values, Catalogs catalog);
+int values_parser_passengers(char** passengers_values, Catalogs catalogs);
+
+/**
+ * @brief Parses and validates reservation-related data, creates a new reservation, and stores it in the catalogs
+ *
+ * Validates reservation data elements and creates a new reservation if the data is valid. Then, it stores
+ * the new reservation in the catalogs and updates related user information.
+ *
+ * @param reservations_values An array containing reservation data elements to be parsed and validated
+ * @param catalogs The catalogs containing hash tables to store the reservation data
+ * @return int Returns 0 if the reservation data is successfully parsed and stored; otherwise, returns 1 for invalid
+ * data
+ */
+int values_parser_reservations(char** reservations_values, Catalogs catalogs);
 
 #endif

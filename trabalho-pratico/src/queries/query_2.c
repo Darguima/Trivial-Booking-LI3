@@ -6,11 +6,21 @@
 #include "utils/extract_date_without_time.h"
 #include "write_output/write_output.h"
 
+//! @brief Retrieves the scheduled departure date of a flight
 char* get_flight_date(char* flight_id, GHashTable* flights) {
   FlightSchema flight = g_hash_table_lookup(flights, flight_id);
   return (flight->schedule_departure_date);
 }
 
+/**
+ * @brief Retrieves user reservations and flights from catalogs
+ *
+ * Retrieves user reservations and flights based on the provided user ID from the catalogs.
+ *
+ * @param id The ID of the user to retrieve reservations and flights for
+ * @param CATALOGS The catalogs struct created by the function `catalogs_creator()`
+ * @return GList* Returns a linked list containing user reservations and flights
+ */
 GList* get_user_reservations_and_flights(char* id, Catalogs CATALOGS) {
   GList* user_reservations_and_flights = NULL;
   // UserReservationsFlights new_user_reservation_and_flight  = malloc(sizeof(userReservationsFlights));
@@ -44,6 +54,7 @@ GList* get_user_reservations_and_flights(char* id, Catalogs CATALOGS) {
   return user_reservations_and_flights;
 }
 
+//! @brief Compares dates in the UserReservationsFlights struct
 gint compare_dates(gconstpointer a, gconstpointer b) {
   UserReservationsFlights schemaA = (UserReservationsFlights)a;
   UserReservationsFlights schemaB = (UserReservationsFlights)b;
@@ -64,6 +75,7 @@ gint compare_dates(gconstpointer a, gconstpointer b) {
   }
 }
 
+//! @brief Frees memory allocated for UserReservationsFlights struct
 void free_reservations_and_flights(gpointer data) {
   UserReservationsFlights item = (UserReservationsFlights)data;
   free(item->id);

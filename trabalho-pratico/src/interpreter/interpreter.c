@@ -13,6 +13,16 @@
 
 #include <datatypes/datatypes.h>
 
+/**
+ * @brief Tokenizes the input line into an array of pointers to tokens
+ *
+ * This function tokenizes the input line based on spaces and double quotes.
+ * It modifies the input line in place and returns an array of pointers to tokens.
+ *
+ * @param line The input line to be tokenized
+ * @param params_array_length Pointer to an integer where the length of the resulting array will be stored
+ * @return char** Array of pointers to the tokens extracted from the input line
+ */
 char** tokenizer(char* line, int* params_array_length) {
   size_t length = strlen(line);
   char** pointers_list = malloc(sizeof(char*) * length);

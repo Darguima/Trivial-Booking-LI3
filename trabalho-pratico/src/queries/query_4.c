@@ -5,6 +5,8 @@
 #include "utils/number_to_string.h"
 #include "write_output/write_output.h"
 
+//! @brief Compares reservations for sorting based on their begin_date in descending order. If the begin_date is the
+//! same, it uses reservation IDs for ordering.
 gint compare_reservations_order(gconstpointer a, gconstpointer b) {
   ReservationSchema reservationA = (ReservationSchema)a;
   ReservationSchema reservationB = (ReservationSchema)b;
@@ -18,6 +20,7 @@ gint compare_reservations_order(gconstpointer a, gconstpointer b) {
   return g_strcmp0(reservationA->id, reservationB->id);
 }
 
+//! @brief Retrieves reservations by hotel ID from the reservations table
 GList* getReservationsByHotelId(GHashTable* reservations_table, const char* target_hotel_id) {
   GList* result = NULL;
   GHashTableIter iter;

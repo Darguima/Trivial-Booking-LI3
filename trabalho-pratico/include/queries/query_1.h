@@ -6,18 +6,18 @@
 #include <datatypes/datatypes.h>
 
 /**
- * @brief Executes Query 1 based on the provided parameters.
+ * @brief Executes query 1 based on the provided ID
  *
- * This function performs Query 1 on the given catalogs, extracting statistics for a specific entity (flight,
- * reservation, or user) that is saved in a specific Hash Table. identified by the provided ID. The extracted
- * information is written to an output file with a name based on the command number.
+ * Executes query 1 by checking if the ID corresponds to a user, flight, or reservation,
+ * and writes the associated data to the output file.
  *
- * @param CATALOGS The catalogs structure containing hash tables for users, flights, and reservations.
- * @param command_number The command number specifying the name of the output file.
- * @param format_flag A flag indicating the desired output format (e.g., true for formatted output, false for raw data).
- * @param id The ID of the entity for which statistics are to be extracted.
- * @return Returns 0 if the query is executed successfully, or a non-zero value if an error occurs.
+ * @param CATALOGS The catalogs struct created by the function `catalogs_creator()`
+ * @param command_number The number associated with the command
+ * @param format_flag Flag indicating the output format
+ * @param id The ID used to retrieve information from the catalogs
+ * @return int Returns 0 upon successful execution of query 1
  */
+
 int query_1(Catalogs CATALOGS, int command_number, bool format_flag, char* id);
 
 #endif

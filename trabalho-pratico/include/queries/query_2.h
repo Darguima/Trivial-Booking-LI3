@@ -17,21 +17,19 @@ typedef struct userReservationsFlights {
 }* UserReservationsFlights;
 
 /**
- * @brief Executes Query 2 based on the provided parameters.
+ * @brief Executes query 2 based on the provided ID and optional parameter
  *
- * This function performs Query 2 on the passengers hash table and reservations hash table within given catalogs,
- * retrieving all reservations and flights made by a specified user. The results are written to an output file with a
- * name based on the command number.
+ * Executes query 2 by retrieving user reservations and flights based on the ID,
+ * sorting them, and writing the relevant data to the output file based on the optional parameter.
  *
- * @param CATALOGS The catalogs structure containing hash tables for users, flights, and reservations.
- * @param command_number The command number specifying the name of the output file.
- * @param format_flag A flag indicating the desired output format (e.g., true for formatted output, false for raw data).
- * @param id The ID of the user for whom reservations and flights are to be retrieved.
- * @param optional A char* parameter specifying the desired output (e.g., "reservations" for only reservations,
- *                 "flights" for only flights, or NULL for both reservations and flights).
- * @return 0 on success, 1 on failure.
- *
+ * @param CATALOGS The catalogs struct created by the function `catalogs_creator()`
+ * @param command_number The number associated with the command
+ * @param format_flag Flag indicating the output format
+ * @param id The ID used to retrieve information from the catalogs
+ * @param optional Optional parameter indicating specific data to write to the output file
+ * @return int Returns 0 upon successful execution of query 2
  */
+
 int query_2(Catalogs CATALOGS, int command_number, bool format_flag, char* id, char* optional);
 
 #endif

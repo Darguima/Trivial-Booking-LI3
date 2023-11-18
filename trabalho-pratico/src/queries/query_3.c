@@ -4,6 +4,8 @@
 #include "utils/number_to_string.h"
 #include "utils/string_to_int.h"
 #include "write_output/write_output.h"
+
+//! @brief Calculates the average rating of a hotel based on reservations in the catalog.
 double calculate_average_rating(Catalogs CATALOGS, char* hotel_ID) {
   double ratingTotal = 0;
   double amount_of_rates = 0;

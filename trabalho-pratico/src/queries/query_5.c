@@ -4,6 +4,8 @@
 #include "utils/convert_string_to_seconds.h"
 #include "write_output/write_output.h"
 
+//! @brief Compares two flights to sort them first by schedule departure date and then by ID if the departure date is
+//! the same
 gint compare_flights_order(gconstpointer a, gconstpointer b) {
   FlightSchema flightA = (FlightSchema)a;
   FlightSchema flightB = (FlightSchema)b;
@@ -17,6 +19,7 @@ gint compare_flights_order(gconstpointer a, gconstpointer b) {
   return g_strcmp0(flightA->id, flightB->id);
 }
 
+//! @brief Retrieves a list of flights associated with a specific airport within a given time range.
 GList* get_flights_by_airport_and_time(GHashTable* flights_table,
                                        const char* airport,
                                        char* begin_date,

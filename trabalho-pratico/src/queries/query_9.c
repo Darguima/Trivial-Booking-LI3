@@ -8,10 +8,12 @@
 #include "utils/calculate_stats.h"
 #include "write_output/write_output.h"
 
+//! @brief Sets the locale for collation order to en_US.UTF-8
 void setLocale() {
   setlocale(LC_COLLATE, "en_US.UTF-8");
 }
 
+//! @brief Retrieves users from a hash table with names starting with a specified prefix
 GList* getUsersWithPrefix(GHashTable* user_table, const char* prefix) {
   GList* result = NULL;
   GHashTableIter iter;
@@ -30,6 +32,7 @@ GList* getUsersWithPrefix(GHashTable* user_table, const char* prefix) {
   return result;
 }
 
+//! @brief Compares two UserSchema instances based on their names and IDs for sorting purposes.
 int compare_users_order(gconstpointer a, gconstpointer b) {
   UserSchema userA = (UserSchema)a;
   UserSchema userB = (UserSchema)b;

@@ -6,21 +6,25 @@
 #include "utils/calculate_stats.h"
 #include "write_output/write_output.h"
 
+//! @brief Checks if a user exists in the user table
 int is_user(GHashTable* user_table, char* id) {
   UserSchema user = g_hash_table_lookup(user_table, id);
   return (user == NULL) ? 0 : 1;
 }
 
+//! @brief Checks if a flight exists in the flights table
 int is_flight(GHashTable* flights_table, char* id) {
   FlightSchema flight = g_hash_table_lookup(flights_table, id);
   return (flight == NULL) ? 0 : 1;
 }
 
+//! @brief Checks if a reservation exists in the reservations table
 int is_reservation(GHashTable* reservations_table, char* id) {
   ReservationSchema reservation = g_hash_table_lookup(reservations_table, id);
   return (reservation == NULL) ? 0 : 1;
 }
 
+//! @brief Writes user data to an output file
 int write_user_data(GHashTable* user_table, char* id, FILE* output_file, bool format_flag) {
   UserSchema user = g_hash_table_lookup(user_table, id);
   if (user->account_status) {
@@ -46,6 +50,7 @@ int write_user_data(GHashTable* user_table, char* id, FILE* output_file, bool fo
   return 0;
 }
 
+//! @brief Writes flight data to an output file
 int write_flight_data(GHashTable* flights_table, char* id, FILE* output_file, bool format_flag) {
   FlightSchema flight = g_hash_table_lookup(flights_table, id);
   char* number_of_passengers = int_to_string(flight->number_of_passengers);
@@ -65,6 +70,7 @@ int write_flight_data(GHashTable* flights_table, char* id, FILE* output_file, bo
   return 0;
 }
 
+//! @brief Writes reservation data to an output file
 int write_reservation_data(GHashTable* reservation_table, char* id, FILE* output_file, bool format_flag) {
   ReservationSchema reservation = g_hash_table_lookup(reservation_table, id);
   char* total_price = double_to_string(reservation->total_price, 3);
