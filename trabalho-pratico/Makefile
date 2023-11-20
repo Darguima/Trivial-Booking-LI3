@@ -54,6 +54,10 @@ check-memory:
 	@DEBUG=1 make -s && echo "[Compiling]"
 	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose ./$(EXECUTABLE) $(if $(MAKE_ARGS),$(MAKE_ARGS),"dataset/data" "dataset/inputs/input.txt")
 
+test:
+	@make -s && echo "[Compiling]"
+	@python test_queries.py
+
 doxygen:
 # Check if doxygen is installed
 	@command -v doxygen &> /dev/null || echo "[Warning] Please install `doxygen`. Read documentation."

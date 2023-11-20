@@ -12,9 +12,4 @@ jobs:
 
     - name: Build with make
       working-directory: ./trabalho-pratico
-      run: make
-
-    - name: Running queries test
-      working-directory: ./trabalho-pratico
-      run: ./test_queries.py
-
+      run: make test
