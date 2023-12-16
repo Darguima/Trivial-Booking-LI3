@@ -12,7 +12,9 @@ jobs:
 
     - name: Download dataset from GitHub Assets
       run: |
-        wget https://github.com/Darguima/Trivial-Booking/releases/download/phase_1/dataset.zip
+        curl -i -H \
+          "Authorization: token a" -H "Accept:application/octet-stream" \
+          https://github.com/Darguima/Trivial-Booking/releases/download/phase_1/dataset.zip
         unzip dataset.zip
 
     - name: Build with make
