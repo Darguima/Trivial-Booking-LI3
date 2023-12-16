@@ -22,6 +22,6 @@ jobs:
 
           unzip dataset.zip
 
-    - name: Build with make
+    - name: Run tests
       working-directory: ./trabalho-pratico
       run: make test
