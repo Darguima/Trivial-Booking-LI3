@@ -2,13 +2,6 @@
 #include <glib.h>
 
 /*
- * @brief This function will free the memory allocated for the user struct.
- *
- * @param value The user struct.
- */
-void free_user_struct(gpointer value);
-
-/*
  * @brief This function will free the memory allocated for the flight struct.
  *
  * @param value The flight struct.

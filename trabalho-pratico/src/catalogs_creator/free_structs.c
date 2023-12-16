@@ -1,25 +1,6 @@
 #include <datatypes/datatypes.h>
 #include <glib.h>
 
-void free_user_struct(gpointer value) {
-  UserSchema user = (UserSchema)value;
-
-  free(user->id);
-  free(user->name);
-  free(user->email);
-  free(user->phone_number);
-  free(user->birth_date);
-  free(user->sex);
-  free(user->passport);
-  free(user->country_code);
-  free(user->address);
-  free(user->account_creation);
-  free(user->pay_method);
-  // free(user->account_status);
-
-  free(user);
-}
-
 void free_flight_struct(gpointer value) {
   FlightSchema flight = (FlightSchema)value;
 

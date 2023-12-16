@@ -1,10 +1,5 @@
 #include <stdio.h>
-#include "catalog_filler/catalog_filler.h"
-#include "catalogs_creator/catalogs_creator.h"
-#include "datatypes/datatypes.h"
-#include "output/batch.h"
-#include "output/interactive.h"
-#include "utils/print_invalid_path_error.h"
+#include "catalogs_setup/catalogs_setup.h"
 
 int main(int argc, char** argv) {
   if (argc != 1 && argc != 3) {
@@ -35,28 +30,31 @@ int main(int argc, char** argv) {
 
   printf("[INFO] - Queries file path: %s\n", queries_file_path);
 
-  Catalogs catalogs = catalogs_creator();
+  // Catalogs catalogs = catalogs_setup();
+  catalogs_setup();
 
-  int catalog_fill_status = catalog_filler(dataset_folder_path, catalogs);
-  if (catalog_fill_status == -1) {
-    print_invalid_path_error("dataset");
-    free_catalogs(catalogs);
-    return -1;
-  }
+  // Catalogs catalogs = catalogs_creator();
 
-  if (argc == 3) {
-    int batch_exit_code = batch(queries_file_path, catalogs);
+  // int catalog_fill_status = catalog_filler(dataset_folder_path, catalogs);
+  // if (catalog_fill_status == -1) {
+  //   print_invalid_path_error("dataset");
+  //   free_catalogs(catalogs);
+  //   return -1;
+  // }
 
-    if (batch_exit_code == -1) {
-      print_invalid_path_error("queries file");
-      free_catalogs(catalogs);
-      return -1;
-    }
+  // if (argc == 3) {
+  //   int batch_exit_code = batch(queries_file_path, catalogs);
 
-  } else if (argc == 1) {
-    interactive();
-  }
-  free_catalogs(catalogs);
+  //   if (batch_exit_code == -1) {
+  //     print_invalid_path_error("queries file");
+  //     free_catalogs(catalogs);
+  //     return -1;
+  //   }
+
+  // } else if (argc == 1) {
+  //   interactive();
+  // }
+  // free_catalogs(catalogs);
 
   return 0;
 }

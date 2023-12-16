@@ -5,6 +5,8 @@
 #include <glib.h>
 #include <stdbool.h>
 #include <time.h>
+// TODO: Remove me after the Refactor for encapsulation
+#include "catalogs_setup/catalogs_setup.h"
 
 #define UNUSED(x) (void)(x)
 
@@ -17,40 +19,8 @@
 
 typedef enum { USERS, FLIGHTS, PASSENGERS, RESERVATIONS } schema_name;
 
-//! All the HashTables pointers in one struct
-typedef struct catalogs {
-  GHashTable* users;
-  GHashTable* flights;
-  GHashTable* passengers;
-  GHashTable* reservations;
-}* Catalogs;
-
-//! Users info
-typedef struct userSchema {
-  //! User id, unique
-  char* id;
-  char* name;
-  char* email;
-  char* phone_number;
-  char* birth_date;
-  //! M or F
-  char* sex;
-  //! Passport number
-  char* passport;
-  //! PT, ES, FR, etc
-  char* country_code;
-  char* address;
-  //! date of account creation
-  char* account_creation;
-  char* pay_method;
-  //! True if active
-  bool account_status;
-  //! Total spent in reservations and flights
-  double total_spent;
-  int age;
-  int number_of_flights;
-  int number_of_reservations;
-}* UserSchema;
+// TODO: Remove me after the Refactor for encapsulation
+typedef struct user UserSchema;
 
 //! Flight info
 typedef struct flightSchema {
