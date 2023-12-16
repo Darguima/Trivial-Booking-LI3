@@ -40,6 +40,7 @@ $(EXECUTABLE): $(OBJECTS)
 clean:
 	@find . -type f -name '*.o' -delete && echo "[Cleaning] Object Files"
 	@rm -f ${EXECUTABLE} && rm -f programa-testes && echo "[Cleaning] ${EXECUTABLE}"
+	@rm -rf Resultados/ ; echo "[Cleaning] Resultados Folder"
 
 format:
 # Check if clang is installed
