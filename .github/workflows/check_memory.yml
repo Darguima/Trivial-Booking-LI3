@@ -12,6 +12,11 @@ jobs:
     
     - name: Install Valgrind
       run: sudo apt install -y valgrind
+    
+    - name: Download dataset from GitHub Assets
+      run: |
+        wget https://github.com/Darguima/Trivial-Booking/releases/download/phase_1/dataset.zip
+        unzip dataset.zip
 
     - name: Build project
       working-directory: ./trabalho-pratico
