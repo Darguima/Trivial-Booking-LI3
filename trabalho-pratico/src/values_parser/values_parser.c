@@ -1,4 +1,5 @@
 #include <datatypes/datatypes.h>
+#include <entities/user_entity.h>
 #include <glib.h>
 #include <store_catalog/store_catalog.h>
 #include <string.h>
@@ -15,8 +16,7 @@ int values_parser_users(char** user_values, Catalogs catalogs) {
     return 1;
   }
 
-  UserSchema new_user = create_new_user(user_values);
-  store_catalog_user(new_user, catalogs->users);
+  create_new_user(catalogs->users, user_values);
 
   return 0;
 }

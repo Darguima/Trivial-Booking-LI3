@@ -40,22 +40,22 @@ int catalog_filler(char* dataset_folder_path, Catalogs CATALOGS) {
   init_errors_files();  // Add headers to csv error files
 
   if (users != NULL) {
-    file_parser(users, CATALOGS, USERS, dataset_folder_path);
+    file_parser(users, CATALOGS, USERS);
     fclose(users);
   }
 
   if (flights != NULL) {
-    file_parser(flights, CATALOGS, FLIGHTS, dataset_folder_path);
+    file_parser(flights, CATALOGS, FLIGHTS);
     fclose(flights);
   }
 
   if (reservations != NULL) {
-    file_parser(reservations, CATALOGS, RESERVATIONS, dataset_folder_path);
+    file_parser(reservations, CATALOGS, RESERVATIONS);
     fclose(reservations);
   }
 
   if (passengers != NULL) {
-    file_parser(passengers, CATALOGS, PASSENGERS, dataset_folder_path);
+    file_parser(passengers, CATALOGS, PASSENGERS);
     fclose(passengers);
   }
 

@@ -3,19 +3,6 @@
 #define CREATE_NEW_STRUCTS_H
 
 /**
- * @brief Creates a new user schema using the provided array of user values.
- *
- * This function takes an array of strings containing user data and creates a new user schema.
- * The order of values in the array should match the expected order:
- * [id, name, email, phone_number, birth_date, sex, passport, country_code, address, account_creation, pay_method,
- * account_status].
- *
- * @param user_values An array of strings containing user data.
- * @return A newly allocated UserSchema structure initialized with the provided values.
- */
-UserSchema create_new_user(char** user_values);
-
-/**
  * @brief Creates a new flight schema using the provided array of flight values.
  *
  * This function takes an array of strings containing flight data and creates a new flight schema.

@@ -5,6 +5,8 @@
 #include <stdbool.h>
 #include "catalogs_setup/users_catalog.h"
 
+typedef struct users_catalog* UsersCatalog;
+
 //! User Entity
 typedef struct user {
   char* id;
@@ -28,8 +30,13 @@ typedef struct user {
 /**
  * @brief Will create a new user entity struct and store it in the users catalog
  *
+ * This function takes an array of strings containing user data and creates a new user schema.
+ * The order of values in the array should match the expected order:
+ * [id, name, email, phone_number, birth_date, sex, passport, country_code, address, account_creation, pay_method,
+ * account_status].
+ *
  * @param UsersCatalog The users catalog
- * @param user_values The data of the user, on a string array
+ * @param user_values An array of strings containing user data.
  */
 void create_new_user(UsersCatalog users_catalog, char** user_values);
 

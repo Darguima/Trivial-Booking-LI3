@@ -14,28 +14,6 @@ PassengerSchema create_new_passenger(char** passenger_values) {
   return new_passenger;
 }
 
-UserSchema create_new_user(char** user_values) {
-  UserSchema new_user = malloc(sizeof(struct userSchema));
-  new_user->id = strdup(user_values[0]);
-  new_user->name = strdup(user_values[1]);
-  new_user->email = strdup(user_values[2]);
-  new_user->phone_number = strdup(user_values[3]);
-  new_user->birth_date = strdup(user_values[4]);
-  new_user->sex = strdup(user_values[5]);
-  new_user->passport = strdup(user_values[6]);
-  new_user->country_code = strdup(user_values[7]);
-  new_user->address = strdup(user_values[8]);
-  new_user->account_creation = strdup(user_values[9]);
-  new_user->pay_method = strdup(user_values[10]);
-  new_user->account_status = is_active(user_values[11]);
-  new_user->age = calculate_user_age(user_values[4]);
-  new_user->total_spent = 0;
-  new_user->number_of_flights = 0;
-  new_user->number_of_reservations = 0;
-
-  return new_user;
-}
-
 FlightSchema create_new_flight(char** flight_values) {
   FlightSchema new_flight = malloc(sizeof(struct flightSchema));
   new_flight->id = strdup(flight_values[0]);

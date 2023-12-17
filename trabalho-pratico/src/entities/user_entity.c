@@ -1,7 +1,6 @@
-#include "entities/user_entity.h"
-#include "catalogs_setup/catalogs_setup.h"
+#include <stdio.h>
+#include <stdlib.h>
 #include "catalogs_setup/users_catalog.h"
-#include "stdlib.h"
 #include "utils/calculate_stats.h"
 #include "utils/is_active.h"
 
