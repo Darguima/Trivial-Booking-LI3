@@ -3,12 +3,13 @@
 #include <stdio.h>
 #include <utils/number_to_string.h>
 #include "ctype.h"
+#include "entities/user_entity.h"
 #include "utils/calculate_stats.h"
 #include "write_output/write_output.h"
 
 //! @brief Checks if a user exists in the user table
-int is_user(GHashTable* user_table, char* id) {
-  UserSchema user = g_hash_table_lookup(user_table, id);
+int is_user(UsersCatalog user_table, char* id) {
+  User user = get_user_by_id(user_table, id);
   return (user == NULL) ? 0 : 1;
 }
 
@@ -25,8 +26,8 @@ int is_reservation(GHashTable* reservations_table, char* id) {
 }
 
 //! @brief Writes user data to an output file
-int write_user_data(GHashTable* user_table, char* id, FILE* output_file, bool format_flag) {
-  UserSchema user = g_hash_table_lookup(user_table, id);
+int write_user_data(UsersCatalog user_table, char* id, FILE* output_file, bool format_flag) {
+  User user = get_user_by_id(user_table, id);
   if (user->account_status) {
     char* number_of_flights = int_to_string(user->number_of_flights);
     char* number_of_reservations = int_to_string(user->number_of_reservations);

@@ -24,4 +24,11 @@ typedef struct catalogs {
  */
 Catalogs catalogs_setup();
 
+/**
+ * @brief This function free all the catalogs, including their content (structs stored)
+ *
+ * @param CATALOGS The catalogs struct created by the function `catalogs_creator()`
+ */
+void free_catalogs(Catalogs catalogs);
+
 #endif

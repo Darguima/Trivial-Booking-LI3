@@ -18,6 +18,13 @@ typedef struct users_catalog {
 UsersCatalog users_catalog_create();
 
 /**
+ * @brief This function free the user catalogs, including their content (structs stored)
+ *
+ * @param UsersCatalog The user catalogs struct
+ */
+void users_catalog_free(UsersCatalog users_catalog);
+
+/**
  * @brief Will insert the given user on the users catalog
  *
  * @param UsersCatalog The users catalog

@@ -29,6 +29,12 @@ UsersCatalog users_catalog_create() {
   return users_catalog;
 }
 
+void users_catalog_free(UsersCatalog users_catalog) {
+  g_hash_table_destroy(users_catalog->users_hash_table);
+
+  free(users_catalog);
+}
+
 void insert_user(UsersCatalog users_catalog, User user) {
   g_hash_table_insert(users_catalog->users_hash_table, user->id, user);
 }

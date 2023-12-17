@@ -4,11 +4,6 @@
 #include <stdlib.h>
 #include "utils/concatenate_string.h"
 
-int store_catalog_user(UserSchema user, GHashTable* users_catalog) {
-  g_hash_table_insert(users_catalog, user->id, user);
-  return 0;
-}
-
 int store_catalog_flight(FlightSchema flight, GHashTable* flights_catalog) {
   g_hash_table_insert(flights_catalog, flight->id, flight);
 

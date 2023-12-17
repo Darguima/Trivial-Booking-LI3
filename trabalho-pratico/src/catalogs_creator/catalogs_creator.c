@@ -17,15 +17,3 @@ Catalogs catalogs_creator() {
 
   return catalogs;
 }
-
-int free_catalogs(Catalogs catalogs) {
-  g_hash_table_destroy(catalogs->flights);
-  g_hash_table_destroy(catalogs->passengers);
-  g_hash_table_destroy(catalogs->reservations);
-
-  free(catalogs);
-
-  printf("[STATUS] - Catalogs freed\n");
-
-  return 0;
-}

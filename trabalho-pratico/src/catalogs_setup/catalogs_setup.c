@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "catalogs_creator/catalogs_creator.h"
+#include "catalogs_setup/users_catalog.h"
 
 Catalogs catalogs_setup() {
   Catalogs catalogs = malloc(sizeof(struct catalogs));
@@ -18,4 +19,17 @@ Catalogs catalogs_setup() {
   printf("[STATUS] - Catalogs created\n");
 
   return catalogs;
+}
+
+void free_catalogs(Catalogs catalogs) {
+  users_catalog_free(catalogs->users);
+
+  // Using the deprecated way to free catalogs
+  g_hash_table_destroy(catalogs->flights);
+  g_hash_table_destroy(catalogs->passengers);
+  g_hash_table_destroy(catalogs->reservations);
+
+  free(catalogs);
+
+  printf("[STATUS] - Catalogs freed\n");
 }

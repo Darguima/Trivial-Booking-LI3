@@ -14,14 +14,14 @@ void setLocale() {
 }
 
 //! @brief Retrieves users from a hash table with names starting with a specified prefix
-GList* getUsersWithPrefix(GHashTable* user_table, const char* prefix) {
+GList* getUsersWithPrefix(UsersCatalog user_catalog, const char* prefix) {
   GList* result = NULL;
   GHashTableIter iter;
   gpointer key, value;
 
-  g_hash_table_iter_init(&iter, user_table);
+  g_hash_table_iter_init(&iter, user_catalog->users_hash_table);
   while (g_hash_table_iter_next(&iter, &key, &value)) {
-    UserSchema user = (UserSchema)value;
+    User user = (User)value;
     if (user->account_status == true) {
       if (strncmp(prefix, user->name, strlen(prefix)) == 0) {
         result = g_list_append(result, user);
@@ -32,10 +32,10 @@ GList* getUsersWithPrefix(GHashTable* user_table, const char* prefix) {
   return result;
 }
 
-//! @brief Compares two UserSchema instances based on their names and IDs for sorting purposes.
+//! @brief Compares two User instances based on their names and IDs for sorting purposes.
 int compare_users_order(gconstpointer a, gconstpointer b) {
-  UserSchema userA = (UserSchema)a;
-  UserSchema userB = (UserSchema)b;
+  User userA = (User)a;
+  User userB = (User)b;
 
   int name_comp = strcoll(userA->name, userB->name);
 
@@ -57,7 +57,7 @@ int query_9(Catalogs catalogs, int command_number, bool format_flag, const char*
 
   int results_acc = 0;
   for (GList* iterator = usersWithPrefix; iterator != NULL; iterator = iterator->next) {
-    UserSchema user = (UserSchema)iterator->data;
+    User user = (User)iterator->data;
 
     output_key_value output_array[] = {{"id", user->id}, {"name", user->name}};
 

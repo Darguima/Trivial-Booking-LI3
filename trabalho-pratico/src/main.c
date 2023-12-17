@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "catalog_filler/catalog_filler.h"
 #include "catalogs_setup/catalogs_setup.h"
+#include "utils/print_invalid_path_error.h"
 
 int main(int argc, char** argv) {
   if (argc != 1 && argc != 3) {
