@@ -26,3 +26,15 @@ void create_new_user(UsersCatalog users_catalog, char** user_values) {
 
   insert_user(users_catalog, new_user);
 }
+
+void user_increment_reservations(User user, int number_of_reservations) {
+  user->number_of_reservations += number_of_reservations;
+}
+
+void user_increment_flights(User user, int number_of_flights) {
+  user->number_of_flights += number_of_flights;
+}
+
+void user_increment_total_spent(User user, double total_reservation_price) {
+  user->total_spent += (double)total_reservation_price;
+}

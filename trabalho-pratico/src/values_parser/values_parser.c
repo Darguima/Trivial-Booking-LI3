@@ -55,7 +55,7 @@ int values_parser_passengers(char** passengers_values, Catalogs catalogs) {
   store_catalog_passenger(new_passenger, catalogs->passengers);
 
   increment_seat(flight);
-  increment_total_flights(user);
+  user_increment_flights(user, 1);
 
   return 0;
 }
@@ -78,8 +78,8 @@ int values_parser_reservations(char** reservations_values, Catalogs catalogs) {
 
   ReservationSchema new_reservation = create_new_reservation(reservations_values);
   store_catalog_reservation(new_reservation, catalogs->reservations);
-  increment_user_total_spent(user, new_reservation->total_price);
-  increment_total_reservations(user);
+  user_increment_total_spent(user, new_reservation->total_price);
+  user_increment_reservations(user, 1);
 
   return 0;
 }

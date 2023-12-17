@@ -16,24 +16,6 @@
 int get_days_difference(char* date1, char* date2);
 
 /**
- * @brief Increments the total number of reservations for a user
- *
- * Increments the total number of reservations associated with a user.
- *
- * @param user Pointer to the UserSchema struct to update
- */
-void increment_total_reservations(UserSchema user);
-
-/**
- * @brief Increments the total number of flights for a user
- *
- * Increments the total number of flights associated with a user.
- *
- * @param user Pointer to the UserSchema struct to update
- */
-void increment_total_flights(UserSchema user);
-
-/**
  * @brief Increments the number of passengers booked for a flight
  *
  * Increments the number of passengers booked for a flight.
@@ -41,16 +23,6 @@ void increment_total_flights(UserSchema user);
  * @param flight Pointer to the FlightSchema struct to update
  */
 void increment_seat(FlightSchema flight);
-
-/**
- * @brief Increments the total amount spent by a user due to a reservation
- *
- * Increments the total amount spent by a user due to a reservation being made.
- *
- * @param user Pointer to the UserSchema struct to update
- * @param total_reservation_price Total price of the reservation made
- */
-void increment_user_total_spent(UserSchema user, double total_reservation_price);
 
 /**
  * @brief Calculates the total amount spent based on dates, city tax, and price per night
