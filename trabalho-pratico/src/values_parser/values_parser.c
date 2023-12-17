@@ -1,3 +1,4 @@
+#include <catalogs_setup/catalogs_setup.h>
 #include <datatypes/datatypes.h>
 #include <entities/user_entity.h>
 #include <glib.h>
@@ -43,7 +44,7 @@ int values_parser_passengers(char** passengers_values, Catalogs catalogs) {
     return 1;
   }
 
-  UserSchema user = g_hash_table_lookup(catalogs->users, passengers_values[1]);
+  User user = get_user_by_id(catalogs->users, passengers_values[1]);
   FlightSchema flight = g_hash_table_lookup(catalogs->flights, passengers_values[0]);
 
   if (user == NULL || flight == NULL) {
@@ -70,7 +71,7 @@ int values_parser_reservations(char** reservations_values, Catalogs catalogs) {
     return 1;
   }
 
-  UserSchema user = g_hash_table_lookup(catalogs->users, reservations_values[1]);
+  User user = get_user_by_id(catalogs->users, reservations_values[1]);
   if (user == NULL) {
     return 1;
   }

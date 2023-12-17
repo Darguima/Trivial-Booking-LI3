@@ -2,6 +2,7 @@
 #include <datatypes/datatypes.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include "catalogs_setup/users_catalog.h"
 #include "utils/convert_string_to_seconds.h"
 #include "utils/extract_date_without_time.h"
 #include "write_output/write_output.h"
@@ -86,7 +87,7 @@ void free_reservations_and_flights(gpointer data) {
 
 int query_2(Catalogs CATALOGS, int command_number, bool format_flag, char* id, char* optional) {
   FILE* output_file = create_output_file(command_number);
-  UserSchema user = g_hash_table_lookup(CATALOGS->users, id);
+  User user = get_user_by_id(CATALOGS->users, id);
   if (user == NULL || !user->account_status) {
     fclose(output_file);
     return 0;

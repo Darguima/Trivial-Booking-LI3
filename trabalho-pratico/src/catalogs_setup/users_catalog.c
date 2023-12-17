@@ -32,3 +32,7 @@ UsersCatalog users_catalog_create() {
 void insert_user(UsersCatalog users_catalog, User user) {
   g_hash_table_insert(users_catalog->users_hash_table, user->id, user);
 }
+
+User get_user_by_id(UsersCatalog users_catalog, char* user_id) {
+  return (User)g_hash_table_lookup(users_catalog->users_hash_table, user_id);
+}

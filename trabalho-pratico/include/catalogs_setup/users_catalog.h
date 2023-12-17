@@ -25,4 +25,13 @@ UsersCatalog users_catalog_create();
  */
 void insert_user(UsersCatalog, User);
 
+/**
+ * @brief Will search by the user on the catalog. Will return NULL if not found
+ *
+ * @param users_catalog The users catalog
+ * @param user_id The user id
+ * @return User | NULL
+ */
+User get_user_by_id(UsersCatalog users_catalog, char* user_id);
+
 #endif
