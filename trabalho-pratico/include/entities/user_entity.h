@@ -21,7 +21,7 @@ typedef struct user* User;
  * @param UsersCatalog The users catalog
  * @param user_values An array of strings containing user data.
  */
-void create_new_user(UsersCatalog users_catalog, char** user_values);
+User create_new_user(UsersCatalog users_catalog, char** user_values);
 
 /**
  * @brief Will free the memory allocated for a user entity

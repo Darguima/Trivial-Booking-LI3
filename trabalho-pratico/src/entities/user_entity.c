@@ -24,7 +24,7 @@ struct user {
   int number_of_reservations;
 };
 
-void create_new_user(UsersCatalog users_catalog, char** user_values) {
+User create_new_user(UsersCatalog users_catalog, char** user_values) {
   User new_user = malloc(sizeof(struct user));
 
   new_user->id = g_strdup(user_values[0]);
@@ -41,6 +41,8 @@ void create_new_user(UsersCatalog users_catalog, char** user_values) {
   new_user->number_of_reservations = 0;
 
   insert_user(users_catalog, new_user);
+
+  return new_user;
 }
 
 void free_user(gpointer value) {

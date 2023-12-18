@@ -24,7 +24,7 @@ struct flight {
   long delay;
 };
 
-void create_new_flight(FlightsCatalog flights_catalog, char** flight_values) {
+Flight create_new_flight(FlightsCatalog flights_catalog, char** flight_values) {
   Flight new_flight = malloc(sizeof(struct flight));
 
   new_flight->id = g_strdup(flight_values[0]);
@@ -42,6 +42,8 @@ void create_new_flight(FlightsCatalog flights_catalog, char** flight_values) {
                                      convert_string_to_seconds(new_flight->schedule_departure_date));
 
   insert_flight(flights_catalog, new_flight);
+
+  return new_flight;
 }
 
 void free_flight(gpointer value) {

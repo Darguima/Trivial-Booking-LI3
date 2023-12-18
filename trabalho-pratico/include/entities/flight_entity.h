@@ -21,7 +21,7 @@ typedef struct flight* Flight;
  * @param FlightsCatalog The flights catalog
  * @param flight_values An array of strings containing flight data.
  */
-void create_new_flight(FlightsCatalog flights_catalog, char** flight_values);
+Flight create_new_flight(FlightsCatalog flights_catalog, char** flight_values);
 
 /**
  * @brief Will free the memory allocated for a flight entity
