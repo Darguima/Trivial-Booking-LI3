@@ -8,7 +8,7 @@
 #include "catalogs_creator/reservations_catalog.h"
 #include "catalogs_creator/users_catalog.h"
 
-//! All the HashTables pointers in one struct
+//! All the entities catalogs pointers in one struct
 typedef struct catalogs {
   UsersCatalog users;
   FlightsCatalog flights;
