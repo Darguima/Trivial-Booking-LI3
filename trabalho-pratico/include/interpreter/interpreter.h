@@ -2,7 +2,7 @@
 #ifndef INTERPRETER_H
 #define INTERPRETER_H
 
-#include <datatypes/datatypes.h>
+#include <catalogs_creator/catalogs_creator.h>
 
 /**
  * @brief Interprets a batch line command and performs associated queries

@@ -2,7 +2,7 @@
 #ifndef QUERY_9_H
 #define QUERY_9_H
 
-#include <datatypes/datatypes.h>
+#include <catalogs_creator/catalogs_creator.h>
 
 /**
  * @brief Executes query 9 to retrieve users with names starting with a specified prefix

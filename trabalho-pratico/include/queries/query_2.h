@@ -2,7 +2,7 @@
 #ifndef QUERY_2_H
 #define QUERY_2_H
 
-#include <datatypes/datatypes.h>
+#include <catalogs_creator/catalogs_creator.h>
 
 /**
  * @brief Represents a data structure for user reservations and flights.

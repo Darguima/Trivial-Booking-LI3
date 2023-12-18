@@ -1,6 +1,7 @@
-#include <datatypes/datatypes.h>
+#include <catalogs_creator/catalogs_creator.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include "datatypes/datatypes.h"
 
 int query_6(Catalogs catalogs, int command_number, bool format_flag, char* year, char* n) {
   printf("I'm in query_6\n");

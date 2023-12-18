@@ -1,8 +1,9 @@
 #include "queries/query_2.h"
-#include <datatypes/datatypes.h>
+#include <catalogs_creator/catalogs_creator.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include "catalogs_creator/users_catalog.h"
+#include "datatypes/datatypes.h"
 #include "utils/convert_string_to_seconds.h"
 #include "utils/extract_date_without_time.h"
 #include "write_output/write_output.h"

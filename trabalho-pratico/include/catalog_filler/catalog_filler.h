@@ -2,7 +2,7 @@
 #ifndef CATALOG_FILLER_H
 #define CATALOG_FILLER_H
 
-#include <datatypes/datatypes.h>
+#include "catalogs_creator/catalogs_creator.h"
 
 /**
  * @brief This function fills the catalogs with the data from the dataset.
