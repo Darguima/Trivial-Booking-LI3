@@ -2,6 +2,10 @@
 #include <stdlib.h>
 #include "entities/user_entity.h"
 
+struct users_catalog {
+  GHashTable* users_hash_table;
+};
+
 UsersCatalog users_catalog_create() {
   UsersCatalog users_catalog = malloc(sizeof(struct users_catalog));
 

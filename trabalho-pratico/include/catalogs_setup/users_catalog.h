@@ -6,9 +6,7 @@
 #include "entities/user_entity.h"
 
 //! The users catalog
-typedef struct users_catalog {
-  GHashTable* users_hash_table;
-}* UsersCatalog;
+typedef struct users_catalog* UsersCatalog;
 
 /**
  * @brief Will create the catalog to store users
