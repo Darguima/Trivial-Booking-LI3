@@ -9,11 +9,11 @@
 typedef struct catalogs {
   UsersCatalog users;
 
-  //! Flights without refactoring
+  //! Flights without refactoring - to delete
   GHashTable* flights;
-  //! Passengers without refactoring
+  //! Passengers without refactoring - to delete
   GHashTable* passengers;
-  //! Reservations without refactoring
+  //! Reservations without refactoring - to delete
   GHashTable* reservations;
 }* Catalogs;
 
