@@ -8,15 +8,15 @@
 struct user {
   char* id;
   char* name;
-  char* email;
-  char* phone_number;
+  // char* email;
+  // char* phone_number;
   char* birth_date;
   char* sex;
   char* passport;
   char* country_code;
-  char* address;
+  // char* address;
   char* account_creation;
-  char* pay_method;
+  // char* pay_method;
   bool account_status;
   double total_spent;
   int age;
@@ -29,15 +29,11 @@ void create_new_user(UsersCatalog users_catalog, char** user_values) {
 
   new_user->id = g_strdup(user_values[0]);
   new_user->name = g_strdup(user_values[1]);
-  new_user->email = g_strdup(user_values[2]);
-  new_user->phone_number = g_strdup(user_values[3]);
   new_user->birth_date = g_strdup(user_values[4]);
   new_user->sex = g_strdup(user_values[5]);
   new_user->passport = g_strdup(user_values[6]);
   new_user->country_code = g_strdup(user_values[7]);
-  new_user->address = g_strdup(user_values[8]);
   new_user->account_creation = g_strdup(user_values[9]);
-  new_user->pay_method = g_strdup(user_values[10]);
   new_user->account_status = is_active(user_values[11]);
   new_user->age = calculate_user_age(user_values[4]);
   new_user->total_spent = 0;
@@ -52,15 +48,11 @@ void free_user(gpointer value) {
 
   g_free(user->id);
   g_free(user->name);
-  g_free(user->email);
-  g_free(user->phone_number);
   g_free(user->birth_date);
   g_free(user->sex);
   g_free(user->passport);
   g_free(user->country_code);
-  g_free(user->address);
   g_free(user->account_creation);
-  g_free(user->pay_method);
 
   free(user);
 }
