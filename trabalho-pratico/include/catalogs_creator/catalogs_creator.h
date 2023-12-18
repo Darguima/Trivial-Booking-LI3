@@ -1,6 +1,6 @@
 //! @file
-#ifndef CATALOGS_SETUP_H
-#define CATALOGS_SETUP_H
+#ifndef CATALOGS_CREATOR_H
+#define CATALOGS_CREATOR_H
 
 #include <glib.h>
 #include "catalogs_creator/flights_catalog.h"
