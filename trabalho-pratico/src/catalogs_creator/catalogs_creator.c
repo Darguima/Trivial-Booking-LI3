@@ -5,11 +5,9 @@
 
 Catalogs catalogs_creator() {
   GHashTable* hash_table_passengers = g_hash_table_new_full(g_str_hash, g_str_equal, free, free_passengers_struct);
-  GHashTable* hash_table_reservations = g_hash_table_new_full(g_str_hash, g_str_equal, NULL, free_reservation_struct);
 
   Catalogs catalogs = (Catalogs)malloc(sizeof(struct catalogs));
   catalogs->passengers = hash_table_passengers;
-  catalogs->reservations = hash_table_reservations;
 
   printf("[STATUS] - Catalogs created\n");
 

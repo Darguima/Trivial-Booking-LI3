@@ -15,13 +15,4 @@
  */
 int store_catalog_passenger(PassengerSchema passenger, GHashTable* passengers_catalog);
 
-/*
- * @brief Stores a reservation in the reservations catalog HashTable.
- *
- * @param reservation Reservation struct to be stored.
- * @param reservations_catalog Reservations catalog.
- * @return int 0 if success.
- */
-int store_catalog_reservation(ReservationSchema reservation, GHashTable* reservations_catalog);
-
 #endif

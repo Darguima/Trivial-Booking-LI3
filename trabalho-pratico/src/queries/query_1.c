@@ -42,10 +42,24 @@ int query_1(Catalogs catalogs, int command_number, bool format_flag, char* id) {
   } else {
     // from entities/flight_entity.h
     char* flight_id = flight_get_id(flight_test);
-    int flight_name = flight_get_total_seats(flight_test);
+    int flight_seats = flight_get_total_seats(flight_test);
     printf("flight_id: %s\n", flight_id);
-    printf("flight_total_seats: %i\n", flight_name);
+    printf("flight_total_seats: %i\n", flight_seats);
     free(flight_id);
+  }
+
+  // from catalogs_setup/reservations_catalog.h
+  Reservation reservation_test = get_reservation_by_id(catalogs->reservations, "Book0000000021");
+
+  if (reservation_test == NULL) {
+    printf("reservation_test is NULL\n");
+  } else {
+    // from entities/reservation_entity.h
+    char* reservation_id = reservation_get_id(reservation_test);
+    double reservation_price = reservation_get_total_price(reservation_test);
+    printf("reservation_id: %s\n", reservation_id);
+    printf("reservation_total_price: %f\n", reservation_price);
+    free(reservation_id);
   }
 
   printf("======================\n");

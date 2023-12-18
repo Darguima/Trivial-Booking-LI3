@@ -11,9 +11,3 @@ int store_catalog_passenger(PassengerSchema passenger, GHashTable* passengers_ca
 
   return 0;
 }
-
-int store_catalog_reservation(ReservationSchema reservation, GHashTable* reservations_catalog) {
-  g_hash_table_insert(reservations_catalog, reservation->id, reservation);
-
-  return 0;
-}
