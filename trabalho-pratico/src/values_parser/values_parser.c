@@ -1,5 +1,6 @@
 #include <catalogs_setup/catalogs_setup.h>
 #include <datatypes/datatypes.h>
+#include <entities/flight_entity.h>
 #include <entities/user_entity.h>
 #include <glib.h>
 #include <store_catalog/store_catalog.h>
@@ -33,8 +34,7 @@ int values_parser_flights(char** flight_values, Catalogs catalogs) {
     return 1;
   }
 
-  FlightSchema new_flight = create_new_flight(flight_values);
-  store_catalog_flight(new_flight, catalogs->flights);
+  create_new_flight(catalogs->flights, flight_values);
 
   return 0;
 }
@@ -44,8 +44,8 @@ int values_parser_passengers(char** passengers_values, Catalogs catalogs) {
     return 1;
   }
 
+  Flight flight = get_flight_by_id(catalogs->flights, passengers_values[0]);
   User user = get_user_by_id(catalogs->users, passengers_values[1]);
-  FlightSchema flight = g_hash_table_lookup(catalogs->flights, passengers_values[0]);
 
   if (user == NULL || flight == NULL) {
     return 1;
@@ -54,7 +54,7 @@ int values_parser_passengers(char** passengers_values, Catalogs catalogs) {
   PassengerSchema new_passenger = create_new_passenger(passengers_values);
   store_catalog_passenger(new_passenger, catalogs->passengers);
 
-  increment_seat(flight);
+  flight_increment_seat(flight, 1);
   user_increment_flights(user, 1);
 
   return 0;

@@ -8,11 +8,11 @@ Catalogs catalogs_setup() {
   Catalogs catalogs = malloc(sizeof(struct catalogs));
 
   catalogs->users = users_catalog_create();
+  catalogs->flights = flights_catalog_create();
 
   // Using the deprecated way to create catalogs
   // Because the new way was not implemented yet for this entities
   Catalogs deprecated_catalog = catalogs_creator();
-  catalogs->flights = deprecated_catalog->flights;
   catalogs->passengers = deprecated_catalog->passengers;
   catalogs->reservations = deprecated_catalog->reservations;
   free(deprecated_catalog);
@@ -24,9 +24,9 @@ Catalogs catalogs_setup() {
 
 void free_catalogs(Catalogs catalogs) {
   users_catalog_free(catalogs->users);
+  flights_catalog_free(catalogs->flights);
 
   // Using the deprecated way to free catalogs
-  g_hash_table_destroy(catalogs->flights);
   g_hash_table_destroy(catalogs->passengers);
   g_hash_table_destroy(catalogs->reservations);
 

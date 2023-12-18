@@ -21,28 +21,7 @@ typedef enum { USERS, FLIGHTS, PASSENGERS, RESERVATIONS } schema_name;
 
 // TODO: Remove me after the Refactor for encapsulation
 typedef struct user UserSchema;
-
-//! Flight info
-typedef struct flightSchema {
-  //! Flight id, unique
-  char* id;
-  char* airline;
-  char* plane_model;
-  int total_seats;
-  // Airport City Code - DUB, LIS, etc
-  char* origin;
-  // Airport City Code - DUB, LIS, etc
-  char* destination;
-  char* schedule_departure_date;
-  char* schedule_arrival_date;
-  char* real_departure_date;
-  char* real_arrival_date;
-  char* pilot;
-  char* copilot;
-  char* notes;
-  int number_of_passengers;
-  long delay;
-}* FlightSchema;
+typedef struct flight FlightSchema;
 
 //! Passengers - relations between flights and users
 typedef struct passengerSchema {

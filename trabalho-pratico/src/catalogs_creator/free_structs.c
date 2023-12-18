@@ -1,26 +1,6 @@
 #include <datatypes/datatypes.h>
 #include <glib.h>
 
-void free_flight_struct(gpointer value) {
-  FlightSchema flight = (FlightSchema)value;
-
-  free(flight->id);
-  free(flight->airline);
-  free(flight->plane_model);
-  // free(flight->total_seats);
-  free(flight->origin);
-  free(flight->destination);
-  free(flight->schedule_departure_date);
-  free(flight->schedule_arrival_date);
-  free(flight->real_departure_date);
-  free(flight->real_arrival_date);
-  free(flight->pilot);
-  free(flight->copilot);
-  free(flight->notes);
-
-  free(flight);
-}
-
 void free_passengers_struct(gpointer value) {
   PassengerSchema passenger = (PassengerSchema)value;
 

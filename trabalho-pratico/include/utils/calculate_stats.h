@@ -16,15 +16,6 @@
 int get_days_difference(char* date1, char* date2);
 
 /**
- * @brief Increments the number of passengers booked for a flight
- *
- * Increments the number of passengers booked for a flight.
- *
- * @param flight Pointer to the FlightSchema struct to update
- */
-void increment_seat(FlightSchema flight);
-
-/**
  * @brief Calculates the total amount spent based on dates, city tax, and price per night
  *
  * Calculates the total amount spent considering the duration of stay, city tax, and price per night.

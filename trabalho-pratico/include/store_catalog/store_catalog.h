@@ -7,15 +7,6 @@
 #include <glib.h>
 
 /*
- * @brief Stores a flight in the flights catalog HashTable.
- *
- * @param flight Flight struct to be stored.
- * @param flights_catalog Flights catalog.
- * @return int 0 if success.
- */
-int store_catalog_flight(FlightSchema flight, GHashTable* flights_catalog);
-
-/*
  * @brief Stores a passenger in the passengers catalog HashTable.
  *
  * @param passenger Passenger struct to be stored.

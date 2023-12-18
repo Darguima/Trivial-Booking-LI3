@@ -3,14 +3,14 @@
 #define CATALOGS_SETUP_H
 
 #include <glib.h>
+#include "catalogs_setup/flights_catalog.h"
 #include "catalogs_setup/users_catalog.h"
 
 //! All the HashTables pointers in one struct
 typedef struct catalogs {
   UsersCatalog users;
+  FlightsCatalog flights;
 
-  //! Flights without refactoring - to delete
-  GHashTable* flights;
   //! Passengers without refactoring - to delete
   GHashTable* passengers;
   //! Reservations without refactoring - to delete

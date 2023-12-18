@@ -4,10 +4,6 @@
 
 #define DEFAULT_DATE "2023/10/01"
 
-void increment_seat(FlightSchema flight) {
-  flight->number_of_passengers += 1;
-}
-
 int get_days_difference(char* date1, char* date2) {
   int year, month, day, year1, month1, day1;
   int result = sscanf(date1, "%4d/%2d/%2d", &year, &month, &day);
