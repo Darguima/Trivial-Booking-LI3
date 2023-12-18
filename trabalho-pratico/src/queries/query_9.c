@@ -8,65 +8,12 @@
 #include "utils/calculate_stats.h"
 #include "write_output/write_output.h"
 
-//! @brief Sets the locale for collation order to en_US.UTF-8
-void setLocale() {
-  setlocale(LC_COLLATE, "en_US.UTF-8");
-}
-
-//! @brief Retrieves users from a hash table with names starting with a specified prefix
-GList* getUsersWithPrefix(UsersCatalog user_catalog, const char* prefix) {
-  GList* result = NULL;
-  GHashTableIter iter;
-  gpointer key, value;
-
-  g_hash_table_iter_init(&iter, user_catalog->users_hash_table);
-  while (g_hash_table_iter_next(&iter, &key, &value)) {
-    User user = (User)value;
-    if (user->account_status == true) {
-      if (strncmp(prefix, user->name, strlen(prefix)) == 0) {
-        result = g_list_append(result, user);
-      }
-    }
-  }
-
-  return result;
-}
-
-//! @brief Compares two User instances based on their names and IDs for sorting purposes.
-int compare_users_order(gconstpointer a, gconstpointer b) {
-  User userA = (User)a;
-  User userB = (User)b;
-
-  int name_comp = strcoll(userA->name, userB->name);
-
-  if (name_comp != 0) {
-    return name_comp;
-  }
-
-  return strcoll(userA->id, userB->id);
-}
-
 int query_9(Catalogs catalogs, int command_number, bool format_flag, const char* prefix) {
-  setLocale();  // Definir o locale
+  printf("I'm in query_9\n");
 
-  GList* usersWithPrefix = getUsersWithPrefix(catalogs->users, prefix);
-
-  usersWithPrefix = g_list_sort(usersWithPrefix, compare_users_order);
-
-  FILE* output_file = create_output_file(command_number);
-
-  int results_acc = 0;
-  for (GList* iterator = usersWithPrefix; iterator != NULL; iterator = iterator->next) {
-    User user = (User)iterator->data;
-
-    output_key_value output_array[] = {{"id", user->id}, {"name", user->name}};
-
-    results_acc++;
-    write_output(output_file, format_flag, results_acc, output_array, 2);
-  }
-
-  g_list_free(usersWithPrefix);
-  close_output_file(output_file);
-
+  UNUSED(catalogs);
+  UNUSED(command_number);
+  UNUSED(format_flag);
+  UNUSED(prefix);
   return 0;
 }
