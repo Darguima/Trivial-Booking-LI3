@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include "catalog_filler/catalog_filler.h"
 #include "catalogs_setup/catalogs_setup.h"
+#include "output/batch.h"
+#include "output/interactive.h"
 #include "utils/print_invalid_path_error.h"
 
 int main(int argc, char** argv) {
@@ -41,19 +43,19 @@ int main(int argc, char** argv) {
     return -1;
   }
 
-  // if (argc == 3) {
-  //   int batch_exit_code = batch(queries_file_path, catalogs);
+  if (argc == 3) {
+    int batch_exit_code = batch(queries_file_path, catalogs);
 
-  //   if (batch_exit_code == -1) {
-  //     print_invalid_path_error("queries file");
-  //     free_catalogs(catalogs);
-  //     return -1;
-  //   }
+    if (batch_exit_code == -1) {
+      print_invalid_path_error("queries file");
+      free_catalogs(catalogs);
+      return -1;
+    }
 
-  // } else if (argc == 1) {
-  //   interactive();
-  // }
-  // free_catalogs(catalogs);
+  } else if (argc == 1) {
+    interactive();
+  }
+  free_catalogs(catalogs);
 
   return 0;
 }

@@ -15,6 +15,7 @@ Catalogs catalogs_setup() {
   catalogs->flights = deprecated_catalog->flights;
   catalogs->passengers = deprecated_catalog->passengers;
   catalogs->reservations = deprecated_catalog->reservations;
+  free(deprecated_catalog);
 
   printf("[STATUS] - Catalogs created\n");
 
