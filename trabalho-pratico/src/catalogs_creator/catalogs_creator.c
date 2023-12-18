@@ -1,12 +1,12 @@
-#include "catalogs_setup/catalogs_setup.h"
+#include "catalogs_creator/catalogs_creator.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "catalogs_setup/flights_catalog.h"
-#include "catalogs_setup/passengers_catalog.h"
-#include "catalogs_setup/reservations_catalog.h"
-#include "catalogs_setup/users_catalog.h"
+#include "catalogs_creator/flights_catalog.h"
+#include "catalogs_creator/passengers_catalog.h"
+#include "catalogs_creator/reservations_catalog.h"
+#include "catalogs_creator/users_catalog.h"
 
-Catalogs catalogs_setup() {
+Catalogs catalogs_creator() {
   Catalogs catalogs = malloc(sizeof(struct catalogs));
 
   catalogs->users = users_catalog_create();

@@ -1,4 +1,4 @@
-#include "catalogs_setup/flights_catalog.h"
+#include "catalogs_creator/flights_catalog.h"
 #include <stdlib.h>
 #include "entities/flight_entity.h"
 

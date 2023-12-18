@@ -3,7 +3,7 @@
 #define flight_ENTITY_H
 
 #include <stdbool.h>
-#include "catalogs_setup/flights_catalog.h"
+#include "catalogs_creator/flights_catalog.h"
 
 typedef struct flights_catalog* FlightsCatalog;
 

@@ -3,7 +3,7 @@
 #define USER_ENTITY_H
 
 #include <stdbool.h>
-#include "catalogs_setup/users_catalog.h"
+#include "catalogs_creator/users_catalog.h"
 
 typedef struct users_catalog* UsersCatalog;
 

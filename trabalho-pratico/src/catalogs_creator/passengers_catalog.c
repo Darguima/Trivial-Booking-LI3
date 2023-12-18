@@ -1,4 +1,4 @@
-#include "catalogs_setup/passengers_catalog.h"
+#include "catalogs_creator/passengers_catalog.h"
 #include <stdlib.h>
 #include "entities/passenger_entity.h"
 #include "utils/concatenate_string.h"

@@ -1,7 +1,7 @@
 #include <glib.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "catalogs_setup/users_catalog.h"
+#include "catalogs_creator/users_catalog.h"
 #include "utils/calculate_stats.h"
 #include "utils/is_active.h"
 

@@ -3,7 +3,7 @@
 #define RESERVATION_ENTITY_H
 
 #include <stdbool.h>
-#include "catalogs_setup/reservations_catalog.h"
+#include "catalogs_creator/reservations_catalog.h"
 
 typedef struct reservations_catalog* ReservationsCatalog;
 

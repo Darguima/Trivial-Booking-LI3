@@ -3,7 +3,7 @@
 #define PASSENGER_ENTITY_H
 
 #include <stdbool.h>
-#include "catalogs_setup/passengers_catalog.h"
+#include "catalogs_creator/passengers_catalog.h"
 
 typedef struct passengers_catalog* PassengersCatalog;
 

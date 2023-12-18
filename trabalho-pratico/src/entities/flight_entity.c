@@ -1,7 +1,7 @@
 #include <glib.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "catalogs_setup/flights_catalog.h"
+#include "catalogs_creator/flights_catalog.h"
 #include "utils/convert_string_to_seconds.h"
 #include "utils/string_to_int.h"
 #include "utils/string_to_upper.h"

@@ -6,7 +6,7 @@
 #include <stdbool.h>
 #include <time.h>
 // TODO: Remove me after the Refactor for encapsulation
-#include "catalogs_setup/catalogs_setup.h"
+#include "catalogs_creator/catalogs_creator.h"
 
 #define UNUSED(x) (void)(x)
 

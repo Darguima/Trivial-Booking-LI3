@@ -1,7 +1,7 @@
 #include <glib.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "catalogs_setup/reservations_catalog.h"
+#include "catalogs_creator/reservations_catalog.h"
 #include "utils/calculate_stats.h"
 #include "utils/includes_breakfast.h"
 #include "utils/string_to_int.h"

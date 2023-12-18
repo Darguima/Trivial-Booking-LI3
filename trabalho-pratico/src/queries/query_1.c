@@ -2,8 +2,8 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <utils/number_to_string.h>
-#include "catalogs_setup/catalogs_setup.h"
-#include "catalogs_setup/users_catalog.h"
+#include "catalogs_creator/catalogs_creator.h"
+#include "catalogs_creator/users_catalog.h"
 #include "ctype.h"
 #include "entities/flight_entity.h"
 #include "entities/passenger_entity.h"
@@ -20,7 +20,7 @@ int query_1(Catalogs catalogs, int command_number, bool format_flag, char* id) {
 
   printf("Example ==============\n");
 
-  // from catalogs_setup/users_catalog.h
+  // from catalogs_creator/users_catalog.h
   User user_test = get_user_by_id(catalogs->users, "TomNunes92");
 
   if (user_test == NULL) {
@@ -35,7 +35,7 @@ int query_1(Catalogs catalogs, int command_number, bool format_flag, char* id) {
     free(user_name);
   }
 
-  // from catalogs_setup/flights_catalog.h
+  // from catalogs_creator/flights_catalog.h
   Flight flight_test = get_flight_by_id(catalogs->flights, "0000000001");
 
   if (flight_test == NULL) {
@@ -49,7 +49,7 @@ int query_1(Catalogs catalogs, int command_number, bool format_flag, char* id) {
     free(flight_id);
   }
 
-  // from catalogs_setup/reservations_catalog.h
+  // from catalogs_creator/reservations_catalog.h
   Reservation reservation_test = get_reservation_by_id(catalogs->reservations, "Book0000000021");
 
   if (reservation_test == NULL) {
@@ -63,7 +63,7 @@ int query_1(Catalogs catalogs, int command_number, bool format_flag, char* id) {
     free(reservation_id);
   }
 
-  // from catalogs_setup/passengers_catalog.h
+  // from catalogs_creator/passengers_catalog.h
   Passenger passenger_test = get_passenger_by_id(catalogs->passengers, "0000000001_MaurAntunes1651");
 
   if (passenger_test == NULL) {

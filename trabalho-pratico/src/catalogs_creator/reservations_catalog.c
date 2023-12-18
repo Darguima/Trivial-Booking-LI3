@@ -1,4 +1,4 @@
-#include "catalogs_setup/reservations_catalog.h"
+#include "catalogs_creator/reservations_catalog.h"
 #include <stdlib.h>
 #include "entities/reservation_entity.h"
 

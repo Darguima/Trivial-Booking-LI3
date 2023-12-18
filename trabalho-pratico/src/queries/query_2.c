@@ -2,7 +2,7 @@
 #include <datatypes/datatypes.h>
 #include <stdbool.h>
 #include <stdio.h>
-#include "catalogs_setup/users_catalog.h"
+#include "catalogs_creator/users_catalog.h"
 #include "utils/convert_string_to_seconds.h"
 #include "utils/extract_date_without_time.h"
 #include "write_output/write_output.h"

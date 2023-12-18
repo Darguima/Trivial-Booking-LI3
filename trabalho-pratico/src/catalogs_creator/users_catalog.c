@@ -1,4 +1,4 @@
-#include "catalogs_setup/users_catalog.h"
+#include "catalogs_creator/users_catalog.h"
 #include <stdlib.h>
 #include "entities/user_entity.h"
 
