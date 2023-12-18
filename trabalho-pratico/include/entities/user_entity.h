@@ -8,24 +8,7 @@
 typedef struct users_catalog* UsersCatalog;
 
 //! User Entity
-typedef struct user {
-  char* id;
-  char* name;
-  char* email;
-  char* phone_number;
-  char* birth_date;
-  char* sex;
-  char* passport;
-  char* country_code;
-  char* address;
-  char* account_creation;
-  char* pay_method;
-  bool account_status;
-  double total_spent;
-  int age;
-  int number_of_flights;
-  int number_of_reservations;
-}* User;
+typedef struct user* User;
 
 /**
  * @brief Will create a new user entity struct and store it in the users catalog
@@ -39,6 +22,29 @@ typedef struct user {
  * @param user_values An array of strings containing user data.
  */
 void create_new_user(UsersCatalog users_catalog, char** user_values);
+
+/**
+ * @brief Will free the memory allocated for a user entity
+ *
+ * @param value The user entity to free
+ */
+void free_user(gpointer value);
+
+/**
+ * @brief Will return the id from the given user
+ *
+ * @param user The user to get the id from
+ * @return char* The id from the given user
+ */
+char* user_get_id(User user);
+
+/**
+ * @brief Will return the name from the given user
+ *
+ * @param user The user to get the id from
+ * @return char* The name from the given user
+ */
+char* user_get_name(User user);
 
 /**
  * @brief Increments the total number of reservations for a user
