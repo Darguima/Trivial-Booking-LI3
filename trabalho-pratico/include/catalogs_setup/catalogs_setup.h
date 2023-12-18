@@ -4,6 +4,7 @@
 
 #include <glib.h>
 #include "catalogs_setup/flights_catalog.h"
+#include "catalogs_setup/passengers_catalog.h"
 #include "catalogs_setup/reservations_catalog.h"
 #include "catalogs_setup/users_catalog.h"
 
@@ -12,9 +13,7 @@ typedef struct catalogs {
   UsersCatalog users;
   FlightsCatalog flights;
   ReservationsCatalog reservations;
-
-  //! Passengers without refactoring - to delete
-  GHashTable* passengers;
+  PassengersCatalog passengers;
 }* Catalogs;
 
 /**

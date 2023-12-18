@@ -19,12 +19,4 @@
 
 typedef enum { USERS, FLIGHTS, PASSENGERS, RESERVATIONS } schema_name;
 
-//! Passengers - relations between flights and users
-typedef struct passengerSchema {
-  //! Flight id, from the flightSchema
-  char* flight_id;
-  //! User id, from the userSchema
-  char* user_id;
-}* PassengerSchema;
-
 #endif

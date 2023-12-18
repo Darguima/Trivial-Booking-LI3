@@ -4,10 +4,8 @@
 #include <entities/reservation_entity.h>
 #include <entities/user_entity.h>
 #include <glib.h>
-#include <store_catalog/store_catalog.h>
 #include <string.h>
 #include <utils/calculate_stats.h>
-#include <values_parser/create_new_structs.h>
 #include <values_parser/verify_values.h>
 
 int values_parser_users(char** user_values, Catalogs catalogs) {
@@ -52,8 +50,7 @@ int values_parser_passengers(char** passengers_values, Catalogs catalogs) {
     return 1;
   }
 
-  PassengerSchema new_passenger = create_new_passenger(passengers_values);
-  store_catalog_passenger(new_passenger, catalogs->passengers);
+  create_new_passenger(catalogs->passengers, passengers_values);
 
   flight_increment_seat(flight, 1);
   user_increment_flights(user, 1);

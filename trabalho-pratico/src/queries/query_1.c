@@ -6,6 +6,7 @@
 #include "catalogs_setup/users_catalog.h"
 #include "ctype.h"
 #include "entities/flight_entity.h"
+#include "entities/passenger_entity.h"
 #include "entities/user_entity.h"
 #include "utils/calculate_stats.h"
 #include "write_output/write_output.h"
@@ -60,6 +61,21 @@ int query_1(Catalogs catalogs, int command_number, bool format_flag, char* id) {
     printf("reservation_id: %s\n", reservation_id);
     printf("reservation_total_price: %f\n", reservation_price);
     free(reservation_id);
+  }
+
+  // from catalogs_setup/passengers_catalog.h
+  Passenger passenger_test = get_passenger_by_id(catalogs->passengers, "0000000001_MaurAntunes1651");
+
+  if (passenger_test == NULL) {
+    printf("passenger_test is NULL\n");
+  } else {
+    // from entities/passenger_entity.h
+    char* passenger_user_id = passenger_get_user_id(passenger_test);
+    char* passenger_flight_id = passenger_get_flight_id(passenger_test);
+    printf("passenger_user_id: %s\n", passenger_user_id);
+    printf("passenger_flight_id: %s\n", passenger_flight_id);
+    free(passenger_user_id);
+    free(passenger_flight_id);
   }
 
   printf("======================\n");
