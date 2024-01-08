@@ -62,6 +62,10 @@ char* reservation_get_id(Reservation reservation) {
   return g_strdup(reservation->id);
 }
 
+char* reservation_get_begin_date(Reservation reservation) {
+  return g_strdup(reservation->begin_date);
+}
+
 double reservation_get_total_price(Reservation reservation) {
   return reservation->total_price;
 }

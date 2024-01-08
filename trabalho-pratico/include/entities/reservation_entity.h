@@ -38,6 +38,8 @@ void free_reservation(gpointer value);
  */
 char* reservation_get_id(Reservation reservation);
 
+char* reservation_get_begin_date(Reservation reservation);
+
 /**
  * @brief Will return the total price from the given reservation
  *

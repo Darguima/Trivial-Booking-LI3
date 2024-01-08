@@ -6,6 +6,7 @@
 #include "catalogs_creator/flights_catalog.h"
 #include "catalogs_creator/reservations_catalog.h"
 #include "catalogs_creator/users_catalog.h"
+#include "datatypes/datatypes.h"
 
 typedef struct users_catalog* UsersCatalog;
 
@@ -52,6 +53,10 @@ char* user_get_id(User user);
  */
 char* user_get_name(User user);
 
+RelationArray user_get_reservations(User user);
+
+RelationArray user_get_flights(User user);
+
 /**
  * @brief Increments the total number of reservations for a user
  *
@@ -79,5 +84,7 @@ void user_increment_total_spent(User user, double total_reservation_price);
 void user_add_flight(User user, Flight flight);
 
 void user_add_reservation(User user, Reservation reservation);
+
+bool user_is_active(User user);
 
 #endif

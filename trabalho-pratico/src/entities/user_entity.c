@@ -83,6 +83,14 @@ char* user_get_name(User user) {
   return g_strdup(user->name);
 }
 
+RelationArray user_get_reservations(User user) {
+  return user->reservations;
+}
+
+RelationArray user_get_flights(User user) {
+  return user->flights;
+}
+
 void user_increment_reservations(User user, int number_of_reservations) {
   user->number_of_reservations += number_of_reservations;
 }
@@ -101,4 +109,8 @@ void user_add_flight(User user, Flight flight) {
 
 void user_add_reservation(User user, Reservation reservation) {
   g_array_append_val(user->reservations->values, reservation);
+}
+
+bool user_is_active(User user) {
+  return user->account_status;
 }

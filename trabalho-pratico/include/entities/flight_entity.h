@@ -38,6 +38,8 @@ void free_flight(gpointer value);
  */
 char* flight_get_id(Flight flight);
 
+char* flight_get_begin_date(Flight flight);
+
 /**
  * @brief Will return the total seats from the given flight
  *

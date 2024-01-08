@@ -10,7 +10,7 @@ char* extract_date_without_time(char* date_with_time) {
     if (date_only != NULL) {
       strncpy(date_only, date_with_time, date_length);
       date_only[date_length] = '\0';
-
+      free(date_with_time);
       return date_only;
     } else {
       fprintf(stderr, "Error allocating memory!\n");
