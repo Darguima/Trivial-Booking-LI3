@@ -7,16 +7,6 @@
 #include "utils/calculate_stats.h"
 #include "utils/is_active.h"
 
-struct user_flights {
-  GArray* flights;
-  int is_sorted;
-};
-
-struct user_reservations {
-  GArray* reservations;
-  int is_sorted;
-};
-
 struct user {
   char* id;
   char* name;
@@ -34,17 +24,17 @@ struct user {
   int age;
   int number_of_flights;
   int number_of_reservations;
-  UserFlights flights;
-  UserReservations reservations;
+  RelationArray flights;
+  RelationArray reservations;
 };
 
 User create_new_user(UsersCatalog users_catalog, char** user_values) {
   User new_user = malloc(sizeof(struct user));
-  UserFlights flights = malloc(sizeof(struct user_flights));
-  flights->flights = g_array_new(FALSE, FALSE, sizeof(Flight));
+  RelationArray flights = malloc(sizeof(struct relationArray));
+  flights->values = g_array_new(FALSE, FALSE, sizeof(Flight));
   flights->is_sorted = 0;
-  UserReservations reservations = malloc(sizeof(struct user_reservations));
-  reservations->reservations = g_array_new(FALSE, FALSE, sizeof(Reservation));
+  RelationArray reservations = malloc(sizeof(struct relationArray));
+  reservations->values = g_array_new(FALSE, FALSE, sizeof(Reservation));
   reservations->is_sorted = 0;
 
   new_user->id = g_strdup(user_values[0]);
@@ -77,6 +67,10 @@ void free_user(gpointer value) {
   g_free(user->passport);
   g_free(user->country_code);
   g_free(user->account_creation);
+  g_array_free(user->flights->values, TRUE);
+  g_array_free(user->reservations->values, TRUE);
+  g_free(user->flights);
+  g_free(user->reservations);
 
   free(user);
 }
@@ -102,9 +96,9 @@ void user_increment_total_spent(User user, double total_reservation_price) {
 }
 
 void user_add_flight(User user, Flight flight) {
-  g_array_append_val(user->flights->flights, flight);
+  g_array_append_val(user->flights->values, flight);
 }
 
 void user_add_reservation(User user, Reservation reservation) {
-  g_array_append_val(user->reservations->reservations, reservation);
+  g_array_append_val(user->reservations->values, reservation);
 }
