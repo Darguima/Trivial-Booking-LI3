@@ -39,6 +39,15 @@ First of all, enter on `trabalho-pratico` folder:
 $ cd trabalho-pratico
 ```
 
+##### Downloading the Dataset
+
+In order to test with "real" data, download our datasets:
+
+```bash
+$ wget https://github.com/Darguima/Trivial-Booking/releases/download/phase_1/dataset.zip
+$ unzip dataset.zip
+```
+
 ##### Compiling the code
 ```bash
 $ make

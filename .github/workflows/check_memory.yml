@@ -12,6 +12,18 @@ jobs:
     
     - name: Install Valgrind
       run: sudo apt install -y valgrind
+    
+    - name: Download dataset from GitHub Assets
+      working-directory: ./trabalho-pratico
+      run: |
+          curl -L \
+            -H "Accept: application/octet-stream" \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            --output "dataset.zip" \
+            https://api.github.com/repos/Darguima/Trivial-Booking/releases/assets/140935140
+
+          unzip dataset.zip
 
     - name: Build project
       working-directory: ./trabalho-pratico
