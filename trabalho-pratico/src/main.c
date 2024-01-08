@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include "catalog_filler/catalog_filler.h"
 #include "catalogs_creator/catalogs_creator.h"
-#include "datatypes/datatypes.h"
 #include "output/batch.h"
 #include "output/interactive.h"
 #include "utils/print_invalid_path_error.h"

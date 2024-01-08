@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include <catalogs_creator/catalogs_creator.h>
 #include <datatypes/datatypes.h>
 #include <values_parser/values_parser.h>
 #include "interpreter/interpreter.h"

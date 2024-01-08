@@ -11,7 +11,7 @@
 #include "queries/query_8.h"
 #include "queries/query_9.h"
 
-#include <datatypes/datatypes.h>
+#include <catalogs_creator/catalogs_creator.h>
 
 /**
  * @brief Tokenizes the input line into an array of pointers to tokens

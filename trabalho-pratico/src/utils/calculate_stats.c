@@ -4,22 +4,6 @@
 
 #define DEFAULT_DATE "2023/10/01"
 
-void increment_total_reservations(UserSchema user) {
-  user->number_of_reservations += 1;
-}
-
-void increment_total_flights(UserSchema user) {
-  user->number_of_flights += 1;
-}
-
-void increment_user_total_spent(UserSchema user, double total_reservation_price) {
-  user->total_spent += (double)total_reservation_price;
-}
-
-void increment_seat(FlightSchema flight) {
-  flight->number_of_passengers += 1;
-}
-
 int get_days_difference(char* date1, char* date2) {
   int year, month, day, year1, month1, day1;
   int result = sscanf(date1, "%4d/%2d/%2d", &year, &month, &day);

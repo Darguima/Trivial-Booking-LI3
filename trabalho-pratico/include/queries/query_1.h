@@ -3,7 +3,7 @@
 #ifndef QUERY_1_H
 #define QUERY_1_H
 
-#include <datatypes/datatypes.h>
+#include <catalogs_creator/catalogs_creator.h>
 
 /**
  * @brief Executes query 1 based on the provided ID

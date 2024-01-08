@@ -27,6 +27,6 @@ char** parse_line(char* line, int dataset_columns_amount);
  * @param schema_name_ The schema name indicating the type of data being parsed
  * @param dataset_folder_path The path for the dataset
  */
-void file_parser(FILE* file, Catalogs CATALOGS, schema_name schema_name, char* dataset_folder_path);
+void file_parser(FILE*, Catalogs, schema_name);
 
 #endif

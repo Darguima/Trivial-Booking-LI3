@@ -2,7 +2,7 @@
 #ifndef QUERY_3_H
 #define QUERY_3_H
 
-#include <datatypes/datatypes.h>
+#include <catalogs_creator/catalogs_creator.h>
 
 /**
  * @brief Executes query 3 to retrieve the average rating of a hotel

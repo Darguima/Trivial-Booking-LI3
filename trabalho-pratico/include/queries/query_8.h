@@ -2,7 +2,7 @@
 #ifndef QUERY_8_H
 #define QUERY_8_H
 
-#include <datatypes/datatypes.h>
+#include <catalogs_creator/catalogs_creator.h>
 
 /**
  * @brief Execute query 8 to get hotel total revenue
