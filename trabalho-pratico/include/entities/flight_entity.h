@@ -48,6 +48,20 @@ char* flight_get_begin_date(Flight flight);
  */
 int flight_get_total_seats(Flight flight);
 
+int flight_get_number_of_passengers(Flight flight);
+
+long flight_get_delay(Flight flight);
+
+char* flight_get_plane_model(Flight flight);
+
+char* flight_get_airline(Flight flight);
+
+char* flight_get_origin(Flight flight);
+
+char* flight_get_destination(Flight flight);
+
+char* flight_get_arrival_date(Flight flight);
+
 /**
  * @brief Will return the airline from the given flight
  *

@@ -87,4 +87,18 @@ void user_add_reservation(User user, Reservation reservation);
 
 bool user_is_active(User user);
 
+int user_get_number_of_flights(User user);
+
+int user_get_number_of_reservations(User user);
+
+double user_get_total_spent(User user);
+
+int user_get_age(User user);
+
+char* user_get_sex(User user);
+
+char* user_get_country_code(User user);
+
+char* user_get_passport(User user);
+
 #endif

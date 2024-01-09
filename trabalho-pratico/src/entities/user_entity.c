@@ -103,6 +103,34 @@ void user_increment_total_spent(User user, double total_reservation_price) {
   user->total_spent += (double)total_reservation_price;
 }
 
+int user_get_number_of_flights(User user) {
+  return user->number_of_flights;
+}
+
+int user_get_number_of_reservations(User user) {
+  return user->number_of_reservations;
+}
+
+double user_get_total_spent(User user) {
+  return user->total_spent;
+}
+
+int user_get_age(User user) {
+  return user->age;
+}
+
+char* user_get_sex(User user) {
+  return g_strdup(user->sex);
+}
+
+char* user_get_country_code(User user) {
+  return g_strdup(user->country_code);
+}
+
+char* user_get_passport(User user) {
+  return g_strdup(user->passport);
+}
+
 void user_add_flight(User user, Flight flight) {
   g_array_append_val(user->flights->values, flight);
 }
