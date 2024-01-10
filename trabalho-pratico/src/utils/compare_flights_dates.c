@@ -8,8 +8,8 @@ gint compare_flights_dates(gconstpointer a, gconstpointer b) {
   Flight flight_1 = *(Flight*)a;
   Flight flight_2 = *(Flight*)b;
 
-  char* begin_date_1 = flight_get_begin_date(flight_1);
-  char* begin_date_2 = flight_get_begin_date(flight_2);
+  char* begin_date_1 = flight_get_schedule_departure_date(flight_1);
+  char* begin_date_2 = flight_get_schedule_departure_date(flight_2);
 
   int date_cmp = (int)(convert_string_to_seconds(begin_date_2) - convert_string_to_seconds(begin_date_1));
   free(begin_date_1);

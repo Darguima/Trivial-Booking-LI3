@@ -96,7 +96,7 @@ void write_flight_data(char* id, Catalogs catalogs, FILE* output_file, bool form
   char* plane_model = flight_get_plane_model(flight);
   char* origin = flight_get_origin(flight);
   char* destination = flight_get_destination(flight);
-  char* schedule_departure_date = flight_get_begin_date(flight);
+  char* schedule_departure_date = flight_get_schedule_departure_date(flight);
   char* schedule_arrival_date = flight_get_schedule_arrival_date(flight);
 
   output_key_value output_array[] = {{"airline", airline},

@@ -53,25 +53,9 @@ char* user_get_id(User user);
  */
 char* user_get_name(User user);
 
-RelationArray user_get_reservations(User user);
+GArray* user_get_reservations(User user);
 
-RelationArray user_get_flights(User user);
-
-/**
- * @brief Increments the total number of reservations for a user
- *
- * @param user The user to increment the number of reservations
- * @param number_of_reservations The number of reservations to increment
- */
-void user_increment_reservations(User user, int number_of_reservations);
-
-/**
- * @brief Increments the total number of flights for a user
- *
- * @param user The user to increment the number of flights
- * @param number_of_flights The number of flights to increment
- */
-void user_increment_flights(User user, int number_of_flights);
+GArray* user_get_flights(User user);
 
 /**
  * @brief Increments the total amount spent by a user due to a reservation
@@ -108,9 +92,5 @@ bool user_get_reservations_sorted(RelationArray reservations);
 void user_sort_flights_array(RelationArray flights);
 
 void user_sort_reservations_array(RelationArray reservations);
-
-GArray* user_get_flights_array(RelationArray flights);
-
-GArray* user_get_reservations_array(RelationArray reservations);
 
 #endif

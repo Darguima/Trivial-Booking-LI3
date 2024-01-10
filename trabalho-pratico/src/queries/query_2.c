@@ -16,114 +16,93 @@ int query_2(Catalogs catalogs, int command_number, bool format_flag, char* id, c
     return 0;
   }
   int result_acc = 1;
-  if (optional == NULL) {
-    RelationArray flights_array = user_get_flights(user);
-    if (!user_get_flights_sorted(flights_array)) {
-      user_sort_flights_array(flights_array);
+
+  GArray* array_of_flights = NULL;
+  guint flights_i = 0, flights_len = 0;
+  if (optional == NULL || !strcmp("flights", optional)) {
+    array_of_flights = user_get_flights(user);
+    flights_len = array_of_flights->len;
+  }
+
+  GArray* array_of_reservations = NULL;
+  guint reservations_i = 0, reservations_len = 0;
+  if (optional == NULL || !strcmp("reservations", optional)) {
+    array_of_reservations = user_get_reservations(user);
+    reservations_len = array_of_reservations->len;
+  }
+
+  while (flights_i < flights_len || reservations_i < reservations_len) {
+    Flight flight = NULL;
+    Reservation reservation = NULL;
+    char* begin_flight_date = NULL;
+    char* begin_reservation_date = NULL;
+
+    if (flights_i < flights_len) {
+      flight = g_array_index(array_of_flights, Flight, flights_i);
+      begin_flight_date = flight_get_schedule_departure_date(flight);
     }
 
-    RelationArray reservations_array = user_get_reservations(user);
-    if (!user_get_reservations_sorted(reservations_array)) {
-      user_sort_reservations_array(reservations_array);
+    if (reservations_i < reservations_len) {
+      reservation = g_array_index(array_of_reservations, Reservation, reservations_i);
+      begin_reservation_date = reservation_get_begin_date(reservation);
     }
-    GArray* array_of_flights = user_get_flights_array(flights_array);
-    GArray* array_of_reservations = user_get_reservations_array(reservations_array);
 
-    guint flights_i = 0;
-    guint reservations_i = 0;
-    while (flights_i < array_of_flights->len && reservations_i < array_of_reservations->len) {
-      Flight flight = g_array_index(array_of_flights, Flight, flights_i);
-      Reservation reservation = g_array_index(array_of_reservations, Reservation, reservations_i);
-      char* begin_flight_date = flight_get_begin_date(flight);
-      char* begin_reservation_date = reservation_get_begin_date(reservation);
-      int date_cmp =
+    int date_cmp = 0;
+
+    if (begin_flight_date != NULL && begin_reservation_date != NULL)
+      date_cmp =
           (int)(convert_string_to_seconds(begin_reservation_date) - convert_string_to_seconds(begin_flight_date));
-      if (date_cmp <= 0) {
-        char* flight_id = flight_get_id(flight);
-        char* begin_flight_date_without_time = extract_date_without_time(begin_flight_date);
+    else if (begin_flight_date != NULL)
+      date_cmp = -1;
+    else if (begin_reservation_date != NULL)
+      date_cmp = 1;
+    if (date_cmp <= 0) {
+      char* flight_id = flight_get_id(flight);
+      char* begin_flight_date_without_time = extract_date_without_time(begin_flight_date);
+      if (optional != NULL && date_cmp == -1) {
+        output_key_value output_array[] = {{"id", flight_id}, {"date", begin_flight_date_without_time}};
+        write_output(output_file, format_flag, result_acc, output_array, 2);
+      } else {
         output_key_value output_array[] = {
             {"id", flight_id}, {"date", begin_flight_date_without_time}, {"type", "flight"}};
         write_output(output_file, format_flag, result_acc, output_array, 3);
-        free(flight_id);
-        free(begin_flight_date_without_time);
-        free(begin_reservation_date);
-        result_acc++;
-        flights_i++;
-      } else {
-        char* reservation_id = reservation_get_id(reservation);
-        output_key_value output_array[] = {
-            {"id", reservation_id}, {"date", begin_reservation_date}, {"type", "reservation"}};
-        write_output(output_file, format_flag, result_acc, output_array, 3);
-        reservations_i++;
-        result_acc++;
-        free(reservation_id);
-        free(begin_flight_date);
-        free(begin_reservation_date);
       }
-    }
-    if (flights_i == array_of_flights->len) {
-      for (guint i = reservations_i; i < array_of_reservations->len; i++) {
-        Reservation reservation = g_array_index(array_of_reservations, Reservation, i);
-        char* begin_date = reservation_get_begin_date(reservation);
-        char* reservation_id = reservation_get_id(reservation);
-        output_key_value output_array[] = {{"id", reservation_id}, {"date", begin_date}, {"type", "reservation"}};
-        write_output(output_file, format_flag, result_acc, output_array, 3);
-        result_acc++;
-        free(begin_date);
-        free(reservation_id);
-      }
-
-    }
-
-    else {
-      for (guint i = flights_i; i < array_of_flights->len; i++) {
-        Flight flight = g_array_index(array_of_flights, Flight, i);
-        char* begin_date = flight_get_begin_date(flight);
-        char* begin_date_without_time = extract_date_without_time(begin_date);
-        char* flight_id = flight_get_id(flight);
-        output_key_value output_array[] = {{"id", flight_id}, {"date", begin_date_without_time}, {"type", "flight"}};
-        write_output(output_file, format_flag, result_acc, output_array, 3);
-        result_acc++;
-        free(begin_date_without_time);
-        free(flight_id);
-      }
-    }
-
-  } else if (!strcmp("flights", optional)) {
-    RelationArray flights_array = user_get_flights(user);
-    if (!user_get_flights_sorted(flights_array)) {
-      user_sort_flights_array(flights_array);
-    }
-    GArray* array_of_flights = user_get_flights_array(flights_array);
-    for (guint i = 0; i < array_of_flights->len; i++) {
-      Flight flight = g_array_index(array_of_flights, Flight, i);
-      char* begin_date = flight_get_begin_date(flight);
-      char* begin_date_without_time = extract_date_without_time(begin_date);
-      char* flight_id = flight_get_id(flight);
-      output_key_value output_array[] = {{"id", flight_id}, {"date", begin_date_without_time}};
-      write_output(output_file, format_flag, result_acc, output_array, 2);
-      result_acc++;
-      free(begin_date_without_time);
       free(flight_id);
-    }
-  } else {
-    RelationArray reservations_array = user_get_reservations(user);
-    if (!user_get_reservations_sorted(reservations_array)) {
-      user_sort_reservations_array(reservations_array);
-    }
-    GArray* array_of_reservations = user_get_reservations_array(reservations_array);
-    for (guint i = 0; i < array_of_reservations->len; i++) {
-      Reservation reservation = g_array_index(array_of_reservations, Reservation, i);
-      char* begin_date = reservation_get_begin_date(reservation);
-      char* reservation_id = reservation_get_id(reservation);
-      output_key_value output_array[] = {{"id", reservation_id}, {"date", begin_date}};
-      write_output(output_file, format_flag, result_acc, output_array, 2);
+      free(begin_flight_date_without_time);
+      if (begin_reservation_date) {
+        free(begin_reservation_date);
+      }
       result_acc++;
-      free(begin_date);
+      flights_i++;
+    } else if (optional != NULL && date_cmp == 1) {
+      char* reservation_id = reservation_get_id(reservation);
+      output_key_value output_array[] = {{"id", reservation_id}, {"date", begin_reservation_date}};
+      write_output(output_file, format_flag, result_acc, output_array, 2);
+
+      reservations_i++;
+      result_acc++;
       free(reservation_id);
+      free(begin_reservation_date);
+    } else {
+      char* reservation_id = reservation_get_id(reservation);
+      output_key_value output_array[] = {
+          {"id", reservation_id}, {"date", begin_reservation_date}, {"type", "reservation"}};
+      write_output(output_file, format_flag, result_acc, output_array, 3);
+      reservations_i++;
+      result_acc++;
+      free(reservation_id);
+      free(begin_reservation_date);
+      if (begin_flight_date) {
+        free(begin_flight_date);
+      }
     }
   }
-
+  if (array_of_flights) {
+    g_array_free(array_of_flights, TRUE);
+  }
+  if (array_of_reservations) {
+    g_array_free(array_of_reservations, TRUE);
+  }
   fclose(output_file);
   return 0;
 }

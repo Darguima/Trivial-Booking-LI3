@@ -78,7 +78,7 @@ long flight_get_delay(Flight flight) {
   return flight->delay;
 }
 
-char* flight_get_begin_date(Flight flight) {
+char* flight_get_schedule_departure_date(Flight flight) {
   return g_strdup(flight->schedule_departure_date);
 }
 

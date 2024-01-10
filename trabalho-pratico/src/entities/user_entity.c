@@ -24,8 +24,6 @@ struct user {
   bool account_status;
   double total_spent;
   int age;
-  int number_of_flights;
-  int number_of_reservations;
   RelationArray flights;
   RelationArray reservations;
 };
@@ -49,8 +47,6 @@ User create_new_user(UsersCatalog users_catalog, char** user_values) {
   new_user->account_status = is_active(user_values[11]);
   new_user->age = calculate_user_age(user_values[4]);
   new_user->total_spent = 0;
-  new_user->number_of_flights = 0;
-  new_user->number_of_reservations = 0;
   new_user->flights = flights;
   new_user->reservations = reservations;
 
@@ -64,7 +60,6 @@ void free_user(gpointer value) {
 
   g_free(user->id);
   g_free(user->name);
-  // g_free(user->birth_date);
   g_free(user->sex);
   g_free(user->passport);
   g_free(user->country_code);
@@ -85,20 +80,20 @@ char* user_get_name(User user) {
   return g_strdup(user->name);
 }
 
-RelationArray user_get_reservations(User user) {
-  return user->reservations;
+GArray* user_get_reservations(User user) {
+  if (!user->reservations->is_sorted) {
+    g_array_sort(user->reservations->values, compare_reservations_dates);
+    user->reservations->is_sorted = true;
+  }
+  return g_array_copy(user->reservations->values);
 }
 
-RelationArray user_get_flights(User user) {
-  return user->flights;
-}
-
-void user_increment_reservations(User user, int number_of_reservations) {
-  user->number_of_reservations += number_of_reservations;
-}
-
-void user_increment_flights(User user, int number_of_flights) {
-  user->number_of_flights += number_of_flights;
+GArray* user_get_flights(User user) {
+  if (!user->flights->is_sorted) {
+    g_array_sort(user->flights->values, compare_flights_dates);
+    user->flights->is_sorted = true;
+  }
+  return g_array_copy(user->flights->values);
 }
 
 void user_increment_total_spent(User user, double total_reservation_price) {
@@ -106,11 +101,11 @@ void user_increment_total_spent(User user, double total_reservation_price) {
 }
 
 int user_get_number_of_flights(User user) {
-  return user->number_of_flights;
+  return (int)user->flights->values->len;
 }
 
 int user_get_number_of_reservations(User user) {
-  return user->number_of_reservations;
+  return (int)user->flights->values->len;
 }
 
 double user_get_total_spent(User user) {

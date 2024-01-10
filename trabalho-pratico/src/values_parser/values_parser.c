@@ -52,7 +52,6 @@ int values_parser_passengers(char** passengers_values, Catalogs catalogs) {
   }
 
   flight_increment_seat(flight, 1);
-  user_increment_flights(user, 1);
   user_add_flight(user, flight);
 
   return 0;
@@ -78,7 +77,6 @@ int values_parser_reservations(char** reservations_values, Catalogs catalogs) {
   hotel_insert_new_reservation(catalogs->hotels, new_reservation);
 
   user_increment_total_spent(user, reservation_get_total_price(new_reservation));
-  user_increment_reservations(user, 1);
   user_add_reservation(user, new_reservation);
 
   return 0;
