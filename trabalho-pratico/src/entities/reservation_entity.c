@@ -19,7 +19,7 @@ struct reservation {
   int price_per_night;
   bool includes_breakfast;
   // char* room_details;
-  char* rating;
+  char rating;
   // char* comment;
   double total_price;
 };
@@ -36,7 +36,7 @@ Reservation create_new_reservation(ReservationsCatalog reservations_catalog, cha
   new_reservation->end_date = strdup(reservation_values[8]);
   new_reservation->price_per_night = string_to_int(reservation_values[9]);
   new_reservation->includes_breakfast = includes_breakfast(reservation_values[10]);
-  new_reservation->rating = strdup(reservation_values[12]);
+  new_reservation->rating = *(reservation_values[12]);
   new_reservation->total_price = calculate_total_spent(new_reservation->begin_date, new_reservation->end_date,
                                                        new_reservation->city_tax, new_reservation->price_per_night);
 
@@ -53,7 +53,6 @@ void free_reservation(gpointer value) {
   free(reservation->hotel_name);
   free(reservation->begin_date);
   free(reservation->end_date);
-  free(reservation->rating);
 
   free(reservation);
 }
@@ -61,6 +60,7 @@ void free_reservation(gpointer value) {
 char* reservation_get_id(Reservation reservation) {
   return g_strdup(reservation->id);
 }
+
 
 char* reservation_get_begin_date(Reservation reservation) {
   return g_strdup(reservation->begin_date);
@@ -78,8 +78,13 @@ char* reservation_get_hotel_name(Reservation reservation) {
   return g_strdup(reservation->hotel_name);
 }
 
+
 bool reservation_get_breakfast(Reservation reservation) {
   return reservation->includes_breakfast;
+
+char reservation_get_rating(Reservation reservation) {
+  return reservation->rating;
+
 }
 
 double reservation_get_total_price(Reservation reservation) {

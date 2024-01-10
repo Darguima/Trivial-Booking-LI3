@@ -1,6 +1,7 @@
 #include <catalogs_creator/catalogs_creator.h>
 #include <datatypes/datatypes.h>
 #include <entities/flight_entity.h>
+#include <entities/hotel_entity.h>
 #include <entities/reservation_entity.h>
 #include <entities/user_entity.h>
 #include <glib.h>
@@ -74,6 +75,8 @@ int values_parser_reservations(char** reservations_values, Catalogs catalogs) {
   }
 
   Reservation new_reservation = create_new_reservation(catalogs->reservations, reservations_values);
+  hotel_insert_new_reservation(catalogs->hotels, new_reservation);
+
   user_increment_total_spent(user, reservation_get_total_price(new_reservation));
   user_increment_reservations(user, 1);
   user_add_reservation(user, new_reservation);

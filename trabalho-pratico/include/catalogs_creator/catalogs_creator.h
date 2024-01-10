@@ -4,6 +4,7 @@
 
 #include <glib.h>
 #include "catalogs_creator/flights_catalog.h"
+#include "catalogs_creator/hotels_catalog.h"
 #include "catalogs_creator/reservations_catalog.h"
 #include "catalogs_creator/users_catalog.h"
 
@@ -11,6 +12,7 @@
 typedef struct catalogs {
   UsersCatalog users;
   FlightsCatalog flights;
+  HotelsCatalog hotels;
   ReservationsCatalog reservations;
 }* Catalogs;
 
