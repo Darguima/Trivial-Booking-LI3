@@ -61,7 +61,6 @@ char* reservation_get_id(Reservation reservation) {
   return g_strdup(reservation->id);
 }
 
-
 char* reservation_get_begin_date(Reservation reservation) {
   return g_strdup(reservation->begin_date);
 }
@@ -78,13 +77,12 @@ char* reservation_get_hotel_name(Reservation reservation) {
   return g_strdup(reservation->hotel_name);
 }
 
-
 bool reservation_get_breakfast(Reservation reservation) {
   return reservation->includes_breakfast;
+}
 
 char reservation_get_rating(Reservation reservation) {
   return reservation->rating;
-
 }
 
 double reservation_get_total_price(Reservation reservation) {
