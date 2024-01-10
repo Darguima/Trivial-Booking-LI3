@@ -5,6 +5,8 @@
 #include <glib.h>
 #include "entities/reservation_entity.h"
 
+typedef struct reservation* Reservation;
+
 //! The reservations catalog
 typedef struct reservations_catalog* ReservationsCatalog;
 
