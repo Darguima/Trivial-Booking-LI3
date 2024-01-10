@@ -32,10 +32,10 @@ User create_new_user(UsersCatalog users_catalog, char** user_values) {
   User new_user = malloc(sizeof(struct user));
   RelationArray flights = malloc(sizeof(struct relationArray));
   flights->values = g_array_new(FALSE, FALSE, sizeof(Flight));
-  flights->is_sorted = 0;
+  flights->is_sorted = false;
   RelationArray reservations = malloc(sizeof(struct relationArray));
   reservations->values = g_array_new(FALSE, FALSE, sizeof(Reservation));
-  reservations->is_sorted = 0;
+  reservations->is_sorted = false;
 
   new_user->id = g_strdup(user_values[0]);
   new_user->name = g_strdup(user_values[1]);
