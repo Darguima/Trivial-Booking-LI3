@@ -85,7 +85,6 @@ void user_add_flight(User user, Flight flight);
 
 void user_add_reservation(User user, Reservation reservation);
 
-
 bool user_is_active(User user);
 
 int user_get_number_of_flights(User user);

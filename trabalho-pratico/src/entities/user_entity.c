@@ -103,7 +103,6 @@ void user_increment_total_spent(User user, double total_reservation_price) {
   user->total_spent += (double)total_reservation_price;
 }
 
-
 int user_get_number_of_flights(User user) {
   return user->number_of_flights;
 }
@@ -132,17 +131,14 @@ char* user_get_passport(User user) {
   return g_strdup(user->passport);
 }
 
-
 void user_add_flight(User user, Flight flight) {
   g_array_append_val(user->flights->values, flight);
 }
 
 void user_add_reservation(User user, Reservation reservation) {
   g_array_append_val(user->reservations->values, reservation);
-
 }
 
 bool user_is_active(User user) {
   return user->account_status;
-
 }
