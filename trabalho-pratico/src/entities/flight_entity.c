@@ -70,6 +70,38 @@ int flight_get_total_seats(Flight flight) {
   return flight->total_seats;
 }
 
-void flight_increment_seat(Flight flight, int number_of_seats) {
-  flight->total_seats += number_of_seats;
+int flight_get_number_of_passengers(Flight flight) {
+  return flight->number_of_passengers;
+}
+
+long flight_get_delay(Flight flight) {
+  return flight->delay;
+}
+
+char* flight_get_schedule_departure_date(Flight flight) {
+  return g_strdup(flight->schedule_departure_date);
+}
+
+char* flight_get_airline(Flight flight) {
+  return g_strdup(flight->airline);
+}
+
+char* flight_get_plane_model(Flight flight) {
+  return g_strdup(flight->plane_model);
+}
+
+char* flight_get_origin(Flight flight) {
+  return g_strdup(flight->origin);
+}
+
+char* flight_get_destination(Flight flight) {
+  return g_strdup(flight->destination);
+}
+
+char* flight_get_schedule_arrival_date(Flight flight) {
+  return g_strdup(flight->schedule_arrival_date);
+}
+
+void flight_increment_seat(Flight flight, int number_of_passengers) {
+  flight->number_of_passengers += number_of_passengers;
 }

@@ -38,6 +38,18 @@ void free_reservation(gpointer value);
  */
 char* reservation_get_id(Reservation reservation);
 
+char* reservation_get_begin_date(Reservation reservation);
+
+int reservation_get_hotel_stars(Reservation reservation);
+
+char* reservation_get_end_date(Reservation reservation);
+
+char* reservation_get_hotel_name(Reservation reservation);
+
+char* reservation_get_hotel_id(Reservation reservation);
+
+bool reservation_get_breakfast(Reservation reservation);
+
 /**
  * @brief Will return the id from the hotel from the given reservation
  *
