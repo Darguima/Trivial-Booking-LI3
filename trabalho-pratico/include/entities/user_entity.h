@@ -3,9 +3,15 @@
 #define USER_ENTITY_H
 
 #include <stdbool.h>
+#include "catalogs_creator/flights_catalog.h"
+#include "catalogs_creator/reservations_catalog.h"
 #include "catalogs_creator/users_catalog.h"
 
 typedef struct users_catalog* UsersCatalog;
+
+typedef struct user_flights* UserFlights;
+
+typedef struct user_reservations* UserReservations;
 
 //! User Entity
 typedef struct user* User;
@@ -69,5 +75,9 @@ void user_increment_flights(User user, int number_of_flights);
  * @param total_reservation_price The total amount spent to increment
  */
 void user_increment_total_spent(User user, double total_reservation_price);
+
+void user_add_flight(User user, Flight flight);
+
+void user_add_reservation(User user, Reservation reservation);
 
 #endif
