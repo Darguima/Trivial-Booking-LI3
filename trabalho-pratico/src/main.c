@@ -3,15 +3,10 @@
 #include "catalogs_creator/catalogs_creator.h"
 #include "output/batch.h"
 #include "output/interactive.h"
-#include "sys/resource.h"
 #include "utils/print_invalid_path_error.h"
 
 int main(int argc, char** argv) {
-  struct timespec start, end;
-  double elapsed;
-  // Start time
-  clock_gettime(CLOCK_REALTIME, &start);
-
+  
   if (argc != 1 && argc != 3) {
     printf("Your arguments are wrong!\n");
     printf("You passed %d arguments.\n", argc - 1);
@@ -62,19 +57,7 @@ int main(int argc, char** argv) {
     interactive();
   }
 
-  struct rusage r_usage_end;
-  getrusage(RUSAGE_SELF, &r_usage_end);
-
-  // Calcular e imprimir o uso total de memória
-  long memory_used_kb = r_usage_end.ru_maxrss;
-  printf("Total memory used: %ld KB\n", memory_used_kb);
-
   free_catalogs(catalogs);
-
-  clock_gettime(CLOCK_REALTIME, &end);
-  // Elapsed time
-  elapsed = (double)(end.tv_sec - start.tv_sec) + ((double)(end.tv_nsec - start.tv_nsec)) / 1e9;
-  printf("Elapsed time: %.6f seconds\n", elapsed);
 
   return 0;
 }

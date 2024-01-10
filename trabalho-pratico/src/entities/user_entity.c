@@ -105,7 +105,7 @@ int user_get_number_of_flights(User user) {
 }
 
 int user_get_number_of_reservations(User user) {
-  return (int)user->flights->values->len;
+  return (int)user->reservations->values->len;
 }
 
 double user_get_total_spent(User user) {
