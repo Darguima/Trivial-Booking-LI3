@@ -28,7 +28,7 @@ Reservation create_new_reservation(ReservationsCatalog reservations_catalog, cha
  *
  * @param value The reservation entity to free
  */
-void free_reservation(gpointer value);
+void free_reservation(Reservation* value);
 
 /**
  * @brief Will return the id from the given reservation

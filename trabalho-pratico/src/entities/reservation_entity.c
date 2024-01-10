@@ -45,8 +45,12 @@ Reservation create_new_reservation(ReservationsCatalog reservations_catalog, cha
   return new_reservation;
 }
 
-void free_reservation(gpointer value) {
-  Reservation reservation = (Reservation)value;
+void free_reservation(Reservation* value) {
+  Reservation reservation = *value;
+
+  if (reservation == NULL) {
+    return;
+  }
 
   free(reservation->hotel_id);
   free(reservation->hotel_name);
