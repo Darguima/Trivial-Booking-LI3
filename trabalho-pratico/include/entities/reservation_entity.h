@@ -28,7 +28,7 @@ Reservation create_new_reservation(ReservationsCatalog reservations_catalog, cha
  *
  * @param value The reservation entity to free
  */
-void free_reservation(gpointer value);
+void free_reservation(Reservation* value);
 
 /**
  * @brief Will return the id from the given reservation
@@ -36,7 +36,31 @@ void free_reservation(gpointer value);
  * @param reservation The reservation to get the id from
  * @return char* The id from the given reservation
  */
-char* reservation_get_id(Reservation reservation);
+int reservation_get_id(Reservation reservation);
+
+/**
+ * @brief Will return the id from the hotel from the given reservation
+ *
+ * @param reservation The reservation to get the Hotel id from
+ * @return char* The id from the hotel that receive the given reservation
+ */
+char* reservation_get_hotel_id(Reservation reservation);
+
+/**
+ * @brief Will return the name from the hotel from the given reservation
+ *
+ * @param reservation The reservation to get the Hotel name from
+ * @return char* The name from the hotel that receive the given reservation
+ */
+char* reservation_get_hotel_name(Reservation reservation);
+
+/**
+ * @brief Will return the rating from the given reservation
+ *
+ * @param reservation The reservation to get the rating from
+ * @return int The rating from the given reservation
+ */
+char reservation_get_rating(Reservation reservation);
 
 /**
  * @brief Will return the id from the hotel from the given reservation
