@@ -51,7 +51,6 @@ int values_parser_passengers(char** passengers_values, Catalogs catalogs) {
     return 1;
   }
 
-
   flight_increment_seat(flight, 1);
   user_increment_flights(user, 1);
   user_add_flight(user, flight);
