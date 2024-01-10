@@ -101,9 +101,12 @@ int query_2(Catalogs catalogs, int command_number, bool format_flag, char* id, c
   if (array_of_flights) {
     g_array_free(array_of_flights, TRUE);
   }
+
   if (array_of_reservations) {
     g_array_free(array_of_reservations, TRUE);
   }
+
   fclose(output_file);
+
   return 0;
 }
