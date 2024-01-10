@@ -36,7 +36,7 @@ void free_reservation(gpointer value);
  * @param reservation The reservation to get the id from
  * @return char* The id from the given reservation
  */
-char* reservation_get_id(Reservation reservation);
+int reservation_get_id(Reservation reservation);
 
 /**
  * @brief Will return the id from the hotel from the given reservation

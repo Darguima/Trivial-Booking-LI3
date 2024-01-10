@@ -49,17 +49,16 @@ int query_1(Catalogs catalogs, int command_number, bool format_flag, char* id) {
   }
 
   // from catalogs_creator/reservations_catalog.h
-  Reservation reservation_test = get_reservation_by_id(catalogs->reservations, "Book0000000021");
+  Reservation reservation_test = get_reservation_by_id(catalogs->reservations, 0000000021);
 
   if (reservation_test == NULL) {
     printf("reservation_test is NULL\n");
   } else {
     // from entities/reservation_entity.h
-    char* reservation_id = reservation_get_id(reservation_test);
+    int reservation_id = reservation_get_id(reservation_test);
     double reservation_price = reservation_get_total_price(reservation_test);
-    printf("reservation_id: %s\n", reservation_id);
+    printf("reservation_id: %d\n", reservation_id);
     printf("reservation_total_price: %f\n", reservation_price);
-    free(reservation_id);
   }
 
   return 0;
