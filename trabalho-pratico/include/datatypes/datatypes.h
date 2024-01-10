@@ -19,7 +19,7 @@ typedef enum { USERS, FLIGHTS, PASSENGERS, RESERVATIONS } schema_name;
 
 typedef struct relationArray {
   GArray* values;
-  int is_sorted;
+  bool is_sorted;
 }* RelationArray;
 
 #endif
