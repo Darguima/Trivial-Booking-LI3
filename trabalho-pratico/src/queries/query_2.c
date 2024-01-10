@@ -56,6 +56,7 @@ int query_2(Catalogs catalogs, int command_number, bool format_flag, char* id, c
       date_cmp = -1;
     else if (begin_reservation_date != NULL)
       date_cmp = 1;
+
     if (date_cmp <= 0) {
       char* flight_id = flight_get_id(flight);
       char* begin_flight_date_without_time = extract_date_without_time(begin_flight_date);
