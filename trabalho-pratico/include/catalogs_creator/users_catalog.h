@@ -28,7 +28,7 @@ void users_catalog_free(UsersCatalog users_catalog);
  * @param UsersCatalog The users catalog
  * @param User The user to be inserted
  */
-void insert_user(UsersCatalog, User);
+void insert_user(UsersCatalog users_catalogs, User users);
 
 /**
  * @brief Will search by the user on the catalog. Will return NULL if not found

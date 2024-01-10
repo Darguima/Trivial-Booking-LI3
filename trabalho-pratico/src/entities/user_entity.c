@@ -5,6 +5,8 @@
 #include "catalogs_creator/reservations_catalog.h"
 #include "catalogs_creator/users_catalog.h"
 #include "utils/calculate_stats.h"
+#include "utils/compare_flights_dates.h"
+#include "utils/compare_reservations_dates.h"
 #include "utils/is_active.h"
 
 struct user {
@@ -133,12 +135,40 @@ char* user_get_passport(User user) {
 
 void user_add_flight(User user, Flight flight) {
   g_array_append_val(user->flights->values, flight);
+  user->flights->is_sorted = false;
 }
 
 void user_add_reservation(User user, Reservation reservation) {
   g_array_append_val(user->reservations->values, reservation);
+  user->reservations->is_sorted = false;
 }
 
 bool user_get_is_active(User user) {
   return user->account_status;
+}
+
+bool user_get_flights_sorted(RelationArray flights) {
+  return flights->is_sorted;
+}
+
+bool user_get_reservations_sorted(RelationArray reservations) {
+  return reservations->is_sorted;
+}
+
+void user_sort_flights_array(RelationArray flights) {
+  g_array_sort(flights->values, compare_flights_dates);
+  flights->is_sorted = true;
+}
+
+void user_sort_reservations_array(RelationArray reservations) {
+  g_array_sort(reservations->values, compare_reservations_dates);
+  reservations->is_sorted = true;
+}
+
+GArray* user_get_flights_array(RelationArray flights) {
+  return flights->values;
+}
+
+GArray* user_get_reservations_array(RelationArray reservations) {
+  return reservations->values;
 }

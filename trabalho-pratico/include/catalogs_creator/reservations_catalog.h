@@ -30,7 +30,7 @@ void reservations_catalog_free(ReservationsCatalog reservations_catalog);
  * @param ReservationsCatalog The reservations catalog
  * @param Reservation The reservation to be inserted
  */
-void insert_reservation(ReservationsCatalog, Reservation);
+void insert_reservation(ReservationsCatalog reservations_catalogs, Reservation reservation);
 
 /**
  * @brief Will search by the reservation on the catalog. Will return NULL if not found

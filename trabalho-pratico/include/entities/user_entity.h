@@ -101,4 +101,16 @@ char* user_get_country_code(User user);
 
 char* user_get_passport(User user);
 
+bool user_get_flights_sorted(RelationArray flights);
+
+bool user_get_reservations_sorted(RelationArray reservations);
+
+void user_sort_flights_array(RelationArray flights);
+
+void user_sort_reservations_array(RelationArray reservations);
+
+GArray* user_get_flights_array(RelationArray flights);
+
+GArray* user_get_reservations_array(RelationArray reservations);
+
 #endif

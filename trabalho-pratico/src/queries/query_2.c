@@ -8,49 +8,6 @@
 #include "utils/extract_date_without_time.h"
 #include "write_output/write_output.h"
 
-gint compare_reservations_dates(gconstpointer a, gconstpointer b) {
-  Reservation reservation_1 = *(Reservation*)a;
-  Reservation reservation_2 = *(Reservation*)b;
-
-  char* begin_date_1 = reservation_get_begin_date(reservation_1);
-  char* begin_date_2 = reservation_get_begin_date(reservation_2);
-  int date_cmp = (int)(convert_string_to_seconds(begin_date_2) - convert_string_to_seconds(begin_date_1));
-  free(begin_date_1);
-  free(begin_date_2);
-  if (date_cmp != 0) {
-    return date_cmp;
-  } else {
-    char* id_1 = reservation_get_id(reservation_1);
-    char* id_2 = reservation_get_id(reservation_2);
-    int comp = strcmp(id_1, id_2);
-    free(id_1);
-    free(id_2);
-    return comp;
-  }
-}
-
-gint compare_flights_dates(gconstpointer a, gconstpointer b) {
-  Flight flight_1 = *(Flight*)a;
-  Flight flight_2 = *(Flight*)b;
-
-  char* begin_date_1 = flight_get_begin_date(flight_1);
-  char* begin_date_2 = flight_get_begin_date(flight_2);
-
-  int date_cmp = (int)(convert_string_to_seconds(begin_date_2) - convert_string_to_seconds(begin_date_1));
-  free(begin_date_1);
-  free(begin_date_2);
-  if (date_cmp != 0) {
-    return date_cmp;
-  } else {
-    char* id_1 = flight_get_id(flight_1);
-    char* id_2 = flight_get_id(flight_2);
-    int comp = strcmp(id_1, id_2);
-    free(id_1);
-    free(id_2);
-    return comp;
-  }
-}
-
 int query_2(Catalogs catalogs, int command_number, bool format_flag, char* id, char* optional) {
   FILE* output_file = create_output_file(command_number);
   User user = get_user_by_id(catalogs->users, id);
@@ -61,22 +18,22 @@ int query_2(Catalogs catalogs, int command_number, bool format_flag, char* id, c
   int result_acc = 1;
   if (optional == NULL) {
     RelationArray flights_array = user_get_flights(user);
-    if (!flights_array->is_sorted) {
-      g_array_sort(flights_array->values, compare_flights_dates);
-      flights_array->is_sorted = 1;
+    if (!user_get_flights_sorted(flights_array)) {
+      user_sort_flights_array(flights_array);
     }
 
     RelationArray reservations_array = user_get_reservations(user);
-    if (!reservations_array->is_sorted) {
-      g_array_sort(reservations_array->values, compare_reservations_dates);
-      reservations_array->is_sorted = 1;
+    if (!user_get_reservations_sorted(reservations_array)) {
+      user_sort_reservations_array(reservations_array);
     }
+    GArray* array_of_flights = user_get_flights_array(flights_array);
+    GArray* array_of_reservations = user_get_reservations_array(reservations_array);
 
     guint flights_i = 0;
     guint reservations_i = 0;
-    while (flights_i < flights_array->values->len && reservations_i < reservations_array->values->len) {
-      Flight flight = g_array_index(flights_array->values, Flight, flights_i);
-      Reservation reservation = g_array_index(reservations_array->values, Reservation, reservations_i);
+    while (flights_i < array_of_flights->len && reservations_i < array_of_reservations->len) {
+      Flight flight = g_array_index(array_of_flights, Flight, flights_i);
+      Reservation reservation = g_array_index(array_of_reservations, Reservation, reservations_i);
       char* begin_flight_date = flight_get_begin_date(flight);
       char* begin_reservation_date = reservation_get_begin_date(reservation);
       int date_cmp =
@@ -104,9 +61,9 @@ int query_2(Catalogs catalogs, int command_number, bool format_flag, char* id, c
         free(begin_reservation_date);
       }
     }
-    if (flights_i == flights_array->values->len) {
-      for (guint i = reservations_i; i < reservations_array->values->len; i++) {
-        Reservation reservation = g_array_index(reservations_array->values, Reservation, i);
+    if (flights_i == array_of_flights->len) {
+      for (guint i = reservations_i; i < array_of_reservations->len; i++) {
+        Reservation reservation = g_array_index(array_of_reservations, Reservation, i);
         char* begin_date = reservation_get_begin_date(reservation);
         char* reservation_id = reservation_get_id(reservation);
         output_key_value output_array[] = {{"id", reservation_id}, {"date", begin_date}, {"type", "reservation"}};
@@ -119,8 +76,8 @@ int query_2(Catalogs catalogs, int command_number, bool format_flag, char* id, c
     }
 
     else {
-      for (guint i = flights_i; i < flights_array->values->len; i++) {
-        Flight flight = g_array_index(flights_array->values, Flight, i);
+      for (guint i = flights_i; i < array_of_flights->len; i++) {
+        Flight flight = g_array_index(array_of_flights, Flight, i);
         char* begin_date = flight_get_begin_date(flight);
         char* begin_date_without_time = extract_date_without_time(begin_date);
         char* flight_id = flight_get_id(flight);
@@ -134,12 +91,12 @@ int query_2(Catalogs catalogs, int command_number, bool format_flag, char* id, c
 
   } else if (!strcmp("flights", optional)) {
     RelationArray flights_array = user_get_flights(user);
-    if (!flights_array->is_sorted) {
-      g_array_sort(flights_array->values, compare_flights_dates);
-      flights_array->is_sorted = 1;
+    if (!user_get_flights_sorted(flights_array)) {
+      user_sort_flights_array(flights_array);
     }
-    for (guint i = 0; i < flights_array->values->len; i++) {
-      Flight flight = g_array_index(flights_array->values, Flight, i);
+    GArray* array_of_flights = user_get_flights_array(flights_array);
+    for (guint i = 0; i < array_of_flights->len; i++) {
+      Flight flight = g_array_index(array_of_flights, Flight, i);
       char* begin_date = flight_get_begin_date(flight);
       char* begin_date_without_time = extract_date_without_time(begin_date);
       char* flight_id = flight_get_id(flight);
@@ -151,12 +108,12 @@ int query_2(Catalogs catalogs, int command_number, bool format_flag, char* id, c
     }
   } else {
     RelationArray reservations_array = user_get_reservations(user);
-    if (!reservations_array->is_sorted) {
-      g_array_sort(reservations_array->values, compare_reservations_dates);
-      reservations_array->is_sorted = 1;
+    if (!user_get_reservations_sorted(reservations_array)) {
+      user_sort_reservations_array(reservations_array);
     }
-    for (guint i = 0; i < reservations_array->values->len; i++) {
-      Reservation reservation = g_array_index(reservations_array->values, Reservation, i);
+    GArray* array_of_reservations = user_get_reservations_array(reservations_array);
+    for (guint i = 0; i < array_of_reservations->len; i++) {
+      Reservation reservation = g_array_index(array_of_reservations, Reservation, i);
       char* begin_date = reservation_get_begin_date(reservation);
       char* reservation_id = reservation_get_id(reservation);
       output_key_value output_array[] = {{"id", reservation_id}, {"date", begin_date}};
