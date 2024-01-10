@@ -36,7 +36,7 @@ int query_1(Catalogs catalogs, int command_number, bool format_flag, char* id) {
   }
 
   // from catalogs_creator/flights_catalog.h
-  Flight flight_test = get_flight_by_id(catalogs->flights, 0000000001);
+  Flight flight_test = get_flight_by_id(catalogs->flights, 834);
 
   if (flight_test == NULL) {
     printf("flight_test is NULL\n");

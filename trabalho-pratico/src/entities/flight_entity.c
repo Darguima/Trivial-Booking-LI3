@@ -46,8 +46,12 @@ Flight create_new_flight(FlightsCatalog flights_catalog, char** flight_values) {
   return new_flight;
 }
 
-void free_flight(gpointer value) {
-  Flight flight = (Flight)value;
+void free_flight(Flight* value) {
+  Flight flight = *value;
+
+  if (flight == NULL) {
+    return;
+  }
 
   g_free(flight->airline);
   g_free(flight->plane_model);
