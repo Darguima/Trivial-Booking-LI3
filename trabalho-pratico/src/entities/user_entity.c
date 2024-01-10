@@ -139,6 +139,6 @@ void user_add_reservation(User user, Reservation reservation) {
   g_array_append_val(user->reservations->values, reservation);
 }
 
-bool user_is_active(User user) {
+bool user_get_is_active(User user) {
   return user->account_status;
 }

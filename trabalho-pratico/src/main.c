@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <sys/resource.h>
 #include "catalog_filler/catalog_filler.h"
 #include "catalogs_creator/catalogs_creator.h"
 #include "output/batch.h"

@@ -54,7 +54,7 @@ gint compare_flights_dates(gconstpointer a, gconstpointer b) {
 int query_2(Catalogs catalogs, int command_number, bool format_flag, char* id, char* optional) {
   FILE* output_file = create_output_file(command_number);
   User user = get_user_by_id(catalogs->users, id);
-  if (user == NULL || !user_is_active(user)) {
+  if (user == NULL || !user_get_is_active(user)) {
     fclose(output_file);
     return 0;
   }

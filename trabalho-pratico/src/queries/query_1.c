@@ -21,7 +21,7 @@ bool verify_if_is_reservation(char* id) {
 
 void write_user_data(char* id, Catalogs catalogs, FILE* output_file, bool format_flag) {
   User user = get_user_by_id(catalogs->users, id);
-  if (user == NULL || !user_is_active(user)) {
+  if (user == NULL || !user_get_is_active(user)) {
     return;
   }
 
@@ -97,7 +97,7 @@ void write_flight_data(char* id, Catalogs catalogs, FILE* output_file, bool form
   char* origin = flight_get_origin(flight);
   char* destination = flight_get_destination(flight);
   char* schedule_departure_date = flight_get_begin_date(flight);
-  char* schedule_arrival_date = flight_get_arrival_date(flight);
+  char* schedule_arrival_date = flight_get_schedule_arrival_date(flight);
 
   output_key_value output_array[] = {{"airline", airline},
                                      {"plane_model", plane_model},

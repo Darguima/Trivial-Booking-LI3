@@ -60,7 +60,7 @@ char* flight_get_origin(Flight flight);
 
 char* flight_get_destination(Flight flight);
 
-char* flight_get_arrival_date(Flight flight);
+char* flight_get_schedule_arrival_date(Flight flight);
 
 /**
  * @brief Will return the airline from the given flight

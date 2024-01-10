@@ -98,7 +98,7 @@ char* flight_get_destination(Flight flight) {
   return g_strdup(flight->destination);
 }
 
-char* flight_get_arrival_date(Flight flight) {
+char* flight_get_schedule_arrival_date(Flight flight) {
   return g_strdup(flight->schedule_arrival_date);
 }
 
