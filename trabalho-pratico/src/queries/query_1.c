@@ -36,17 +36,16 @@ int query_1(Catalogs catalogs, int command_number, bool format_flag, char* id) {
   }
 
   // from catalogs_creator/flights_catalog.h
-  Flight flight_test = get_flight_by_id(catalogs->flights, "0000000001");
+  Flight flight_test = get_flight_by_id(catalogs->flights, 0000000001);
 
   if (flight_test == NULL) {
     printf("flight_test is NULL\n");
   } else {
     // from entities/flight_entity.h
-    char* flight_id = flight_get_id(flight_test);
+    int flight_id = flight_get_id(flight_test);
     int flight_seats = flight_get_total_seats(flight_test);
-    printf("flight_id: %s\n", flight_id);
+    printf("flight_id: %d\n", flight_id);
     printf("flight_total_seats: %i\n", flight_seats);
-    free(flight_id);
   }
 
   // from catalogs_creator/reservations_catalog.h

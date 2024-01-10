@@ -36,7 +36,7 @@ void free_flight(gpointer value);
  * @param flight The flight to get the id from
  * @return char* The id from the given flight
  */
-char* flight_get_id(Flight flight);
+int flight_get_id(Flight flight);
 
 /**
  * @brief Will return the total seats from the given flight

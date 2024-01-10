@@ -7,7 +7,7 @@
 #include "utils/string_to_upper.h"
 
 struct flight {
-  char* id;
+  int id;
   char* airline;
   char* plane_model;
   int total_seats;
@@ -27,7 +27,7 @@ struct flight {
 Flight create_new_flight(FlightsCatalog flights_catalog, char** flight_values) {
   Flight new_flight = malloc(sizeof(struct flight));
 
-  new_flight->id = g_strdup(flight_values[0]);
+  new_flight->id = string_to_int(flight_values[0]);
   new_flight->airline = g_strdup(flight_values[1]);
   new_flight->plane_model = g_strdup(flight_values[2]);
   new_flight->total_seats = string_to_int(flight_values[3]);
@@ -49,7 +49,6 @@ Flight create_new_flight(FlightsCatalog flights_catalog, char** flight_values) {
 void free_flight(gpointer value) {
   Flight flight = (Flight)value;
 
-  g_free(flight->id);
   g_free(flight->airline);
   g_free(flight->plane_model);
   g_free(flight->origin);
@@ -62,8 +61,8 @@ void free_flight(gpointer value) {
   g_free(flight);
 }
 
-char* flight_get_id(Flight flight) {
-  return g_strdup(flight->id);
+int flight_get_id(Flight flight) {
+  return flight->id;
 }
 
 int flight_get_total_seats(Flight flight) {
