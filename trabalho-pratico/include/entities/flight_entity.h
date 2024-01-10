@@ -47,6 +47,30 @@ int flight_get_id(Flight flight);
 int flight_get_total_seats(Flight flight);
 
 /**
+ * @brief Will return the origin airport id from the given flight
+ *
+ * @param flight The flight to get the origin airport id from
+ * @return char* The origin airport id from the given flight
+ */
+char* flight_get_origin_airport_id(Flight flight);
+
+/**
+ * @brief Will return the origin airport id from the given flight
+ *
+ * @param flight The flight to get the origin airport id from
+ * @return char* The origin airport id from the given flight
+ */
+char* flight_get_schedule_departure_date(Flight flight);
+
+/**
+ * @brief Will return the origin airport id from the given flight
+ *
+ * @param flight The flight to get the origin airport id from
+ * @return long* The origin airport id from the given flight
+ */
+long flight_get_delay(Flight flight);
+
+/**
  * @brief Will return the airline from the given flight
  *
  * @param flight The flight to get the airline from

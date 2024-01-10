@@ -76,18 +76,6 @@ char reservation_get_rating(Reservation reservation) {
   return reservation->rating;
 }
 
-char* reservation_get_hotel_id(Reservation reservation) {
-  return g_strdup(reservation->hotel_id);
-}
-
-char* reservation_get_hotel_name(Reservation reservation) {
-  return g_strdup(reservation->hotel_name);
-}
-
-char reservation_get_rating(Reservation reservation) {
-  return reservation->rating;
-}
-
 double reservation_get_total_price(Reservation reservation) {
   return reservation->total_price;
 }

@@ -73,6 +73,18 @@ int flight_get_total_seats(Flight flight) {
   return flight->total_seats;
 }
 
+char* flight_get_origin_airport_id(Flight flight) {
+  return g_strdup(flight->origin);
+}
+
+char* flight_get_schedule_departure_date(Flight flight) {
+  return g_strdup(flight->schedule_departure_date);
+}
+
+long flight_get_delay(Flight flight) {
+  return flight->delay;
+}
+
 void flight_increment_seat(Flight flight, int number_of_seats) {
   flight->total_seats += number_of_seats;
 }
