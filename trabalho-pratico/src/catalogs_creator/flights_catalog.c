@@ -9,7 +9,7 @@ struct flights_catalog {
 FlightsCatalog flights_catalog_create() {
   FlightsCatalog flights_catalog = malloc(sizeof(struct flights_catalog));
 
-  flights_catalog->flights_array = g_array_new(false, false, sizeof(Flight));
+  flights_catalog->flights_array = g_array_new(false, true, sizeof(Flight));
   g_array_set_clear_func(flights_catalog->flights_array, (GDestroyNotify)free_flight);
 
   return flights_catalog;

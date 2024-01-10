@@ -9,7 +9,7 @@ struct reservations_catalog {
 ReservationsCatalog reservations_catalog_create() {
   ReservationsCatalog reservations_catalog = malloc(sizeof(struct reservations_catalog));
 
-  reservations_catalog->reservations_array = g_array_new(false, false, sizeof(Reservation));
+  reservations_catalog->reservations_array = g_array_new(false, true, sizeof(Reservation));
   g_array_set_clear_func(reservations_catalog->reservations_array, (GDestroyNotify)free_reservation);
 
   return reservations_catalog;
