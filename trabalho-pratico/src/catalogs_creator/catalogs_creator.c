@@ -10,7 +10,6 @@ Catalogs catalogs_creator() {
 
   catalogs->users = users_catalog_create();
   catalogs->flights = flights_catalog_create();
-  // catalogs->passengers = passengers_catalog_create();
   catalogs->reservations = reservations_catalog_create();
 
   printf("[STATUS] - Catalogs created\n");
@@ -21,7 +20,6 @@ Catalogs catalogs_creator() {
 void free_catalogs(Catalogs catalogs) {
   users_catalog_free(catalogs->users);
   flights_catalog_free(catalogs->flights);
-  // passengers_catalog_free(catalogs->passengers);
   reservations_catalog_free(catalogs->reservations);
 
   free(catalogs);

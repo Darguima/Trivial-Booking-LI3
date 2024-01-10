@@ -68,6 +68,7 @@ void write_reservation_data(char* id, Catalogs catalogs, FILE* output_file, bool
   char* hotel_name = reservation_get_hotel_name(reservation);
   bool includes_breakfast = reservation_get_breakfast(reservation);
 
+
   output_key_value output_array[] = {
       {"hotel_id", hotel_id},       {"hotel_name", hotel_name},
       {"hotel_stars", hotel_stars}, {"begin_date", begin_date},
@@ -134,5 +135,6 @@ int query_1(Catalogs catalogs, int command_number, bool format_flag, char* id) {
   }
 
   close_output_file(output_file);
+
   return 0;
 }
