@@ -76,7 +76,6 @@ int query_2(Catalogs catalogs, int command_number, bool format_flag, char* id, c
       result_acc++;
       flights_i++;
     } else {
-      
       char* reservation_id = reservation_get_id(reservation);
       if (optional != NULL && date_cmp == 1) {
         output_key_value output_array[] = {{"id", reservation_id}, {"date", begin_reservation_date}};
