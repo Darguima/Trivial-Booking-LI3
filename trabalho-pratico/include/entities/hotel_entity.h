@@ -62,4 +62,8 @@ int hotel_get_rating(Hotel hotel);
  */
 void hotel_insert_new_reservation(HotelsCatalog hotels_catalog, Reservation reservation);
 
+GArray* hotel_get_reservations(Hotel hotel);
+
+int hotel_get_total_revenue(Hotel hotel, char* begin_date, char* end_date);
+
 #endif
