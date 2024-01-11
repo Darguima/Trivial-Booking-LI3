@@ -9,57 +9,131 @@
 #include "entities/flight_entity.h"
 #include "entities/user_entity.h"
 #include "utils/calculate_stats.h"
+#include "values_parser/verify_values.h"
 #include "write_output/write_output.h"
 
+bool verify_if_is_reservation(char* id) {
+  if (strncmp(id, "Book", 4) == 0) {
+    return (verify_if_is_digit(id + 4));
+  }
+  return false;
+}
+
+void write_user_data(char* id, Catalogs catalogs, FILE* output_file, bool format_flag) {
+  User user = get_user_by_id(catalogs->users, id);
+  if (user == NULL || !user_get_is_active(user)) {
+    return;
+  }
+
+  char* number_of_flights = int_to_string(user_get_number_of_flights(user));
+  char* number_of_reservations = int_to_string(user_get_number_of_reservations(user));
+  char* total_spent = double_to_string(user_get_total_spent(user), 3);
+  char* user_age = int_to_string(user_get_age(user));
+  char* country_code = user_get_country_code(user);
+  char* passport = user_get_passport(user);
+  char* sex = user_get_sex(user);
+  char* name = user_get_name(user);
+
+  output_key_value output_array[] = {{"name", name},
+                                     {"sex", sex},
+                                     {"age", user_age},
+                                     {"country_code", country_code},
+                                     {"passport", passport},
+                                     {"number_of_flights", number_of_flights},
+                                     {"number_of_reservations", number_of_reservations},
+                                     {"total_spent", total_spent}};
+
+  write_output(output_file, format_flag, 1, output_array, 8);
+  free(number_of_flights);
+  free(number_of_reservations);
+  free(total_spent);
+  free(user_age);
+  free(passport);
+  free(country_code);
+  free(sex);
+  free(name);
+}
+
+void write_reservation_data(char* id, Catalogs catalogs, FILE* output_file, bool format_flag) {
+  Reservation reservation = get_reservation_by_id(catalogs->reservations, id);
+  if (reservation == NULL) {
+    return;
+  }
+  char* total_price = double_to_string(reservation_get_total_price(reservation), 3);
+  char* hotel_stars = int_to_string(reservation_get_hotel_stars(reservation));
+  char* begin_date = reservation_get_begin_date(reservation);
+  char* end_date = reservation_get_end_date(reservation);
+  char* nights = int_to_string(get_days_difference(begin_date, end_date));
+  char* hotel_id = reservation_get_hotel_id(reservation);
+  char* hotel_name = reservation_get_hotel_name(reservation);
+  bool includes_breakfast = reservation_get_breakfast(reservation);
+
+  output_key_value output_array[] = {
+      {"hotel_id", hotel_id},       {"hotel_name", hotel_name},
+      {"hotel_stars", hotel_stars}, {"begin_date", begin_date},
+      {"end_date", end_date},       {"includes_breakfast", includes_breakfast ? "True" : "False"},
+      {"nights", nights},           {"total_price", total_price}};
+  write_output(output_file, format_flag, 1, output_array, 8);
+
+  free(total_price);
+  free(hotel_stars);
+  free(nights);
+  free(begin_date);
+  free(end_date);
+  free(hotel_id);
+  free(hotel_name);
+}
+
+void write_flight_data(char* id, Catalogs catalogs, FILE* output_file, bool format_flag) {
+  Flight flight = get_flight_by_id(catalogs->flights, id);
+  if (flight == NULL) {
+    return;
+  }
+
+  char* number_of_passengers = int_to_string(flight_get_number_of_passengers(flight));
+  char* delay = int_to_string((int)flight_get_delay(flight));
+  char* airline = flight_get_airline(flight);
+  char* plane_model = flight_get_plane_model(flight);
+  char* origin = flight_get_origin(flight);
+  char* destination = flight_get_destination(flight);
+  char* schedule_departure_date = flight_get_schedule_departure_date(flight);
+  char* schedule_arrival_date = flight_get_schedule_arrival_date(flight);
+
+  output_key_value output_array[] = {{"airline", airline},
+                                     {"plane_model", plane_model},
+                                     {"origin", origin},
+                                     {"destination", destination},
+                                     {"schedule_departure_date", schedule_departure_date},
+                                     {"schedule_arrival_date", schedule_arrival_date},
+                                     {"passengers", number_of_passengers},
+                                     {"delay", delay}};
+  write_output(output_file, format_flag, 1, output_array, 8);
+  free(number_of_passengers);
+  free(delay);
+  free(airline);
+  free(plane_model);
+  free(origin);
+  free(destination);
+  free(schedule_arrival_date);
+  free(schedule_departure_date);
+}
+
 int query_1(Catalogs catalogs, int command_number, bool format_flag, char* id) {
-  printf("I'm in query_1\n");
-  UNUSED(catalogs);
-  UNUSED(command_number);
-  UNUSED(format_flag);
-  UNUSED(id);
+  FILE* output_file = create_output_file(command_number);
 
-  printf("Example ==============\n");
-
-  // from catalogs_creator/users_catalog.h
-  User user_test = get_user_by_id(catalogs->users, "TomNunes92");
-
-  if (user_test == NULL) {
-    printf("user_test is NULL\n");
-  } else {
-    // from entities/user_entity.h
-    char* user_id = user_get_id(user_test);
-    char* user_name = user_get_name(user_test);
-    printf("user_id: %s\n", user_id);
-    printf("user_name: %s\n", user_name);
-    free(user_id);
-    free(user_name);
+  if (verify_if_is_digit(id)) {
+    write_flight_data(id, catalogs, output_file, format_flag);
   }
 
-  // from catalogs_creator/flights_catalog.h
-  Flight flight_test = get_flight_by_id(catalogs->flights, 834);
-
-  if (flight_test == NULL) {
-    printf("flight_test is NULL\n");
-  } else {
-    // from entities/flight_entity.h
-    int flight_id = flight_get_id(flight_test);
-    int flight_seats = flight_get_total_seats(flight_test);
-    printf("flight_id: %d\n", flight_id);
-    printf("flight_total_seats: %i\n", flight_seats);
+  else if (verify_if_is_reservation(id)) {
+    write_reservation_data(id, catalogs, output_file, format_flag);
   }
 
-  // from catalogs_creator/reservations_catalog.h
-  Reservation reservation_test = get_reservation_by_id(catalogs->reservations, 0000000021);
-
-  if (reservation_test == NULL) {
-    printf("reservation_test is NULL\n");
-  } else {
-    // from entities/reservation_entity.h
-    int reservation_id = reservation_get_id(reservation_test);
-    double reservation_price = reservation_get_total_price(reservation_test);
-    printf("reservation_id: %d\n", reservation_id);
-    printf("reservation_total_price: %f\n", reservation_price);
+  else {
+    write_user_data(id, catalogs, output_file, format_flag);
   }
+
+  close_output_file(output_file);
 
   return 0;
 }

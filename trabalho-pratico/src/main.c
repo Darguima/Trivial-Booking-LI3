@@ -55,6 +55,7 @@ int main(int argc, char** argv) {
   } else if (argc == 1) {
     interactive();
   }
+
   free_catalogs(catalogs);
 
   return 0;
