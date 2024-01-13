@@ -77,6 +77,10 @@ char* flight_get_origin_airport_id(Flight flight) {
   return g_strdup(flight->origin);
 }
 
+char* flight_get_destination_airport_id(Flight flight) {
+  return g_strdup(flight->destination);
+}
+
 int flight_get_number_of_passengers(Flight flight) {
   return flight->number_of_passengers;
 }

@@ -76,6 +76,14 @@ char* flight_get_origin_airport_id(Flight flight);
  * @param flight The flight to get the origin airport id from
  * @return char* The origin airport id from the given flight
  */
+char* flight_get_destination_airport_id(Flight flight);
+
+/**
+ * @brief Will return the origin airport id from the given flight
+ *
+ * @param flight The flight to get the origin airport id from
+ * @return char* The origin airport id from the given flight
+ */
 char* flight_get_schedule_departure_date(Flight flight);
 
 /**
@@ -87,11 +95,11 @@ char* flight_get_schedule_departure_date(Flight flight);
 long flight_get_delay(Flight flight);
 
 /**
- * @brief Will return the airline from the given flight
+ * @brief Will increment the number of passengers from the given flight
  *
- * @param flight The flight to get the airline from
- * @return char* The airline from the given flight
+ * @param flight The flight to increment the number of passengers
+ * @param number_of_passengers The number of passengers to increment
  */
-void flight_increment_seat(Flight flight, int number_of_seats);
+void flight_increment_passengers(Flight flight, int number_of_passengers);
 
 #endif

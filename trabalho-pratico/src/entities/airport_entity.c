@@ -77,19 +77,25 @@ int airport_get_passengers(Airport airport, int year) {
 }
 
 void airport_insert_new_flight(AirportsCatalog airports_catalog, Flight flight) {
-  char* airport_id = flight_get_origin_airport_id(flight);
+  char* airport_id_o = flight_get_origin_airport_id(flight);
+  Airport airport_o = get_airport_by_id(airports_catalog, airport_id_o);
+  if (airport_o == NULL) {
+    airport_o = create_new_airport(airports_catalog, airport_id_o);
+  }
 
-  Airport airport = get_airport_by_id(airports_catalog, airport_id);
-  if (airport == NULL) {
-    airport = create_new_airport(airports_catalog, airport_id);
+  char* airport_id_d = flight_get_destination_airport_id(flight);
+  Airport airport_d = get_airport_by_id(airports_catalog, airport_id_d);
+  if (airport_d == NULL) {
+    airport_d = create_new_airport(airports_catalog, airport_id_d);
   }
 
   long delay = flight_get_delay(flight);
 
-  g_array_append_val(airport->flights->values, flight);
-  g_array_append_val(airport->delays->values, delay);
+  g_array_append_val(airport_o->flights->values, flight);
+  g_array_append_val(airport_o->delays->values, delay);
 
-  g_free(airport_id);
+  g_free(airport_id_o);
+  g_free(airport_id_d);
 }
 
 void airport_increment_passengers(Airport airport, char* date, int passengers) {
