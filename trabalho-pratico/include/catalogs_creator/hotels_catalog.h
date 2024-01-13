@@ -28,7 +28,7 @@ void hotels_catalog_free(HotelsCatalog hotels_catalog);
  * @param HotelsCatalog The hotels catalog
  * @param Hotel The hotel to be inserted
  */
-void insert_hotel(HotelsCatalog, Hotel);
+void insert_hotel(HotelsCatalog hotels_catalogs, Hotel hotel);
 
 /**
  * @brief Will search by the hotel on the catalog. Will return NULL if not found

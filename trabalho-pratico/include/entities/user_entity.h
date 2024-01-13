@@ -6,6 +6,7 @@
 #include "catalogs_creator/flights_catalog.h"
 #include "catalogs_creator/reservations_catalog.h"
 #include "catalogs_creator/users_catalog.h"
+#include "datatypes/datatypes.h"
 
 typedef struct users_catalog* UsersCatalog;
 
@@ -52,21 +53,9 @@ char* user_get_id(User user);
  */
 char* user_get_name(User user);
 
-/**
- * @brief Increments the total number of reservations for a user
- *
- * @param user The user to increment the number of reservations
- * @param number_of_reservations The number of reservations to increment
- */
-void user_increment_reservations(User user, int number_of_reservations);
+GArray* user_get_reservations(User user);
 
-/**
- * @brief Increments the total number of flights for a user
- *
- * @param user The user to increment the number of flights
- * @param number_of_flights The number of flights to increment
- */
-void user_increment_flights(User user, int number_of_flights);
+GArray* user_get_flights(User user);
 
 /**
  * @brief Increments the total amount spent by a user due to a reservation
@@ -79,5 +68,29 @@ void user_increment_total_spent(User user, double total_reservation_price);
 void user_add_flight(User user, Flight flight);
 
 void user_add_reservation(User user, Reservation reservation);
+
+bool user_get_is_active(User user);
+
+int user_get_number_of_flights(User user);
+
+int user_get_number_of_reservations(User user);
+
+double user_get_total_spent(User user);
+
+int user_get_age(User user);
+
+char* user_get_sex(User user);
+
+char* user_get_country_code(User user);
+
+char* user_get_passport(User user);
+
+bool user_get_flights_sorted(RelationArray flights);
+
+bool user_get_reservations_sorted(RelationArray reservations);
+
+void user_sort_flights_array(RelationArray flights);
+
+void user_sort_reservations_array(RelationArray reservations);
 
 #endif

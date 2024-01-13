@@ -30,7 +30,7 @@ void flights_catalog_free(FlightsCatalog flights_catalog);
  * @param FlightsCatalog The flights catalog
  * @param Flight The flight to be inserted
  */
-void insert_flight(FlightsCatalog, Flight);
+void insert_flight(FlightsCatalog flights_catalog, Flight flight);
 
 /**
  * @brief Will search by the flight on the catalog. Will return NULL if not found
