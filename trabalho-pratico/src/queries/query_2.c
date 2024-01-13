@@ -75,20 +75,18 @@ int query_2(Catalogs catalogs, int command_number, bool format_flag, char* id, c
       }
       result_acc++;
       flights_i++;
-    } else if (optional != NULL && date_cmp == 1) {
-      char* reservation_id = reservation_get_id(reservation);
-      output_key_value output_array[] = {{"id", reservation_id}, {"date", begin_reservation_date}};
-      write_output(output_file, format_flag, result_acc, output_array, 2);
-
-      reservations_i++;
-      result_acc++;
-      free(reservation_id);
-      free(begin_reservation_date);
     } else {
       char* reservation_id = reservation_get_id(reservation);
-      output_key_value output_array[] = {
-          {"id", reservation_id}, {"date", begin_reservation_date}, {"type", "reservation"}};
-      write_output(output_file, format_flag, result_acc, output_array, 3);
+      if (optional != NULL && date_cmp == 1) {
+        output_key_value output_array[] = {{"id", reservation_id}, {"date", begin_reservation_date}};
+        write_output(output_file, format_flag, result_acc, output_array, 2);
+
+      } else {
+        output_key_value output_array[] = {
+            {"id", reservation_id}, {"date", begin_reservation_date}, {"type", "reservation"}};
+        write_output(output_file, format_flag, result_acc, output_array, 3);
+      }
+
       reservations_i++;
       result_acc++;
       free(reservation_id);
