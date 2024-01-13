@@ -59,8 +59,8 @@ int query_2(Catalogs catalogs, int command_number, bool format_flag, char* id, c
       date_cmp = 1;
 
     if (date_cmp <= 0) {
-      int flight_id_int = flight_get_id(flight);
-      char* flight_id = int_to_string(flight_id_int);
+      char flight_id[11];
+      sprintf(flight_id, "%010d", flight_get_id(flight));
 
       char* begin_flight_date_without_time = extract_date_without_time(begin_flight_date);
       if (optional != NULL && date_cmp == -1) {
@@ -71,7 +71,6 @@ int query_2(Catalogs catalogs, int command_number, bool format_flag, char* id, c
             {"id", flight_id}, {"date", begin_flight_date_without_time}, {"type", "flight"}};
         write_output(output_file, format_flag, result_acc, output_array, 3);
       }
-      free(flight_id);
       free(begin_flight_date_without_time);
       if (begin_reservation_date) {
         free(begin_reservation_date);
@@ -79,8 +78,8 @@ int query_2(Catalogs catalogs, int command_number, bool format_flag, char* id, c
       result_acc++;
       flights_i++;
     } else {
-      int reservation_id_in = reservation_get_id(reservation);
-      char* reservation_id = int_to_string(reservation_id_in);
+      char reservation_id[16];
+      sprintf(reservation_id, "Book%010d", reservation_get_id(reservation));
 
       if (optional != NULL && date_cmp == 1) {
         output_key_value output_array[] = {{"id", reservation_id}, {"date", begin_reservation_date}};
@@ -94,7 +93,6 @@ int query_2(Catalogs catalogs, int command_number, bool format_flag, char* id, c
 
       reservations_i++;
       result_acc++;
-      free(reservation_id);
       free(begin_reservation_date);
       if (begin_flight_date) {
         free(begin_flight_date);
