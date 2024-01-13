@@ -6,6 +6,7 @@
 #include "datatypes/datatypes.h"
 #include "utils/convert_string_to_seconds.h"
 #include "utils/extract_date_without_time.h"
+#include "utils/number_to_string.h"
 #include "write_output/write_output.h"
 
 int query_2(Catalogs catalogs, int command_number, bool format_flag, char* id, char* optional) {
@@ -58,7 +59,9 @@ int query_2(Catalogs catalogs, int command_number, bool format_flag, char* id, c
       date_cmp = 1;
 
     if (date_cmp <= 0) {
-      char* flight_id = flight_get_id(flight);
+      int flight_id_int = flight_get_id(flight);
+      char* flight_id = int_to_string(flight_id_int);
+
       char* begin_flight_date_without_time = extract_date_without_time(begin_flight_date);
       if (optional != NULL && date_cmp == -1) {
         output_key_value output_array[] = {{"id", flight_id}, {"date", begin_flight_date_without_time}};
@@ -76,7 +79,9 @@ int query_2(Catalogs catalogs, int command_number, bool format_flag, char* id, c
       result_acc++;
       flights_i++;
     } else {
-      char* reservation_id = reservation_get_id(reservation);
+      int reservation_id_in = reservation_get_id(reservation);
+      char* reservation_id = int_to_string(reservation_id_in);
+
       if (optional != NULL && date_cmp == 1) {
         output_key_value output_array[] = {{"id", reservation_id}, {"date", begin_reservation_date}};
         write_output(output_file, format_flag, result_acc, output_array, 2);
