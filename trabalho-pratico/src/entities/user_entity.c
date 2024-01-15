@@ -80,26 +80,6 @@ char* user_get_name(User user) {
   return g_strdup(user->name);
 }
 
-GArray* user_get_reservations(User user) {
-  if (!user->reservations->is_sorted) {
-    g_array_sort(user->reservations->values, compare_reservations_dates);
-    user->reservations->is_sorted = true;
-  }
-  return g_array_copy(user->reservations->values);
-}
-
-GArray* user_get_flights(User user) {
-  if (!user->flights->is_sorted) {
-    g_array_sort(user->flights->values, compare_flights_dates);
-    user->flights->is_sorted = true;
-  }
-  return g_array_copy(user->flights->values);
-}
-
-void user_increment_total_spent(User user, double total_reservation_price) {
-  user->total_spent += (double)total_reservation_price;
-}
-
 int user_get_number_of_flights(User user) {
   return (int)user->flights->values->len;
 }
@@ -128,9 +108,17 @@ char* user_get_passport(User user) {
   return g_strdup(user->passport);
 }
 
+char* user_get_account_creation(User user) {
+  return g_strdup(user->account_creation);
+}
+
 void user_add_flight(User user, Flight flight) {
   g_array_append_val(user->flights->values, flight);
   user->flights->is_sorted = false;
+}
+
+bool user_get_is_active(User user) {
+  return user->account_status;
 }
 
 void user_add_reservation(User user, Reservation reservation) {
@@ -138,32 +126,22 @@ void user_add_reservation(User user, Reservation reservation) {
   user->reservations->is_sorted = false;
 }
 
-bool user_get_is_active(User user) {
-  return user->account_status;
+GArray* user_get_reservations(User user) {
+  if (!user->reservations->is_sorted) {
+    g_array_sort(user->reservations->values, compare_reservations_dates);
+    user->reservations->is_sorted = true;
+  }
+  return g_array_copy(user->reservations->values);
 }
 
-bool user_get_flights_sorted(RelationArray flights) {
-  return flights->is_sorted;
+GArray* user_get_flights(User user) {
+  if (!user->flights->is_sorted) {
+    g_array_sort(user->flights->values, compare_flights_dates);
+    user->flights->is_sorted = true;
+  }
+  return g_array_copy(user->flights->values);
 }
 
-bool user_get_reservations_sorted(RelationArray reservations) {
-  return reservations->is_sorted;
-}
-
-void user_sort_flights_array(RelationArray flights) {
-  g_array_sort(flights->values, compare_flights_dates);
-  flights->is_sorted = true;
-}
-
-void user_sort_reservations_array(RelationArray reservations) {
-  g_array_sort(reservations->values, compare_reservations_dates);
-  reservations->is_sorted = true;
-}
-
-GArray* user_get_flights_array(RelationArray flights) {
-  return flights->values;
-}
-
-GArray* user_get_reservations_array(RelationArray reservations) {
-  return reservations->values;
+void user_increment_total_spent(User user, double total_reservation_price) {
+  user->total_spent += (double)total_reservation_price;
 }
