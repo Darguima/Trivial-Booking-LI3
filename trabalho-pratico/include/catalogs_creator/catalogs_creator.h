@@ -3,6 +3,7 @@
 #define CATALOGS_CREATOR_H
 
 #include <glib.h>
+#include "catalogs_creator/airports_catalog.h"
 #include "catalogs_creator/flights_catalog.h"
 #include "catalogs_creator/hotels_catalog.h"
 #include "catalogs_creator/reservations_catalog.h"
@@ -11,6 +12,7 @@
 //! All the entities catalogs pointers in one struct
 typedef struct catalogs {
   UsersCatalog users;
+  AirportsCatalog airports;
   FlightsCatalog flights;
   HotelsCatalog hotels;
   ReservationsCatalog reservations;

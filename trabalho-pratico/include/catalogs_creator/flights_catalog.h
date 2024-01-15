@@ -5,6 +5,8 @@
 #include <glib.h>
 #include "entities/flight_entity.h"
 
+typedef struct flight* Flight;
+
 //! The flights catalog
 typedef struct flights_catalog* FlightsCatalog;
 

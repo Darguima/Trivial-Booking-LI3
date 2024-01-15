@@ -1,5 +1,7 @@
+#include <catalogs_creator/airports_catalog.h>
 #include <catalogs_creator/catalogs_creator.h>
 #include <datatypes/datatypes.h>
+#include <entities/airport_entity.h>
 #include <entities/flight_entity.h>
 #include <entities/hotel_entity.h>
 #include <entities/reservation_entity.h>
@@ -35,7 +37,8 @@ int values_parser_flights(char** flight_values, Catalogs catalogs) {
     return 1;
   }
 
-  create_new_flight(catalogs->flights, flight_values);
+  Flight flight = create_new_flight(catalogs->flights, flight_values);
+  airport_insert_new_flight(catalogs->airports, flight);
 
   return 0;
 }
@@ -52,8 +55,22 @@ int values_parser_passengers(char** passengers_values, Catalogs catalogs) {
     return 1;
   }
 
-  flight_increment_seat(flight, 1);
+  flight_increment_passengers(flight, 1);
   user_add_flight(user, flight);
+
+  char* flight_departure_date = flight_get_schedule_departure_date(flight);
+
+  char* airport_id_o = flight_get_origin_airport_id(flight);
+  Airport airport_o = get_airport_by_id(catalogs->airports, airport_id_o);
+  airport_increment_passengers(airport_o, flight_departure_date, 1);
+
+  char* airport_id_d = flight_get_destination_airport_id(flight);
+  Airport airport_d = get_airport_by_id(catalogs->airports, airport_id_d);
+  airport_increment_passengers(airport_d, flight_departure_date, 1);
+
+  g_free(airport_id_o);
+  g_free(airport_id_d);
+  g_free(flight_departure_date);
 
   return 0;
 }

@@ -2,11 +2,15 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <utils/number_to_string.h>
+#include "catalogs_creator/airports_catalog.h"
 #include "catalogs_creator/catalogs_creator.h"
+#include "catalogs_creator/hotels_catalog.h"
 #include "catalogs_creator/users_catalog.h"
 #include "ctype.h"
 #include "datatypes/datatypes.h"
+#include "entities/airport_entity.h"
 #include "entities/flight_entity.h"
+#include "entities/hotel_entity.h"
 #include "entities/user_entity.h"
 #include "utils/calculate_stats.h"
 #include "utils/string_to_int.h"
