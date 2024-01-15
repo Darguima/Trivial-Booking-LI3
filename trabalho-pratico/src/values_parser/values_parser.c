@@ -8,6 +8,7 @@
 #include <string.h>
 #include <utils/calculate_stats.h>
 #include <values_parser/verify_values.h>
+#include "utils/string_to_int.h"
 
 int values_parser_users(char** user_values, Catalogs catalogs) {
   if (!strcmp(user_values[0], "") || !strcmp(user_values[1], "") || !strcmp(user_values[3], "") ||
@@ -44,7 +45,7 @@ int values_parser_passengers(char** passengers_values, Catalogs catalogs) {
     return 1;
   }
 
-  Flight flight = get_flight_by_id(catalogs->flights, passengers_values[0]);
+  Flight flight = get_flight_by_id(catalogs->flights, string_to_int(passengers_values[0]));
   User user = get_user_by_id(catalogs->users, passengers_values[1]);
 
   if (user == NULL || flight == NULL) {

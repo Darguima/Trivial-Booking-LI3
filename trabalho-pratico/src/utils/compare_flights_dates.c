@@ -17,11 +17,9 @@ gint compare_flights_dates(gconstpointer a, gconstpointer b) {
   if (date_cmp != 0) {
     return date_cmp;
   } else {
-    char* id_1 = flight_get_id(flight_1);
-    char* id_2 = flight_get_id(flight_2);
-    int comp = strcmp(id_1, id_2);
-    free(id_1);
-    free(id_2);
-    return comp;
+    int id_1 = flight_get_id(flight_1);
+    int id_2 = flight_get_id(flight_2);
+
+    return id_1 - id_2;
   }
 }

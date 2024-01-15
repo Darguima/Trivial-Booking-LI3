@@ -37,6 +37,6 @@ void insert_flight(FlightsCatalog flights_catalog, Flight flight);
  * @param flight_id The flight id
  * @return Flight | NULL
  */
-Flight get_flight_by_id(FlightsCatalog flights_catalog, char* flight_id);
+Flight get_flight_by_id(FlightsCatalog flights_catalog, int flight_id);
 
 #endif

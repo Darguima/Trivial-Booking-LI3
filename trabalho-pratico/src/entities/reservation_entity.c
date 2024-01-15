@@ -7,7 +7,7 @@
 #include "utils/string_to_int.h"
 
 struct reservation {
-  char* id;
+  int id;
   char* reservation_id;
   char* hotel_id;
   char* hotel_name;
@@ -27,7 +27,7 @@ struct reservation {
 Reservation create_new_reservation(ReservationsCatalog reservations_catalog, char** reservation_values) {
   Reservation new_reservation = malloc(sizeof(struct reservation));
 
-  new_reservation->id = strdup(reservation_values[0]);
+  new_reservation->id = string_to_int(reservation_values[0]);
   new_reservation->hotel_id = strdup(reservation_values[2]);
   new_reservation->hotel_name = strdup(reservation_values[3]);
   new_reservation->hotel_stars = string_to_int(reservation_values[4]);
@@ -45,10 +45,13 @@ Reservation create_new_reservation(ReservationsCatalog reservations_catalog, cha
   return new_reservation;
 }
 
-void free_reservation(gpointer value) {
-  Reservation reservation = (Reservation)value;
+void free_reservation(Reservation* value) {
+  Reservation reservation = *value;
 
-  free(reservation->id);
+  if (reservation == NULL) {
+    return;
+  }
+
   free(reservation->hotel_id);
   free(reservation->hotel_name);
   free(reservation->begin_date);
@@ -57,8 +60,8 @@ void free_reservation(gpointer value) {
   free(reservation);
 }
 
-char* reservation_get_id(Reservation reservation) {
-  return g_strdup(reservation->id);
+int reservation_get_id(Reservation reservation) {
+  return reservation->id;
 }
 
 char* reservation_get_begin_date(Reservation reservation) {

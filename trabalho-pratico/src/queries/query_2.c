@@ -6,6 +6,7 @@
 #include "datatypes/datatypes.h"
 #include "utils/convert_string_to_seconds.h"
 #include "utils/extract_date_without_time.h"
+#include "utils/number_to_string.h"
 #include "write_output/write_output.h"
 
 int query_2(Catalogs catalogs, int command_number, bool format_flag, char* id, char* optional) {
@@ -58,7 +59,9 @@ int query_2(Catalogs catalogs, int command_number, bool format_flag, char* id, c
       date_cmp = 1;
 
     if (date_cmp <= 0) {
-      char* flight_id = flight_get_id(flight);
+      char flight_id[11];
+      sprintf(flight_id, "%010d", flight_get_id(flight));
+
       char* begin_flight_date_without_time = extract_date_without_time(begin_flight_date);
       if (optional != NULL && date_cmp == -1) {
         output_key_value output_array[] = {{"id", flight_id}, {"date", begin_flight_date_without_time}};
@@ -68,7 +71,6 @@ int query_2(Catalogs catalogs, int command_number, bool format_flag, char* id, c
             {"id", flight_id}, {"date", begin_flight_date_without_time}, {"type", "flight"}};
         write_output(output_file, format_flag, result_acc, output_array, 3);
       }
-      free(flight_id);
       free(begin_flight_date_without_time);
       if (begin_reservation_date) {
         free(begin_reservation_date);
@@ -76,7 +78,9 @@ int query_2(Catalogs catalogs, int command_number, bool format_flag, char* id, c
       result_acc++;
       flights_i++;
     } else {
-      char* reservation_id = reservation_get_id(reservation);
+      char reservation_id[16];
+      sprintf(reservation_id, "Book%010d", reservation_get_id(reservation));
+
       if (optional != NULL && date_cmp == 1) {
         output_key_value output_array[] = {{"id", reservation_id}, {"date", begin_reservation_date}};
         write_output(output_file, format_flag, result_acc, output_array, 2);
@@ -89,7 +93,6 @@ int query_2(Catalogs catalogs, int command_number, bool format_flag, char* id, c
 
       reservations_i++;
       result_acc++;
-      free(reservation_id);
       free(begin_reservation_date);
       if (begin_flight_date) {
         free(begin_flight_date);

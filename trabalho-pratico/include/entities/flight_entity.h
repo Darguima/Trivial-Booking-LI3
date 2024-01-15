@@ -28,7 +28,7 @@ Flight create_new_flight(FlightsCatalog flights_catalog, char** flight_values);
  *
  * @param value The flight entity to free
  */
-void free_flight(gpointer value);
+void free_flight(Flight* value);
 
 /**
  * @brief Will return the id from the given flight
@@ -36,7 +36,7 @@ void free_flight(gpointer value);
  * @param flight The flight to get the id from
  * @return char* The id from the given flight
  */
-char* flight_get_id(Flight flight);
+int flight_get_id(Flight flight);
 
 char* flight_get_schedule_departure_date(Flight flight);
 

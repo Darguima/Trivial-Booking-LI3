@@ -9,6 +9,7 @@
 #include "entities/flight_entity.h"
 #include "entities/user_entity.h"
 #include "utils/calculate_stats.h"
+#include "utils/string_to_int.h"
 #include "values_parser/verify_values.h"
 #include "write_output/write_output.h"
 
@@ -55,7 +56,9 @@ void write_user_data(char* id, Catalogs catalogs, FILE* output_file, bool format
 }
 
 void write_reservation_data(char* id, Catalogs catalogs, FILE* output_file, bool format_flag) {
-  Reservation reservation = get_reservation_by_id(catalogs->reservations, id);
+  int id_int = string_to_int(id);
+
+  Reservation reservation = get_reservation_by_id(catalogs->reservations, id_int);
   if (reservation == NULL) {
     return;
   }
@@ -85,7 +88,9 @@ void write_reservation_data(char* id, Catalogs catalogs, FILE* output_file, bool
 }
 
 void write_flight_data(char* id, Catalogs catalogs, FILE* output_file, bool format_flag) {
-  Flight flight = get_flight_by_id(catalogs->flights, id);
+  int id_int = string_to_int(id);
+
+  Flight flight = get_flight_by_id(catalogs->flights, id_int);
   if (flight == NULL) {
     return;
   }
