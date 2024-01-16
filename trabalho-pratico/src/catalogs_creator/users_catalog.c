@@ -1,6 +1,5 @@
 #include "catalogs_creator/users_catalog.h"
 #include <stdlib.h>
-#include <string.h>
 #include "entities/user_entity.h"
 #include "utils/compare_tree_str_keys.h"
 #include "utils/find_tree_nodes_inside_date_range.h"
