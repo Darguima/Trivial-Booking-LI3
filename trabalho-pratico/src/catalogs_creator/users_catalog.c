@@ -34,10 +34,8 @@ User get_user_by_id(UsersCatalog users_catalog, char* user_id) {
   return (User)g_hash_table_lookup(users_catalog->users_hash_table, user_id);
 }
 
-GList* get_users_by_account_creation_range(UsersCatalog users_catalog,
-                                           char* account_creation_begin,
-                                           char* account_creation_end) {
-  GTreeNode* user_node = g_tree_lower_bound(users_catalog->users_account_creation_tree, account_creation_begin);
+GList* get_users_by_account_creation_range(UsersCatalog users_catalog, char* date_begin, char* date_end) {
+  GTreeNode* user_node = g_tree_lower_bound(users_catalog->users_account_creation_tree, date_begin);
 
   if (user_node == NULL) {
     return NULL;
@@ -48,7 +46,7 @@ GList* get_users_by_account_creation_range(UsersCatalog users_catalog,
 
   GList* users_list = NULL;
 
-  while (strcmp(user_account_creation, account_creation_end) <= 0) {
+  while (strcmp(user_account_creation, date_end) <= 0) {
     users_list = g_list_append(users_list, user);
 
     user_node = g_tree_node_next(user_node);

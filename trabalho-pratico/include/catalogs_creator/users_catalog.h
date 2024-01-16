@@ -43,12 +43,10 @@ User get_user_by_id(UsersCatalog users_catalog, char* user_id);
  * @brief Will return a list of users that were created between the given dates
  *
  * @param users_catalog The users catalog
- * @param account_creation_begin The begin date
- * @param account_creation_end The end date
+ * @param date_begin The begin date
+ * @param date_end The end date
  * @return GList* The list of users
  */
-GList* get_users_by_account_creation_range(UsersCatalog users_catalog,
-                                           char* account_creation_begin,
-                                           char* account_creation_end);
+GList* get_users_by_account_creation_range(UsersCatalog users_catalog, char* date_begin, char* date_end);
 
 #endif
