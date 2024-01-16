@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "entities/flight_entity.h"
 #include "utils/compare_tree_str_keys.h"
+#include "utils/find_tree_nodes_inside_date_range.h"
 
 struct flights_catalog {
   GArray* flights_array;
@@ -40,31 +41,6 @@ Flight get_flight_by_id(FlightsCatalog flights_catalog, int flight_id) {
 }
 
 GList* get_flights_by_schedule_dep_range(FlightsCatalog flights_catalog, char* date_begin, char* date_end) {
-  GTreeNode* flight_node = g_tree_lower_bound(flights_catalog->flights_schedule_dep_tree, date_begin);
-
-  if (flight_node == NULL) {
-    return NULL;
-  }
-
-  Flight flight = (Flight)g_tree_node_value(flight_node);
-  char* flight_schedule_dep = flight_get_schedule_departure_date(flight);
-
-  GList* flights_list = NULL;
-
-  while (strcmp(flight_schedule_dep, date_end) <= 0) {
-    flights_list = g_list_append(flights_list, flight);
-
-    flight_node = g_tree_node_next(flight_node);
-    if (flight_node == NULL) {
-      break;
-    }
-
-    flight = (Flight)g_tree_node_value(flight_node);
-    free(flight_schedule_dep);
-    flight_schedule_dep = flight_get_schedule_departure_date(flight);
-  }
-
-  free(flight_schedule_dep);
-
-  return flights_list;
+  return find_tree_nodes_inside_date_range(flights_catalog->flights_schedule_dep_tree,
+                                           (char* (*)(void*))flight_get_schedule_departure_date, date_begin, date_end);
 }

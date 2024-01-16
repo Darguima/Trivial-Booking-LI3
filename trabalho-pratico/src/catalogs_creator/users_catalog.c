@@ -3,6 +3,7 @@
 #include <string.h>
 #include "entities/user_entity.h"
 #include "utils/compare_tree_str_keys.h"
+#include "utils/find_tree_nodes_inside_date_range.h"
 
 struct users_catalog {
   GHashTable* users_hash_table;
@@ -35,31 +36,6 @@ User get_user_by_id(UsersCatalog users_catalog, char* user_id) {
 }
 
 GList* get_users_by_account_creation_range(UsersCatalog users_catalog, char* date_begin, char* date_end) {
-  GTreeNode* user_node = g_tree_lower_bound(users_catalog->users_account_creation_tree, date_begin);
-
-  if (user_node == NULL) {
-    return NULL;
-  }
-
-  User user = (User)g_tree_node_value(user_node);
-  char* user_account_creation = user_get_account_creation(user);
-
-  GList* users_list = NULL;
-
-  while (strcmp(user_account_creation, date_end) <= 0) {
-    users_list = g_list_append(users_list, user);
-
-    user_node = g_tree_node_next(user_node);
-    if (user_node == NULL) {
-      break;
-    }
-
-    user = (User)g_tree_node_value(user_node);
-    free(user_account_creation);
-    user_account_creation = user_get_account_creation(user);
-  }
-
-  free(user_account_creation);
-
-  return users_list;
+  return find_tree_nodes_inside_date_range(users_catalog->users_account_creation_tree,
+                                           (char* (*)(void*))user_get_account_creation, date_begin, date_end);
 }
