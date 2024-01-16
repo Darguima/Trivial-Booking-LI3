@@ -41,4 +41,14 @@ void insert_reservation(ReservationsCatalog reservations_catalogs, Reservation r
  */
 Reservation get_reservation_by_id(ReservationsCatalog reservations_catalog, int reservation_id);
 
+/**
+ * @brief Will return a list of reservations that begin between the given dates
+ *
+ * @param reservations_catalog The reservations catalog
+ * @param date_begin The begin date
+ * @param date_end The end date
+ * @return GList* The list of reservations
+ */
+GList* get_reservations_by_begin_date_range(ReservationsCatalog reservations_catalog, char* date_begin, char* date_end);
+
 #endif
