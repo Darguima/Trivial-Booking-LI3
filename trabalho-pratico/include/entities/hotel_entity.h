@@ -56,6 +56,31 @@ char* hotel_get_name(Hotel hotel);
 double hotel_get_rating(Hotel hotel);
 
 /**
+ * @brief Get the array of reservations for a given hotel.
+ *
+ * This function returns a GArray pointer containing the reservations
+ * associated with the specified hotel.
+ *
+ * @param hotel The hotel for which reservations are to be retrieved.
+ * @return A GArray pointer containing the reservations of the hotel.
+ */
+
+GArray* hotel_get_reservations(Hotel hotel);
+
+/**
+ * @brief Get the total revenue of a hotel for a specified date range.
+ *
+ * This function calculates and returns the total revenue of the specified hotel
+ * for the given date range.
+ *
+ * @param hotel The hotel for which total revenue is to be calculated.
+ * @param begin_date The start date of the date range in the format "yyyy/mm/dd".
+ * @param end_date The end date of the date range in the format "yyyy/mm/dd".
+ * @return The total revenue of the hotel for the specified date range.
+ */
+int hotel_get_total_revenue(Hotel hotel, char* begin_date, char* end_date);
+
+/**
  * @brief Insert a new reservation on the given hotel
  *
  * @param reservation The reservation to be inserted

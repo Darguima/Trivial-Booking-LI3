@@ -82,4 +82,6 @@ char reservation_get_rating(Reservation reservation);
  */
 double reservation_get_total_price(Reservation reservation);
 
+int reservation_get_revenue(Reservation reservation, char* begin_date, char* end_date);
+
 #endif

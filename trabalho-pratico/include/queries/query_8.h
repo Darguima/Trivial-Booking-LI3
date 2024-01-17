@@ -18,6 +18,7 @@
  * @param end_date End date of the revenue calculation period
  * @return int Returns 0 upon successfully executing query 8
  */
+
 int query_8(Catalogs CATALOGS, int command_number, bool format_flag, char* name, char* begin_date, char* end_date);
 
 #endif

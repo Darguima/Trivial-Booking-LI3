@@ -37,4 +37,6 @@ double calculate_total_spent(char* date1, char* date2, int city_tax, int price_p
  * @return int Returns the calculated age of the user
  */
 int calculate_user_age(char* birth_date);
+
+int get_days_difference_inside_range(char* begin_date, char* end_date, char* date1, char* date2);
 #endif

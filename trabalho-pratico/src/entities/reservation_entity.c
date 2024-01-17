@@ -95,3 +95,13 @@ double reservation_get_total_price(Reservation reservation) {
 int reservation_get_hotel_stars(Reservation reservation) {
   return reservation->hotel_stars;
 }
+
+int reservation_get_revenue(Reservation reservation, char* begin_date, char* end_date) {
+  int revenue = 0;
+  if (strcmp(reservation->end_date, begin_date) >= 0 && strcmp(reservation->begin_date, end_date) <= 0) {
+    revenue += reservation->price_per_night * get_days_difference_inside_range(begin_date, end_date,
+                                                                               reservation_get_begin_date(reservation),
+                                                                               reservation_get_end_date(reservation));
+  }
+  return revenue;
+}
