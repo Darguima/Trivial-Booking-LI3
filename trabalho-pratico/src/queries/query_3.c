@@ -7,11 +7,21 @@
 #include "write_output/write_output.h"
 
 int query_3(Catalogs catalogs, int command_number, bool format_flag, char* id) {
-  printf("I'm in query_3\n");
-  UNUSED(catalogs);
-  UNUSED(command_number);
-  UNUSED(format_flag);
-  UNUSED(id);
+  FILE* output_file = create_output_file(command_number);
+  int hotel_id = string_to_int(id);
+  Hotel hotel = get_hotel_by_id(catalogs->hotels, hotel_id);
+
+  double rating = 0;
+
+  if (hotel != NULL) {
+    rating = hotel_get_rating(hotel);
+  }
+  char* rating_string = double_to_string(rating, 3);
+
+  output_key_value output_array[] = {{"rating", rating_string}};
+  write_output(output_file, format_flag, 1, output_array, 1);
+  free(rating_string);
+  close_output_file(output_file);
 
   return 0;
 }

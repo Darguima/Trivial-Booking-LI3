@@ -53,7 +53,7 @@ char* hotel_get_name(Hotel hotel);
  * @param hotel The hotel to get the id from
  * @return char* The rating from the given hotel
  */
-int hotel_get_rating(Hotel hotel);
+double hotel_get_rating(Hotel hotel);
 
 /**
  * @brief Insert a new reservation on the given hotel

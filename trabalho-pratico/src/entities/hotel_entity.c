@@ -48,8 +48,8 @@ char* hotel_get_name(Hotel hotel) {
   return g_strdup(hotel->name);
 }
 
-int hotel_get_rating(Hotel hotel) {
-  return (hotel->rating_sum / (int)hotel->reservations->values->len);
+double hotel_get_rating(Hotel hotel) {
+  return (hotel->rating_sum / (double)hotel->reservations->values->len);
 }
 
 void hotel_insert_new_reservation(HotelsCatalog hotels_catalog, Reservation reservation) {
