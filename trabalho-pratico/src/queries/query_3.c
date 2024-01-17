@@ -8,7 +8,7 @@
 
 int query_3(Catalogs catalogs, int command_number, bool format_flag, char* id) {
   FILE* output_file = create_output_file(command_number);
-  int hotel_id = string_to_int(id + 3);
+  int hotel_id = string_to_int(id);
   Hotel hotel = get_hotel_by_id(catalogs->hotels, hotel_id);
 
   double rating = 0;
