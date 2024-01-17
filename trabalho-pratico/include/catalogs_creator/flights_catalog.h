@@ -41,4 +41,14 @@ void insert_flight(FlightsCatalog flights_catalog, Flight flight);
  */
 Flight get_flight_by_id(FlightsCatalog flights_catalog, int flight_id);
 
+/**
+ * @brief Will return a list of flights that are in the given schedule departure date range
+ *
+ * @param flights_catalog The flights catalog
+ * @param date_begin The begin date
+ * @param date_end The end date
+ * @return GList* The list of flights
+ */
+GList* get_flights_by_schedule_dep_range(FlightsCatalog flights_catalog, char* date_begin, char* date_end);
+
 #endif
