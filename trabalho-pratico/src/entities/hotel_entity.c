@@ -52,6 +52,21 @@ int hotel_get_rating(Hotel hotel) {
   return (hotel->rating_sum / (int)hotel->reservations->values->len);
 }
 
+GArray* hotel_get_reservations(Hotel hotel) {
+  return g_array_copy(hotel->reservations->values);
+}
+
+int hotel_get_total_revenue(Hotel hotel, char* begin_date, char* end_date) {
+  int total_revenue = 0;
+
+  for (guint i = 0; i < hotel->reservations->values->len; i++) {
+    Reservation reservation = g_array_index(hotel->reservations->values, Reservation, i);
+    total_revenue += reservation_get_revenue(reservation, begin_date, end_date);
+  }
+
+  return total_revenue;
+}
+
 void hotel_insert_new_reservation(HotelsCatalog hotels_catalog, Reservation reservation) {
   char* hotel_id = reservation_get_hotel_id(reservation);
   char* hotel_name = reservation_get_hotel_name(reservation);
@@ -66,19 +81,4 @@ void hotel_insert_new_reservation(HotelsCatalog hotels_catalog, Reservation rese
 
   free(hotel_id);
   free(hotel_name);
-}
-
-GArray* hotel_get_reservations(Hotel hotel) {
-  return g_array_copy(hotel->reservations->values);
-}
-
-int hotel_get_total_revenue(Hotel hotel, char* begin_date, char* end_date) {
-  int total_revenue = 0;
-
-  for (guint i = 0; i < hotel->reservations->values->len; i++) {
-    Reservation reservation = g_array_index(hotel->reservations->values, Reservation, i);
-    total_revenue += reservation_get_revenue(reservation, begin_date, end_date);
-  }
-
-  return total_revenue;
 }
