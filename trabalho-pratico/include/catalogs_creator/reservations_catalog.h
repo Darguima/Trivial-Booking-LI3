@@ -39,6 +39,6 @@ void insert_reservation(ReservationsCatalog reservations_catalogs, Reservation r
  * @param reservation_id The reservation id
  * @return Reservation | NULL
  */
-Reservation get_reservation_by_id(ReservationsCatalog reservations_catalog, char* reservation_id);
+Reservation get_reservation_by_id(ReservationsCatalog reservations_catalog, int reservation_id);
 
 #endif

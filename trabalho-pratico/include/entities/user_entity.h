@@ -53,25 +53,9 @@ char* user_get_id(User user);
  */
 char* user_get_name(User user);
 
-GArray* user_get_reservations(User user);
-
-GArray* user_get_flights(User user);
-
-/**
- * @brief Increments the total amount spent by a user due to a reservation
- *
- * @param user The user to increment the total amount spent
- * @param total_reservation_price The total amount spent to increment
- */
-void user_increment_total_spent(User user, double total_reservation_price);
-
-void user_add_flight(User user, Flight flight);
-
-void user_add_reservation(User user, Reservation reservation);
+int user_get_number_of_flights(User user);
 
 bool user_get_is_active(User user);
-
-int user_get_number_of_flights(User user);
 
 int user_get_number_of_reservations(User user);
 
@@ -85,12 +69,40 @@ char* user_get_country_code(User user);
 
 char* user_get_passport(User user);
 
-bool user_get_flights_sorted(RelationArray flights);
+GArray* user_get_reservations(User user);
 
-bool user_get_reservations_sorted(RelationArray reservations);
+/**
+ * @brief Will return the account creation from the given user
+ *
+ * @param user The user to get the account creation from
+ * @return char* The account creation from the given user
+ */
+char* user_get_account_creation(User user);
 
-void user_sort_flights_array(RelationArray flights);
+GArray* user_get_flights(User user);
 
-void user_sort_reservations_array(RelationArray reservations);
+/**
+ * @brief Increments the total amount spent by a user due to a reservation
+ *
+ * @param user The user to increment the total amount spent
+ * @param total_reservation_price The total amount spent to increment
+ */
+void user_increment_total_spent(User user, double total_reservation_price);
+
+/**
+ * @brief Will add a flight to the given user
+ *
+ * @param user The user to add the flight
+ * @param flight The flight to add to the user
+ */
+void user_add_flight(User user, Flight flight);
+
+/**
+ * @brief Will add a reservation to the given user
+ *
+ * @param user The user to add the reservation
+ * @param reservation The reservation to add to the user
+ */
+void user_add_reservation(User user, Reservation reservation);
 
 #endif
