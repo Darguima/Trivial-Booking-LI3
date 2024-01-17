@@ -1,5 +1,7 @@
+#include <catalogs_creator/airports_catalog.h>
 #include <catalogs_creator/catalogs_creator.h>
 #include <datatypes/datatypes.h>
+#include <entities/airport_entity.h>
 #include <entities/flight_entity.h>
 #include <entities/hotel_entity.h>
 #include <entities/reservation_entity.h>
@@ -8,6 +10,7 @@
 #include <string.h>
 #include <utils/calculate_stats.h>
 #include <values_parser/verify_values.h>
+#include "utils/string_to_int.h"
 
 int values_parser_users(char** user_values, Catalogs catalogs) {
   if (!strcmp(user_values[0], "") || !strcmp(user_values[1], "") || !strcmp(user_values[3], "") ||
@@ -34,7 +37,8 @@ int values_parser_flights(char** flight_values, Catalogs catalogs) {
     return 1;
   }
 
-  create_new_flight(catalogs->flights, flight_values);
+  Flight flight = create_new_flight(catalogs->flights, flight_values);
+  airport_insert_new_flight(catalogs->airports, flight);
 
   return 0;
 }
@@ -44,15 +48,29 @@ int values_parser_passengers(char** passengers_values, Catalogs catalogs) {
     return 1;
   }
 
-  Flight flight = get_flight_by_id(catalogs->flights, passengers_values[0]);
+  Flight flight = get_flight_by_id(catalogs->flights, string_to_int(passengers_values[0]));
   User user = get_user_by_id(catalogs->users, passengers_values[1]);
 
   if (user == NULL || flight == NULL) {
     return 1;
   }
 
-  flight_increment_seat(flight, 1);
+  flight_increment_passengers(flight, 1);
   user_add_flight(user, flight);
+
+  char* flight_departure_date = flight_get_schedule_departure_date(flight);
+
+  char* airport_id_o = flight_get_origin_airport_id(flight);
+  Airport airport_o = get_airport_by_id(catalogs->airports, airport_id_o);
+  airport_increment_passengers(airport_o, flight_departure_date, 1);
+
+  char* airport_id_d = flight_get_destination_airport_id(flight);
+  Airport airport_d = get_airport_by_id(catalogs->airports, airport_id_d);
+  airport_increment_passengers(airport_d, flight_departure_date, 1);
+
+  g_free(airport_id_o);
+  g_free(airport_id_d);
+  g_free(flight_departure_date);
 
   return 0;
 }

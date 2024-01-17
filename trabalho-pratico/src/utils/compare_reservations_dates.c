@@ -16,11 +16,9 @@ gint compare_reservations_dates(gconstpointer a, gconstpointer b) {
   if (date_cmp != 0) {
     return date_cmp;
   } else {
-    char* id_1 = reservation_get_id(reservation_1);
-    char* id_2 = reservation_get_id(reservation_2);
-    int comp = strcmp(id_1, id_2);
-    free(id_1);
-    free(id_2);
-    return comp;
+    int id_1 = reservation_get_id(reservation_1);
+    int id_2 = reservation_get_id(reservation_2);
+
+    return id_1 - id_2;
   }
 }

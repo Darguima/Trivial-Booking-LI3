@@ -22,4 +22,9 @@ typedef struct relationArray {
   bool is_sorted;
 }* RelationArray;
 
+typedef struct relationList {
+  GList* values;
+  bool is_sorted;
+}* RelationList;
+
 #endif
