@@ -67,7 +67,6 @@ int hotel_get_rating(Hotel hotel);
 
 GArray* hotel_get_reservations(Hotel hotel);
 
-
 /**
  * @brief Get the total revenue of a hotel for a specified date range.
  *
@@ -81,13 +80,11 @@ GArray* hotel_get_reservations(Hotel hotel);
  */
 int hotel_get_total_revenue(Hotel hotel, char* begin_date, char* end_date);
 
-
 /**
  * @brief Insert a new reservation on the given hotel
  *
  * @param reservation The reservation to be inserted
  */
 void hotel_insert_new_reservation(HotelsCatalog hotels_catalog, Reservation reservation);
-
 
 #endif
