@@ -56,27 +56,35 @@ int get_days_difference_inside_range(char* begin_date, char* end_date, char* dat
   time_t time_interval_start = convert_string_to_seconds(begin_date);
   time_t time_interval_end = convert_string_to_seconds(end_date);
   if (time_date1 >= time_interval_start && time_date2 <= time_interval_end) {
+    int days_difference = get_days_difference(date1, date2);
     free(date1);
     free(date2);
-    return (int)((time_date2 - time_date1) / (60 * 60 * 24));
+    return days_difference;
   }
 
   if (time_date1 <= time_interval_start && time_date2 >= time_interval_end) {
     free(date1);
     free(date2);
-    return (int)((time_interval_end - time_interval_start) / (60 * 60 * 24)) + 1;
+    int days_difference = (int)((time_interval_end - time_interval_start) / (60 * 60 * 24)) + 1;
+    if (time_date2 == time_interval_end) {
+      days_difference--;
+    }
+    return days_difference;
   }
 
   if (time_date1 < time_interval_start && time_date2 >= time_interval_start && time_date2 <= time_interval_end) {
     free(date1);
     free(date2);
-    return (int)((time_date2 - time_interval_start) / (60 * 60 * 24)) + 1;
+    int days_difference = (int)((time_date2 - time_interval_start) / (60 * 60 * 24));
+    return days_difference;
   }
 
   if (time_date1 >= time_interval_start && time_date1 <= time_interval_end && time_date2 > time_interval_end) {
     free(date1);
     free(date2);
-    return (int)((time_interval_end - time_date1) / (60 * 60 * 24)) + 1;
+    int days_difference = (int)((time_interval_end - time_date1) / (60 * 60 * 24)) + 1;
+
+    return days_difference;
   }
   return 0;
 }
