@@ -19,7 +19,7 @@ AirportsCatalog airports_catalog_create() {
 
 void airports_catalog_free(AirportsCatalog airports_catalog) {
   g_hash_table_destroy(airports_catalog->airports_hash_table);
-  // g_tree_destroy(airports_catalog->airports_median_array);
+  g_array_free(airports_catalog->airports_median_array, true);
 
   free(airports_catalog);
 }

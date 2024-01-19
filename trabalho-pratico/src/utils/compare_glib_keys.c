@@ -29,6 +29,15 @@ gint compare_airports_by_median_delay(gconstpointer a, gconstpointer b, gpointer
 
   if (r != 0)
     return (gint)r;
-  else
-    return strcmp(airport_get_id(airport_a), airport_get_id(airport_b));
+  else {
+    char* id_a = airport_get_id(airport_a);
+    char* id_b = airport_get_id(airport_b);
+
+    gint r = strcmp(id_a, id_b);
+
+    free(id_a);
+    free(id_b);
+
+    return r;
+  }
 }

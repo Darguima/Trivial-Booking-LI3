@@ -11,18 +11,24 @@ int query_7(Catalogs catalogs, int command_number, bool format_flag, char* top_n
 
   GList* top_n_airports_median_list =
       get_top_N_airports_median_delay(catalogs->airports, string_to_int(top_n_airports));
+  GList* initial_list = top_n_airports_median_list;      
 
   int acc = 1;
   for (GList* node = top_n_airports_median_list; node != NULL; node = node->next, acc++) {
     Airport airport = (Airport)node->data;
 
     char* airport_id = airport_get_id(airport);
-    long airport_median_delay = airport_get_median_delay(airport);
+    char* airport_median_delay = long_to_string(airport_get_median_delay(airport));
 
-    output_key_value output_array[] = {{"name", airport_id}, {"median", long_to_string(airport_median_delay)}};
+    output_key_value output_array[] = {{"name", airport_id}, {"median", airport_median_delay}};
 
     write_output(output_file, format_flag, acc, output_array, 2);
+
+    free(airport_id);
+    free(airport_median_delay);
   }
+
+  g_list_free(initial_list);
 
   close_output_file(output_file);
 
