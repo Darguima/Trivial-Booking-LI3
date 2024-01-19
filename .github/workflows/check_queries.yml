@@ -13,12 +13,12 @@ jobs:
     - name: Download dataset from GitHub Assets
       working-directory: ./trabalho-pratico
       run: |
-          curl -L \
+        curl -L \
+          -H "Accept: application/vnd.github+json" \
             -H "Accept: application/octet-stream" \
             -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
             -H "X-GitHub-Api-Version: 2022-11-28" \
-            --output "dataset.zip" \
-            https://api.github.com/repos/Darguima/Trivial-Booking/releases/assets/140935140
+            https://api.github.com/repos/OWNER/REPO/releases
 
           unzip dataset.zip
 
