@@ -87,7 +87,15 @@ long airport_get_median_delay(Airport airport) {
     airport->delays->is_sorted = true;
   }
 
-  return g_array_index(airport->delays->values, long, airport->delays->values->len / 2);
+  guint half_size = airport->delays->values->len / 2;
+
+  long median_delay = g_array_index(airport->delays->values, long, half_size);
+
+  if (airport->delays->values->len % 2 == 0) {
+    median_delay = (median_delay + g_array_index(airport->delays->values, long, half_size - 1)) / 2;
+  }
+
+  return median_delay;
 }
 
 void airport_insert_new_flight(AirportsCatalog airports_catalog, Flight flight) {
