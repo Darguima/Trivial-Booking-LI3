@@ -2,10 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "catalogs_creator/airports_catalog.h"
 #include "catalogs_creator/catalogs_creator.h"
 #include "file_parser/file_parser.h"
 #include "write_errors/write_errors.h"
-#include "catalogs_creator/airports_catalog.h"
 
 char* get_full_path(char* folder_path, const char* filename) {
   size_t len_filename = strlen(filename);

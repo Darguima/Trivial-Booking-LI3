@@ -4,7 +4,7 @@
 #include "catalogs_creator/airports_catalog.h"
 #include "entities/flight_entity.h"
 #include "utils/calculate_stats.h"
-#include "utils/compare_glib_keys.h"
+#include "utils/compare_datatypes.h"
 #include "utils/is_active.h"
 #include "utils/string_to_int.h"
 
@@ -83,7 +83,7 @@ long airport_get_median_delay(Airport airport) {
   }
 
   if (airport->delays->is_sorted == false) {
-    g_array_sort_with_data(airport->delays->values, compare_long_keys, NULL);
+    g_array_sort_with_data(airport->delays->values, compare_long, NULL);
     airport->delays->is_sorted = true;
   }
 

@@ -1,7 +1,7 @@
 #include "catalogs_creator/flights_catalog.h"
 #include <stdlib.h>
 #include "entities/flight_entity.h"
-#include "utils/compare_glib_keys.h"
+#include "utils/compare_datatypes.h"
 #include "utils/find_tree_nodes_inside_date_range.h"
 
 struct flights_catalog {
@@ -15,7 +15,7 @@ FlightsCatalog flights_catalog_create() {
   flights_catalog->flights_array = g_array_new(false, true, sizeof(Flight));
   g_array_set_clear_func(flights_catalog->flights_array, (GDestroyNotify)free_flight);
 
-  flights_catalog->flights_schedule_dep_tree = g_tree_new_full(compare_str_keys, NULL, g_free, NULL);
+  flights_catalog->flights_schedule_dep_tree = g_tree_new_full(compare_string, NULL, g_free, NULL);
 
   return flights_catalog;
 }

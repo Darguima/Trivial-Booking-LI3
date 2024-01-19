@@ -1,7 +1,7 @@
 #include "catalogs_creator/users_catalog.h"
 #include <stdlib.h>
 #include "entities/user_entity.h"
-#include "utils/compare_glib_keys.h"
+#include "utils/compare_datatypes.h"
 #include "utils/find_tree_nodes_inside_date_range.h"
 
 struct users_catalog {
@@ -13,7 +13,7 @@ UsersCatalog users_catalog_create() {
   UsersCatalog users_catalog = malloc(sizeof(struct users_catalog));
 
   users_catalog->users_hash_table = g_hash_table_new_full(g_str_hash, g_str_equal, free, free_user);
-  users_catalog->users_account_creation_tree = g_tree_new_full(compare_str_keys, NULL, g_free, NULL);
+  users_catalog->users_account_creation_tree = g_tree_new_full(compare_string, NULL, g_free, NULL);
 
   return users_catalog;
 }

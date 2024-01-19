@@ -1,7 +1,7 @@
 #include "catalogs_creator/airports_catalog.h"
 #include <stdlib.h>
 #include "entities/airport_entity.h"
-#include "utils/compare_glib_keys.h"
+#include "utils/compare_datatypes.h"
 
 struct airports_catalog {
   GHashTable* airports_hash_table;
@@ -42,7 +42,7 @@ void airports_create_aux_data_structs(AirportsCatalog airports_catalog) {
     g_array_append_val(airports_catalog->airports_median_array, airport);
   }
 
-  g_array_sort_with_data(airports_catalog->airports_median_array, compare_airports_by_median_delay, NULL);
+  g_array_sort(airports_catalog->airports_median_array, compare_airports_by_median_delay);
 }
 
 Airport get_airport_by_id(AirportsCatalog airports_catalog, char* airport_id) {

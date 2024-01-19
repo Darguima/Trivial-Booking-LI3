@@ -5,8 +5,7 @@
 #include "catalogs_creator/reservations_catalog.h"
 #include "catalogs_creator/users_catalog.h"
 #include "utils/calculate_stats.h"
-#include "utils/compare_flights_dates.h"
-#include "utils/compare_reservations_dates.h"
+#include "utils/compare_datatypes.h"
 #include "utils/is_active.h"
 
 struct user {
@@ -128,7 +127,7 @@ void user_add_reservation(User user, Reservation reservation) {
 
 GArray* user_get_reservations(User user) {
   if (!user->reservations->is_sorted) {
-    g_array_sort(user->reservations->values, compare_reservations_dates);
+    g_array_sort(user->reservations->values, compare_reservations_by_begin_date);
     user->reservations->is_sorted = true;
   }
   return g_array_copy(user->reservations->values);
@@ -136,7 +135,7 @@ GArray* user_get_reservations(User user) {
 
 GArray* user_get_flights(User user) {
   if (!user->flights->is_sorted) {
-    g_array_sort(user->flights->values, compare_flights_dates);
+    g_array_sort(user->flights->values, compare_flights_by_sched_dep_date);
     user->flights->is_sorted = true;
   }
   return g_array_copy(user->flights->values);

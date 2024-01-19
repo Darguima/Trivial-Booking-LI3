@@ -11,7 +11,7 @@ int query_7(Catalogs catalogs, int command_number, bool format_flag, char* top_n
 
   GList* top_n_airports_median_list =
       get_top_N_airports_median_delay(catalogs->airports, string_to_int(top_n_airports));
-  GList* initial_list = top_n_airports_median_list;      
+  GList* initial_list = top_n_airports_median_list;
 
   int acc = 1;
   for (GList* node = top_n_airports_median_list; node != NULL; node = node->next, acc++) {
