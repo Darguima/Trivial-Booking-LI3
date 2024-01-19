@@ -5,6 +5,7 @@
 #include "catalogs_creator/catalogs_creator.h"
 #include "file_parser/file_parser.h"
 #include "write_errors/write_errors.h"
+#include "catalogs_creator/airports_catalog.h"
 
 char* get_full_path(char* folder_path, const char* filename) {
   size_t len_filename = strlen(filename);
@@ -60,6 +61,8 @@ int catalog_filler(char* dataset_folder_path, Catalogs CATALOGS) {
   }
 
   bool is_dataset_path_valid = users != NULL && flights != NULL && passengers != NULL && reservations != NULL;
+
+  airports_create_aux_data_structs(CATALOGS->airports);
 
   if (is_dataset_path_valid) {
     printf("[STATUS] - Catalogs filled\n");

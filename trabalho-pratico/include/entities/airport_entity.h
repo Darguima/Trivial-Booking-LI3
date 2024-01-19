@@ -49,6 +49,14 @@ char* airport_get_id(Airport airport);
 int airport_get_passengers(Airport airport, int year);
 
 /**
+ * @brief Will return the median delay from the given airport
+ *
+ * @param airport The airport to get the median delay from
+ * @return long The median delay from the given airport
+ */
+long airport_get_median_delay(Airport airport);
+
+/**
  * @brief Will insert the given flight on the airport flights array
  *
  * @param airports_catalog The airports catalog

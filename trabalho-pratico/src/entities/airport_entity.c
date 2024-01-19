@@ -4,6 +4,7 @@
 #include "catalogs_creator/airports_catalog.h"
 #include "entities/flight_entity.h"
 #include "utils/calculate_stats.h"
+#include "utils/compare_glib_keys.h"
 #include "utils/is_active.h"
 #include "utils/string_to_int.h"
 
@@ -74,6 +75,19 @@ int airport_get_passengers(Airport airport, int year) {
   }
 
   return -1;
+}
+
+long airport_get_median_delay(Airport airport) {
+  if (airport->delays->values->len == 0) {
+    return -1;
+  }
+
+  if (airport->delays->is_sorted == false) {
+    g_array_sort_with_data(airport->delays->values, compare_long_keys, NULL);
+    airport->delays->is_sorted = true;
+  }
+
+  return g_array_index(airport->delays->values, long, airport->delays->values->len / 2);
 }
 
 void airport_insert_new_flight(AirportsCatalog airports_catalog, Flight flight) {

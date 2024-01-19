@@ -5,6 +5,8 @@
 #include <glib.h>
 #include "entities/airport_entity.h"
 
+typedef struct airport* Airport;
+
 //! The airports catalog
 typedef struct airports_catalog* AirportsCatalog;
 
@@ -31,6 +33,13 @@ void airports_catalog_free(AirportsCatalog airports_catalog);
 void insert_airport(AirportsCatalog, Airport);
 
 /**
+ * @brief Will create the aux data structures to be used on the queries
+ *
+ * @param airports_catalog The airports catalog
+ */
+void airports_create_aux_data_structs(AirportsCatalog airports_catalog);
+
+/**
  * @brief Will search by the airport on the catalog. Will return NULL if not found
  *
  * @param airports_catalog The airports catalog
@@ -38,5 +47,14 @@ void insert_airport(AirportsCatalog, Airport);
  * @return Airport | NULL
  */
 Airport get_airport_by_id(AirportsCatalog airports_catalog, char* airport_id);
+
+/**
+ * @brief Will return the top N airports with the highest median delay
+ *
+ * @param airports_catalog The airports catalog
+ * @param N The number of airports to return
+ * @return Airport
+ */
+GList* get_top_N_airports_median_delay(AirportsCatalog airports_catalog, int N);
 
 #endif

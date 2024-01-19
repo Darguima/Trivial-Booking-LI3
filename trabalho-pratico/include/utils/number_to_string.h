@@ -12,6 +12,16 @@
 char* int_to_string(int number);
 
 /**
+ * @brief Converts a long integer to a string
+ *
+ * Converts a long integer to a string representation.
+ *
+ * @param number The long integer value to be converted
+ * @return char* Returns the string representation of the long integer
+ */
+char* long_to_string(long number);
+
+/**
  * @brief Converts a double to a string with specified precision
  *
  * Converts a double to a string representation with a specified precision.
