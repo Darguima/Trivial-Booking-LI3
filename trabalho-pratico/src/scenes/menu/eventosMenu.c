@@ -19,6 +19,7 @@ void eventosMenu(State* state) {
 
     case '4':
     case 'q':
+    case 'Q':
       state->sceneAtual = Sair;
       break;
   }

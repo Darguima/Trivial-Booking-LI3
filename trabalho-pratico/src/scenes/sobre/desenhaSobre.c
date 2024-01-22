@@ -15,8 +15,10 @@ void desenhaSobre(WINDOW* window, State* state) {
 
   box(window, 0, 0);
 
-  mvwprintw(window, y - 1, x - 20, "Trivial Booking e uma app top");
-  mvwprintw(window, y, x - 20, "Feita na linguagem de programacao C");
+  mvwprintw(window, y - 1, x - 20, "Trivial Booking e uma app top cujo texto ainda nao esta centralizado ");
+  mvwprintw(window, y, x - 20, "porque ainda nao sabemos o que colocar no sobre :)");
+  mvwprintw(window, y + 1, x - 20, "isto e uma app de booking com poucas funcoes interativas :(");
+  mvwprintw(window, y + 2, x - 20, "Feita na linguagem de programacao C (C de Com tanta linguagem, teve q ser nesta)");
 
   mvprintw(2, 3, "  ____        _              ");
   mvprintw(3, 3, " / ___|  ___ | |__  _ __ ___ ");
