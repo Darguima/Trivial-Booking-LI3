@@ -65,6 +65,14 @@ long airport_get_median_delay(Airport airport);
 void airport_insert_new_flight(AirportsCatalog airports_catalog, Flight flight);
 
 /**
+ * @brief Will return the passengers of the airport on the given year
+ *
+ * @param airport The airport to get the passengers number
+ * @param passengers The number of passengers on the given airport on the given year
+ */
+int airport_get_passenger_by_year(Airport airport, int year);
+
+/**
  * @brief Will increment the passengers count on the given airport
  *
  * @param airport The airport to increment the passengers count

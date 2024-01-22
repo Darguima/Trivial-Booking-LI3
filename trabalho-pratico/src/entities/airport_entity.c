@@ -66,17 +66,6 @@ char* airport_get_id(Airport airport) {
   return g_strdup(airport->id);
 }
 
-int airport_get_passengers(Airport airport, int year) {
-  for (GList* node = airport->passengers->values; node != NULL; node = node->next) {
-    PassengersPerYear passengers_per_year = (PassengersPerYear)node->data;
-    if (passengers_per_year->year == year) {
-      return passengers_per_year->passengers;
-    }
-  }
-
-  return -1;
-}
-
 long airport_get_median_delay(Airport airport) {
   if (airport->delays->values->len == 0) {
     return -1;
@@ -118,6 +107,17 @@ void airport_insert_new_flight(AirportsCatalog airports_catalog, Flight flight) 
 
   g_free(airport_id_o);
   g_free(airport_id_d);
+}
+
+int airport_get_passenger_by_year(Airport airport, int year) {
+  for (GList* node = airport->passengers->values; node != NULL; node = node->next) {
+    PassengersPerYear passengers_per_year = (PassengersPerYear)node->data;
+    if (passengers_per_year->year == year) {
+      return passengers_per_year->passengers;
+    }
+  }
+
+  return -1;
 }
 
 void airport_increment_passengers(Airport airport, char* date, int passengers) {
