@@ -1,7 +1,7 @@
 #include "catalogs_creator/reservations_catalog.h"
 #include <stdlib.h>
 #include "entities/reservation_entity.h"
-#include "utils/compare_tree_str_keys.h"
+#include "utils/compare_datatypes.h"
 #include "utils/find_tree_nodes_inside_date_range.h"
 
 struct reservations_catalog {
@@ -15,7 +15,7 @@ ReservationsCatalog reservations_catalog_create() {
   reservations_catalog->reservations_array = g_array_new(false, true, sizeof(Reservation));
   g_array_set_clear_func(reservations_catalog->reservations_array, (GDestroyNotify)free_reservation);
 
-  reservations_catalog->reservations_begin_date_tree = g_tree_new_full(compare_tree_str_keys, NULL, g_free, NULL);
+  reservations_catalog->reservations_begin_date_tree = g_tree_new_full(compare_string, NULL, g_free, NULL);
 
   return reservations_catalog;
 }

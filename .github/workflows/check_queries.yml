@@ -18,7 +18,7 @@ jobs:
             -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
             -H "X-GitHub-Api-Version: 2022-11-28" \
             --output "dataset.zip" \
-            https://api.github.com/repos/Darguima/Trivial-Booking/releases/assets/140935140
+            https://api.github.com/repos/Darguima/Trivial-Booking/releases/assets/146526243
 
           unzip dataset.zip
 
