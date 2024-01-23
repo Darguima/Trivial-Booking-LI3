@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <sys/resource.h>
 #include "catalog_filler/catalog_filler.h"
 #include "catalogs_creator/catalogs_creator.h"
 #include "output/batch.h"
@@ -56,6 +57,12 @@ int main(int argc, char** argv) {
     interactive();
   }
 
+  struct rusage r_usage_end;
+  getrusage(RUSAGE_SELF, &r_usage_end);
+
+  // Calcular e imprimir o uso total de memória
+  long memory_used_kb = r_usage_end.ru_maxrss;
+  printf("Total memory used: %ld KB\n", memory_used_kb);
   free_catalogs(catalogs);
 
   return 0;

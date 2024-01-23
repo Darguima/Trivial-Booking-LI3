@@ -11,6 +11,7 @@ struct reservation {
   char* reservation_id;
   char* hotel_id;
   char* hotel_name;
+  char* user_id;
   int hotel_stars;
   int city_tax;
   // char* address;
@@ -28,6 +29,7 @@ Reservation create_new_reservation(ReservationsCatalog reservations_catalog, cha
   Reservation new_reservation = malloc(sizeof(struct reservation));
 
   new_reservation->id = string_to_int(reservation_values[0]);
+  new_reservation->user_id = strdup(reservation_values[1]);
   new_reservation->hotel_id = strdup(reservation_values[2]);
   new_reservation->hotel_name = strdup(reservation_values[3]);
   new_reservation->hotel_stars = string_to_int(reservation_values[4]);
@@ -56,12 +58,17 @@ void free_reservation(Reservation* value) {
   free(reservation->hotel_name);
   free(reservation->begin_date);
   free(reservation->end_date);
+  free(reservation->user_id);
 
   free(reservation);
 }
 
 int reservation_get_id(Reservation reservation) {
   return reservation->id;
+}
+
+char* reservation_get_user_id(Reservation reservation) {
+  return g_strdup(reservation->user_id);
 }
 
 char* reservation_get_begin_date(Reservation reservation) {
