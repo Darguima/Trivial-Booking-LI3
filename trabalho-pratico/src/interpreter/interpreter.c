@@ -1,5 +1,6 @@
 #include <stdbool.h>
 #include <stdio.h>
+#include <sys/time.h>
 #include "queries/query_1.h"
 #include "queries/query_10.h"
 #include "queries/query_2.h"
@@ -75,6 +76,9 @@ char** tokenizer(char* line, int* params_array_length) {
 }
 
 int interpreter(char* batch_line, int command_number, Catalogs CATALOGS) {
+  clock_t start, end;
+  double cpu_time_used;
+
   int params_array_length = 0;
   // string de strings que contém os parametros a usar
   char** tokenized_params = tokenizer(batch_line, &params_array_length);
@@ -88,7 +92,7 @@ int interpreter(char* batch_line, int command_number, Catalogs CATALOGS) {
 
   bool has_f = field_string[0] == 'F';
   // compara-se pois esse valor só pode ser 'F' ou ' '
-
+  start = clock();
   switch (query_number) {
     case 1:
       if (params_array_length != 2) {
@@ -154,6 +158,9 @@ int interpreter(char* batch_line, int command_number, Catalogs CATALOGS) {
                params_array_length == 3 ? tokenized_params[3] : NULL);
       break;
   }
+  end = clock();
+  cpu_time_used = ((double)(end - start)) * 1000 / CLOCKS_PER_SEC;
+  printf("Query %d took %fms to execute!\n\n", query_number, cpu_time_used);
 
   free(tokenized_params);
 
