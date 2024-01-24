@@ -24,7 +24,6 @@ void free_state(State* state) {
   free_catalogs(state->catalog);
 
   for (int i = 0; i < MAX_STRINGS; i++) {
-    // Libere cada string dentro do array de resultados
     free(state->results[i]);
   }
 }
