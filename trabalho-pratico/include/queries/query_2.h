@@ -30,6 +30,6 @@ typedef struct userReservationsFlights {
  * @return int Returns 0 upon successful execution of query 2
  */
 
-int query_2(Catalogs CATALOGS, int command_number, bool format_flag, char* id, char* optional);
+int query_2(Catalogs CATALOGS, int command_number, bool format_flag, char* id, char* optional, State state);
 
 #endif

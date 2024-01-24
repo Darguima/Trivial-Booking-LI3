@@ -15,6 +15,6 @@
  * @param id The ID of the hotel to retrieve the average rating for
  * @return int Returns 0 upon successful execution of query 3
  */
-int query_3(Catalogs CATALOGS, int command_number, bool format_flag, char* id);
+int query_3(Catalogs CATALOGS, int command_number, bool format_flag, char* id, State state);
 
 #endif
