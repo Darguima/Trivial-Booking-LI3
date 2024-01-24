@@ -16,6 +16,7 @@ void events_exit(State* state) {
     case KEY_ENTER:
     case '\n':
     case '\r':
+
       endwin();
       exit(0);
       break;
