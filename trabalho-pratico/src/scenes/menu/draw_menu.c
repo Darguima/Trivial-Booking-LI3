@@ -8,11 +8,14 @@ void draw_menu(WINDOW* window, State* state) {
 
   refresh();
 
+  int nrows, ncols;
+  getmaxyx(window, nrows, ncols);
+
   box(window, 0, 0);
   wrefresh(window);
 
-  int y = LINES / 2;
-  int x = COLS / 2;
+  int y = nrows / 2;
+  int x = ncols / 2;
 
   mvprintw(y - 11, x - 34, "  _____     _       _       _   ____              _    _                    ");
   mvprintw(y - 10, x - 34, " |_   _| __(_)_   _(_) __ _| | | __ )  ___   ___ | | _(_)_ __   __ _        ");
@@ -21,9 +24,9 @@ void draw_menu(WINDOW* window, State* state) {
   mvprintw(y - 7, x - 34, "   |_||_|  |_| \\_/ |_|\\__,_|_| |____/ \\___/ \\___/|_|\\_\\_|_| |_|\\__, |");
   mvprintw(y - 6, x - 34, "                                                                |___/       ");
 
-  mvprintw(y + 1, x - 9, "1.Escolher queries");
-  mvprintw(y + 4, x - 4, "2.Ajuda");
-  mvprintw(y + 7, x - 4, "3.Sobre");
-  mvprintw(y + 10, x - 4, "4.Sair");
-  mvprintw(LINES - 2, 2, "Seleciona a opcao com [1]-[4]");
+  mvprintw(y, x - 9, "1.Escolher queries");
+  mvprintw(y + 3, x - 4, "2.Ajuda");
+  mvprintw(y + 6, x - 4, "3.Sobre");
+  mvprintw(y + 9, x - 4, "4.Sair");
+  mvprintw(nrows - 2, 2, "Seleciona a opcao com [1]-[4]");
 }

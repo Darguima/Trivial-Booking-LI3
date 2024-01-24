@@ -5,13 +5,12 @@
 #include "output/interactive.h"
 #include "utils/print_invalid_path_error.h"
 
-#define UNUSED(x) (void)(x) 
+#define UNUSED(x) (void)(x)
 
 int main(int argc, char** argv) {
-
   UNUSED(argc);
   UNUSED(argv);
-  
+
   // if (argc != 1 && argc != 3) {
   //   printf("Your arguments are wrong!\n");
   //   printf("You passed %d arguments.\n", argc - 1);

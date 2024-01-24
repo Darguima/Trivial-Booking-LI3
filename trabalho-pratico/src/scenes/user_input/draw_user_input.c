@@ -11,8 +11,8 @@ void draw_user_input(WINDOW* window, State* state, int evento) {
   int nrows, ncols;
   getmaxyx(window, nrows, ncols);
 
-  int y = (nrows / 2) - 4;
-  int x = (ncols / 2) - 2;
+  int y = (nrows / 2);
+  int x = (ncols / 2);
 
   box(window, 0, 0);
 
@@ -30,16 +30,16 @@ void draw_user_input(WINDOW* window, State* state, int evento) {
 
   switch (evento) {
     case 0:
-      mvprintw(y + 10, x - 5, "Input inserido: %s", state->userInput);
+      mvprintw(y + 7, x - 5, "Input inserido: %s", state->userInput);
       break;
     case 1:
-      mvprintw(y + 10, x - 5, "Input inserido: %s", state->userInput);
-      mvprintw(y + 11, x - 5, "A carregar resultados");
+      mvprintw(y + 7, x - 5, "Input inserido: %s", state->userInput);
+      mvprintw(y + 8, x - 5, "A carregar resultados");
       state->results_per_page = nrows - 6;
       state->pages = (int)ceil((double)state->results_per_page / state->results_count);
       break;
     case 2:  // apaga
-      mvprintw(y + 10, x - 5, "Input inserido: %s   ", state->userInput);
+      mvprintw(y + 7, x - 5, "Input inserido: %s   ", state->userInput);
       break;
   }
 

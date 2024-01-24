@@ -9,8 +9,8 @@ void draw_help(WINDOW* window, State* state) {
   int nrows, ncols;
   getmaxyx(window, nrows, ncols);
 
-  int y = (nrows / 2) - 4;
-  int x = (ncols / 2) - 2;
+  int y = (nrows / 2);
+  int x = (ncols / 2);
 
   box(window, 0, 0);
 

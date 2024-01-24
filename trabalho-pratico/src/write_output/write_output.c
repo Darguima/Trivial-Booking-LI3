@@ -23,7 +23,7 @@ void write_output(FILE* file,
 
   bool state_valid = is_State_Valid(state);
 
-  if (!format_flag && state_valid == false) {
+  if (!format_flag) {
     for (int i = 0; i < output_array_len; i++) {
       fprintf(file, "%s", output_array[i].value);
       fprintf(file, i == output_array_len - 1 ? "\n" : ";");

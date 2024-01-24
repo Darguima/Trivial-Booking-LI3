@@ -109,6 +109,7 @@ void draw_help_queries(WINDOW* window, State* state, int query) {
       mvwprintw(innerWin, 10, 2, "Ainda pode ser passada uma flag 'F', a seguir a query:  ");
       mvwprintw(innerWin, 11, 2, "<2F U000000001>, por exemplo,");
       mvwprintw(innerWin, 12, 2, "para que o output seja dado na forma de ' field: value '");
+      mvwprintw(innerWin, 13, 2, "(NAO IMPLEMENTADO)");
 
       break;
   }

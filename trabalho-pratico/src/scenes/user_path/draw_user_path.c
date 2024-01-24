@@ -10,8 +10,8 @@ void draw_user_path(WINDOW* window, State* state, int evento) {
   int nrows, ncols;
   getmaxyx(window, nrows, ncols);
 
-  int y = (nrows / 2) - 4;
-  int x = (ncols / 2) - 2;
+  int y = (nrows / 2);
+  int x = (ncols / 2);
 
   box(window, 0, 0);
 
@@ -26,14 +26,14 @@ void draw_user_path(WINDOW* window, State* state, int evento) {
 
   switch (evento) {
     case 0:  //
-      mvprintw(y + 5, x - 5, "Path inserido: %s", state->userPath);
+      mvprintw(y + 3, x - 5, "Path inserido: %s", state->userPath);
       break;
     case 1:  // indica um path invalido
-      mvprintw(y + 5, x - 5, "Path inserido: %s", state->userPath);
-      mvprintw(y + 6, x - 5, "Path invalido");
+      mvprintw(y + 3, x - 5, "Path inserido: %s", state->userPath);
+      mvprintw(y + 4, x - 5, "Path invalido");
       break;
     case 2:  // apaga
-      mvprintw(y + 5, x - 5, "Path inserido: %s   ", state->userPath);
+      mvprintw(y + 3, x - 5, "Path inserido: %s   ", state->userPath);
       break;
   }
 

@@ -15,7 +15,7 @@ void draw_exit(WINDOW* window, State* state) {
 
   box(window, 0, 0);
 
-  mvaddstr(y, x - 4, "Desejas sair?");
+  mvaddstr(y, x - 6, "Desejas sair?");
 
   mvprintw(2, 3, "  ____        _      ");
   mvprintw(3, 3, " / ___|  __ _(_)_ __ ");
