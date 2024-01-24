@@ -69,11 +69,16 @@ gboolean find_entities_callback(gpointer key, gpointer value, gpointer user_data
   User user = (User)value;
   char* user_name = user_get_name(user);
 
-  if ((strncmp(data->prefix, user_name, strlen(data->prefix)) == 0) && user_get_is_active(user)) {
+  if (data->prefix[0] > user_name[0]) {
+    free(user_name);
+    return FALSE;
+  } else if ((strncmp(data->prefix, user_name, strlen(data->prefix)) == 0) && user_get_is_active(user)) {
     *(data->result) = g_list_append(*(data->result), value);
+  } else if (data->prefix[0] < user_name[0]) {
+    free(user_name);
+    return TRUE;
   }
   free(user_name);
-
   return FALSE;
 }
 

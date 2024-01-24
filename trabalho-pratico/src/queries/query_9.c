@@ -30,7 +30,7 @@ int query_9(Catalogs catalogs, int command_number, bool format_flag, const char*
 
     iterator = next_iterator;
   }
-  g_list_free(user_results);
+
   close_output_file(output_file);
   return 0;
 }

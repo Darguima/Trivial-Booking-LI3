@@ -6,6 +6,10 @@
 #include "utils/print_invalid_path_error.h"
 
 int main(int argc, char** argv) {
+  struct timespec start, end;
+  double elapsed;
+  // Start time
+  clock_gettime(CLOCK_REALTIME, &start);
   if (argc != 1 && argc != 3) {
     printf("Your arguments are wrong!\n");
     printf("You passed %d arguments.\n", argc - 1);
@@ -55,7 +59,6 @@ int main(int argc, char** argv) {
   } else if (argc == 1) {
     interactive();
   }
-
   free_catalogs(catalogs);
 
   return 0;
