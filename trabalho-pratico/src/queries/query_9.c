@@ -18,8 +18,8 @@ int query_9(Catalogs catalogs, int command_number, bool format_flag, const char*
     char* user_name = user_get_name(user);
     char* user_id = user_get_id(user);
     output_key_value output_array[] = {{"id", user_id}, {"name", user_name}};
-    results_acc++;
     write_output(output_file, format_flag, results_acc, output_array, 2);
+    results_acc++;
 
     free(user_id);
     free(user_name);
