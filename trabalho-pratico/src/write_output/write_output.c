@@ -18,7 +18,7 @@ void write_output(FILE* file,
                   int results_acc,
                   output_key_value* output_array,
                   int output_array_len,
-                  State state) {
+                  State* state) {
   // Simple output
 
   bool state_valid = is_State_Valid(state);
@@ -31,8 +31,8 @@ void write_output(FILE* file,
 
     if (state_valid) {
       for (int i = 0; i < output_array_len; i++) {
-        if (state->results_count < 1000) {  // Verificar se há espaço no array
-          state->results[state->results_count] = strdup(output_array[i].value);
+        if (state->results_count < 1000) {
+          strcpy(state->results[state->results_count], output_array[i].value);
           state->results_count++;
         }
       }

@@ -42,10 +42,10 @@ typedef struct state {
   char userInput[MAX_INPUT_LENGTH];
   Catalogs catalog;
   char results[MAX_STRINGS][MAX_STRING_LENGTH];
-  int results_count; //numero de resultados escritos até ao momento
-  int pages; // numero maximo de paginas quando forem dados os resultados
+  int results_count;  // numero de resultados escritos até ao momento
+  int pages;          // numero maximo de paginas quando forem dados os resultados
   int current_page;
-  int results_per_page; // resultados mostrados por cada pagina para ajudar na paginação
+  int results_per_page;  // resultados mostrados por cada pagina para ajudar na paginação
 
 } State;
 

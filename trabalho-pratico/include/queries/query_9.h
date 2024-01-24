@@ -3,6 +3,7 @@
 #define QUERY_9_H
 
 #include <catalogs_creator/catalogs_creator.h>
+#include "state/state.h"
 
 /**
  * @brief Executes query 9 to retrieve users with names starting with a specified prefix
@@ -16,6 +17,6 @@
  * @param prefix The prefix used to filter users by name
  * @return int Returns 0 upon successfully executing query 9
  */
-int query_9(Catalogs catalogs, int command_number, bool format_flag, const char* prefix, State state);
+int query_9(Catalogs catalogs, int command_number, bool format_flag, const char* prefix, State* state);
 
 #endif

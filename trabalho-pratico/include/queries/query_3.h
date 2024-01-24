@@ -3,6 +3,7 @@
 #define QUERY_3_H
 
 #include <catalogs_creator/catalogs_creator.h>
+#include "state/state.h"
 
 /**
  * @brief Executes query 3 to retrieve the average rating of a hotel
@@ -15,6 +16,6 @@
  * @param id The ID of the hotel to retrieve the average rating for
  * @return int Returns 0 upon successful execution of query 3
  */
-int query_3(Catalogs CATALOGS, int command_number, bool format_flag, char* id, State state);
+int query_3(Catalogs CATALOGS, int command_number, bool format_flag, char* id, State* state);
 
 #endif

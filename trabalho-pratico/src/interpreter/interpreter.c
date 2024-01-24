@@ -75,7 +75,7 @@ char** tokenizer(char* line, int* params_array_length) {
   return tokenized;
 }
 
-int interpreter(char* batch_line, int command_number, Catalogs CATALOGS) {
+int interpreter(char* batch_line, int command_number, Catalogs CATALOGS, State* state) {
   int params_array_length = 0;
   // string de strings que contém os parametros a usar
   char** tokenized_params = tokenizer(batch_line, &params_array_length);
@@ -95,64 +95,64 @@ int interpreter(char* batch_line, int command_number, Catalogs CATALOGS) {
       if (params_array_length != 2) {
         break;
       }
-      query_1(CATALOGS, command_number, has_f, tokenized_params[1]);
+      query_1(CATALOGS, command_number, has_f, tokenized_params[1], state);
       break;
     case 2:
       if (params_array_length < 2 || params_array_length > 3) {
         break;
       }
       query_2(CATALOGS, command_number, has_f, tokenized_params[1],
-              params_array_length == 3 ? tokenized_params[2] : NULL);
+              params_array_length == 3 ? tokenized_params[2] : NULL, state);
       break;
     case 3:
       if (params_array_length != 2) {
         break;
       }
-      query_3(CATALOGS, command_number, has_f, tokenized_params[1]);
+      query_3(CATALOGS, command_number, has_f, tokenized_params[1], state);
       break;
     case 4:
       if (params_array_length != 2) {
         break;
       }
-      query_4(CATALOGS, command_number, has_f, tokenized_params[1]);
+      query_4(CATALOGS, command_number, has_f, tokenized_params[1], state);
       break;
     case 5:
       if (params_array_length != 4) {
         break;
       }
-      query_5(CATALOGS, command_number, has_f, tokenized_params[1], tokenized_params[2], tokenized_params[3]);
+      query_5(CATALOGS, command_number, has_f, tokenized_params[1], tokenized_params[2], tokenized_params[3], state);
       break;
     case 6:
       if (params_array_length != 2) {
         break;
       }
-      query_6(CATALOGS, command_number, has_f, tokenized_params[1], tokenized_params[2]);
+      query_6(CATALOGS, command_number, has_f, tokenized_params[1], tokenized_params[2], state);
 
       break;
     case 7:
       if (params_array_length != 2) {
         break;
       }
-      query_7(CATALOGS, command_number, has_f, tokenized_params[1]);
+      query_7(CATALOGS, command_number, has_f, tokenized_params[1], state);
       break;
     case 8:
       if (params_array_length != 4) {
         break;
       }
-      query_8(CATALOGS, command_number, has_f, tokenized_params[1], tokenized_params[2], tokenized_params[3]);
+      query_8(CATALOGS, command_number, has_f, tokenized_params[1], tokenized_params[2], tokenized_params[3], state);
       break;
     case 9:
       if (params_array_length != 2) {
         break;
       }
-      query_9(CATALOGS, command_number, has_f, tokenized_params[1]);
+      query_9(CATALOGS, command_number, has_f, tokenized_params[1], state);
       break;
     case 10:
       if (params_array_length > 3) {
         break;
       }
       query_10(CATALOGS, command_number, has_f, params_array_length >= 2 ? tokenized_params[1] : NULL,
-               params_array_length == 3 ? tokenized_params[3] : NULL);
+               params_array_length == 3 ? tokenized_params[3] : NULL, state);
       break;
   }
 

@@ -1,6 +1,7 @@
 //! @file
 #include <stdbool.h>
 #include <stdio.h>
+#include "state/state.h"
 
 /**
  * @brief Struct to store the output key value pairs.
@@ -33,7 +34,12 @@ FILE* create_output_file(int command_number);
  * @param output_array The output results, organized in a key value pair array.
  * @param output_array_len The length of the output array.
  */
-void write_output(FILE* file, bool format_flag, int results_acc, output_key_value* output_array, int output_array_len);
+void write_output(FILE* file,
+                  bool format_flag,
+                  int results_acc,
+                  output_key_value* output_array,
+                  int output_array_len,
+                  State* state);
 
 /**
  * @brief Closes the output file.

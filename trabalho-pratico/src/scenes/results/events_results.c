@@ -12,11 +12,11 @@ void events_results(State* state) {
       break;
 
     case KEY_LEFT:
-state->sceneAtual = Prev_Results;
+      state->sceneAtual = Prev_Results;
       break;
 
     case KEY_RIGHT:
-state->sceneAtual = Next_Results;
+      state->sceneAtual = Next_Results;
       break;
   }
 }

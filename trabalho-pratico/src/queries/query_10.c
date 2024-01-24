@@ -4,12 +4,13 @@
 #include "datatypes/datatypes.h"
 #include "state/state.h"
 
-int query_10(Catalogs catalogs, int command_number, bool format_flag, char* year, char* month, State state) {
+int query_10(Catalogs catalogs, int command_number, bool format_flag, char* year, char* month, State* state) {
   printf("I'm in query_10\n");
   UNUSED(catalogs);
   UNUSED(command_number);
   UNUSED(format_flag);
   UNUSED(year);
   UNUSED(month);
+  UNUSED(state);
   return 0;
 }

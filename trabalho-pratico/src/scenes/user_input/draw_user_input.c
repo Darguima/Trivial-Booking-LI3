@@ -1,7 +1,7 @@
+#include <math.h>
 #include <ncurses.h>
 #include <string.h>
 #include "state/state.h"
-#include <math.h>
 
 #define UNUSED(x) (void)(x)
 
@@ -35,8 +35,8 @@ void draw_user_input(WINDOW* window, State* state, int evento) {
     case 1:
       mvprintw(y + 10, x - 5, "Input inserido: %s", state->userInput);
       mvprintw(y + 11, x - 5, "A carregar resultados");
-       state->results_per_page = nrows - 6;
-       state->pages = ceil((double)state->results_per_page / state->results_count);
+      state->results_per_page = nrows - 6;
+      state->pages = (int)ceil((double)state->results_per_page / state->results_count);
       break;
     case 2:  // apaga
       mvprintw(y + 10, x - 5, "Input inserido: %s   ", state->userInput);

@@ -19,8 +19,7 @@ void events_user_input(State* state) {
     case '\n':
     case '\r':
       state->sceneAtual = Loading_Input;
-      interpreter(state->userInput, 1, state->catalog);
-      sleep(0.5);
+      interpreter(state->userInput, 1, state->catalog, state);
       state->sceneAtual = Results;
       break;
 

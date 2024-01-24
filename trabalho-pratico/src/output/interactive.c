@@ -141,13 +141,15 @@ int interactive() {
       case Results:
         draw_results(window, &state, 0);
         events_results(&state);
-       case Prev_Results:
+        break;
+      case Prev_Results:
         draw_results(window, &state, -1);
         events_results(&state);
-       case Next_Results:
+        break;
+      case Next_Results:
         draw_results(window, &state, 1);
         events_results(&state);
-
+        break;
       case About:
         draw_about(window, &state);
         events_about(&state);

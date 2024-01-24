@@ -35,6 +35,6 @@ void draw_results(WINDOW* window, State* state, int page_pos) {
     mvprintw(y + i - start_idx, x, "Result %d: %s", i + 1, state->results[i]);
   }
 
-  mvaddstr(nrows - 4, 2, "Pressiona as setas [LEFT]/[RIGHT] para mudar de página");
+  mvaddstr(nrows - 4, 2, "Pressiona as setas [LEFT]/[RIGHT] para mudar de pagina");
   mvaddstr(nrows - 2, 2, "Pressiona [ESC] para voltar ao menu anterior");
 }

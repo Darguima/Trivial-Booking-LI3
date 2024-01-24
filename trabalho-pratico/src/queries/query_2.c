@@ -4,13 +4,13 @@
 #include <stdio.h>
 #include "catalogs_creator/users_catalog.h"
 #include "datatypes/datatypes.h"
+#include "state/state.h"
 #include "utils/convert_string_to_seconds.h"
 #include "utils/extract_date_without_time.h"
 #include "utils/number_to_string.h"
 #include "write_output/write_output.h"
-#include "state/state.h"
 
-int query_2(Catalogs catalogs, int command_number, bool format_flag, char* id, char* optional, State state) {
+int query_2(Catalogs catalogs, int command_number, bool format_flag, char* id, char* optional, State* state) {
   FILE* output_file = create_output_file(command_number);
   User user = get_user_by_id(catalogs->users, id);
   if (user == NULL || !user_get_is_active(user)) {
@@ -84,7 +84,7 @@ int query_2(Catalogs catalogs, int command_number, bool format_flag, char* id, c
 
       if (optional != NULL && date_cmp == 1) {
         output_key_value output_array[] = {{"id", reservation_id}, {"date", begin_reservation_date}};
-        write_output(output_file, format_flag, result_acc, output_array, 2,state);
+        write_output(output_file, format_flag, result_acc, output_array, 2, state);
 
       } else {
         output_key_value output_array[] = {

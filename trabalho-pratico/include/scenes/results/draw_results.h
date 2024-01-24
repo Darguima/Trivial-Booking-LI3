@@ -2,7 +2,7 @@
 #define DRAW_RESULTS_H
 
 #include <ncurses.h>
-#include "stat_resultste.h"
+#include "state/state.h"
 
 void draw_results(WINDOW* window, State* state, int page_pos);
 
