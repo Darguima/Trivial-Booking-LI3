@@ -30,6 +30,8 @@ typedef struct user* User;
  */
 User create_new_user(UsersCatalog users_catalog, char** user_values);
 
+void user_arroz(UsersCatalog user_catalog);
+
 /**
  * @brief Will free the memory allocated for a user entity
  *

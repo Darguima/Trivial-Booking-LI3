@@ -1,3 +1,6 @@
+#ifndef COMPARE_DATATYPES_H
+#define COMPARE_DATATYPES_H
+
 #include <datatypes/datatypes.h>
 #include <glib.h>
 #include <string.h>
@@ -48,3 +51,5 @@ gint compare_flights_by_sched_dep_date(gconstpointer a, gconstpointer b);
  * @return Negative value if a < b; zero if a = b; positive value if a > b.
  */
 gint compare_reservations_by_begin_date(gconstpointer a, gconstpointer b);
+
+#endif

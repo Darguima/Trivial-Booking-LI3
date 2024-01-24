@@ -49,4 +49,6 @@ User get_user_by_id(UsersCatalog users_catalog, char* user_id);
  */
 GList* get_users_by_account_creation_range(UsersCatalog users_catalog, char* date_begin, char* date_end);
 
+GList* get_users_by_prefix(UsersCatalog users_catalog, const char* prefix);
+
 #endif
