@@ -1,6 +1,7 @@
 #include "write_output/write_output.h"
 #include <stdbool.h>
 #include <stdio.h>
+#include "state/state.h"
 
 FILE* create_output_file(int command_number) {
   char filename[256];
@@ -8,12 +9,33 @@ FILE* create_output_file(int command_number) {
   return fopen(filename, "w");
 }
 
-void write_output(FILE* file, bool format_flag, int results_acc, output_key_value* output_array, int output_array_len) {
+int is_State_Valid(const State* state) {
+  return (state != NULL);
+}
+
+void write_output(FILE* file,
+                  bool format_flag,
+                  int results_acc,
+                  output_key_value* output_array,
+                  int output_array_len,
+                  State state) {
   // Simple output
-  if (!format_flag) {
+
+  bool state_valid = is_State_Valid(state);
+
+  if (!format_flag && state_valid == false) {
     for (int i = 0; i < output_array_len; i++) {
       fprintf(file, "%s", output_array[i].value);
       fprintf(file, i == output_array_len - 1 ? "\n" : ";");
+    }
+
+    if (state_valid) {
+      for (int i = 0; i < output_array_len; i++) {
+        if (state->results_count < 1000) {  // Verificar se há espaço no array
+          state->results[state->results_count] = strdup(output_array[i].value);
+          state->results_count++;
+        }
+      }
     }
 
     // Formatted output

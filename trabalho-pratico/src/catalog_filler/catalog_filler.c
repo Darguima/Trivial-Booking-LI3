@@ -64,9 +64,5 @@ int catalog_filler(char* dataset_folder_path, Catalogs CATALOGS) {
 
   airports_create_aux_data_structs(CATALOGS->airports);
 
-  if (is_dataset_path_valid) {
-    printf("[STATUS] - Catalogs filled\n");
-  }
-
   return is_dataset_path_valid ? 0 : -1;
 }

@@ -10,6 +10,7 @@
 #include "queries/query_7.h"
 #include "queries/query_8.h"
 #include "queries/query_9.h"
+#include "state/state.h"
 
 #include <catalogs_creator/catalogs_creator.h>
 

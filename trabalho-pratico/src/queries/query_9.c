@@ -8,8 +8,9 @@
 #include "datatypes/datatypes.h"
 #include "utils/calculate_stats.h"
 #include "write_output/write_output.h"
+#include "state/state.h"
 
-int query_9(Catalogs catalogs, int command_number, bool format_flag, const char* prefix) {
+int query_9(Catalogs catalogs, int command_number, bool format_flag, const char* prefix, State state) {
   printf("I'm in query_9\n");
 
   UNUSED(catalogs);

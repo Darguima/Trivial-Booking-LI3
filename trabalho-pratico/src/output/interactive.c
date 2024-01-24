@@ -5,26 +5,32 @@
 #include "interpreter/interpreter.h"
 #include "state/state.h"
 
-#include "scenes/menu/desenhaMenu.h"
-#include "scenes/menu/eventosMenu.h"
+#include "scenes/menu/draw_menu.h"
+#include "scenes/menu/events_menu.h"
 
-#include "scenes/ajuda/desenhaAjuda.h"
-#include "scenes/ajuda/eventosAjuda.h"
+#include "scenes/help/draw_help.h"
+#include "scenes/help/events_help.h"
 
-#include "scenes/sobre/desenhaSobre.h"
-#include "scenes/sobre/eventosSobre.h"
+#include "scenes/about/draw_about.h"
+#include "scenes/about/events_about.h"
 
-#include "scenes/sair/desenhaSair.h"
-#include "scenes/sair/eventosSair.h"
+#include "scenes/exit/draw_exit.h"
+#include "scenes/exit/events_exit.h"
 
-#include "scenes/input/desenhaInput.h"
-#include "scenes/input/eventosInput.h"
+#include "scenes/user_path/draw_user_path.h"
+#include "scenes/user_path/events_user_path.h"
 
-#include "scenes/ajudaQueries/desenhaAjudaQueries.h"
-#include "scenes/ajudaQueries/eventosAjudaQueries.h"
+#include "scenes/user_input/draw_user_input.h"
+#include "scenes/user_input/events_user_input.h"
+
+#include "scenes/help_queries/draw_help_queries.h"
+#include "scenes/help_queries/events_help_queries.h"
+
+#include "scenes/results/draw_results.h"
+#include "scenes/results/events_results.h"
 
 int interactive() {
-  printf("I'm in interactive (not ready)\n");
+  printf("I'm in interactive\n");
 
   setlocale(LC_ALL, "");
 
@@ -38,7 +44,7 @@ int interactive() {
   intrflush(stdscr, false);
   keypad(stdscr, true);
 
-  State state = criarEstado(window);
+  State state = create_state(window);
 
   Scene sceneAnterior = state.sceneAtual;
 
@@ -50,72 +56,106 @@ int interactive() {
 
     switch (state.sceneAtual) {
       case Menu:
-        desenhaMenu(window, &state);
-        eventosMenu(&state);
+        draw_menu(window, &state);
+        events_menu(&state);
         break;
 
-      case Ajuda:
-        desenhaAjuda(window, &state);
-        eventosAjuda(&state);
+      case Help:
+        draw_help(window, &state);
+        events_help(&state);
         break;
-      case AjudaInfoInput:
-        desenhaAjudaQueries(window, &state, 11);
-        eventosAjudaQueries(&state);
+      case Help_Info_Input:
+        draw_help_queries(window, &state, 11);
+        events_help_queries(&state);
         break;
-      case Query1:
-        desenhaAjudaQueries(window, &state, 1);
-        eventosAjudaQueries(&state);
+      case Query_1:
+        draw_help_queries(window, &state, 1);
+        events_help_queries(&state);
         break;
-      case Query2:
-        desenhaAjudaQueries(window, &state, 2);
-        eventosAjudaQueries(&state);
+      case Query_2:
+        draw_help_queries(window, &state, 2);
+        events_help_queries(&state);
         break;
-      case Query3:
-        desenhaAjudaQueries(window, &state, 3);
-        eventosAjudaQueries(&state);
+      case Query_3:
+        draw_help_queries(window, &state, 3);
+        events_help_queries(&state);
         break;
-      case Query4:
-        desenhaAjudaQueries(window, &state, 4);
-        eventosAjudaQueries(&state);
+      case Query_4:
+        draw_help_queries(window, &state, 4);
+        events_help_queries(&state);
         break;
-      case Query5:
-        desenhaAjudaQueries(window, &state, 5);
-        eventosAjudaQueries(&state);
+      case Query_5:
+        draw_help_queries(window, &state, 5);
+        events_help_queries(&state);
         break;
-      case Query6:
-        desenhaAjudaQueries(window, &state, 6);
-        eventosAjudaQueries(&state);
+      case Query_6:
+        draw_help_queries(window, &state, 6);
+        events_help_queries(&state);
         break;
-      case Query7:
-        desenhaAjudaQueries(window, &state, 7);
-        eventosAjudaQueries(&state);
+      case Query_7:
+        draw_help_queries(window, &state, 7);
+        events_help_queries(&state);
         break;
-      case Query8:
-        desenhaAjudaQueries(window, &state, 8);
-        eventosAjudaQueries(&state);
+      case Query_8:
+        draw_help_queries(window, &state, 8);
+        events_help_queries(&state);
         break;
-      case Query9:
-        desenhaAjudaQueries(window, &state, 9);
-        eventosAjudaQueries(&state);
+      case Query_9:
+        draw_help_queries(window, &state, 9);
+        events_help_queries(&state);
         break;
-      case Query10:
-        desenhaAjudaQueries(window, &state, 10);
-        eventosAjudaQueries(&state);
+      case Query_10:
+        draw_help_queries(window, &state, 10);
+        events_help_queries(&state);
         break;
 
       case Input:
-        desenhaInput(window, &state);
-        eventosInput(&state);
+        draw_user_path(window, &state, 0);
+        events_user_path(&state);
         break;
 
-      case Sobre:
-        desenhaSobre(window, &state);
-        eventosSobre(&state);
+      case Invalid_Path:
+        draw_user_path(window, &state, 1);
+        events_user_path(&state);
         break;
 
-      case Sair:
-        desenhaSair(window, &state);
-        eventosSair(&state);
+      case Erase_Path:
+        draw_user_path(window, &state, 2);
+        events_user_path(&state);
+        break;
+
+      case Valid_Path:  // quando o path é valido, inicializa o user input com 0(caso de inicialização)
+        draw_user_input(window, &state, 0);
+        events_user_input(&state);
+        break;
+
+      case Loading_Input:
+        draw_user_input(window, &state, 1);
+        events_user_input(&state);
+        break;
+        break;
+      case Erase_Input:
+        draw_user_input(window, &state, 2);
+        events_user_input(&state);
+        break;
+      case Results:
+        draw_results(window, &state, 0);
+        events_results(&state);
+       case Prev_Results:
+        draw_results(window, &state, -1);
+        events_results(&state);
+       case Next_Results:
+        draw_results(window, &state, 1);
+        events_results(&state);
+
+      case About:
+        draw_about(window, &state);
+        events_about(&state);
+        break;
+
+      case Exit:
+        draw_exit(window, &state);
+        events_exit(&state);
         break;
     }
     refresh();

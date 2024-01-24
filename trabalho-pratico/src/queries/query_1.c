@@ -16,6 +16,7 @@
 #include "utils/string_to_int.h"
 #include "values_parser/verify_values.h"
 #include "write_output/write_output.h"
+#include "state/state.h"
 
 bool verify_if_is_reservation(char* id) {
   if (strncmp(id, "Book", 4) == 0) {
@@ -24,7 +25,7 @@ bool verify_if_is_reservation(char* id) {
   return false;
 }
 
-void write_user_data(char* id, Catalogs catalogs, FILE* output_file, bool format_flag) {
+void write_user_data(char* id, Catalogs catalogs, FILE* output_file, bool format_flag, State state) {
   User user = get_user_by_id(catalogs->users, id);
   if (user == NULL || !user_get_is_active(user)) {
     return;
@@ -48,7 +49,7 @@ void write_user_data(char* id, Catalogs catalogs, FILE* output_file, bool format
                                      {"number_of_reservations", number_of_reservations},
                                      {"total_spent", total_spent}};
 
-  write_output(output_file, format_flag, 1, output_array, 8);
+  write_output(output_file, format_flag, 1, output_array, 8, State state);
   free(number_of_flights);
   free(number_of_reservations);
   free(total_spent);
@@ -80,7 +81,7 @@ void write_reservation_data(char* id, Catalogs catalogs, FILE* output_file, bool
       {"hotel_stars", hotel_stars}, {"begin_date", begin_date},
       {"end_date", end_date},       {"includes_breakfast", includes_breakfast ? "True" : "False"},
       {"nights", nights},           {"total_price", total_price}};
-  write_output(output_file, format_flag, 1, output_array, 8);
+  write_output(output_file, format_flag, 1, output_array, 8, State state);
 
   free(total_price);
   free(hotel_stars);
@@ -116,7 +117,7 @@ void write_flight_data(char* id, Catalogs catalogs, FILE* output_file, bool form
                                      {"schedule_arrival_date", schedule_arrival_date},
                                      {"passengers", number_of_passengers},
                                      {"delay", delay}};
-  write_output(output_file, format_flag, 1, output_array, 8);
+  write_output(output_file, format_flag, 1, output_array, 8, State state);
   free(number_of_passengers);
   free(delay);
   free(airline);
