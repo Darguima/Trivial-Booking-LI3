@@ -1,5 +1,5 @@
-#include <stdio.h>
 #include <locale.h>
+#include <stdio.h>
 #include "catalog_filler/catalog_filler.h"
 #include "catalogs_creator/catalogs_creator.h"
 #include "output/batch.h"
@@ -7,7 +7,6 @@
 #include "utils/print_invalid_path_error.h"
 
 int main(int argc, char** argv) {
-
   setlocale(LC_COLLATE, "en_US.UTF-8");
 
   if (argc != 1 && argc != 3) {
