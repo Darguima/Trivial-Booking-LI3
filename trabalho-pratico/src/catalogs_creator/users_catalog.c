@@ -63,33 +63,6 @@ GList* get_users_by_account_creation_range(UsersCatalog users_catalog, char* dat
                                            (char* (*)(void*))user_get_account_creation, date_begin, date_end);
 }
 
-// gboolean find_entities_callback(gpointer key, gpointer value, gpointer user_data) {
-//   UNUSED(key);
-//   CallbackData* data = (CallbackData*)user_data;
-//   User user = (User)value;
-//   char* user_name = user_get_name(user);
-
-//   if (data->prefix[0] > user_name[0]) {
-//     free(user_name);
-//     return FALSE;
-//   } else if ((strncmp(data->prefix, user_name, strlen(data->prefix)) == 0) && user_get_is_active(user)) {
-//     *(data->result) = g_list_append(*(data->result), value);
-//   } else if (data->prefix[0] < user_name[0]) {
-//     free(user_name);
-//     return TRUE;
-//   }
-//   free(user_name);
-//   return FALSE;
-// }
-
-// GList* find_entities_with_prefix(GTree* tree, const char* prefix) {
-//   GList* result = NULL;
-
-//   gpointer user_data[] = {&result, (gpointer)prefix};
-//   g_tree_foreach(tree, find_entities_callback, user_data);
-
-//   return result;
-// }
 
 GList* get_users_by_prefix(UsersCatalog catalog, const char* prefix) {
   GList* result = NULL;
