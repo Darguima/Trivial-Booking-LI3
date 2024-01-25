@@ -21,7 +21,6 @@ int main(int argc, char** argv) {
     return -1;
   }
 
-
   char* dataset_folder_path;
   if (argc == 1) {
     // ask user the input - 2nd phase
