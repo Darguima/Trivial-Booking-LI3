@@ -1,5 +1,6 @@
 #include <stdbool.h>
 #include <stdio.h>
+#include <sys/time.h>
 #include "queries/query_1.h"
 #include "queries/query_10.h"
 #include "queries/query_2.h"
@@ -88,7 +89,6 @@ int interpreter(char* batch_line, int command_number, Catalogs CATALOGS) {
 
   bool has_f = field_string[0] == 'F';
   // compara-se pois esse valor só pode ser 'F' ou ' '
-
   switch (query_number) {
     case 1:
       if (params_array_length != 2) {
