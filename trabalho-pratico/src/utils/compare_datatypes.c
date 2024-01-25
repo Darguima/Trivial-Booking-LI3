@@ -47,7 +47,7 @@ gint compare_airports_by_median_delay(gconstpointer a, gconstpointer b) {
 gint compare_airports_by_passengers(gconstpointer a, gconstpointer b, gpointer user_data) {
   Airport airport_a = *(Airport*)a;
   Airport airport_b = *(Airport*)b;
-  int year = (int)user_data;
+  int year = *(int*)user_data;
 
   long passengers_a = airport_get_passenger_by_year(airport_a, year);
   long passengers_b = airport_get_passenger_by_year(airport_b, year);

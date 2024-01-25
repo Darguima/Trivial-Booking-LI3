@@ -69,7 +69,7 @@ void airports_create_aux_data_structs(AirportsCatalog airports_catalog) {
   g_hash_table_iter_init(&sort_iter, airports_catalog->passengers_by_year_hash_table);
   while (g_hash_table_iter_next(&sort_iter, &sort_year, &sort_array)) {
     GArray* airportsArray = (GArray*)sort_array;
-    g_array_sort_with_data(airportsArray, compare_airports_by_passengers, GINT_TO_POINTER(sort_year));
+    g_array_sort_with_data(airportsArray, compare_airports_by_passengers, &sort_year);
   }
 }
 
