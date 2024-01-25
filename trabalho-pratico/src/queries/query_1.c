@@ -1,6 +1,7 @@
 #include <catalogs_creator/catalogs_creator.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <utils/number_to_string.h>
 #include "catalogs_creator/airports_catalog.h"
 #include "catalogs_creator/catalogs_creator.h"
@@ -12,6 +13,7 @@
 #include "entities/flight_entity.h"
 #include "entities/hotel_entity.h"
 #include "entities/user_entity.h"
+#include "state/state.h"
 #include "utils/calculate_stats.h"
 #include "utils/string_to_int.h"
 #include "values_parser/verify_values.h"
@@ -24,7 +26,7 @@ bool verify_if_is_reservation(char* id) {
   return false;
 }
 
-void write_user_data(char* id, Catalogs catalogs, FILE* output_file, bool format_flag) {
+void write_user_data(char* id, Catalogs catalogs, FILE* output_file, bool format_flag, State state) {
   User user = get_user_by_id(catalogs->users, id);
   if (user == NULL || !user_get_is_active(user)) {
     return;
@@ -48,7 +50,7 @@ void write_user_data(char* id, Catalogs catalogs, FILE* output_file, bool format
                                      {"number_of_reservations", number_of_reservations},
                                      {"total_spent", total_spent}};
 
-  write_output(output_file, format_flag, 1, output_array, 8);
+  write_output(output_file, format_flag, 1, output_array, 8, state);
   free(number_of_flights);
   free(number_of_reservations);
   free(total_spent);
@@ -59,7 +61,7 @@ void write_user_data(char* id, Catalogs catalogs, FILE* output_file, bool format
   free(name);
 }
 
-void write_reservation_data(char* id, Catalogs catalogs, FILE* output_file, bool format_flag) {
+void write_reservation_data(char* id, Catalogs catalogs, FILE* output_file, bool format_flag, State state) {
   int id_int = string_to_int(id);
 
   Reservation reservation = get_reservation_by_id(catalogs->reservations, id_int);
@@ -80,7 +82,7 @@ void write_reservation_data(char* id, Catalogs catalogs, FILE* output_file, bool
       {"hotel_stars", hotel_stars}, {"begin_date", begin_date},
       {"end_date", end_date},       {"includes_breakfast", includes_breakfast ? "True" : "False"},
       {"nights", nights},           {"total_price", total_price}};
-  write_output(output_file, format_flag, 1, output_array, 8);
+  write_output(output_file, format_flag, 1, output_array, 8, state);
 
   free(total_price);
   free(hotel_stars);
@@ -91,7 +93,7 @@ void write_reservation_data(char* id, Catalogs catalogs, FILE* output_file, bool
   free(hotel_name);
 }
 
-void write_flight_data(char* id, Catalogs catalogs, FILE* output_file, bool format_flag) {
+void write_flight_data(char* id, Catalogs catalogs, FILE* output_file, bool format_flag, State state) {
   int id_int = string_to_int(id);
 
   Flight flight = get_flight_by_id(catalogs->flights, id_int);
@@ -116,7 +118,7 @@ void write_flight_data(char* id, Catalogs catalogs, FILE* output_file, bool form
                                      {"schedule_arrival_date", schedule_arrival_date},
                                      {"passengers", number_of_passengers},
                                      {"delay", delay}};
-  write_output(output_file, format_flag, 1, output_array, 8);
+  write_output(output_file, format_flag, 1, output_array, 8, state);
   free(number_of_passengers);
   free(delay);
   free(airline);
@@ -127,19 +129,19 @@ void write_flight_data(char* id, Catalogs catalogs, FILE* output_file, bool form
   free(schedule_departure_date);
 }
 
-int query_1(Catalogs catalogs, int command_number, bool format_flag, char* id) {
+int query_1(Catalogs catalogs, int command_number, bool format_flag, char* id, State state) {
   FILE* output_file = create_output_file(command_number);
 
   if (verify_if_is_digit(id)) {
-    write_flight_data(id, catalogs, output_file, format_flag);
+    write_flight_data(id, catalogs, output_file, format_flag, state);
   }
 
   else if (verify_if_is_reservation(id)) {
-    write_reservation_data(id, catalogs, output_file, format_flag);
+    write_reservation_data(id, catalogs, output_file, format_flag, state);
   }
 
   else {
-    write_user_data(id, catalogs, output_file, format_flag);
+    write_user_data(id, catalogs, output_file, format_flag, state);
   }
 
   close_output_file(output_file);

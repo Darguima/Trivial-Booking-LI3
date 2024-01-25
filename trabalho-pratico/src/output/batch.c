@@ -25,7 +25,7 @@ int batch(char* queries_path, Catalogs CATALOGS) {
     // Switch end of line from \n to \0
     line[line_len - 1] = '\0';
 
-    interpreter(line, command_number, CATALOGS);
+    interpreter(line, command_number, CATALOGS, NULL);
     command_number++;
   }
 

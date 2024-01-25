@@ -1,6 +1,7 @@
 #include "write_output/write_output.h"
 #include <stdbool.h>
 #include <stdio.h>
+#include "state/state.h"
 
 FILE* create_output_file(int command_number) {
   char filename[256];
@@ -8,8 +9,14 @@ FILE* create_output_file(int command_number) {
   return fopen(filename, "w");
 }
 
-void write_output(FILE* file, bool format_flag, int results_acc, output_key_value* output_array, int output_array_len) {
+void write_output(FILE* file,
+                  bool format_flag,
+                  int results_acc,
+                  output_key_value* output_array,
+                  int output_array_len,
+                  State state) {
   // Simple output
+  UNUSED(state);
   if (!format_flag) {
     for (int i = 0; i < output_array_len; i++) {
       fprintf(file, "%s", output_array[i].value);

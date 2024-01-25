@@ -6,6 +6,8 @@
 #include "output/interactive.h"
 #include "utils/print_invalid_path_error.h"
 
+#define UNUSED(x) (void)(x)
+
 int main(int argc, char** argv) {
   setlocale(LC_COLLATE, "en_US.UTF-8");
 
@@ -44,6 +46,8 @@ int main(int argc, char** argv) {
     print_invalid_path_error("dataset");
     free_catalogs(catalogs);
     return -1;
+  } else {
+    printf("[STATUS] - Catalogs filled\n");
   }
 
   if (argc == 3) {

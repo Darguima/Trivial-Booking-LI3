@@ -3,6 +3,7 @@
 #define INTERPRETER_H
 
 #include <catalogs_creator/catalogs_creator.h>
+#include "state/state.h"
 
 /**
  * @brief Interprets a batch line command and performs associated queries
@@ -16,6 +17,6 @@
  * @return int Returns 0 upon successful interpretation and execution of queries
  */
 
-int interpreter(char* batch_line, int command_number, Catalogs CATALOGS);
+int interpreter(char* batch_line, int command_number, Catalogs CATALOGS, State state);
 
 #endif

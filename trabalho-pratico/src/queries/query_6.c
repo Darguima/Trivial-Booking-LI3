@@ -2,11 +2,12 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include "datatypes/datatypes.h"
+#include "state/state.h"
 #include "utils/number_to_string.h"
 #include "utils/string_to_int.h"
 #include "write_output/write_output.h"
 
-int query_6(Catalogs catalogs, int command_number, bool format_flag, char* year, char* n) {
+int query_6(Catalogs catalogs, int command_number, bool format_flag, char* year, char* n, State state) {
   int year_int = string_to_int(year);
 
   FILE* output_file = create_output_file(command_number);
@@ -23,7 +24,7 @@ int query_6(Catalogs catalogs, int command_number, bool format_flag, char* year,
 
     output_key_value output_array[] = {{"name", airport_id}, {"passengers", airport_passengers}};
 
-    write_output(output_file, format_flag, acc, output_array, 2);
+    write_output(output_file, format_flag, acc, output_array, 2, state);
 
     free(airport_id);
     free(airport_passengers);

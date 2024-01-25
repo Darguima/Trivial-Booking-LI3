@@ -59,7 +59,7 @@ void increase_date(char* date, Type type) {
   }
 }
 
-int query_10(Catalogs catalogs, int command_number, bool format_flag, char* year, char* month) {
+int query_10(Catalogs catalogs, int command_number, bool format_flag, char* year, char* month, State state) {
   FILE* output_file = create_output_file(command_number);
   Type range_type = year == NULL ? YEAR : month == NULL ? MONTH : DAY;
   char* range_type_str = range_type == YEAR ? "year" : range_type == MONTH ? "month" : "day";

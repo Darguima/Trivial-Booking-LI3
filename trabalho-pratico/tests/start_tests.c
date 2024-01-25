@@ -23,7 +23,7 @@ void start_tests(Catalogs catalogs, char* queries_path, char* queries_expected_f
     // Switch end of line from \n to \0
     line[line_len - 1] = '\0';
     start = clock();
-    interpreter(line, i, catalogs);
+    interpreter(line, i, catalogs, NULL);
     end = clock();
     cpu_time_used = ((double)(end - start)) * 1000 / CLOCKS_PER_SEC;
     printf("Query %c took %fms to execute!\n\n", line[0], cpu_time_used);
