@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include "datatypes/datatypes.h"
 #include "entities/user_entity.h"
-#include "locale.h"
 #include "utils/compare_datatypes.h"
 #include "utils/find_tree_nodes_inside_date_range.h"
 
@@ -16,7 +15,6 @@ gint compare_names(gconstpointer a, gconstpointer b, gpointer user_data) {
   UsersCatalog users_catalog = (UsersCatalog)user_data;
   const char* id_1 = (const char*)a;
   const char* id_2 = (const char*)b;
-  setlocale(LC_COLLATE, "en_US.UTF-8");
 
   User user_1 = get_user_by_id(users_catalog, (char*)id_1);
   User user_2 = get_user_by_id(users_catalog, (char*)id_2);

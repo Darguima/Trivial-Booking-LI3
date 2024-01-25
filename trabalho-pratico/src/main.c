@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <locale.h>
 #include "catalog_filler/catalog_filler.h"
 #include "catalogs_creator/catalogs_creator.h"
 #include "output/batch.h"
@@ -6,6 +7,9 @@
 #include "utils/print_invalid_path_error.h"
 
 int main(int argc, char** argv) {
+
+  setlocale(LC_COLLATE, "en_US.UTF-8");
+
   if (argc != 1 && argc != 3) {
     printf("Your arguments are wrong!\n");
     printf("You passed %d arguments.\n", argc - 1);
@@ -16,6 +20,7 @@ int main(int argc, char** argv) {
     fprintf(stderr, "[ERROR] - Invalid params\n");
     return -1;
   }
+
 
   char* dataset_folder_path;
   if (argc == 1) {
