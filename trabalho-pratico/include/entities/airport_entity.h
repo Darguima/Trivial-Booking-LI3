@@ -39,6 +39,8 @@ void free_airport(gpointer value);
  */
 char* airport_get_id(Airport airport);
 
+GArray* airport_get_flights(Airport airport);
+
 /**
  * @brief Will return the passengers count from the given airport
  *

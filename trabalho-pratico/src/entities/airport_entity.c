@@ -56,6 +56,14 @@ char* airport_get_id(Airport airport) {
   return g_strdup(airport->id);
 }
 
+GArray* airport_get_flights(Airport airport) {
+  if (!airport->flights->is_sorted) {
+    g_array_sort(airport->flights->values, compare_flights_by_sched_dep_date);
+    airport->flights->is_sorted = true;
+  }
+  return g_array_copy(airport->flights->values);
+}
+
 long airport_get_median_delay(Airport airport) {
   if (airport->delays->values->len == 0) {
     return -1;
