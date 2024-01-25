@@ -48,6 +48,8 @@ char* airport_get_id(Airport airport);
  */
 int airport_get_passengers(Airport airport, int year);
 
+GArray* airport_get_flights(Airport airport);
+
 /**
  * @brief Will return the median delay from the given airport
  *
