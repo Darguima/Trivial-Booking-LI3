@@ -64,7 +64,6 @@ long airport_get_median_delay(Airport airport);
  * @param airport The airport to get the active years from
  * @return GList* The active years from the given airport
  */
-GList* airport_get_active_years(Airport airport);
 
 /**
  * @brief Will return the passengers of the airport on the given year

@@ -17,13 +17,13 @@ int query_5(Catalogs catalogs, int command_number, bool format_flag, char* name,
     char* schedule_departure_date = flight_get_schedule_departure_date(flight);
     int departure_difference_1 =
         (int)(convert_string_to_seconds(schedule_departure_date) - convert_string_to_seconds(begin_date));
-    if(departure_difference_1<0) {
+    if (departure_difference_1 < 0) {
       i++;
       free(schedule_departure_date);
       continue;
     }
     int departure_difference_2 =
-    (int)(convert_string_to_seconds(schedule_departure_date) - convert_string_to_seconds(end_date));
+        (int)(convert_string_to_seconds(schedule_departure_date) - convert_string_to_seconds(end_date));
     if (departure_difference_2 <= 0) {
       char flight_id[11];
       sprintf(flight_id, "%010d", flight_get_id(flight));
@@ -46,7 +46,6 @@ int query_5(Catalogs catalogs, int command_number, bool format_flag, char* name,
     if (departure_difference_1 < 0) {
       break;
     }
-    
   }
   g_array_free(array_of_flights, TRUE);
   close_output_file(output_file);
