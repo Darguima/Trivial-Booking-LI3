@@ -4,6 +4,7 @@
 
 #include <catalogs_creator/catalogs_creator.h>
 #include <stdbool.h>
+#include "state/state.h"
 
 /**
  * @brief Executes query 4 to retrieve hotel reservations sorted by date and ID
@@ -17,6 +18,6 @@
  * @param hotel_id The ID of the hotel to retrieve reservations for
  * @return int Returns 0 upon successful execution of query 4
  */
-int query_4(Catalogs catalogs, int command_number, bool format_flag, char* hotel_id);
+int query_4(Catalogs catalogs, int command_number, bool format_flag, char* hotel_id, State state);
 
 #endif

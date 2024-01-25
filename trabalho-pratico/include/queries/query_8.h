@@ -3,6 +3,7 @@
 #define QUERY_8_H
 
 #include <catalogs_creator/catalogs_creator.h>
+#include "state/state.h"
 
 /**
  * @brief Execute query 8 to get hotel total revenue
@@ -19,6 +20,12 @@
  * @return int Returns 0 upon successfully executing query 8
  */
 
-int query_8(Catalogs CATALOGS, int command_number, bool format_flag, char* name, char* begin_date, char* end_date);
+int query_8(Catalogs CATALOGS,
+            int command_number,
+            bool format_flag,
+            char* name,
+            char* begin_date,
+            char* end_date,
+            State state);
 
 #endif

@@ -4,12 +4,13 @@
 #include <stdio.h>
 #include "catalogs_creator/users_catalog.h"
 #include "datatypes/datatypes.h"
+#include "state/state.h"
 #include "utils/convert_string_to_seconds.h"
 #include "utils/extract_date_without_time.h"
 #include "utils/number_to_string.h"
 #include "write_output/write_output.h"
 
-int query_2(Catalogs catalogs, int command_number, bool format_flag, char* id, char* optional) {
+int query_2(Catalogs catalogs, int command_number, bool format_flag, char* id, char* optional, State state) {
   FILE* output_file = create_output_file(command_number);
   User user = get_user_by_id(catalogs->users, id);
   if (user == NULL || !user_get_is_active(user)) {
@@ -65,11 +66,11 @@ int query_2(Catalogs catalogs, int command_number, bool format_flag, char* id, c
       char* begin_flight_date_without_time = extract_date_without_time(begin_flight_date);
       if (optional != NULL && date_cmp == -1) {
         output_key_value output_array[] = {{"id", flight_id}, {"date", begin_flight_date_without_time}};
-        write_output(output_file, format_flag, result_acc, output_array, 2);
+        write_output(output_file, format_flag, result_acc, output_array, 2, state);
       } else {
         output_key_value output_array[] = {
             {"id", flight_id}, {"date", begin_flight_date_without_time}, {"type", "flight"}};
-        write_output(output_file, format_flag, result_acc, output_array, 3);
+        write_output(output_file, format_flag, result_acc, output_array, 3, state);
       }
       free(begin_flight_date_without_time);
       if (begin_reservation_date) {
@@ -83,12 +84,12 @@ int query_2(Catalogs catalogs, int command_number, bool format_flag, char* id, c
 
       if (optional != NULL && date_cmp == 1) {
         output_key_value output_array[] = {{"id", reservation_id}, {"date", begin_reservation_date}};
-        write_output(output_file, format_flag, result_acc, output_array, 2);
+        write_output(output_file, format_flag, result_acc, output_array, 2, state);
 
       } else {
         output_key_value output_array[] = {
             {"id", reservation_id}, {"date", begin_reservation_date}, {"type", "reservation"}};
-        write_output(output_file, format_flag, result_acc, output_array, 3);
+        write_output(output_file, format_flag, result_acc, output_array, 3, state);
       }
 
       reservations_i++;

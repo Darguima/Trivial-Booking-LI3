@@ -32,7 +32,7 @@ LOCAL_INC = -I include/ # Including local headers
 GLIB_INC = $(shell pkg-config --cflags glib-2.0) # pkg-config will convert the lib name to the correct flag
 CFLAGS = ${FLAGS} ${LOCAL_INC} ${GLIB_INC}
 
-LDFLAGS = -lm `pkg-config --libs glib-2.0` # pkg-config will convert the lib name to the correct flag
+LDFLAGS = -lm -lcurses `pkg-config --libs glib-2.0` # pkg-config will convert the lib name to the correct flag
 
 # Commands ===
 

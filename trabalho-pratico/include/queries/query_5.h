@@ -3,6 +3,7 @@
 #define QUERY_5_H
 
 #include <catalogs_creator/catalogs_creator.h>
+#include "state/state.h"
 
 /**
  * @brief Executes query 5 to retrieve flights by airport and time range
@@ -18,6 +19,12 @@
  * @param end_date The end date of the time range
  * @return int Returns 0 upon successful execution of query 5
  */
-int query_5(Catalogs CATALOGS, int command_number, bool format_flag, char* name, char* begin_date, char* end_date);
+int query_5(Catalogs CATALOGS,
+            int command_number,
+            bool format_flag,
+            char* name,
+            char* begin_date,
+            char* end_date,
+            State state);
 
 #endif
