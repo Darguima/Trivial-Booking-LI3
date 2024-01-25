@@ -38,6 +38,8 @@ void free_reservation(Reservation* value);
  */
 int reservation_get_id(Reservation reservation);
 
+char* reservation_get_user_id(Reservation reservation);
+
 char* reservation_get_begin_date(Reservation reservation);
 
 int reservation_get_hotel_stars(Reservation reservation);

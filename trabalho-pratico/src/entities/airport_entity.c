@@ -8,16 +8,11 @@
 #include "utils/is_active.h"
 #include "utils/string_to_int.h"
 
-typedef struct passengersPerYear {
-  int year;
-  int passengers;
-}* PassengersPerYear;
-
 struct airport {
   char* id;
   RelationArray flights;
-  RelationList passengers;
   RelationArray delays;
+  GHashTable* passengers_by_year;
 };
 
 Airport create_new_airport(AirportsCatalog airports_catalog, char* airport_id) {
@@ -31,14 +26,10 @@ Airport create_new_airport(AirportsCatalog airports_catalog, char* airport_id) {
   delays->values = g_array_new(FALSE, FALSE, sizeof(long));
   delays->is_sorted = false;
 
-  RelationList passengers = malloc(sizeof(struct relationList));
-  passengers->values = NULL;
-  passengers->is_sorted = false;
-
   new_airport->id = g_strdup(airport_id);
   new_airport->flights = flights;
   new_airport->delays = delays;
-  new_airport->passengers = passengers;
+  new_airport->passengers_by_year = g_hash_table_new_full(g_direct_hash, g_direct_equal, NULL, free);
 
   insert_airport(airports_catalog, new_airport);
 
@@ -56,8 +47,7 @@ void free_airport(gpointer value) {
   g_array_free(airport->delays->values, true);
   g_free(airport->delays);
 
-  g_list_free_full(airport->passengers->values, free);
-  g_free(airport->passengers);
+  g_hash_table_destroy(airport->passengers_by_year);
 
   free(airport);
 }
@@ -66,15 +56,12 @@ char* airport_get_id(Airport airport) {
   return g_strdup(airport->id);
 }
 
-int airport_get_passengers(Airport airport, int year) {
-  for (GList* node = airport->passengers->values; node != NULL; node = node->next) {
-    PassengersPerYear passengers_per_year = (PassengersPerYear)node->data;
-    if (passengers_per_year->year == year) {
-      return passengers_per_year->passengers;
-    }
+GArray* airport_get_flights(Airport airport) {
+  if (!airport->flights->is_sorted) {
+    g_array_sort(airport->flights->values, compare_flights_by_sched_dep_date);
+    airport->flights->is_sorted = true;
   }
-
-  return -1;
+  return g_array_copy(airport->flights->values);
 }
 
 long airport_get_median_delay(Airport airport) {
@@ -96,6 +83,10 @@ long airport_get_median_delay(Airport airport) {
   }
 
   return median_delay;
+}
+
+GList* airport_get_active_years(Airport airport) {
+  return g_hash_table_get_keys(airport->passengers_by_year);
 }
 
 void airport_insert_new_flight(AirportsCatalog airports_catalog, Flight flight) {
@@ -120,21 +111,23 @@ void airport_insert_new_flight(AirportsCatalog airports_catalog, Flight flight) 
   g_free(airport_id_d);
 }
 
+int airport_get_passenger_by_year(Airport airport, int year) {
+  int* current_passengers = g_hash_table_lookup(airport->passengers_by_year, GINT_TO_POINTER(year));
+
+  return current_passengers == NULL ? -1 : *current_passengers;
+}
+
 void airport_increment_passengers(Airport airport, char* date, int passengers) {
   char date_copy[] = {date[0], date[1], date[2], date[3]};
   int date_int = string_to_int(date_copy);
 
-  GList* node;
-  for (node = airport->passengers->values; node != NULL; node = node->next) {
-    PassengersPerYear passengers_per_year = (PassengersPerYear)node->data;
-    if (passengers_per_year->year == date_int) {
-      passengers_per_year->passengers += passengers;
-      return;
-    }
+  int* current_passengers = g_hash_table_lookup(airport->passengers_by_year, GINT_TO_POINTER(date_int));
+
+  if (current_passengers == NULL) {
+    current_passengers = malloc(sizeof(int));
+    *current_passengers = 0;
+    g_hash_table_insert(airport->passengers_by_year, GINT_TO_POINTER(date_int), current_passengers);
   }
 
-  PassengersPerYear passengers_per_year = malloc(sizeof(struct passengersPerYear));
-  passengers_per_year->year = date_int;
-  passengers_per_year->passengers = passengers;
-  airport->passengers->values = g_list_append(airport->passengers->values, passengers_per_year);
+  *current_passengers += passengers;
 }

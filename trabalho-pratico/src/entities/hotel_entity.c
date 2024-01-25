@@ -4,6 +4,7 @@
 #include "catalogs_creator/hotels_catalog.h"
 #include "datatypes/datatypes.h"
 #include "entities/reservation_entity.h"
+#include "utils/compare_datatypes.h"
 #include "utils/string_to_int.h"
 
 struct hotel {
@@ -53,6 +54,10 @@ double hotel_get_rating(Hotel hotel) {
 }
 
 GArray* hotel_get_reservations(Hotel hotel) {
+  if (!hotel->reservations->is_sorted) {
+    g_array_sort(hotel->reservations->values, compare_reservations_by_begin_date);
+    hotel->reservations->is_sorted = true;
+  }
   return g_array_copy(hotel->reservations->values);
 }
 
