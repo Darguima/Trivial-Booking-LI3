@@ -35,6 +35,16 @@ gint compare_long(gconstpointer a, gconstpointer b, gpointer user_data);
 gint compare_airports_by_median_delay(gconstpointer a, gconstpointer b);
 
 /**
+ * @brief Will compare the passengers of two airports on a given year. Will use the id of the airports as a tie breaker.
+ *
+ * @param a pointer to one airport
+ * @param b pointer to another airport
+ * @param user_data pointer to the year to compare
+ * @return Negative value if a < b; zero if a = b; positive value if a > b.
+ */
+gint compare_airports_by_passengers(gconstpointer a, gconstpointer b, gpointer user_data);
+
+/**
  * @brief Will compare the dates of two flights. Will use the id of the flights as a tie breaker.
  *
  * @param a pointer to one flight
