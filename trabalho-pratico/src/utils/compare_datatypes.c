@@ -1,6 +1,7 @@
 #include <datatypes/datatypes.h>
 #include <entities/flight_entity.h>
 #include <entities/reservation_entity.h>
+#include <entities/user_entity.h>
 #include <glib.h>
 #include <string.h>
 #include <utils/convert_string_to_seconds.h>
@@ -106,4 +107,22 @@ gint compare_reservations_by_begin_date(gconstpointer a, gconstpointer b) {
 
     return id_1 - id_2;
   }
+}
+
+gint compare_users_by_name(gconstpointer a, gconstpointer b, gpointer user_data) {
+  UsersCatalog users_catalog = (UsersCatalog)user_data;
+  const char* id_1 = (const char*)a;
+  const char* id_2 = (const char*)b;
+
+  User user_1 = get_user_by_id(users_catalog, (char*)id_1);
+  User user_2 = get_user_by_id(users_catalog, (char*)id_2);
+  char* name_1 = user_get_name(user_1);
+  char* name_2 = user_get_name(user_2);
+  int name_comp = strcoll(name_1, name_2);
+  free(name_1);
+  free(name_2);
+  if (name_comp != 0) {
+    return name_comp;
+  }
+  return strcoll(id_1, id_2);
 }
