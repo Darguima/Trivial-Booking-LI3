@@ -18,9 +18,8 @@ int query_5(Catalogs catalogs, int command_number, bool format_flag, char* name,
     int departure_difference_begin =
         (int)(convert_string_to_seconds(schedule_departure_date) - convert_string_to_seconds(begin_date));
     if (departure_difference_begin < 0) {
-      i++;
       free(schedule_departure_date);
-      continue;
+      break;
     }
     int departure_difference_end =
         (int)(convert_string_to_seconds(schedule_departure_date) - convert_string_to_seconds(end_date));
@@ -43,9 +42,6 @@ int query_5(Catalogs catalogs, int command_number, bool format_flag, char* name,
     }
 
     free(schedule_departure_date);
-    if (departure_difference_end > 0) {
-      break;
-    }
   }
   g_array_free(array_of_flights, TRUE);
   close_output_file(output_file);
