@@ -35,15 +35,15 @@ typedef enum scene {
 typedef struct state {
   Scene sceneAtual;
   WINDOW* ncurses_screen;
-  char *user_path;
-  char *user_input;
+  char user_path[100];
+  char user_input[100];
   Catalogs catalog;
   GArray* results;
-  int pages;          // numero maximo de paginas quando forem dados os resultados
+  int pages;  // numero maximo de paginas quando forem dados os resultados
   int current_page;
   int results_per_page;  // resultados mostrados por cada pagina para ajudar na paginação
 
-} *State;
+}* State;
 
 State create_state(WINDOW* window);
 

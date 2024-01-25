@@ -36,7 +36,6 @@ void draw_user_input(WINDOW* window, State state, int evento) {
       mvprintw(y + 7, x - 5, "Input inserido: %s", state->user_input);
       mvprintw(y + 8, x - 5, "A carregar resultados");
       state->results_per_page = nrows - 6;
-      state->pages = (int)ceil((double)state->results_per_page / state->results_count);
       break;
     case 2:  // apaga
       mvprintw(y + 7, x - 5, "Input inserido: %s   ", state->user_input);

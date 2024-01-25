@@ -16,7 +16,7 @@ void write_output(FILE* file,
                   int output_array_len,
                   State state) {
   // Simple output
-
+  UNUSED(state);
   if (!format_flag) {
     for (int i = 0; i < output_array_len; i++) {
       fprintf(file, "%s", output_array[i].value);
@@ -32,18 +32,6 @@ void write_output(FILE* file,
     for (int i = 0; i < output_array_len; i++) {
       fprintf(file, "%s: %s\n", output_array[i].field, output_array[i].value);
     }
-  }
-
-  char *array_copy = malloc((output_array_len + 1) * sizeof(char));
-
-  if (state != NULL) {
-    // output_array = [ ["key", "value"], ["key", "value"], ... ]
-    // [["airline", "TAP"], ["origin", "LIS"], ...]
-
-    for (int i = 0; i < output_array_len; i++) {
-      array_copy[i] = strdup(output_array[i].field);
-    }
-    g_array_append_val(state->results, output_array);
   }
 }
 

@@ -46,120 +46,120 @@ int interactive() {
 
   State state = create_state(window);
 
-  printf("teste: %d" ,state.sceneAtual);
+  printf("teste: %d", state->sceneAtual);
 
-  Scene sceneAnterior = state.sceneAtual;
+  Scene sceneAnterior = state->sceneAtual;
 
   while (1) {
-    if (state.sceneAtual != sceneAnterior) {
+    if (state->sceneAtual != sceneAnterior) {
       werase(window);
-      sceneAnterior = state.sceneAtual;
+      sceneAnterior = state->sceneAtual;
     }
 
-    switch (state.sceneAtual) {
+    switch (state->sceneAtual) {
       case Menu:
-        draw_menu(window, &state);
-        events_menu(&state);
+        draw_menu(window, state);
+        events_menu(state);
         break;
 
       case Help:
-        draw_help(window, &state);
-        events_help(&state);
+        draw_help(window, state);
+        events_help(state);
         break;
       case Help_Info_Input:
-        draw_help_queries(window, &state, 11);
-        events_help_queries(&state);
+        draw_help_queries(window, state, 11);
+        events_help_queries(state);
         break;
       case Query_1:
-        draw_help_queries(window, &state, 1);
-        events_help_queries(&state);
+        draw_help_queries(window, state, 1);
+        events_help_queries(state);
         break;
       case Query_2:
-        draw_help_queries(window, &state, 2);
-        events_help_queries(&state);
+        draw_help_queries(window, state, 2);
+        events_help_queries(state);
         break;
       case Query_3:
-        draw_help_queries(window, &state, 3);
-        events_help_queries(&state);
+        draw_help_queries(window, state, 3);
+        events_help_queries(state);
         break;
       case Query_4:
-        draw_help_queries(window, &state, 4);
-        events_help_queries(&state);
+        draw_help_queries(window, state, 4);
+        events_help_queries(state);
         break;
       case Query_5:
-        draw_help_queries(window, &state, 5);
-        events_help_queries(&state);
+        draw_help_queries(window, state, 5);
+        events_help_queries(state);
         break;
       case Query_6:
-        draw_help_queries(window, &state, 6);
-        events_help_queries(&state);
+        draw_help_queries(window, state, 6);
+        events_help_queries(state);
         break;
       case Query_7:
-        draw_help_queries(window, &state, 7);
-        events_help_queries(&state);
+        draw_help_queries(window, state, 7);
+        events_help_queries(state);
         break;
       case Query_8:
-        draw_help_queries(window, &state, 8);
-        events_help_queries(&state);
+        draw_help_queries(window, state, 8);
+        events_help_queries(state);
         break;
       case Query_9:
-        draw_help_queries(window, &state, 9);
-        events_help_queries(&state);
+        draw_help_queries(window, state, 9);
+        events_help_queries(state);
         break;
       case Query_10:
-        draw_help_queries(window, &state, 10);
-        events_help_queries(&state);
+        draw_help_queries(window, state, 10);
+        events_help_queries(state);
         break;
 
       case Input:
-        draw_user_path(window, &state, 0);
-        events_user_path(&state);
+        draw_user_path(window, state, 0);
+        events_user_path(state);
         break;
 
       case Invalid_Path:
-        draw_user_path(window, &state, 1);
-        events_user_path(&state);
+        draw_user_path(window, state, 1);
+        events_user_path(state);
         break;
 
       case Erase_Path:
-        draw_user_path(window, &state, 2);
-        events_user_path(&state);
+        draw_user_path(window, state, 2);
+        events_user_path(state);
         break;
 
       case Valid_Path:  // quando o path é valido, inicializa o user input com 0(caso de inicialização)
-        draw_user_input(window, &state, 0);
-        events_user_input(&state);
+        draw_user_input(window, state, 0);
+        events_user_input(state);
         break;
 
       case Loading_Input:
-        draw_user_input(window, &state, 1);
-        events_user_input(&state);
+        draw_user_input(window, state, 1);
+        events_user_input(state);
         break;
         break;
       case Erase_Input:
-        draw_user_input(window, &state, 2);
-        events_user_input(&state);
+        draw_user_input(window, state, 2);
+        events_user_input(state);
         break;
       case Results:
-        draw_results(window, &state, 0);
-        events_results(&state);
+        draw_results(window, state, 0);
+        events_results(state);
         break;
       case Prev_Results:
-        draw_results(window, &state, -1);
-        events_results(&state);
+        draw_results(window, state, -1);
+        events_results(state);
         break;
       case Next_Results:
-        draw_results(window, &state, 1);
-        events_results(&state);
+        draw_results(window, state, 1);
+        events_results(state);
         break;
       case About:
-        draw_about(window, &state);
-        events_about(&state);
+        draw_about(window, state);
+        events_about(state);
         break;
 
       case Exit:
-        draw_exit(window, &state);
-        events_exit(window, &state);
+        draw_exit(window, state);
+        events_exit(window, state);
         break;
     }
     refresh();

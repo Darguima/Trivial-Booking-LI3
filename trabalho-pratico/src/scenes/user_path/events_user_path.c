@@ -12,8 +12,6 @@ void events_user_path(State state) {
 
   switch (key) {
     case 27:
-      memset(state->user_path, 0, sizeof(state->user_path));
-      memset(state->user_path, 0, sizeof(state->user_input));
       state->sceneAtual = Menu;
 
       break;
