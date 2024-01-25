@@ -56,9 +56,10 @@ GList* get_users_by_prefix(UsersCatalog catalog, const char* prefix) {
       continue;
     } else if (user_get_is_active(user) && (strncmp(prefix, user_name, strlen(prefix)) == 0)) {
       (result) = g_list_append(result, user);
-    node = g_tree_node_next(node);
-    free(user_name);
+      node = g_tree_node_next(node);
+      free(user_name);
+    }
   }
 
-  return result;
-}
+    return result;
+  }
