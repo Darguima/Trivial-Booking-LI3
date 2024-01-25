@@ -3,6 +3,7 @@
 #include "entities/reservation_entity.h"
 #include "utils/compare_datatypes.h"
 #include "utils/find_tree_nodes_inside_date_range.h"
+#include "utils/string_to_int.h"
 
 struct reservations_catalog {
   GArray* reservations_array;
@@ -46,4 +47,13 @@ GList* get_reservations_by_begin_date_range(ReservationsCatalog reservations_cat
                                             char* date_end) {
   return find_tree_nodes_inside_date_range(reservations_catalog->reservations_begin_date_tree,
                                            (char* (*)(void*))reservation_get_begin_date, date_begin, date_end);
+}
+
+int get_first_reservation_year(ReservationsCatalog reservations_catalog) {
+  GTreeNode* node = g_tree_node_first(reservations_catalog->reservations_begin_date_tree);
+  Reservation reservation = g_tree_node_value(node);
+  char* begin_date = reservation_get_begin_date(reservation);
+  char year[] = {begin_date[0], begin_date[1], begin_date[2], begin_date[3]};
+  free(begin_date);
+  return string_to_int(year);
 }

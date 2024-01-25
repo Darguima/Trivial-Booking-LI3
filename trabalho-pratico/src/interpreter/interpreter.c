@@ -1,5 +1,6 @@
 #include <stdbool.h>
 #include <stdio.h>
+#include <sys/time.h>
 #include "queries/query_1.h"
 #include "queries/query_10.h"
 #include "queries/query_2.h"
@@ -89,7 +90,6 @@ int interpreter(char* batch_line, int command_number, Catalogs CATALOGS, State s
 
   bool has_f = field_string[0] == 'F';
   // compara-se pois esse valor só pode ser 'F' ou ' '
-
   switch (query_number) {
     case 1:
       if (params_array_length != 2) {
@@ -123,7 +123,7 @@ int interpreter(char* batch_line, int command_number, Catalogs CATALOGS, State s
       query_5(CATALOGS, command_number, has_f, tokenized_params[1], tokenized_params[2], tokenized_params[3], state);
       break;
     case 6:
-      if (params_array_length != 2) {
+      if (params_array_length != 3) {
         break;
       }
       query_6(CATALOGS, command_number, has_f, tokenized_params[1], tokenized_params[2], state);
@@ -152,7 +152,7 @@ int interpreter(char* batch_line, int command_number, Catalogs CATALOGS, State s
         break;
       }
       query_10(CATALOGS, command_number, has_f, params_array_length >= 2 ? tokenized_params[1] : NULL,
-               params_array_length == 3 ? tokenized_params[3] : NULL, state);
+               params_array_length == 3 ? tokenized_params[2] : NULL, state);
       break;
   }
 

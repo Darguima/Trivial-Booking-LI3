@@ -51,4 +51,12 @@ Reservation get_reservation_by_id(ReservationsCatalog reservations_catalog, int 
  */
 GList* get_reservations_by_begin_date_range(ReservationsCatalog reservations_catalog, char* date_begin, char* date_end);
 
+/**
+ * @brief Will return the first year that a reservation was created
+ *
+ * @param reservations_catalog The reservations catalog
+ * @return int The year
+ */
+int get_first_reservation_year(ReservationsCatalog reservations_catalog);
+
 #endif

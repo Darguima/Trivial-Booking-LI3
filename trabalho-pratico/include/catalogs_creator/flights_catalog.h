@@ -51,4 +51,12 @@ Flight get_flight_by_id(FlightsCatalog flights_catalog, int flight_id);
  */
 GList* get_flights_by_schedule_dep_range(FlightsCatalog flights_catalog, char* date_begin, char* date_end);
 
+/**
+ * @brief Will return the first year that a flight was created
+ *
+ * @param flights_catalog The flights catalog
+ * @return int The year
+ */
+int get_first_flight_year(FlightsCatalog flights_catalog);
+
 #endif

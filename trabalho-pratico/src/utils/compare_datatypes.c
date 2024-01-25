@@ -1,6 +1,7 @@
 #include <datatypes/datatypes.h>
 #include <entities/flight_entity.h>
 #include <entities/reservation_entity.h>
+#include <entities/user_entity.h>
 #include <glib.h>
 #include <string.h>
 #include <utils/convert_string_to_seconds.h>
@@ -28,6 +29,31 @@ gint compare_airports_by_median_delay(gconstpointer a, gconstpointer b) {
   long median_delay_b = airport_get_median_delay(airport_b);
 
   gint r = (gint)(median_delay_b - median_delay_a);
+
+  if (r != 0)
+    return r;
+  else {
+    char* id_a = airport_get_id(airport_a);
+    char* id_b = airport_get_id(airport_b);
+
+    r = strcmp(id_a, id_b);
+
+    free(id_a);
+    free(id_b);
+
+    return r;
+  }
+}
+
+gint compare_airports_by_passengers(gconstpointer a, gconstpointer b, gpointer user_data) {
+  Airport airport_a = *(Airport*)a;
+  Airport airport_b = *(Airport*)b;
+  int year = *(int*)user_data;
+
+  long passengers_a = airport_get_passenger_by_year(airport_a, year);
+  long passengers_b = airport_get_passenger_by_year(airport_b, year);
+
+  gint r = (gint)(passengers_b - passengers_a);
 
   if (r != 0)
     return r;
@@ -81,4 +107,22 @@ gint compare_reservations_by_begin_date(gconstpointer a, gconstpointer b) {
 
     return id_1 - id_2;
   }
+}
+
+gint compare_users_by_name(gconstpointer a, gconstpointer b, gpointer user_data) {
+  UsersCatalog users_catalog = (UsersCatalog)user_data;
+  const char* id_1 = (const char*)a;
+  const char* id_2 = (const char*)b;
+
+  User user_1 = get_user_by_id(users_catalog, (char*)id_1);
+  User user_2 = get_user_by_id(users_catalog, (char*)id_2);
+  char* name_1 = user_get_name(user_1);
+  char* name_2 = user_get_name(user_2);
+  int name_comp = strcoll(name_1, name_2);
+  free(name_1);
+  free(name_2);
+  if (name_comp != 0) {
+    return name_comp;
+  }
+  return strcoll(id_1, id_2);
 }

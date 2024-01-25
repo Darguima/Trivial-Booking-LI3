@@ -39,6 +39,8 @@ void free_airport(gpointer value);
  */
 char* airport_get_id(Airport airport);
 
+GArray* airport_get_flights(Airport airport);
+
 /**
  * @brief Will return the passengers count from the given airport
  *
@@ -55,6 +57,22 @@ int airport_get_passengers(Airport airport, int year);
  * @return long The median delay from the given airport
  */
 long airport_get_median_delay(Airport airport);
+
+/**
+ * @brief Will return the active years from the given airport, based on passengers
+ *
+ * @param airport The airport to get the active years from
+ * @return GList* The active years from the given airport
+ */
+GList* airport_get_active_years(Airport airport);
+
+/**
+ * @brief Will return the passengers of the airport on the given year
+ *
+ * @param airport The airport to get the passengers number
+ * @param passengers The number of passengers on the given airport on the given year
+ */
+int airport_get_passenger_by_year(Airport airport, int year);
 
 /**
  * @brief Will insert the given flight on the airport flights array

@@ -5,6 +5,8 @@
 #include <glib.h>
 #include "entities/user_entity.h"
 
+typedef struct user* User;
+
 //! The users catalog
 typedef struct users_catalog* UsersCatalog;
 
@@ -48,5 +50,15 @@ User get_user_by_id(UsersCatalog users_catalog, char* user_id);
  * @return GList* The list of users
  */
 GList* get_users_by_account_creation_range(UsersCatalog users_catalog, char* date_begin, char* date_end);
+
+/**
+ * @brief Will return the first year that a user was created
+ *
+ * @param users_catalog The users catalog
+ * @return int The year
+ */
+int get_user_first_account_creation_year(UsersCatalog users_catalog);
+
+GList* get_users_by_prefix(UsersCatalog users_catalog, const char* prefix);
 
 #endif
