@@ -60,6 +60,8 @@ void increase_date(char* date, Type type) {
 }
 
 int query_10(Catalogs catalogs, int command_number, bool format_flag, char* year, char* month, State state) {
+  UNUSED(state);
+
   FILE* output_file = create_output_file(command_number);
   Type range_type = year == NULL ? YEAR : month == NULL ? MONTH : DAY;
   char* range_type_str = range_type == YEAR ? "year" : range_type == MONTH ? "month" : "day";
@@ -164,7 +166,7 @@ int query_10(Catalogs catalogs, int command_number, bool format_flag, char* year
     output_key_value output_array[] = {{range_type_str, date},         {"users", users_count_str},
                                        {"flights", flights_count_str}, {"passengers", passengers_count_str},
                                        {"unique_passengers", "0"},     {"reservations", reservation_count_str}};
-    write_output(output_file, format_flag, results_acc, output_array, 6);
+    write_output(output_file, format_flag, results_acc, output_array, 6, state);
     results_acc++;
 
     free(users_count_str);
