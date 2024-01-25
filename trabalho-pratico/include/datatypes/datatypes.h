@@ -27,9 +27,4 @@ typedef struct relationList {
   bool is_sorted;
 }* RelationList;
 
-typedef struct {
-  GList** result;
-  const char* prefix;
-} CallbackData;
-
 #endif

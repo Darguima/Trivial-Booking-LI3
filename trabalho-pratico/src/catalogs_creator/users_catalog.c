@@ -63,7 +63,6 @@ GList* get_users_by_account_creation_range(UsersCatalog users_catalog, char* dat
                                            (char* (*)(void*))user_get_account_creation, date_begin, date_end);
 }
 
-
 GList* get_users_by_prefix(UsersCatalog catalog, const char* prefix) {
   GList* result = NULL;
   GTreeNode* node = g_tree_node_first(catalog->users_name_tree);
