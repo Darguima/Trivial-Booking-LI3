@@ -51,17 +51,15 @@ GList* get_users_by_prefix(UsersCatalog catalog, const char* prefix) {
     User user = g_tree_node_value(node);
     char* user_name = user_get_name(user);
     if (prefix[0] > user_name[0]) {
-      free(user_name);
       node = g_tree_node_next(node);
+      free(user_name);
       continue;
     } else if (user_get_is_active(user) && (strncmp(prefix, user_name, strlen(prefix)) == 0)) {
       (result) = g_list_append(result, user);
-    } else if (prefix[0] < user_name[0]) {
-      free(user_name);
-      break;
     }
-    node = g_tree_node_next(node);
     free(user_name);
+
+    node = g_tree_node_next(node);
   }
 
   return result;
