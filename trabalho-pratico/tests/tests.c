@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <locale.h>
 #include "catalog_filler/catalog_filler.h"
 #include "catalogs_creator/catalogs_creator.h"
 #include "datatypes/datatypes.h"
@@ -14,6 +15,7 @@
 #include "utils/print_invalid_path_error.h"
 
 int main(int argc, char** argv) {
+  setlocale(LC_COLLATE, "en_US.UTF-8");
   if (argc != 4) {
     printf("Your arguments are wrong!\n");
     printf("You passed %d arguments.\n", argc - 1);
