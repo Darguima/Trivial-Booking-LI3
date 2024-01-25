@@ -9,8 +9,7 @@
 #include "write_output/write_output.h"
 #define UNUSED(x) (void)(x)
 
-
-int query_4(Catalogs catalogs, int command_number, bool format_flag, char* id, State state)) {
+int query_4(Catalogs catalogs, int command_number, bool format_flag, char* id, State state) {
   FILE* output_file = create_output_file(command_number);
   int hotel_id = string_to_int(id);
   Hotel hotel = get_hotel_by_id(catalogs->hotels, hotel_id);
@@ -38,7 +37,7 @@ int query_4(Catalogs catalogs, int command_number, bool format_flag, char* id, S
         {"user_id", user_id},   {"rating", rating_str},     {"total_price", total_price_str},
     };
 
-    write_output(output_file, format_flag, results_acc, output_array, 6,state);
+    write_output(output_file, format_flag, results_acc, output_array, 6, state);
     results_acc++;
     free(begin_date);
     free(end_date);

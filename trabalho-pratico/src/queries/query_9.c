@@ -12,7 +12,7 @@
 
 #define UNUSED(x) (void)(x)
 
-int query_9(Catalogs catalogs, int command_number, bool format_flag, const char* prefix,State) {
+int query_9(Catalogs catalogs, int command_number, bool format_flag, const char* prefix, State state) {
   FILE* output_file = create_output_file(command_number);
   GList* user_results = get_users_by_prefix(catalogs->users, prefix);
   int results_acc = 1;
@@ -21,7 +21,7 @@ int query_9(Catalogs catalogs, int command_number, bool format_flag, const char*
     char* user_name = user_get_name(user);
     char* user_id = user_get_id(user);
     output_key_value output_array[] = {{"id", user_id}, {"name", user_name}};
-    write_output(output_file, format_flag, results_acc, output_array, 2,state);
+    write_output(output_file, format_flag, results_acc, output_array, 2, state);
     results_acc++;
 
     free(user_id);

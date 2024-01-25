@@ -9,9 +9,7 @@
 #define UNUSED(x) (void)(x)
 
 int main(int argc, char** argv) {
-
   setlocale(LC_COLLATE, "en_US.UTF-8");
-
 
   if (argc != 1 && argc != 3) {
     printf("Your arguments are wrong!\n");
