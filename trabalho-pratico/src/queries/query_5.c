@@ -43,7 +43,7 @@ int query_5(Catalogs catalogs, int command_number, bool format_flag, char* name,
     }
 
     free(schedule_departure_date);
-    if (departure_difference_end < 0) {
+    if (departure_difference_end > 0) {
       break;
     }
   }
