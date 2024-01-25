@@ -2,28 +2,28 @@
 #include <ncurses.h>
 #include <string.h>
 #include "catalogs_creator/catalogs_creator.h"
+#include "write_output/write_output.h"
+#include <stdlib.h>
 
 #define UNUSED(x) (void)(x)
 
 State create_state(WINDOW* window) {
   UNUSED(window);
-  State state;
-  state.sceneAtual = Menu;
-  strcpy(state.userPath, "");
-  strcpy(state.userInput, "");
-  state.catalog = catalogs_creator();
 
-  for (int i = 0; i < MAX_STRINGS; i++) {
-    memset(state.results[i], 0, sizeof(state.results[i]));
-  }
+  State state = malloc(sizeof(struct state));
+
+  state->sceneAtual = Menu;
+  state->user_path = NULL;
+  state->user_input = NULL;
+  state->catalog = catalogs_creator();
+  state->results = g_array_new(FALSE, FALSE, sizeof(output_key_value));
 
   return state;
 }
 
-void free_state(State* state) {
+void free_state(State state) {
   free_catalogs(state->catalog);
-
-  for (int i = 0; i < MAX_STRINGS; i++) {
-    free(state->results[i]);
-  }
+  g_array_free(state->results, TRUE);
+  free(state->user_path);
+  free(state->user_input);
 }

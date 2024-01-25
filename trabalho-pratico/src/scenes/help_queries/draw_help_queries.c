@@ -3,7 +3,7 @@
 
 #define UNUSED(x) (void)(x)
 
-void draw_help_queries(WINDOW* window, State* state, int query) {
+void draw_help_queries(WINDOW* window, State state, int query) {
   UNUSED(state);
   UNUSED(query);
 

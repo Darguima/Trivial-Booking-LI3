@@ -26,6 +26,6 @@ int query_8(Catalogs CATALOGS,
             char* name,
             char* begin_date,
             char* end_date,
-            State* state);
+            State state);
 
 #endif

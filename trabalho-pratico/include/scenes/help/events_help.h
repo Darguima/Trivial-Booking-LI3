@@ -4,6 +4,6 @@
 #include <ncurses.h>
 #include "state/state.h"
 
-void events_help(State* state);
+void events_help(State state);
 
 #endif

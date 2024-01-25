@@ -19,6 +19,6 @@
  * @return int Returns 0 upon successful execution of query 1
  */
 
-int query_1(Catalogs CATALOGS, int command_number, bool format_flag, char* id, State* state);
+int query_1(Catalogs CATALOGS, int command_number, bool format_flag, char* id, State state);
 
 #endif

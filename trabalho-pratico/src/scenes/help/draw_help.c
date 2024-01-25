@@ -3,13 +3,13 @@
 
 #define UNUSED(x) (void)(x)
 
-void draw_help(WINDOW* window, State* state) {
+void draw_help(WINDOW* window, State state) {
   UNUSED(state);
 
   int nrows, ncols;
   getmaxyx(window, nrows, ncols);
 
-  int y = (nrows / 2);
+  int y = (nrows / 2) - 2;
   int x = (ncols / 2);
 
   box(window, 0, 0);

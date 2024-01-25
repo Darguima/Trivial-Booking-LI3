@@ -12,7 +12,7 @@ int query_5(Catalogs catalogs,
             char* name,
             char* begin_date,
             char* end_date,
-            State* state) {
+            State state) {
   printf("I'm in query_5\n");
   UNUSED(catalogs);
   UNUSED(command_number);

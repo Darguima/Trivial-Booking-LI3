@@ -17,6 +17,6 @@
  * @return int Returns 0 upon successful interpretation and execution of queries
  */
 
-int interpreter(char* batch_line, int command_number, Catalogs CATALOGS, State* state);
+int interpreter(char* batch_line, int command_number, Catalogs CATALOGS, State state);
 
 #endif

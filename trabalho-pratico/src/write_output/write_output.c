@@ -9,33 +9,18 @@ FILE* create_output_file(int command_number) {
   return fopen(filename, "w");
 }
 
-int is_State_Valid(const State* state) {
-  return (state != NULL);
-}
-
 void write_output(FILE* file,
                   bool format_flag,
                   int results_acc,
                   output_key_value* output_array,
                   int output_array_len,
-                  State* state) {
+                  State state) {
   // Simple output
-
-  bool state_valid = is_State_Valid(state);
 
   if (!format_flag) {
     for (int i = 0; i < output_array_len; i++) {
       fprintf(file, "%s", output_array[i].value);
       fprintf(file, i == output_array_len - 1 ? "\n" : ";");
-    }
-
-    if (state_valid) {
-      for (int i = 0; i < output_array_len; i++) {
-        if (state->results_count < 1000) {
-          strcpy(state->results[state->results_count], output_array[i].value);
-          state->results_count++;
-        }
-      }
     }
 
     // Formatted output
@@ -47,6 +32,18 @@ void write_output(FILE* file,
     for (int i = 0; i < output_array_len; i++) {
       fprintf(file, "%s: %s\n", output_array[i].field, output_array[i].value);
     }
+  }
+
+  char *array_copy = malloc((output_array_len + 1) * sizeof(char));
+
+  if (state != NULL) {
+    // output_array = [ ["key", "value"], ["key", "value"], ... ]
+    // [["airline", "TAP"], ["origin", "LIS"], ...]
+
+    for (int i = 0; i < output_array_len; i++) {
+      array_copy[i] = strdup(output_array[i].field);
+    }
+    g_array_append_val(state->results, output_array);
   }
 }
 

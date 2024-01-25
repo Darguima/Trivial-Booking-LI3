@@ -18,6 +18,6 @@
  * @param hotel_id The ID of the hotel to retrieve reservations for
  * @return int Returns 0 upon successful execution of query 4
  */
-int query_4(Catalogs catalogs, int command_number, bool format_flag, char* hotel_id, State* state);
+int query_4(Catalogs catalogs, int command_number, bool format_flag, char* hotel_id, State state);
 
 #endif

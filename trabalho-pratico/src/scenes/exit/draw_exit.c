@@ -3,7 +3,7 @@
 
 #define UNUSED(x) (void)(x)
 
-void draw_exit(WINDOW* window, State* state) {
+void draw_exit(WINDOW* window, State state) {
   UNUSED(window);
   UNUSED(state);
 

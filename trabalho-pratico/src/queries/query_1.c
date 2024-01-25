@@ -26,7 +26,7 @@ bool verify_if_is_reservation(char* id) {
   return false;
 }
 
-void write_user_data(char* id, Catalogs catalogs, FILE* output_file, bool format_flag, State* state) {
+void write_user_data(char* id, Catalogs catalogs, FILE* output_file, bool format_flag, State state) {
   User user = get_user_by_id(catalogs->users, id);
   if (user == NULL || !user_get_is_active(user)) {
     return;
@@ -61,7 +61,7 @@ void write_user_data(char* id, Catalogs catalogs, FILE* output_file, bool format
   free(name);
 }
 
-void write_reservation_data(char* id, Catalogs catalogs, FILE* output_file, bool format_flag, State* state) {
+void write_reservation_data(char* id, Catalogs catalogs, FILE* output_file, bool format_flag, State state) {
   int id_int = string_to_int(id);
 
   Reservation reservation = get_reservation_by_id(catalogs->reservations, id_int);
@@ -93,7 +93,7 @@ void write_reservation_data(char* id, Catalogs catalogs, FILE* output_file, bool
   free(hotel_name);
 }
 
-void write_flight_data(char* id, Catalogs catalogs, FILE* output_file, bool format_flag, State* state) {
+void write_flight_data(char* id, Catalogs catalogs, FILE* output_file, bool format_flag, State state) {
   int id_int = string_to_int(id);
 
   Flight flight = get_flight_by_id(catalogs->flights, id_int);
@@ -129,7 +129,7 @@ void write_flight_data(char* id, Catalogs catalogs, FILE* output_file, bool form
   free(schedule_departure_date);
 }
 
-int query_1(Catalogs catalogs, int command_number, bool format_flag, char* id, State* state) {
+int query_1(Catalogs catalogs, int command_number, bool format_flag, char* id, State state) {
   FILE* output_file = create_output_file(command_number);
 
   if (verify_if_is_digit(id)) {

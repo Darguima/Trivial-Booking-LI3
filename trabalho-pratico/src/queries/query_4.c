@@ -8,7 +8,7 @@
 #include "write_output/write_output.h"
 #define UNUSED(x) (void)(x)
 
-int query_4(Catalogs catalogs, int command_number, bool format_flag, char* hotel_id, State* state) {
+int query_4(Catalogs catalogs, int command_number, bool format_flag, char* hotel_id, State state) {
   printf("I'm in query_4\n");
   UNUSED(catalogs);
   UNUSED(command_number);

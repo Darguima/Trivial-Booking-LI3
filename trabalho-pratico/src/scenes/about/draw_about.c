@@ -3,7 +3,7 @@
 
 #define UNUSED(x) (void)(x)
 
-void draw_about(WINDOW* window, State* state) {
+void draw_about(WINDOW* window, State state) {
   UNUSED(window);
   UNUSED(state);
 
@@ -15,9 +15,9 @@ void draw_about(WINDOW* window, State* state) {
 
   box(window, 0, 0);
 
-  mvwprintw(window, y - 1, x - 24, "Trivial Booking e um sistema de booking no qual");
-  mvwprintw(window, y, x - 29, "o utilizador pode inserir inputs atraves de uma interface.");
-  mvwprintw(window, y + 2, x - 18, "Feito em linguagem de programacao C.");
+  mvwprintw(window, y - 5, x - 24, "Trivial Booking e um sistema de booking no qual");
+  mvwprintw(window, y - 4, x - 29, "o utilizador pode inserir inputs atraves de uma interface.");
+  mvwprintw(window, y - 2, x - 18, "Feito em linguagem de programacao C.");
 
   mvprintw(2, 3, "  ____        _              ");
   mvprintw(3, 3, " / ___|  ___ | |__  _ __ ___ ");

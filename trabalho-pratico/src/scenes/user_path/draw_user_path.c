@@ -4,7 +4,7 @@
 
 #define UNUSED(x) (void)(x)
 
-void draw_user_path(WINDOW* window, State* state, int evento) {
+void draw_user_path(WINDOW* window, State state, int evento) {
   UNUSED(window);
 
   int nrows, ncols;
@@ -22,18 +22,18 @@ void draw_user_path(WINDOW* window, State* state, int evento) {
   mvprintw(6, 3, " |___|_| |_| .__/ \\__,_|\\__|");
   mvprintw(7, 3, "           |_|              ");
 
-  mvaddstr(y, x - 17, "Insere um path para o dataset pretendido");
+  mvaddstr(y, x - 19, "Insere um path para o dataset pretendido");
 
   switch (evento) {
     case 0:  //
-      mvprintw(y + 3, x - 5, "Path inserido: %s", state->userPath);
+      mvprintw(y + 3, x - 6, "Path inserido: %s", state->user_path);
       break;
     case 1:  // indica um path invalido
-      mvprintw(y + 3, x - 5, "Path inserido: %s", state->userPath);
-      mvprintw(y + 4, x - 5, "Path invalido");
+      mvprintw(y + 3, x - 6, "Path inserido: %s", state->user_path);
+      mvprintw(y + 4, x - 6, "Path invalido");
       break;
     case 2:  // apaga
-      mvprintw(y + 3, x - 5, "Path inserido: %s   ", state->userPath);
+      mvprintw(y + 3, x - 6, "Path inserido: %s   ", state->user_path);
       break;
   }
 

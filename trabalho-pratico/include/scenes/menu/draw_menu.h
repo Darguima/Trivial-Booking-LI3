@@ -4,6 +4,6 @@
 #include <ncurses.h>
 #include "state/state.h"
 
-void draw_menu(WINDOW* window, State* state);
+void draw_menu(WINDOW* window, State state);
 
 #endif

@@ -3,7 +3,7 @@
 
 #define UNUSED(x) (void)(x)
 
-void draw_menu(WINDOW* window, State* state) {
+void draw_menu(WINDOW* window, State state) {
   UNUSED(state);
 
   refresh();

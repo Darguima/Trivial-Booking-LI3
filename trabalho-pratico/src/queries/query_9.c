@@ -12,7 +12,7 @@
 
 #define UNUSED(x) (void)(x)
 
-int query_9(Catalogs catalogs, int command_number, bool format_flag, const char* prefix, State* state) {
+int query_9(Catalogs catalogs, int command_number, bool format_flag, const char* prefix, State state) {
   printf("I'm in query_9\n");
 
   UNUSED(catalogs);

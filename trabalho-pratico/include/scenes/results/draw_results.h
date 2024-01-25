@@ -4,6 +4,6 @@
 #include <ncurses.h>
 #include "state/state.h"
 
-void draw_results(WINDOW* window, State* state, int page_pos);
+void draw_results(WINDOW* window, State state, int page_pos);
 
 #endif

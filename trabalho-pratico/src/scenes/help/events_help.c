@@ -4,7 +4,7 @@
 
 #define UNUSED(x) (void)(x)
 
-void events_help(State* state) {
+void events_help(State state) {
   UNUSED(state);
 
   int key = getch();

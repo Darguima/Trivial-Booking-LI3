@@ -46,6 +46,8 @@ int interactive() {
 
   State state = create_state(window);
 
+  printf("teste: %d" ,state.sceneAtual);
+
   Scene sceneAnterior = state.sceneAtual;
 
   while (1) {
@@ -157,7 +159,7 @@ int interactive() {
 
       case Exit:
         draw_exit(window, &state);
-        events_exit(&state);
+        events_exit(window, &state);
         break;
     }
     refresh();

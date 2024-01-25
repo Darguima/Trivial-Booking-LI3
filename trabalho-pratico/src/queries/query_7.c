@@ -7,7 +7,7 @@
 #include "utils/string_to_int.h"
 #include "write_output/write_output.h"
 
-int query_7(Catalogs catalogs, int command_number, bool format_flag, char* top_n_airports, State* state) {
+int query_7(Catalogs catalogs, int command_number, bool format_flag, char* top_n_airports, State state) {
   FILE* output_file = create_output_file(command_number);
 
   GList* top_n_airports_median_list =

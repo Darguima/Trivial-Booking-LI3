@@ -39,7 +39,7 @@ void write_output(FILE* file,
                   int results_acc,
                   output_key_value* output_array,
                   int output_array_len,
-                  State* state);
+                  State state);
 
 /**
  * @brief Closes the output file.

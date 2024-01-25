@@ -75,7 +75,7 @@ char** tokenizer(char* line, int* params_array_length) {
   return tokenized;
 }
 
-int interpreter(char* batch_line, int command_number, Catalogs CATALOGS, State* state) {
+int interpreter(char* batch_line, int command_number, Catalogs CATALOGS, State state) {
   int params_array_length = 0;
   // string de strings que contém os parametros a usar
   char** tokenized_params = tokenizer(batch_line, &params_array_length);

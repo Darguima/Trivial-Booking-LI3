@@ -3,7 +3,7 @@
 
 #define UNUSED(x) (void)(x)
 
-void events_results(State* state) {
+void events_results(State state) {
   int key = getch();
 
   switch (key) {

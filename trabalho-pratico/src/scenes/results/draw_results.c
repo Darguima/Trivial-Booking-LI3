@@ -3,7 +3,7 @@
 
 #define UNUSED(x) (void)(x)
 
-void draw_results(WINDOW* window, State* state, int page_pos) {
+void draw_results(WINDOW* window, State state, int page_pos) {
   int nrows, ncols;
   getmaxyx(window, nrows, ncols);
 
@@ -36,5 +36,5 @@ void draw_results(WINDOW* window, State* state, int page_pos) {
   }
 
   mvaddstr(nrows - 4, 2, "Pressiona as setas [LEFT]/[RIGHT] para mudar de pagina");
-  mvaddstr(nrows - 2, 2, "Pressiona [ESC] para voltar ao menu anterior");
+  mvaddstr(nrows - 2, 2, "Pressiona [ESC] para voltar ao menu principal");
 }

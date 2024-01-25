@@ -14,7 +14,7 @@ int query_8(Catalogs catalogs,
             char* id,
             char* begin_date,
             char* end_date,
-            State* state) {
+            State state) {
   FILE* output_file = create_output_file(command_number);
   int hotel_id = string_to_int(id);
   Hotel hotel = get_hotel_by_id(catalogs->hotels, hotel_id);
