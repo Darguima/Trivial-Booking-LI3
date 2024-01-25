@@ -57,12 +57,12 @@ int airport_get_passengers(Airport airport, int year);
 long airport_get_median_delay(Airport airport);
 
 /**
- * @brief Will insert the given flight on the airport flights array
+ * @brief Will return the active years from the given airport, based on passengers
  *
- * @param airports_catalog The airports catalog
- * @param flight The flight to be inserted
+ * @param airport The airport to get the active years from
+ * @return GList* The active years from the given airport
  */
-void airport_insert_new_flight(AirportsCatalog airports_catalog, Flight flight);
+GList* airport_get_active_years(Airport airport);
 
 /**
  * @brief Will return the passengers of the airport on the given year
@@ -71,6 +71,14 @@ void airport_insert_new_flight(AirportsCatalog airports_catalog, Flight flight);
  * @param passengers The number of passengers on the given airport on the given year
  */
 int airport_get_passenger_by_year(Airport airport, int year);
+
+/**
+ * @brief Will insert the given flight on the airport flights array
+ *
+ * @param airports_catalog The airports catalog
+ * @param flight The flight to be inserted
+ */
+void airport_insert_new_flight(AirportsCatalog airports_catalog, Flight flight);
 
 /**
  * @brief Will increment the passengers count on the given airport

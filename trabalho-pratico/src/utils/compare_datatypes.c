@@ -44,6 +44,31 @@ gint compare_airports_by_median_delay(gconstpointer a, gconstpointer b) {
   }
 }
 
+gint compare_airports_by_passengers(gconstpointer a, gconstpointer b, gpointer user_data) {
+  Airport airport_a = *(Airport*)a;
+  Airport airport_b = *(Airport*)b;
+  int year = (int)user_data;
+
+  long passengers_a = airport_get_passenger_by_year(airport_a, year);
+  long passengers_b = airport_get_passenger_by_year(airport_b, year);
+
+  gint r = (gint)(passengers_b - passengers_a);
+
+  if (r != 0)
+    return r;
+  else {
+    char* id_a = airport_get_id(airport_a);
+    char* id_b = airport_get_id(airport_b);
+
+    r = strcmp(id_a, id_b);
+
+    free(id_a);
+    free(id_b);
+
+    return r;
+  }
+}
+
 gint compare_flights_by_sched_dep_date(gconstpointer a, gconstpointer b) {
   Flight flight_1 = *(Flight*)a;
   Flight flight_2 = *(Flight*)b;

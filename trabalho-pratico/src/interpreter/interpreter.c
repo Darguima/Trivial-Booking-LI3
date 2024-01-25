@@ -122,7 +122,7 @@ int interpreter(char* batch_line, int command_number, Catalogs CATALOGS) {
       query_5(CATALOGS, command_number, has_f, tokenized_params[1], tokenized_params[2], tokenized_params[3]);
       break;
     case 6:
-      if (params_array_length != 2) {
+      if (params_array_length != 3) {
         break;
       }
       query_6(CATALOGS, command_number, has_f, tokenized_params[1], tokenized_params[2]);
