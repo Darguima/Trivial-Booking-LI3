@@ -14,7 +14,8 @@ AirportsCatalog airports_catalog_create() {
 
   airports_catalog->airports_hash_table = g_hash_table_new_full(g_str_hash, g_str_equal, free, free_airport);
   airports_catalog->airports_median_array = g_array_new(FALSE, FALSE, sizeof(Airport));
-  airports_catalog->passengers_by_year_hash_table = g_hash_table_new_full(g_direct_hash, g_direct_equal, NULL, (GDestroyNotify)g_array_unref);
+  airports_catalog->passengers_by_year_hash_table =
+      g_hash_table_new_full(g_direct_hash, g_direct_equal, NULL, (GDestroyNotify)g_array_unref);
 
   return airports_catalog;
 }
