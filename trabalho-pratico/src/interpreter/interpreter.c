@@ -152,7 +152,7 @@ int interpreter(char* batch_line, int command_number, Catalogs CATALOGS, State s
         break;
       }
       query_10(CATALOGS, command_number, has_f, params_array_length >= 2 ? tokenized_params[1] : NULL,
-               params_array_length == 3 ? tokenized_params[3] : NULL, state);
+               params_array_length == 3 ? tokenized_params[2] : NULL, state);
       break;
   }
 

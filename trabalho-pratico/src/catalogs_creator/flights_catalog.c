@@ -3,6 +3,7 @@
 #include "entities/flight_entity.h"
 #include "utils/compare_datatypes.h"
 #include "utils/find_tree_nodes_inside_date_range.h"
+#include "utils/string_to_int.h"
 
 struct flights_catalog {
   GArray* flights_array;
@@ -43,4 +44,14 @@ Flight get_flight_by_id(FlightsCatalog flights_catalog, int flight_id) {
 GList* get_flights_by_schedule_dep_range(FlightsCatalog flights_catalog, char* date_begin, char* date_end) {
   return find_tree_nodes_inside_date_range(flights_catalog->flights_schedule_dep_tree,
                                            (char* (*)(void*))flight_get_schedule_departure_date, date_begin, date_end);
+}
+
+int get_first_flight_year(FlightsCatalog flights_catalog) {
+  GTreeNode* node = g_tree_node_first(flights_catalog->flights_schedule_dep_tree);
+  Flight flight = g_tree_node_value(node);
+  char* schedule_departure_date = flight_get_schedule_departure_date(flight);
+  char year[] = {schedule_departure_date[0], schedule_departure_date[1], schedule_departure_date[2],
+                 schedule_departure_date[3]};
+  free(schedule_departure_date);
+  return string_to_int(year);
 }
