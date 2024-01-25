@@ -12,7 +12,7 @@ struct airport {
   char* id;
   RelationArray flights;
   RelationArray delays;
-  GHashTable* passengers;
+  GHashTable* passengers_by_year;
 };
 
 Airport create_new_airport(AirportsCatalog airports_catalog, char* airport_id) {
@@ -29,7 +29,7 @@ Airport create_new_airport(AirportsCatalog airports_catalog, char* airport_id) {
   new_airport->id = g_strdup(airport_id);
   new_airport->flights = flights;
   new_airport->delays = delays;
-  new_airport->passengers = g_hash_table_new_full(g_direct_hash, g_direct_equal, NULL, free);
+  new_airport->passengers_by_year = g_hash_table_new_full(g_direct_hash, g_direct_equal, NULL, free);
 
   insert_airport(airports_catalog, new_airport);
 
@@ -47,7 +47,7 @@ void free_airport(gpointer value) {
   g_array_free(airport->delays->values, true);
   g_free(airport->delays);
 
-  g_hash_table_destroy(airport->passengers);
+  g_hash_table_destroy(airport->passengers_by_year);
 
   free(airport);
 }
@@ -78,7 +78,7 @@ long airport_get_median_delay(Airport airport) {
 }
 
 GList* airport_get_active_years(Airport airport) {
-  return g_hash_table_get_keys(airport->passengers);
+  return g_hash_table_get_keys(airport->passengers_by_year);
 }
 
 void airport_insert_new_flight(AirportsCatalog airports_catalog, Flight flight) {
@@ -104,7 +104,7 @@ void airport_insert_new_flight(AirportsCatalog airports_catalog, Flight flight) 
 }
 
 int airport_get_passenger_by_year(Airport airport, int year) {
-  int* current_passengers = g_hash_table_lookup(airport->passengers, GINT_TO_POINTER(year));
+  int* current_passengers = g_hash_table_lookup(airport->passengers_by_year, GINT_TO_POINTER(year));
 
   return current_passengers == NULL ? -1 : *current_passengers;
 }
@@ -113,12 +113,12 @@ void airport_increment_passengers(Airport airport, char* date, int passengers) {
   char date_copy[] = {date[0], date[1], date[2], date[3]};
   int date_int = string_to_int(date_copy);
 
-  int* current_passengers = g_hash_table_lookup(airport->passengers, GINT_TO_POINTER(date_int));
+  int* current_passengers = g_hash_table_lookup(airport->passengers_by_year, GINT_TO_POINTER(date_int));
 
   if (current_passengers == NULL) {
     current_passengers = malloc(sizeof(int));
     *current_passengers = 0;
-    g_hash_table_insert(airport->passengers, GINT_TO_POINTER(date_int), current_passengers);
+    g_hash_table_insert(airport->passengers_by_year, GINT_TO_POINTER(date_int), current_passengers);
   }
 
   *current_passengers += passengers;

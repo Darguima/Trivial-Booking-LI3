@@ -58,7 +58,7 @@ Airport get_airport_by_id(AirportsCatalog airports_catalog, char* airport_id);
 GList* get_top_N_airports_median_delay(AirportsCatalog airports_catalog, int N);
 
 /**
- * @brief Will return the top N airports with the highest passengers
+ * @brief Will return the top N airports with the highest passengers on a given year
  *
  * @param airports_catalog The airports catalog
  * @param year The year to get the passengers count from

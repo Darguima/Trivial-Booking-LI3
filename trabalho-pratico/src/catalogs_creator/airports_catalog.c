@@ -60,10 +60,10 @@ void airports_create_aux_data_structs(AirportsCatalog airports_catalog) {
     g_list_free(deletable_list);
   }
 
-  // sort all the arrays
-
+  // sort median array
   g_array_sort(airports_catalog->airports_median_array, compare_airports_by_median_delay);
 
+  // sort passengers by year hash table arrays
   GHashTableIter sort_iter;
   gpointer sort_year, sort_array;
   g_hash_table_iter_init(&sort_iter, airports_catalog->passengers_by_year_hash_table);
