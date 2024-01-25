@@ -18,7 +18,6 @@ void events_user_input(State* state) {
     case KEY_ENTER:
     case '\n':
     case '\r':
-      state->sceneAtual = Loading_Input;
       interpreter(state->userInput, 1, state->catalog, state);
       state->sceneAtual = Results;
       break;

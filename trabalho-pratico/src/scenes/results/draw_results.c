@@ -32,7 +32,7 @@ void draw_results(WINDOW* window, State* state, int page_pos) {
   end_idx = (end_idx > state->results_count) ? state->results_count : end_idx;
 
   for (int i = start_idx; i < end_idx; i++) {
-    mvprintw(y + i - start_idx, x, "Result %d: %s", i + 1, state->results[i]);
+    mvprintw(y + i - start_idx, x, "%d: %s", i + 1, state->results[i]);
   }
 
   mvaddstr(nrows - 4, 2, "Pressiona as setas [LEFT]/[RIGHT] para mudar de pagina");
