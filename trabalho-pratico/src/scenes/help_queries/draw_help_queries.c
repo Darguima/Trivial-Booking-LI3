@@ -105,7 +105,7 @@ void draw_help_queries(WINDOW* window, State* state, int query) {
       mvwprintw(innerWin, 4, 2, "modo batch. E dada uma querie, argumentos para a mesma e");
       mvwprintw(innerWin, 5, 2, "o output sera dado consoante o que a query receber como argumento");
       mvwprintw(innerWin, 7, 2, "As informacoes sobre como funcionam as queries estao no menu");
-      mvwprintw(innerWin, 8, 2, "anterior");
+      mvwprintw(innerWin, 8, 2, "anterior. E necessario fornecer um path para o dataset");
       mvwprintw(innerWin, 10, 2, "Ainda pode ser passada uma flag 'F', a seguir a query:  ");
       mvwprintw(innerWin, 11, 2, "<2F U000000001>, por exemplo,");
       mvwprintw(innerWin, 12, 2, "para que o output seja dado na forma de ' field: value '");

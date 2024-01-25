@@ -43,7 +43,7 @@ void draw_help(WINDOW* window, State* state) {
   mvprintw(6, 3, "/_/   \\_\\/ |\\__,_|\\__,_|\\__,_|");
   mvprintw(7, 3, "       |__/");
 
-  mvprintw(nrows - 6, 2, "Ajuda nas queries: seleciona com a opcao [1]-[0]");
-  mvprintw(nrows - 4, 2, "Como inserir o input no modo interactive: Pressione [I]");
+  mvprintw(nrows - 6, 2, "Pressiona [1]-[0] para ajuda com as queries");
+  mvprintw(nrows - 4, 2, "Pressiona [I] para como inserir o input no modo interactive");
   mvprintw(nrows - 2, 2, "Pressiona [ESC] para voltar ao menu anterior");
 }
