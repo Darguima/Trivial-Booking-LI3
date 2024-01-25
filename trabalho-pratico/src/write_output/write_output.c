@@ -1,4 +1,5 @@
 #include "write_output/write_output.h"
+#include <ncurses.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include "state/state.h"
@@ -16,7 +17,15 @@ void write_output(FILE* file,
                   int output_array_len,
                   State state) {
   // Simple output
-  UNUSED(state);
+  if (state) {
+    printf("\033[%d;%dH", 1 + results_acc, 4);  // move
+
+    for (int i = 0; i < output_array_len; i++) {
+      printf("%s", output_array[i].value);
+      printf(i == output_array_len - 1 ? "\n" : ";");
+    }
+  }
+
   if (!format_flag) {
     for (int i = 0; i < output_array_len; i++) {
       fprintf(file, "%s", output_array[i].value);

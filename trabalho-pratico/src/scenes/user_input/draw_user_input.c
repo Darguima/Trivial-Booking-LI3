@@ -6,7 +6,7 @@
 #define UNUSED(x) (void)(x)
 
 void draw_user_input(WINDOW* window, State state, int evento) {
-  UNUSED(window);
+  state->ncurses_screen = window;
 
   int nrows, ncols;
   getmaxyx(window, nrows, ncols);
