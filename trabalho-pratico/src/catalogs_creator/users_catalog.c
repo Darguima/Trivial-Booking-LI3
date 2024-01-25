@@ -11,29 +11,12 @@ struct users_catalog {
   GTree* users_name_tree;
 };
 
-gint compare_names(gconstpointer a, gconstpointer b, gpointer user_data) {
-  UsersCatalog users_catalog = (UsersCatalog)user_data;
-  const char* id_1 = (const char*)a;
-  const char* id_2 = (const char*)b;
-
-  User user_1 = get_user_by_id(users_catalog, (char*)id_1);
-  User user_2 = get_user_by_id(users_catalog, (char*)id_2);
-  char* name_1 = user_get_name(user_1);
-  char* name_2 = user_get_name(user_2);
-  int name_comp = strcoll(name_1, name_2);
-  free(name_1);
-  free(name_2);
-  if (name_comp != 0) {
-    return name_comp;
-  }
-  return strcoll(id_1, id_2);
-}
 UsersCatalog users_catalog_create() {
   UsersCatalog users_catalog = malloc(sizeof(struct users_catalog));
 
   users_catalog->users_hash_table = g_hash_table_new_full(g_str_hash, g_str_equal, free, free_user);
   users_catalog->users_account_creation_tree = g_tree_new_full(compare_string, NULL, g_free, NULL);
-  users_catalog->users_name_tree = g_tree_new_full(compare_names, users_catalog, g_free, NULL);
+  users_catalog->users_name_tree = g_tree_new_full(compare_users_by_name, users_catalog, g_free, NULL);
 
   return users_catalog;
 }

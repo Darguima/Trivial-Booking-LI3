@@ -5,6 +5,8 @@
 #include <glib.h>
 #include "entities/user_entity.h"
 
+typedef struct user* User;
+
 //! The users catalog
 typedef struct users_catalog* UsersCatalog;
 
