@@ -10,6 +10,10 @@ Although the project is not perfect, we are proud with the work we have done.
 
 #### Grade: 18/20
 
+### Demo
+
+![Demo Image](./demo.png)
+
 ### The goal
 
 In some words, the goal of this project was create a C program that could handle a large dataset of hotels, flights and reservations, and answer to some queries about the data. The solution should follow an encapsulated and modular approach.
@@ -58,7 +62,7 @@ $ sudo pacman -S glib2 clang valgrind doxygen
 Start by going to `trabalho-pratico` folder:
 
 ```bash
-$ cd trabalho-pratico
+$ cd Trivial-Booking/trabalho-pratico/
 ```
 
 ##### Downloading the Dataset
@@ -77,9 +81,12 @@ $ make
 # With debug flags
 $ DEBUG=1 make
 
-# Executing
+# Executing program
 $ ./programa-principal 
 $ ./programa-principal <dataset-folder> <input-file>
+
+# Executing performance tests
+$ ./programa-testes <dataset-folder> <input-file> <correct-output-folder>
 ```
 
 ##### Developing
