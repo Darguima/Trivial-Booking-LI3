@@ -2,9 +2,9 @@
 
 ## About the Project
 
-This project was developed for the LI3 University of Minho Subject of the Software Engineering degree.
+This project was developed for the subject LI3 from University of Minho - Software Engineering degree.
 
-The project has some minor bugs due our skill issues, and after the deadline nobody had time to fix them, because we are spending our time on other projects.
+The project have some minor bugs due to our skill issues, and after the deadline nobody had the time to fix them, because we were focusing on other projects.
 
 Although the project is not perfect, we are proud with the work we have done.
 
@@ -16,7 +16,7 @@ Although the project is not perfect, we are proud with the work we have done.
 
 ### The goal ⛳️
 
-In some words, the goal of this project was create a C program that could handle a large dataset of hotels, flights and reservations, and answer to some queries about the data. The solution should follow an encapsulated and modular approach.
+In some words, the goal of this project was to create a C program that could handle a large dataset of hotels, flights and reservations, and answer to some queries about the data. The solution should follow an encapsulated and modular approach.
 
 If you want, you can read the [project statement](enunciado.pdf) (in Portuguese).
 
