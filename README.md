@@ -22,7 +22,7 @@ If you want, you can read the [project statement](enunciado.pdf) (in Portuguese)
 
 ### About the Code 🧑‍💻
 
-The main goal of this subject was to learn how to develop a modular and encapsulated code, so we have divided the code in some folders.
+The main goal of this subject was to learn how to develop a modular and encapsulated code, so we divided the code in some folders.
 
 ##### Entities
 
