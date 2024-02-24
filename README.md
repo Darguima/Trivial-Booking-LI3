@@ -8,19 +8,19 @@ The project has some minor bugs due our skill issues, and after the deadline nob
 
 Although the project is not perfect, we are proud with the work we have done.
 
-#### Grade: 18/20
+#### Grade ⭐️ 18/20
 
-### Demo
+### Demo 📽️
 
 ![Demo Image](./demo.png)
 
-### The goal
+### The goal ⛳️
 
 In some words, the goal of this project was create a C program that could handle a large dataset of hotels, flights and reservations, and answer to some queries about the data. The solution should follow an encapsulated and modular approach.
 
 If you want, you can read the [project statement](enunciado.pdf) (in Portuguese).
 
-### About the Code
+### About the Code 🧑‍💻
 
 The main goal of this subject was to learn how to develop a modular and encapsulated code, so we have divided the code in some folders.
 
@@ -32,13 +32,13 @@ Represents the entities of the project, like `user`, `hotel`, `flight`, `airport
 
 Store all the entities of the project. Each catalog will use the data structures that best fits the solutions for the queries. We are using GLib to handle the `trees`, `lists`, `arrays` and `hash tables`.
 
-### Program Flow
+### Program Flow 📈
 
 The program flow is represented in the following image.
 
 ![Data Flow Flow](./trabalho-pratico/Relatorio/data_flow.png)
 
-## Getting Started
+## Getting Started 🚀
 
 #### Cloning the repository
 
@@ -47,7 +47,7 @@ $ git clone https://github.com/Darguima/Trivial-Booking-LI3.git
 $ git clone git@github.com:Darguima/Trivial-Booking-LI3.git
 ```
 
-### Installing dependencies
+### Installing dependencies 📦
 
 ```bash
 # Debian / Ubuntu / Mint
@@ -57,7 +57,7 @@ $ sudo apt-get install libglib2.0-dev libncurses-dev clang-format valgrind doxyg
 $ sudo pacman -S glib2 clang valgrind doxygen
 ```
 
-#### Running the project
+#### Running the project 🏃‍♂️
 
 Start by going to `trabalho-pratico` folder:
 
@@ -65,7 +65,7 @@ Start by going to `trabalho-pratico` folder:
 $ cd Trivial-Booking/trabalho-pratico/
 ```
 
-##### Downloading the Dataset
+##### Downloading the Dataset 📂
 
 In order to test with "real" data, download our datasets:
 
@@ -74,7 +74,7 @@ $ wget https://github.com/Darguima/Trivial-Booking-LI3/releases/download/phase_1
 $ unzip dataset.zip
 ```
 
-##### Compiling the code
+##### Compiling the code 🛠️
 ```bash
 $ make
 
@@ -126,7 +126,7 @@ $ make clean
 $ make format
 ```
 
-## Developed by:
+## Developed by 🧑‍💻:
 
 - [Afonso Pedreira](https://github.com/afooonso)
 - [Dário Guimarães](https://github.com/darguima)
