@@ -4,25 +4,19 @@
 
 This project was developed for the LI3 University of Minho Subject of the Software Engineering degree.
 
-The project has some minor bugs due our skill issues, and after the deadline nobody had time to fix them, because we are spending our time in other projects.
+The project has some minor bugs due our skill issues, and after the deadline nobody had time to fix them, because we are spending our time on other projects.
 
 Although the project is not perfect, we are proud with the work we have done.
 
-##### Grade: 18/20
+#### Grade: 18/20
 
-## The goal
+### The goal
 
 In some words, the goal of this project was create a C program that could handle a large dataset of hotels, flights and reservations, and answer to some queries about the data. The solution should follow an encapsulated and modular approach.
 
 If you want, you can read the [project statement](enunciado.pdf) (in Portuguese).
 
-##### Developed by:
-
-- [Afonso Pedreira](https://github.com/afooonso)
-- [Dário Guimarães](https://github.com/darguima)
-- [Hugo Rauber](https://github.com/HugoLRauber)
-
-## About the Code
+### About the Code
 
 The main goal of this subject was to learn how to develop a modular and encapsulated code, so we have divided the code in some folders.
 
@@ -124,3 +118,9 @@ $ make clean
 ```bash
 $ make format
 ```
+
+## Developed by:
+
+- [Afonso Pedreira](https://github.com/afooonso)
+- [Dário Guimarães](https://github.com/darguima)
+- [Hugo Rauber](https://github.com/HugoLRauber)
